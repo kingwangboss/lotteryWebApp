@@ -23,7 +23,7 @@
 
         <mt-tabbar v-model="selected" fixed>
             <mt-tab-item id="plan">
-                <img slot="icon" :src="tabList['tabPlan'].src"> 计划追号
+                <img slot="icon" src="/static/images/shouye.png"> 计划追号
             </mt-tab-item>
             <mt-tab-item id="shujufenxi">
                 <img slot="icon" src="../assets/images/rizhi.png"> 数据分析
@@ -71,9 +71,9 @@ const titleList = [
 
 const tabList = {
     plan: {
-        src: './static/images/shouye.png',
-        defaultSrc: './static/images/shouye.png',
-        activeSrc: './static/images/shouye1.png'
+        src: '/static/images/shouye.png',
+        defaultSrc: '/static/images/shouye.png',
+        activeSrc: '/static/images/shouye1.png'
     },
     shujufenxi: {
         src: "../assets/images/rizhi.png",
