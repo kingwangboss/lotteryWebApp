@@ -23,16 +23,16 @@
 
         <mt-tabbar v-model="selected" fixed>
             <mt-tab-item id="plan">
-                <img slot="icon" src="/static/images/shouye.png"> 计划追号
+                <img slot="icon" :src="tabList['plan'].src"> 计划追号
             </mt-tab-item>
             <mt-tab-item id="shujufenxi">
-                <img slot="icon" src="../assets/images/rizhi.png"> 数据分析
+                <img slot="icon" :src="tabList['shujufenxi'].src"> 数据分析
             </mt-tab-item>
             <mt-tab-item id="lishi">
-                <img slot="icon" src="../assets/images/lishikaijiang.png"> 历史开奖
+                <img slot="icon" :src="tabList['lishi'].src"> 历史开奖
             </mt-tab-item>
             <mt-tab-item id="wo">
-                <img slot="icon" src="../assets/images/wo.png"> 我
+                <img slot="icon" :src="tabList['wo'].src"> 我
             </mt-tab-item>
         </mt-tabbar>
     </div>
@@ -71,24 +71,24 @@ const titleList = [
 
 const tabList = {
     plan: {
-        src: '/static/images/shouye.png',
-        defaultSrc: '/static/images/shouye.png',
-        activeSrc: '/static/images/shouye1.png'
+        src: require('../assets/images/shouye1.png'),
+        defaultSrc: require('../assets/images/shouye.png'),
+        activeSrc: require('../assets/images/shouye1.png')
     },
     shujufenxi: {
-        src: "../assets/images/rizhi.png",
-        defaultSrc: "../assets/images/rizhi.png",
-        activeSrc: "../assets/images/rizhi1.png"
+        src: require('../assets/images/rizhi.png'),
+        defaultSrc: require('../assets/images/rizhi.png'),
+        activeSrc: require('../assets/images/rizhi1.png')
     },
     lishi: {
-        src: "../assets/images/lishikaijiang.png",
-        defaultSrc: "../assets/images/lishikaijiang.png",
-        activeSrc: "../assets/images/lishikaijiang1.png"
+        src: require('../assets/images/lishikaijiang.png'),
+        defaultSrc: require('../assets/images/lishikaijiang.png'),
+        activeSrc: require('../assets/images/lishikaijiang1.png')
     },
     wo: {
-        src: "../assets/images/wo.png",
-        defaultSrc: "../assets/images/wo.png",
-        activeSrc: "../assets/images/wo1.png"
+        src: require('../assets/images/wo.png'),
+        defaultSrc: require('../assets/images/wo.png'),
+        activeSrc: require('../assets/images/wo1.png')
     }
 };
 

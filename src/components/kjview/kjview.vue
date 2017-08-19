@@ -9,7 +9,7 @@
     height: 100px;
     width: 100%;
     background-color: red;
-    
+    background: url(../../assets/images/shouyebg.png)
 }
 </style>
 
