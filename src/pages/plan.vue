@@ -12,29 +12,14 @@
             <span class="textbtn last">近10期计划</span>
         </div>
 
-        <p>计划cell1</p>
-
-        <p>计划cell2</p>
-
-        <p>计划cel3</p>
-
-        <p>计划cell4</p>
-
-        <p>计划cell5</p>
-
-        <p>计划cell6</p>
-
-        <p class="sss">计划cell7</p>
-
-        <p class="last">计划cell8</p>
-
-        <p>计划cel9</p>
-
-        <p>计划cell10</p>
-
-        <p>计划cell11</p>
-
-        <p>计划cell12</p>
+        <plancell></plancell>
+        <plancell></plancell>
+        <plancell></plancell>
+        <plancell></plancell>
+        <plancell></plancell>
+        <plancell></plancell>
+        <plancell></plancell>
+        <plancell></plancell>
 
     </div>
 </template>
@@ -54,9 +39,9 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
-        
+
         .textbtn {
-            
+
             font-size: 12px;
             width: 17%;
             margin-top: 10px;
@@ -93,3 +78,12 @@
 }
 </style>
 
+<script>
+import plancell from '../components/plancell/plancell'
+export default {
+    components: {
+        plancell,
+    }
+
+}
+</script>
