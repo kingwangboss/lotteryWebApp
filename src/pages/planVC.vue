@@ -46,6 +46,8 @@ import shujufenxi from './shujufenxi'
 import lishikaijiang from './lishikaijiang'
 import wo from './wo'
 import kjview from '../components/kjview/kjview'
+
+
 const titleList = [
     {
         text: '计划追号',
@@ -99,7 +101,7 @@ export default {
             selected: 'plan',
             titleList: titleList,
             title: titleList[0],
-            tabList: tabList
+            tabList: tabList,
         };
     },
     components: {
