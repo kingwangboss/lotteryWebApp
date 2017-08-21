@@ -71,24 +71,24 @@ const titleList = [
 
 const tabList = {
     plan: {
-        src: require('../assets/images/shouye1.png'),
-        defaultSrc: require('../assets/images/shouye.png'),
-        activeSrc: require('../assets/images/shouye1.png')
+        src: require('../../static/images/shouye1.png'),
+        defaultSrc: require('../../static/images/shouye.png'),
+        activeSrc: require('../../static/images/shouye1.png')
     },
     shujufenxi: {
-        src: require('../assets/images/rizhi.png'),
-        defaultSrc: require('../assets/images/rizhi.png'),
-        activeSrc: require('../assets/images/rizhi1.png')
+        src: require('../../static/images/rizhi.png'),
+        defaultSrc: require('../../static/images/rizhi.png'),
+        activeSrc: require('../../static/images/rizhi1.png')
     },
     lishi: {
-        src: require('../assets/images/lishikaijiang.png'),
-        defaultSrc: require('../assets/images/lishikaijiang.png'),
-        activeSrc: require('../assets/images/lishikaijiang1.png')
+        src: require('../../static/images/lishikaijiang.png'),
+        defaultSrc: require('../../static/images/lishikaijiang.png'),
+        activeSrc: require('../../static/images/lishikaijiang1.png')
     },
     wo: {
-        src: require('../assets/images/wo.png'),
-        defaultSrc: require('../assets/images/wo.png'),
-        activeSrc: require('../assets/images/wo1.png')
+        src: require('../../static/images/wo.png'),
+        defaultSrc: require('../../static/images/wo.png'),
+        activeSrc: require('../../static/images/wo1.png')
     }
 };
 
@@ -141,7 +141,7 @@ export default {
 .page-wrap {
     overflow: auto;
     height: 100%;
-    margin-bottom:0;
+    margin-bottom:55px;
 
     .mint-tab-container {
         height: 100%;

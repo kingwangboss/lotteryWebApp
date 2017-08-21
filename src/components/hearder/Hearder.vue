@@ -45,7 +45,7 @@ export default {
     },
     data() {
         return {
-            title: "赢彩王-计划追号"
+
         }
     },
 }
