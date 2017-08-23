@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>遗漏分析</title>
+
+
+    <!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0/jquery.mobile.structure-1.4.0.min.css" />-->
+    <link rel="stylesheet" href="jquery.mobile.structure-1.4.0.min.css" />
+
+    <!--<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>-->
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="ichart.1.2.min.js"></script>
+    <style type="text/css">
+        body {
+            margin-top:0px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        var data;
+        var title_text;
+
+        function demo(aaa,title) {
+            if (aaa&&title){
+                data = eval(aaa);
+                $(function(){
+                    console.log(data);
+                    new iChart.Bar2D({
+                        fit:true,
+                        render : 'canvasDiv',
+                        data: data,
+                        animation : true,
+//                    footnote : 'Data from StatCounter',
+                        //坐标配置项
+                        coordinate:{
+//
+                            scale:[{
+                                position:'bottom',
+                                scale_share:10,
+//                        start_scale:0,
+//                        end_scale:100,
+//                        scale_space:10,
+//                        listeners:{
+//                            parseText:function(t,x,y){
+//                                return {text:t+"%"}
+//                            }
+////                        },
+                                label:{
+                                    fontsize:25,
+                                }
+                            }]
+                        },
+
+                        label:{
+                            fontsize:25,
+                        },
+
+                        title:{
+                            text:title,
+                            fontsize:50,
+                            offsety:40,
+                        },
+
+                        sub_option : {
+                            label : {
+                                fontsize : 30,
+                            }
+                        },
+
+                        rectangle:{
+                            listeners:{
+                                drawText:function(r,t){
+                                    return t+"%";
+                                }
+                            }
+                        }
+                    }).draw();
+                });
+
+
+
+
+
+
+                var oDiv = document.createElement('div');
+                oDiv.innerHTML = '<div id="canvasDiv"></div>';
+                document.body.appendChild(oDiv);
+            }
+
+
+
+        }
+
+    </script>
+
+    <!--<script>-->
+        <!--function demo2( aaa) {-->
+            <!--var arrStr = aaa;-->
+            <!--data = eval(arrStr);-->
+
+            <!--console.log(data[0].name);-->
+        <!--}-->
+
+    <!--</script>-->
+
+
+</head>
+<body style="padding: 50px; margin: 50px; overflow: hidden;">
+
+<!--<script>-->
+
+    <!--datas = "[\-->
+        <!--{name : '12',value : 20,color:'#a5c2d5'},\-->
+        <!--{name : '34',value : 230,color:'#cbab4f'},\-->
+        <!--{name : '2',value : 130,color:'#76a871'},\-->
+        <!--{name : '3',value : 410,color:'#9f7961'},\-->
+        <!--{name : '1',value : 510,color:'#a56f8f'},\-->
+        <!--{name : '5',value : 120,color:'#db9034'}]"-->
+    <!--;-->
+    <!--var titles = "11";-->
+    <!--demo(datas,titles);-->
+<!--</script>-->
+
+
+<!--<div id="canvasDiv">-->
+    <!--<div id="shell-column2d_7525881039183" style="padding: 0px; margin: 0px auto; overflow: hidden; position: relative; width: 1492px; height: 891px;">-->
+        <!--<canvas id="column2d_7525881039183" style="width: 1492px; height: 891px; cursor: default;" width="2984" height="1782">-->
+            <!--<p>Your browser does not support the canvas element</p>-->
+        <!--</canvas>-->
+    <!--</div>-->
+<!--</div>-->
+
+<!--<div id="canvasDiv">-->
+
+<!--</div>-->
+
+</body>
+
+</html>

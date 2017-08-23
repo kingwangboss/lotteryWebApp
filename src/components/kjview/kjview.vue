@@ -37,6 +37,8 @@ export default {
     width: 100%;
     background-color: red;
     background: url(../../../static/images/shouyebg.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     display: flex;
     flex-direction: column;
     .top-top {
@@ -68,6 +70,12 @@ export default {
 
     .top-middle {
         margin: 10px 0;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-justify-content: center;
+        justify-content: center;
     }
 
     .top-bottom {

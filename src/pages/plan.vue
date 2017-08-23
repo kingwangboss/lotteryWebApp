@@ -5,7 +5,7 @@
         </div>
 
         <div class="middlecontainer">
-            <span class="textbtn first">选择彩种</span>
+            <span class="textbtn first" style="border-left-width: 1px;">选择彩种</span>
             <span class="textbtn">更改计划</span>
             <span class="textbtn">计划分享</span>
             <span class="textbtn">切换公式</span>
@@ -20,6 +20,8 @@
         <plancell></plancell>
         <plancell></plancell>
         <plancell></plancell>
+
+        <div class="bottom-title">善意提醒：小心参考，理性投资</div>
 
     </div>
 </template>
@@ -50,6 +52,7 @@
             height: 30px;
             background: #f6f6f6;
             border: 1px solid #d8d8d8;
+            border-left-width: 0px;
             text-align: center;
             color: #767676;
             /* border-top-left-radius: 15rpx;
@@ -74,6 +77,12 @@
     }
     .last {
         background: rebeccapurple;
+    }
+    .bottom-title {
+        text-align: center;
+        font-size: 12.5px;
+        color: gray;
+        margin-bottom: 10px;
     }
 }
 </style>
