@@ -134,8 +134,8 @@
         }
     }
     .bottom {
-        margin-top: 10px;
-        width: 70%;
+        margin-top: 20px;
+        width: 280px;
         .bottom-left {
             color: #fff;
             float: left;
