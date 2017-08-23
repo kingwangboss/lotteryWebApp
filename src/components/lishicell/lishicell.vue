@@ -3,13 +3,13 @@
 
         <div v-for="item in kjArr.num_key" :key="item.KJArr">
             <div class="contentCell">
-                <span class="top-left" style="background-image:url('../../static/images/history/Records-02@2x.png')">{{"第"+item.ID+"期"}}</span>
+                <span class="top-left">{{"第"+item.ID+"期"}}</span>
                 <span class="top-right">{{item.CreateTime}}</span>
             </div>
 
-            <div class="KJnum" >
+            <div class="KJnum">
                 <div v-for="item1 in item.Data.split(',')" :key="item1">
-                    <div class="num" style="background-image:url('../../static/images/history/Records-04@2x.png')">{{item1}}</div>
+                    <div class="num">{{item1}}</div>
                 </div>
             </div>
 
@@ -27,10 +27,10 @@ export default {
     },
     data() {
         return {
-            kjArr : da,
+            kjArr: da,
         }
     },
-    
+
 }
 </script>
 
@@ -43,7 +43,7 @@ export default {
 }
 
 .top-left {
-
+    background-image: url('../../../static/images/history/Records-02.png');
     font-size: 12.5px;
     padding: 2.5px 15px 2.5px 5px;
     background-repeat: no-repeat;
@@ -71,14 +71,16 @@ export default {
     height: 35px;
     width: 35px;
     background-repeat: no-repeat;
-    
+
     background-size: 35px;
     color: #f82b56;
     font-size: 23px;
+    background-image: url('../../../static/images/history/Records-04.png');
 }
+
 .top {
-  height: 10px;
-  background: #FBF9FE;
+    height: 10px;
+    background: #FBF9FE;
 }
 </style>
 
