@@ -2,6 +2,10 @@
     <div class="header-wrapper">
         <div class="header">
             <div class="title-wrapper">
+                <span v-if="title.showBack" class="back" @click="back">
+                    <img src="../../../static/images/back.png" alt="返回" />
+                </span>
+                <!-- <span class="title">{{title.text}}</span> -->
                 <span class="title">{{title.text}}</span>
             </div>
         </div>
@@ -20,6 +24,19 @@
         background-color: #E5574D;
         line-height: 44px;
         text-align: center;
+        .back {
+            width: 12%;
+            margin-left: -40px;
+            img {
+                width: 20px;
+                height: 20px;
+                line-height: 20px;
+                vertical-align: middle;
+                padding: 3px;
+            }
+        }
+
+
         .title-wrapper {
             font-size: 15px;
             color: #FCFCFC;
@@ -45,7 +62,12 @@ export default {
     },
     data() {
         return {
-
+            
+        }
+    },
+    methods: {
+        back() {
+            this.$router.go(-1);
         }
     },
 }

@@ -70,12 +70,6 @@ export default {
 
     .top-middle {
         margin: 10px 0;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-align-items: center;
-        align-items: center;
-        -webkit-justify-content: center;
-        justify-content: center;
     }
 
     .top-bottom {
