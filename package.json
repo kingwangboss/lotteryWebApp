@@ -10,6 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "element-ui": "^1.4.2",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",

@@ -192,12 +192,17 @@ export default {
 
             var formData = JSON.stringify(this.user); // 这里才是你的表单数据
             console.log(formData);
+            
 
-            // this.$http.post('/path/to', formData).then((response) => {
+            // this.$http.get('?Action=Login&SID=1')
+            // .then((response) => {
             //     // success callback
+            //     console.log(response);
             // }, (response) => {
             //     // error callback
+            //     console.log(response);
             // });
+
 
         }
     }
