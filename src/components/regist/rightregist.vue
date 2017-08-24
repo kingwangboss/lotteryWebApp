@@ -37,7 +37,7 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
   width: 100%;
-  height: 100%;
+  height: 90%;
   position: absolute;
   #bundle>.juzhong;
   .content {

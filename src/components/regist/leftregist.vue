@@ -44,7 +44,7 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
   width: 100%;
-  height: 100%;
+  height: 90%;
   position: absolute;
   .content {
     #bundle>.juzhong;
@@ -78,10 +78,10 @@
         font-size: 12px;
       }
       .btn {
-        #bundle>.juzhong;
+        // #bundle>.juzhong;
         margin-left: 20px;
         height: 40px;
-        width: 30%;
+        width: 40%;
         border-radius: 5px;
         background-color: RGB(251, 230, 231);
         border: 0;

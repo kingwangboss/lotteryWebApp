@@ -39,7 +39,7 @@
 ::-webkit-input-placeholder {
   /* WebKit browsers */
   color: RGB(229, 164, 153);
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .maincontainer {
@@ -68,10 +68,10 @@
         font-size: 12px;
       }
       .btn {
-        #bundle>.juzhong;
+        // #bundle>.juzhong;
         margin-left: 20px;
         height: 40px;
-        width: 30%;
+        width: 40%;
         border-radius: 5px;
         background-color: RGB(251, 230, 231);
         border: 0;
