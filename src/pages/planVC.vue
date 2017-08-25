@@ -118,7 +118,7 @@ export default {
             console.log(oldVal);
             this.tabList[val].src = this.tabList[val].activeSrc;
             this.tabList[oldVal].src = this.tabList[oldVal].defaultSrc;
-            console.log(this.tabList[val].src);
+            // console.log(this.tabList[val].src);
             switch (val) {
                 case 'plan':
                     this.title = this.titleList[0];

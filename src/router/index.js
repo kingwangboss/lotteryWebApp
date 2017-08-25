@@ -25,7 +25,7 @@ export default new Router({
       component: lossPwdVC
     },
     {
-      path: '/PlanVC',
+      path: '/planVC',
       name: 'PlanVC',
       component: PlanVC
     }

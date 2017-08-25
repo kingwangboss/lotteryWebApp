@@ -150,6 +150,12 @@
 
 <script>
 import mHeader from '../components/hearder/Hearder';
+import axios from 'axios'
+import http from '../util/http'
+const ajaxInstance = axios.create({
+    baseURL: 'https://ycwidx.cpnet.com',
+    timeout: 30000 // 30 seconds.
+});
 
 export default {
     name: 'loginVC',
@@ -192,16 +198,24 @@ export default {
 
             var formData = JSON.stringify(this.user); // 这里才是你的表单数据
             console.log(formData);
-            
 
-            // this.$http.get('?Action=Login&SID=1')
-            // .then((response) => {
-            //     // success callback
-            //     console.log(response);
-            // }, (response) => {
-            //     // error callback
-            //     console.log(response);
-            // });
+
+
+            let data = new FormData();
+            data.append('Action', 'GetVCode');
+            data.append('SID', '1');
+            return ajaxInstance.post('', data).then((response) => {
+                console.log(response);
+                if (response.data === 'success') {
+                    return true;
+                } else {
+                    console.log(response.data);
+                    return false;
+                }
+            }).catch((error) => {
+                console.error(error);
+                return false;
+            });
 
 
         }
