@@ -1,19 +1,24 @@
 <template>
   <div>
-    <cell></cell>
+    <cell :data="lishiData"></cell>
   </div>
 </template>
 
 
 <script>
 import cell from '../components/lishicell/lishicell'
-
+var data = require('../../static/data/historyData')
 export default {
-  name:'lishikaijiang',
-  
-  components:{
+  name: 'lishikaijiang',
+  data() {
+    return {
+      lishiData: data
+    }
+  },
+
+  components: {
     cell,
   }
-  
+
 }
 </script>

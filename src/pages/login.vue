@@ -152,10 +152,7 @@
 import mHeader from '../components/hearder/Hearder';
 import axios from 'axios'
 import http from '../util/http'
-const ajaxInstance = axios.create({
-    baseURL: 'https://ycwidx.cpnet.com',
-    timeout: 30000 // 30 seconds.
-});
+
 
 export default {
     name: 'loginVC',
@@ -219,7 +216,8 @@ export default {
 
 
         }
-    }
+    },
+
 }
 </script>
 

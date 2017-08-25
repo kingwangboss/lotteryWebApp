@@ -1,84 +1,125 @@
-import axios from 'axios'
-import qs from 'qs'
+import axios from 'axios';
+import router from '../router'
 
-axios.interceptors.request.use(config => {
-  // loading
-  return config
-}, error => {
-  return Promise.reject(error)
-})
 
-axios.interceptors.response.use(response => {
-  return response
-}, error => {
-  return Promise.resolve(error.response)
-})
+// axios 配置
+axios.defaults.timeout = 5000;
+axios.defaults.baseURL = 'http://localhost/pjm-shield-api/public/v1/';
 
-function checkStatus (response) {
-  // loading
-  // 如果http状态码正常，则直接返回数据
-  if (response && (response.status === 200 || response.status === 304 || response.status === 400)) {
-    return response
-    // 如果不需要除了data之外的数据，可以直接 return response.data
-  }
-  // 异常状态下，把错误信息返回去
-  return {
-    status: -404,
-    msg: '网络异常'
-  }
-}
-
-function checkCode (res) {
-  // 如果code异常(这里已经包括网络错误，服务器错误，后端抛出的错误)，可以弹出一个错误提示，告诉用户
-  if (res.status === -404) {
-    alert(res.msg)
-  }
-  if (res.data && (!res.data.success)) {
-    alert(res.data.error_msg)
-  }
-  return res
-}
-
-export default {
-  post (url, data) {
-    return axios({
-      method: 'post',
-      baseURL: 'https://ycwidx.cpnet.com',
-      url,
-      data: qs.stringify(data),
-      timeout: 10000,
-      headers: {
-        'X-Requested-With': 'XMLHttpRequest',
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-      }
-    }).then(
-      (response) => {
-        return checkStatus(response)
-      }
-    ).then(
-      (res) => {
-        return checkCode(res)
-      }
-    )
+// http request 拦截器
+axios.interceptors.request.use(
+  config => {
+    //config.data = JSON.stringify(config.data);
+    config.headers = {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    };
+    if (token) {
+      config.params = { 'token': token }
+    }
+    return config;
   },
-  get (url, params) {
-    return axios({
-      method: 'get',
-      baseURL: 'https://ycwidx.cpnet.com',
-      url,
-      params, // get 请求时带的参数
-      timeout: 10000,
-      headers: {
-        'X-Requested-With': 'XMLHttpRequest'
-      }
-    }).then(
-      (response) => {
-        return checkStatus(response)
-      }
-    ).then(
-      (res) => {
-        return checkCode(res)
-      }
-    )
+  err => {
+    return Promise.reject(err);
   }
+);
+
+
+// http response 拦截器
+axios.interceptors.response.use(
+  response => {
+    if (response.data.errCode == 2) {
+      router.push({
+        path: '/',
+        query: { redirect: router.currentRoute.fullPath }  //从哪个页面跳转
+      })
+    }
+    return response;
+  },
+  error => {
+    // if (error.response) {
+    //     switch (error.response.status) {
+    //         case 401:
+    //             // 401 清除token信息并跳转到登录页面
+    //             store.commit(types.LOGOUT);
+    //             router.replace({
+    //                 path: 'login',
+    //                 query: {redirect: router.currentRoute.fullPath}
+    //             })
+    //     }
+    // }
+    return Promise.reject(error.response.data)
+  });
+
+export default axios;
+
+/**
+ * fetch 请求方法
+ * @param url
+ * @param params
+ * @returns {Promise}
+ */
+export function fetch(url, params = {}) {
+
+  return new Promise((resolve, reject) => {
+    axios.get(url, {
+      params: params
+    })
+      .then(response => {
+        resolve(response.data);
+      })
+      .catch(err => {
+        reject(err)
+      })
+  })
+}
+
+/**
+ * post 请求方法
+ * @param url
+ * @param data
+ * @returns {Promise}
+ */
+export function post(url, data = {}) {
+  return new Promise((resolve, reject) => {
+    axios.post(url, data)
+      .then(response => {
+        resolve(response.data);
+      }, err => {
+        reject(err);
+      })
+  })
+}
+
+/**
+ * patch 方法封装
+ * @param url
+ * @param data
+ * @returns {Promise}
+ */
+export function patch(url, data = {}) {
+  return new Promise((resolve, reject) => {
+    axios.patch(url, data)
+      .then(response => {
+        resolve(response.data);
+      }, err => {
+        reject(err);
+      })
+  })
+}
+
+/**
+ * put 方法封装
+ * @param url
+ * @param data
+ * @returns {Promise}
+ */
+export function put(url, data = {}) {
+  return new Promise((resolve, reject) => {
+    axios.put(url, data)
+      .then(response => {
+        resolve(response.data);
+      }, err => {
+        reject(err);
+      })
+  })
 }

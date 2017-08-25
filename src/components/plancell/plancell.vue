@@ -1,29 +1,33 @@
 <template>
-    <div class="bottomcontainer">
-        <!-- <span wx:if="{{DSType==0}}" class="txt-item1" style="border-top-left-radius: 25rpx;color: RGB(84, 128, 215); background:RGB(222, 231, 247);">{{Name}}</span> -->
-        <!-- <span wx:else class="txt-item1" style="border-top-left-radius: 25rpx;color: RGB(199, 64, 78); background:RGB(247, 237, 237);">{{Name}}</span> -->
-        <span class="txt-item1" style="width:18%;border-top-left-radius: 12.5px;color: RGB(84, 128, 215); background:RGB(222, 231, 247);">冠军定码</span>
-        <span class="txt-item1" style="width:20%;background:#fff; color:#767676;border-right: 1px dotted #d8d8d8;">534-536期</span>
-        <span class="txt-item2">3</span>
-        <span class="txt-item3" style="width:40%">01 02 03 04 05 </span>
+    <div>
+        <div class="bottomcontainer" v-for="(cell,index) in data.Data" :key="cell.PlanArr">
+            <!-- <span wx:if="{{DSType==0}}" class="txt-item1" style="border-top-left-radius: 25rpx;color: RGB(84, 128, 215); background:RGB(222, 231, 247);">{{Name}}</span> -->
+            <!-- <span wx:else class="txt-item1" style="border-top-left-radius: 25rpx;color: RGB(199, 64, 78); background:RGB(247, 237, 237);">{{Name}}</span> -->
+            <span v-if="cell.DSType === 0" class="txt-item1" style="width:18%;border-top-left-radius: 12.5px;color: RGB(84, 128, 215); background:RGB(222, 231, 247);">{{cell.Name}}</span>
+            <span v-else class="txt-item1" style="width:18%;border-top-left-radius: 12.5px;color: RGB(199, 64, 78); background:RGB(247, 237, 237);">{{cell.Name}}</span>
+            <span class="txt-item1" style="width:20%;background:#fff; color:#767676;border-right: 1px dotted #d8d8d8;">{{cell.PlanSection}}</span>
+            <span class="txt-item2">{{cell.EndIndex}}</span>
+            <span class="txt-item3" style="width:40%">{{cell.GuessValue}}</span>
 
-        <div class="zhengquelv" style="width:25%;border-top-right-radius: 12.5px;">
-            <span class="baifenbi">80%</span>
+            <div class="zhengquelv" style="width:25%;border-top-right-radius: 12.5px;">
+                <span class="baifenbi">{{cell.GuessPercent}}</span>
 
-            <div class="diandian">
-                <div  v-for="item in isdiandian" :key="item">
-                    <div v-if="item === '1'" class="dianMiddle" style="background:#30bb78;"></div>
-                    <div v-else-if="item === '0'" class="dianMiddle" style="background:#d82e4b;"></div>
-                    <div v-else class="dianMiddle" style="background:black;"></div>
+                <div class="diandian">
+                    <div v-for="item in dian[index]" :key="item">
+                        <div v-if="item === '1'" class="dianMiddle" style="background:#30bb78;"></div>
+                        <div v-else-if="item === '0'" class="dianMiddle" style="background:#d82e4b;"></div>
+                        <div v-else-if="item === ','"></div>
+                        <div v-else class="dianMiddle" style="background:black;"></div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="dian" v-show="isSandian">
-                <div class="dian-dian"></div>
-                <div class="dian-dian"></div>
-                <div class="dian-dian"></div>
-            </div>
+                <div class="dian" v-show="isSandian">
+                    <div class="dian-dian"></div>
+                    <div class="dian-dian"></div>
+                    <div class="dian-dian"></div>
+                </div>
 
+            </div>
         </div>
     </div>
 </template>
@@ -102,7 +106,6 @@
 .diandian {
     margin-bottom: 5px;
     #bundle>.juzhong;
-    
 }
 
 .dianMiddle {
@@ -129,15 +132,51 @@
 </style>
 
 <script>
-let isdiandian = ['1', '1', '0', '1', '1', '1', '0', '0', '0', '0']
-let isSandian = true;
+// let AllData = require('../../../static/data/GetPlanData2')
+
+
 export default {
+    props: {
+        data: {
+            type: Object
+        }
+    },
+    created() {
+        this.PlanData = this.data;
+    },
     data() {
         return {
             myheight: 100,
-            isdiandian: isdiandian,
-            isSandian : isSandian,
+            PlanData: '',
+        }
+    },
+    computed: {
+        dian: {
+            // getter
+            get: function() {
+                var temp = [];
+                for (var i = 0; i < this.PlanData.Data.length; i++) {
+                    temp.push(this.PlanData.Data[i].GuessResultList.split(',').reverse().slice(0, 10))
+                }
+                return temp;
+            },
+            // setter
+            set: function(newValue) {
+
+            }
+        },
+        isSandian: {
+            get() {
+                if (parseInt(this.PlanData.CycleCount) > 0 && parseInt(this.PlanData.CycleCount) <= 10) {
+                    return false;
+                } else {
+                    return true;
+                }
+
+            }
         }
     }
+
+
 }
 </script>

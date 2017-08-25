@@ -9,17 +9,10 @@
             <span class="textbtn">更改计划</span>
             <span class="textbtn">计划分享</span>
             <span class="textbtn">切换公式</span>
-            <span class="textbtn last">近10期计划</span>
+            <span class="textbtn last">近{{PlanData.CycleCount}}期计划</span>
         </div>
 
-        <plancell></plancell>
-        <plancell></plancell>
-        <plancell></plancell>
-        <plancell></plancell>
-        <plancell></plancell>
-        <plancell></plancell>
-        <plancell></plancell>
-        <plancell></plancell>
+        <plancell :data="PlanData"></plancell>
 
         <div class="bottom-title">善意提醒：小心参考，理性投资</div>
 
@@ -89,7 +82,13 @@
 
 <script>
 import plancell from '../components/plancell/plancell'
+let AllData = require('../../static/data/GetPlanData2')
 export default {
+    data() {
+        return {
+            PlanData: AllData.PlanData,
+        }
+    },
     components: {
         plancell,
     }

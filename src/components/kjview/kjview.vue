@@ -1,31 +1,82 @@
 <template>
     <div class="kjview">
         <div class="top-top">
-            <span class="qishu1">第1242134214期开奖</span>
+            <span class="qishu1">第{{KJData.NewLottery.CurrentPeriod}}期开奖</span>
             <div class="xian"></div>
-            <span class="qishu2">09:32:00</span>
+            <span class="qishu2">{{shijian}}</span>
         </div>
 
-        <kjnum class="top-middle"></kjnum>
+        <kjnum class="top-middle" :data="kjnum"></kjnum>
 
-        <div wx:else class="top-bottom">
-            <span class="label1">第21124214期开奖倒计时</span>
+        <div class="top-bottom" v-if="time===0">
+            <span class="label1">第{{KJData.NewLottery.NextPeriod}}期正在开奖...</span>
+        </div>
+        <div class="top-bottom" v-else>
+            <span class="label1">第{{KJData.NewLottery.NextPeriod}}期开奖倒计时</span>
             <div class="img"> </div>
-            <span class="sj">0</span>
-            <span class="sj">5</span>
+            <span class="sj">{{shijianArr[0]}}</span>
+            <span class="sj">{{shijianArr[1]}}</span>
             <span style="color:#FFFDE4">:</span>
-            <span class="sj">3</span>
-            <span class="sj">4</span>
+            <span class="sj">{{shijianArr[2]}}</span>
+            <span class="sj">{{shijianArr[3]}}</span>
         </div>
     </div>
 </template>
 
 <script>
 import kjnum from './kjnum'
+var data = require('../../../static/data/clock')
+
 export default {
     components: {
         kjnum,
     },
+    created() {
+        console.log(data);
+    },
+    data() {
+        return {
+            KJData: data,
+        }
+    },
+    computed: {
+        shijian: {
+            get() {
+                return this.KJData.NewLottery.CurrentOpenTime.split(" ")[1];
+            }
+        },
+        kjnum: {
+            get() {
+                return this.KJData.NewLottery.LotteryResult.split(',');
+            }
+        },
+        shijianArr: {
+            get() {
+                var time = parseInt(this.KJData.NewLottery.NextPeriodTime);
+                console.log(time);
+                var minu = parseInt(time / 60);
+                var second = time % 60;
+
+                var num1 = parseInt(minu / 10) > 0 ? parseInt(minu / 10) : 0;
+                var num2 = minu % 10;
+                var num3 = parseInt(second / 10) > 0 ? parseInt(second / 10) : 0;
+                var num4 = second % 10;
+
+                var arr = [];
+                arr.push(num1);
+                arr.push(num2);
+                arr.push(num3);
+                arr.push(num4);
+                return arr;
+
+            }
+        },
+        time : {
+            get() {
+                return parseInt(this.KJData.NewLottery.NextPeriodTime);
+            }
+        }
+    }
 
 }
 </script>

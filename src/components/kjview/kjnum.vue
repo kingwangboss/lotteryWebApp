@@ -26,15 +26,23 @@
 
 
 <script>
-let num = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '06', '07', '08', '09', '10']
+
 export default {
+    props:{
+        data:{
+            type:Array,      
+        }
+    },
     data() {
         return {
-            numArr: num,
+            numArr: "",
             // width: 100,
             height: 35,
             screenWidth: document.body.clientWidth   // 这里是给到了一个默认值 （这个很重要）
         }
+    },
+    created(){
+        this.numArr = this.data;
     },
     mounted() {
         const that = this
@@ -60,9 +68,9 @@ export default {
             }
         }
     },
-    components: {
-        numArr: num,
-    },
+    // components: {
+    //     numArr: num,
+    // },
     computed: {
         ojwidth: {
             // getter

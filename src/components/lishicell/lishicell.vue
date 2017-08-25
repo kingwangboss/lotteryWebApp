@@ -20,14 +20,18 @@
 </template>
 
 <script>
-var da = require('../../../static/data/historyData')
 export default {
+    props:{
+        data:{
+            type :Object,
+        }
+    },
     created() {
-        console.log(da);
+        this.kjArr = this.data;
     },
     data() {
         return {
-            kjArr: da,
+            kjArr: "",
         }
     },
 
