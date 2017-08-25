@@ -198,22 +198,25 @@ export default {
 
 
 
-            let data = new FormData();
-            data.append('Action', 'GetVCode');
-            data.append('SID', '1');
-            return ajaxInstance.post('', data).then((response) => {
-                console.log(response);
-                if (response.data === 'success') {
-                    return true;
-                } else {
-                    console.log(response.data);
-                    return false;
-                }
-            }).catch((error) => {
-                console.error(error);
-                return false;
-            });
+            // let data = new FormData();
+            // data.append('Action', 'GetVCode');
+            // data.append('SID', '1');
+            // return ajaxInstance.post('', data).then((response) => {
+            //     console.log(response);
+            //     if (response.data === 'success') {
+            //         return true;
+            //     } else {
+            //         console.log(response.data);
+            //         return false;
+            //     }
+            // }).catch((error) => {
+            //     console.error(error);
+            //     return false;
+            // });
 
+            this.$router.push({
+                path:"/planVC"
+            })
 
         }
     },

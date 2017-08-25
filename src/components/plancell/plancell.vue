@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="bottomcontainer" v-for="(cell,index) in data.Data" :key="cell.PlanArr">
+        <div class="bottomcontainer" v-for="(cell,index) in data.Data" :key="cell.PlanArr" @click="pushDetail">
             <!-- <span wx:if="{{DSType==0}}" class="txt-item1" style="border-top-left-radius: 25rpx;color: RGB(84, 128, 215); background:RGB(222, 231, 247);">{{Name}}</span> -->
             <!-- <span wx:else class="txt-item1" style="border-top-left-radius: 25rpx;color: RGB(199, 64, 78); background:RGB(247, 237, 237);">{{Name}}</span> -->
             <span v-if="cell.DSType === 0" class="txt-item1" style="width:18%;border-top-left-radius: 12.5px;color: RGB(84, 128, 215); background:RGB(222, 231, 247);">{{cell.Name}}</span>
@@ -174,6 +174,14 @@ export default {
                 }
 
             }
+        }
+    },
+    methods: {
+        pushDetail(event) {
+            console.log("push")
+            this.$router.push({
+                path: '/planVC/planDetail'
+            });
         }
     }
 
