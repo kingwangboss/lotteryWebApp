@@ -91,6 +91,7 @@ const tabList = {
         src: require('../../static/images/wo.png'),
         defaultSrc: require('../../static/images/wo.png'),
         activeSrc: require('../../static/images/wo1.png')
+        
     }
 };
 
