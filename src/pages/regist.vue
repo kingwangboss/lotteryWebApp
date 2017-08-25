@@ -26,6 +26,8 @@
     height: 100%;
     background-color: RGB(251, 230, 231);
     background-image: url(../../static/images/login/Register-03.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     border: 0;
     color: #B54123;
     font-size: 15px;
@@ -38,6 +40,8 @@
     height: 100%;
     background-color: RGB(251, 230, 231);
     background-image: url(../../static/images/login/Register-02.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     border: 0;
     color:white;
     font-size: 15px;
