@@ -221,6 +221,11 @@ export default {
         }
     },
 
+    created(){
+        let u = navigator.userAgent;
+        alert(u)
+    }
+
 }
 </script>
 
