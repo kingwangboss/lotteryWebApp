@@ -7,12 +7,18 @@ import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css';
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
+import {post,fetch,patch,put} from './util/http'
+import axios from 'axios'
 
 Vue.config.productionTip = false
 Vue.use(Mint);
 Vue.use(ElementUI)
 
-
+Vue.prototype.$post = post;
+Vue.prototype.$fetch = fetch;
+Vue.prototype.$patch = patch;
+Vue.prototype.$put = put;
+Vue.prototype.$http = axios;
 
 /* eslint-disable no-new */
 new Vue({

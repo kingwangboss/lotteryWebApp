@@ -150,9 +150,6 @@
 
 <script>
 import mHeader from '../components/hearder/Hearder';
-import axios from 'axios'
-import http from '../util/http'
-
 
 export default {
     name: 'loginVC',
@@ -197,33 +194,28 @@ export default {
             console.log(formData);
 
 
+            let data = new FormData();
+            data.append('Action', 'GetVCode');
+            data.append('SID', '2');
 
-            // let data = new FormData();
-            // data.append('Action', 'GetVCode');
-            // data.append('SID', '1');
-            // return ajaxInstance.post('', data).then((response) => {
-            //     console.log(response);
-            //     if (response.data === 'success') {
-            //         return true;
-            //     } else {
-            //         console.log(response.data);
-            //         return false;
-            //     }
-            // }).catch((error) => {
-            //     console.error(error);
-            //     return false;
-            // });
+            // http.post('',data).then(res=>{
+            //     console.log(res);
+            // })
 
-            this.$router.push({
-                path:"/planVC"
+            this.$http.post("",data).then(res=>{
+                console.log(res);
             })
+
+            // this.$router.push({
+            //     path:"/planVC"
+            // })
 
         }
     },
 
-    created(){
-        let u = navigator.userAgent;
-        alert(u)
+    created() {
+        // let u = navigator.userAgent;
+        // alert(u)
     }
 
 }
