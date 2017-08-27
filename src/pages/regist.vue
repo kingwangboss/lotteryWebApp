@@ -76,7 +76,7 @@ export default {
       this.isA = !this.isA;
     }
   },
-  
+
 
 }
 </script>

@@ -150,6 +150,7 @@
 
 <script>
 import mHeader from '../components/hearder/Hearder';
+import http from '../util/http'
 
 export default {
     name: 'loginVC',
@@ -204,11 +205,15 @@ export default {
 
             this.$http.post("",data).then(res=>{
                 console.log(res);
+                this.$store.commit('updateVcode',res.data.Data)
             })
 
             // this.$router.push({
             //     path:"/planVC"
             // })
+
+            console.log(this.$store.getters.getVcode);
+            
 
         }
     },
@@ -216,6 +221,12 @@ export default {
     created() {
         // let u = navigator.userAgent;
         // alert(u)
+        // this.$store.dispatch('fetchOrderList')
+        // this.$store.commit('updateParams',{
+        //     key:'pid',
+        //     val:'1'
+        // })
+        // console.log(this.$store)
     }
 
 }

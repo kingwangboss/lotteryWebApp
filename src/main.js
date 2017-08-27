@@ -9,10 +9,12 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 import {post,fetch,patch,put} from './util/http'
 import axios from 'axios'
+import store from './store/index'
 
 Vue.config.productionTip = false
 Vue.use(Mint);
-Vue.use(ElementUI)
+Vue.use(ElementUI);
+
 
 Vue.prototype.$post = post;
 Vue.prototype.$fetch = fetch;
@@ -24,6 +26,7 @@ Vue.prototype.$http = axios;
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })
