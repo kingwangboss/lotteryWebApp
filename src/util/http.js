@@ -1,13 +1,24 @@
 import axios from 'axios';
 import router from '../router'
-
+import { Loading, Message } from 'element-ui'
 
 // axios 配置
 axios.defaults.timeout = 5000;
 axios.defaults.baseURL = 'https://ycwidx.cpnet.com';
-
+var loadinginstace
 // http request 拦截器
 axios.interceptors.request.use(
+  config => {
+    // element ui Loading方法
+    loadinginstace = Loading.service({ fullscreen: true })
+    return config
+  }, error => {
+    loadinginstace.close()
+    Message.error({
+      message: '加载超时'
+    })
+    return Promise.reject(error)
+  }
   // config => {
   //   config.data = JSON.stringify(config.data);
   //   // config.headers = {
@@ -26,6 +37,22 @@ axios.interceptors.request.use(
 
 // http response 拦截器
 axios.interceptors.response.use(
+  response => {// 响应成功关闭loading
+    loadinginstace.close()
+    console.log('拦截器 MsgType'+response.data.MsgType)
+    console.log('拦截器 Msg'+response.data.Msg)
+    if(response.data.Code === 'Suc'){
+      return response
+    }else{
+      
+    }
+  }, error => {
+    loadinginstace.close()
+    Message.error({
+      message: '加载失败'
+    })
+    return Promise.reject(error)
+  }
   // response => {
   //   if (response.data.errCode == 2) {
   //     router.push({
@@ -124,3 +151,4 @@ export function put(url, data = {}) {
       })
   })
 }
+

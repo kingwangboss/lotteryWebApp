@@ -151,6 +151,7 @@
 <script>
 import mHeader from '../components/hearder/Hearder';
 import http from '../util/http'
+import sha256 from '../util/sha256'
 
 export default {
     name: 'loginVC',
@@ -164,7 +165,7 @@ export default {
             user: {
                 name: '',
                 pwd: '',
-                cz: '时时彩',
+                sid: '2',
             },
             disabled: true,
         };
@@ -191,29 +192,45 @@ export default {
         },
         submit: function(event) {
 
-            var formData = JSON.stringify(this.user); // 这里才是你的表单数据
-            console.log(formData);
 
-
+            let signStr = this.user.sid + this.user.name + '4YCW1.0' + sha256.sha256(this.user.pwd).toUpperCase();
             let data = new FormData();
-            data.append('Action', 'GetVCode');
-            data.append('SID', '2');
+            data.append('Action', 'Login');
+            data.append('SID', this.user.sid);
+            data.append('Account', this.user.name);
+            data.append('AppType', '4');
+            data.append('AppCode', 'YCW');
+            data.append('AppVersion', '1.0');
+            data.append('Sign', sha256.sha256(signStr).toUpperCase());
 
-            // http.post('',data).then(res=>{
-            //     console.log(res);
-            // })
-
-            this.$http.post("",data).then(res=>{
+            this.$http.post('', data).then(res => {
                 console.log(res);
-                this.$store.commit('updateVcode',res.data.Data)
+                this.$store.commit('updateUid', res.data.UID)
+                this.$store.commit('updateAuthtypename', res.data.AuthTypeName)
+                this.$store.commit('updateUrl', res.data.SiteUrl)
+                this.$store.commit('updateAuthtype', res.data.AuthType)
+                this.$store.commit('updateUsername', res.data.NickName)
+                this.$store.commit('updateToken', res.data.Token)
+                this.$store.commit('updatePaytype', res.data.PayType)
+                this.$router.push({
+                    path: "/planVC"
+                })
+                console.log(this.$store);
+            }).catch(error => {
+                console.log(error);
             })
+
+            // this.$http.post("",data).then(res=>{
+            //     console.log(res);
+            //     this.$store.commit('updateVcode',res.data.Data)
+            // })
 
             // this.$router.push({
             //     path:"/planVC"
             // })
 
             console.log(this.$store.getters.getVcode);
-            
+
 
         }
     },

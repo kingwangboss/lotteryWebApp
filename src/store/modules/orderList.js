@@ -9,9 +9,7 @@ const state = {
 
 //页面取值
 const getters = {
-    // getOrderList : function(state){
-    //     return state.orderList;
-    // }
+    
     getOrderList : state => state.orderList,
     getVcode :state => state.vcode
 }
