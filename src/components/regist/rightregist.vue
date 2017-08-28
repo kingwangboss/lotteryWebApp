@@ -2,7 +2,7 @@
   <div class="maincontainer">
     <div class="content">
       <form @submit.prevent="submit">
-        <div >
+        <div>
           <input class="input" v-model="user.name" type="text" maxlength="20" placeholder="请输入用户名" @input="inputFuction">
           <input class="input" v-model="user.newpwd1" type="password" maxlength="18" placeholder="请输入密码" @input="inputFuction">
           <input class="input" v-model="user.newpwd2" type="password" maxlength="18" placeholder="请确认密码" @input="inputFuction">
@@ -82,6 +82,7 @@
 
 
 <script>
+import sha256 from '../../util/sha256'
 export default {
   data() {
     return {
@@ -89,6 +90,7 @@ export default {
         name: '',
         newpwd1: '',
         newpwd2: '',
+        vcode: '',
       },
       disabled: true,
     };
@@ -107,11 +109,44 @@ export default {
       var formData = JSON.stringify(this.user); // 这里才是你的表单数据
       console.log(formData);
 
-      // this.$http.post('/path/to', formData).then((response) => {
-      //     // success callback
-      // }, (response) => {
-      //     // error callback
-      // });
+      var that = this;
+      let data = new FormData();
+      data.append('Action', 'GetVCode');
+      data.append('SID', localStorage.sid);
+      this.$http.post("https://ycwidx.cpnet.com", data).then(res => {
+        console.log(res);
+        this.user.vcode = res.data.Data;
+
+        let data1 = new FormData();
+        data1.append('Action', 'UserNameReg');
+        data1.append('AppVersion', '1.0');
+        data1.append('SID', localStorage.sid);
+        data1.append('UserName', that.user.name);
+        data1.append('Pwd', that.user.newpwd2);
+        data1.append('VCode', that.user.vcode)
+        data1.append('AppType', "4");
+        data1.append('AppCode', 'YCW')
+        that.$http.post('https://ycwidx.cpnet.com', data1).then(res => {
+          console.log(res)
+          if (res) {
+            localStorage.uid = res.data.Data.UID;
+            localStorage.AuthTypeName = res.data.Data.AuthTypeName;
+            localStorage.SiteUrl = res.data.Data.SiteUrl;
+            localStorage.AuthType = res.data.Data.AuthType;
+            localStorage.Username = res.data.Data.NickName;
+            localStorage.Token = res.data.Data.Token;
+            localStorage.PayType = res.data.Data.PayType;
+            localStorage.tokenCode = sha256.sha256(res.data.Data.Token + that.user.newpwd2).toUpperCase()
+            that.$router.push({
+              path: "/planVC"
+            })
+          }
+        }).catch(error => {
+          console.log(error);
+        });
+      })
+
+
 
     }
   },

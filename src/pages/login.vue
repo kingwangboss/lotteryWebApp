@@ -191,7 +191,6 @@ export default {
             }
         },
         submit: function(event) {
-            alert(111);
 
             let signStr = this.user.sid + this.user.name + '4YCW1.0' + sha256.sha256(this.user.pwd).toUpperCase();
             let data = new FormData();
@@ -202,12 +201,11 @@ export default {
             data.append('AppCode', 'YCW');
             data.append('AppVersion', '1.0');
             data.append('Sign', sha256.sha256(signStr).toUpperCase());
-            localStorage.sid = this.user.sid;
+            
             localStorage.pwd = sha256.sha256(this.user.pwd).toUpperCase();
             this.$http.post('https://ycwidx.cpnet.com', data).then(res => {
                 // console.log(res);
                 // this.setCookie('UID', res.data.Data.UID, 1000 * 60 * 60 * 24 * 15)
-                alert(res);
                 if (res) {
                     // this.$store.commit('updateUid', res.data.Data.UID)
                     // this.$store.commit('updateAuthtypename', res.data.Data.AuthTypeName)
@@ -247,6 +245,7 @@ export default {
     },
 
     created() {
+        localStorage.sid = this.user.sid;
         // let u = navigator.userAgent;
         // alert(u)
         // this.$store.dispatch('fetchOrderList')
