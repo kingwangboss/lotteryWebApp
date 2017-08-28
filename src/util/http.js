@@ -4,7 +4,7 @@ import { Loading, Message } from 'element-ui'
 
 // axios 配置
 axios.defaults.timeout = 5000;
-axios.defaults.baseURL = 'https://ycwidx.cpnet.com';
+axios.defaults.baseURL = '';
 var loadinginstace
 // http request 拦截器
 axios.interceptors.request.use(
@@ -39,12 +39,13 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   response => {// 响应成功关闭loading
     loadinginstace.close()
-    console.log('拦截器 MsgType'+response.data.MsgType)
-    console.log('拦截器 Msg'+response.data.Msg)
+    // console.log(response);
+    console.log('拦截器 MsgType:'+response.data.MsgType)
+    console.log('拦截器 Msg:'+response.data.Msg)
     if(response.data.Code === 'Suc'){
       return response
     }else{
-      
+
     }
   }, error => {
     loadinginstace.close()

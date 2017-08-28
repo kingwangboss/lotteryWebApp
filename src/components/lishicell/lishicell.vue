@@ -1,14 +1,14 @@
 <template>
     <div>
 
-        <div v-for="item in kjArr.num_key" :key="item.KJArr">
+        <div v-for="item in kjArr" :key="item.KJArr">
             <div class="contentCell">
                 <span class="top-left">{{"第"+item.ID+"期"}}</span>
                 <span class="top-right">{{item.CreateTime}}</span>
             </div>
 
-            <div class="KJnum">
-                <div v-for="item1 in item.Data.split(',')" :key="item1">
+            <div class="KJnum" >
+                <div v-for="item1 in item.Data.split(',')" :key="item1" :style="{width:ojwidth+'px',height:ojwidth+'px'}">
                     <div class="num">{{item1}}</div>
                 </div>
             </div>
@@ -23,17 +23,62 @@
 export default {
     props:{
         data:{
-            type :Object,
+            type :Array,
         }
     },
     created() {
+        console.log(this.data);
         this.kjArr = this.data;
     },
     data() {
         return {
             kjArr: "",
+            height: 35,
+            screenWidth: document.body.clientWidth
         }
     },
+    mounted() {
+        const that = this
+        window.onresize = () => {
+            return (() => {
+                window.screenWidth = document.body.clientWidth
+                that.screenWidth = window.screenWidth
+            })()
+        }
+
+    },
+    watch: {
+        screenWidth(val) {
+            if (!this.timer) {
+                this.screenWidth = val
+                this.timer = true
+                let that = this
+                setTimeout(function () {
+                    that.timer = false
+                }, 400)
+            }
+        }
+    },
+
+    computed: {
+        ojwidth: {
+            // getter
+            get: function () {
+                var ojwidth;
+                var margin;
+                var colnum = 10;//列
+                colnum = this.kjArr.length > colnum ? colnum : this.kjArr.length;
+                var rownum = this.kjArr.length / colnum;//行
+                margin = this.kjArr.length > 5 ? 1 : 2;//间距
+                ojwidth = (this.screenWidth - (2 * (margin) * colnum)) / colnum;//格子的宽
+                return ojwidth;
+            },
+            // setter
+            set: function (newValue) {
+               
+            }
+        }
+    }
 
 }
 </script>

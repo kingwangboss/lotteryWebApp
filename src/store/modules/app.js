@@ -9,7 +9,9 @@ const state = {
     authtype:'',
     username:'',
     token:'',
-    paytype:''
+    paytype:'',
+    sid:'',
+    pwd:'',
 }
 
 //页面取值
@@ -22,6 +24,8 @@ const getters = {
     getUsername : state => state.username,
     getToken : state => state.token,
     getPaytype : state => state.paytype,
+    getSid : state => state.sid,
+    getPwd : state => state.pwd,
 }
 
 const actions = {
@@ -50,7 +54,12 @@ const mutations = {
     updatePaytype(state,playload){
         state.paytype = playload;
     },
-    
+    updateSid(state,playload){
+        state.sid = playload;
+    },
+    updatePwd(state,playload){
+        state.pwd = playload;
+    },
 }
 
 export default {

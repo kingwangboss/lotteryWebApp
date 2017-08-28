@@ -191,7 +191,7 @@ export default {
             }
         },
         submit: function(event) {
-
+            alert(111);
 
             let signStr = this.user.sid + this.user.name + '4YCW1.0' + sha256.sha256(this.user.pwd).toUpperCase();
             let data = new FormData();
@@ -202,20 +202,33 @@ export default {
             data.append('AppCode', 'YCW');
             data.append('AppVersion', '1.0');
             data.append('Sign', sha256.sha256(signStr).toUpperCase());
+            localStorage.sid = this.user.sid;
+            localStorage.pwd = sha256.sha256(this.user.pwd).toUpperCase();
+            this.$http.post('https://ycwidx.cpnet.com', data).then(res => {
+                // console.log(res);
+                // this.setCookie('UID', res.data.Data.UID, 1000 * 60 * 60 * 24 * 15)
+                alert(res);
+                if (res) {
+                    // this.$store.commit('updateUid', res.data.Data.UID)
+                    // this.$store.commit('updateAuthtypename', res.data.Data.AuthTypeName)
+                    // this.$store.commit('updateUrl', res.data.Data.SiteUrl)
+                    // this.$store.commit('updateAuthtype', res.data.Data.AuthType)
+                    // this.$store.commit('updateUsername', res.data.Data.NickName)
+                    // this.$store.commit('updateToken', res.data.Data.Token)
+                    // this.$store.commit('updatePaytype', res.data.Data.PayType)
+                    localStorage.uid = res.data.Data.UID;
+                    localStorage.AuthTypeName = res.data.Data.AuthTypeName;
+                    localStorage.SiteUrl = res.data.Data.SiteUrl;
+                    localStorage.AuthType = res.data.Data.AuthType;
+                    localStorage.Username = res.data.Data.NickName;
+                    localStorage.Token = res.data.Data.Token;
+                    localStorage.PayType = res.data.Data.PayType;
+                    localStorage.tokenCode = sha256.sha256(res.data.Data.Token+localStorage.pwd).toUpperCase()
+                    this.$router.push({
+                        path: "/planVC"
+                    })
+                }
 
-            this.$http.post('', data).then(res => {
-                console.log(res);
-                this.$store.commit('updateUid', res.data.UID)
-                this.$store.commit('updateAuthtypename', res.data.AuthTypeName)
-                this.$store.commit('updateUrl', res.data.SiteUrl)
-                this.$store.commit('updateAuthtype', res.data.AuthType)
-                this.$store.commit('updateUsername', res.data.NickName)
-                this.$store.commit('updateToken', res.data.Token)
-                this.$store.commit('updatePaytype', res.data.PayType)
-                this.$router.push({
-                    path: "/planVC"
-                })
-                console.log(this.$store);
             }).catch(error => {
                 console.log(error);
             })
@@ -225,11 +238,9 @@ export default {
             //     this.$store.commit('updateVcode',res.data.Data)
             // })
 
-            // this.$router.push({
-            //     path:"/planVC"
-            // })
 
-            console.log(this.$store.getters.getVcode);
+
+            // console.log(this.$store.getters.getVcode);
 
 
         }

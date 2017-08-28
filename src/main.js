@@ -10,6 +10,7 @@ import 'element-ui/lib/theme-default/index.css'
 import {post,fetch,patch,put} from './util/http'
 import axios from 'axios'
 import store from './store/index'
+import {getCookie,setCookie,delCookie} from './util/util'
 
 Vue.config.productionTip = false
 Vue.use(Mint);
@@ -21,6 +22,11 @@ Vue.prototype.$fetch = fetch;
 Vue.prototype.$patch = patch;
 Vue.prototype.$put = put;
 Vue.prototype.$http = axios;
+
+//cookie方法
+Vue.prototype.getCookie = getCookie;
+Vue.prototype.setCookie = setCookie;
+Vue.prototype.delCookie = delCookie;
 
 /* eslint-disable no-new */
 new Vue({
