@@ -1,7 +1,7 @@
 import axios from 'axios';
 import router from '../router'
 import { Loading, Message } from 'element-ui'
-
+import { Toast, MessageBox } from 'mint-ui'
 // axios 配置
 axios.defaults.timeout = 5000;
 axios.defaults.baseURL = '';
@@ -40,12 +40,70 @@ axios.interceptors.response.use(
   response => {// 响应成功关闭loading
     loadinginstace.close()
     // console.log(response);
-    console.log('拦截器 MsgType:'+response.data.MsgType)
-    console.log('拦截器 Msg:'+response.data.Msg)
-    if(response.data.Code === 'Suc'){
-      return response
-    }else{
+    console.log('拦截器 MsgType:' + response.data.MsgType)
+    console.log('拦截器 Msg:' + response.data.Msg)
+    console.log(response);
+    if (response.data.MsgType === 1 && response.data.Msg!=null) {
+      MessageBox({
+        title: '提示',
+        message: response.data.Msg,
+        showCancelButton: false,
+      })
+    } else if (response.data.MsgType === 2 && response.data.Msg!=null) {
+      MessageBox({
+        title: '提示',
+        message: response.data.Msg,
+        showCancelButton: true,
+        confirmButtonText: '去购买',
+        cancelButtonText: '知道了'
+      }).then(action => {
+        console.log('去购买')
+      })
+    } else if (response.data.MsgType === 3 && response.data.Msg!=null) {
+      MessageBox({
+        title: '提示',
+        message: response.data.Msg,
+        showCancelButton: true,
+        confirmButtonText: '联系客服',
+        cancelButtonText: '知道了'
+      }).then(action => {
+        console.log('联系客服')
+      })
+    } else if (response.data.MsgType === 4 && response.data.Msg!=null) {
+      MessageBox({
+        title: '提示',
+        message: response.data.Msg,
+        showCancelButton: true,
+        confirmButtonText: '了解详情',
+        cancelButtonText: '知道了'
+      }).then(action => {
+        console.log('了解详情')
+      })
+    } else if (response.data.MsgType === 5 && response.data.Msg!=null) {
+      MessageBox({
+        title: '提示',
+        message: response.data.Msg,
+        showCancelButton: true,
+        confirmButtonText: '去升级',
+        cancelButtonText: '知道了'
+      }).then(action => {
+        console.log('去升级')
+      })
+    } else if(response.data.Msg!=null) {
+      Toast({
+        message: response.data.Msg,
+        position: 'bottom',
+        duration: 2000
+      })
+    }
 
+
+    if (response.data.Code === 'Suc') {
+      return response
+    } else if (response.data.Code === 'PushedOffLine') {
+      router.push({
+        path: "/"
+      })
     }
   }, error => {
     loadinginstace.close()

@@ -30,10 +30,22 @@ import axios from 'axios';
 import http from '../../util/http'
 import sha256 from '../../util/sha256'
 
+var time;
+
 export default {
     components: {
         kjnum,
     },
+    // beforeMount() {
+    //      //设置定时器，每3秒刷新一次
+    //      var self = this;
+    //      setInterval(getTotelNumber,1000)
+    //      function getTotelNumber() {
+    //          time --;
+    //          console.log(time);
+    //      }
+    //      getTotelNumber();      
+    // },
     created() {
         // console.log(data);
         let tokenCode = localStorage.tokenCode;
@@ -44,30 +56,26 @@ export default {
         data.append('Token', localStorage.Token);
         data.append('CurrentLottery', '0');
         data.append('Sign', sha256.sha256(signStr).toUpperCase());
-        // console.log('tokencode'+tokenCode)
-        // console.log('toeken'+localStorage.Token)
-        // console.log('sign'+sha256.sha256(signStr).toUpperCase())
-        // let signStr = '2' + localStorage.Username + '4YCW1.0' + sha256.sha256(localStorage.pwd).toUpperCase();
-        // let data = new FormData();
-        // data.append('Action', 'Login');
-        // data.append('SID', '2');
-        // data.append('Account', localStorage.Username);
-        // data.append('AppType', '4');
-        // data.append('AppCode', 'YCW');
-        // data.append('AppVersion', '1.0');
-        // data.append('Sign', sha256.sha256(signStr).toUpperCase());
 
         //getClock握手
         this.$http.post(localStorage.SiteUrl, data).then(res => {
             // console.log(res.data.Data);
             this.KJData = res.data.Data
+            this.nextTime = res.data.Data.NewLottery.NextPeriodTime;
         }).catch(error => {
             console.log(error);
         })
+        // if(parseInt(this.KJData.NewLottery.NextPeriodTime)){
+        //     console.log("---------------")
+        //     console.log(parseInt(this.KJData.NewLottery.NextPeriodTime))
+        // }else{
+        //     console.log("time is 0");
+        // }
     },
     data() {
         return {
             KJData: data,
+            nextTime:"",
         }
     },
     computed: {
@@ -83,7 +91,8 @@ export default {
         },
         shijianArr: {
             get() {
-                var time = parseInt(this.KJData.NewLottery.NextPeriodTime);
+                time = parseInt(this.nextTime);
+                console.log('time')
                 console.log(time);
                 var minu = parseInt(time / 60);
                 var second = time % 60;
@@ -100,12 +109,14 @@ export default {
                 arr.push(num4);
                 return arr;
 
-            }
+            },
+            
         },
         time: {
             get() {
-                return parseInt(this.KJData.NewLottery.NextPeriodTime);
-            }
+                return parseInt(this.nextTime);
+            },
+        
         }
     }
 

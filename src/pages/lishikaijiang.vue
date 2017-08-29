@@ -1,6 +1,7 @@
 <template>
   <div>
     <cell :data="lishiData"></cell>
+    
   </div>
 </template>
 
@@ -14,7 +15,7 @@ export default {
   name: 'lishikaijiang',
   data() {
     return {
-      lishiData: data
+      lishiData: data,
     }
   },
 
@@ -30,14 +31,17 @@ export default {
     data.append('Token', localStorage.Token);
     data.append('Page', '1');
     data.append('Sign', sha256.sha256(signStr).toUpperCase());
-    
+
     this.$http.post(localStorage.SiteUrl, data).then(res => {
       console.log(res);
       this.lishiData = res.data.Data
     }).catch(error => {
       console.log(error);
     })
-  }
+  },
+  methods: {
+    
+  },
 
 }
 </script>

@@ -36,7 +36,7 @@
     </div>
 
     <div class="bottom-btndiv">
-      <button class="bottom-btn">退出登录</button>
+      <button class="bottom-btn" @click="loginOut">退出登录</button>
     </div>
 
   </div>
@@ -136,6 +136,14 @@ export default {
     }
 
   },
+  methods: {
+    loginOut() {
+      localStorage.clear();
+      this.$router.push({
+        path: '/',
+      })
+    }
+  },
   watch: {
     screenWidth(val) {
       if (!this.timer) {
@@ -143,8 +151,6 @@ export default {
         this.timer = true
         let that = this
         setTimeout(function() {
-          // that.screenWidth = that.$store.state.canvasWidth
-          // that.init()
           that.timer = false
         }, 400)
       }
