@@ -6,7 +6,7 @@ import router from './router'
 import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css';
 import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-default/index.css'
+import '../theme/index.css'
 import {post,fetch,patch,put} from './util/http'
 import axios from 'axios'
 import store from './store/index'
