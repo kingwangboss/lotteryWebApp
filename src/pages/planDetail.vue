@@ -1,7 +1,8 @@
 <template>
     <div>
-
+        
         <m-header :title="title"></m-header>
+        
         <kjview></kjview>
         <el-tabs v-model="activeName" @tab-click="handleClick">
             <el-tab-pane :label="item.PlanName" :name="index.toString()" :index="index.toString()" v-for="(item,index) in listData" :key="index">
@@ -152,7 +153,7 @@ export default {
                 text: '计划详情',
                 showBack: true,
             },
-            activeName: "0",
+            activeName: localStorage.detailID,
             listData: '',
             zjnum: []
         };
