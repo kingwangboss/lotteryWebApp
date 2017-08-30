@@ -5,6 +5,7 @@ import loginVC from '@/pages/login'
 import registVC from '@/pages/regist'
 import lossPwdVC from '@/pages/lossPwd'
 import PlanDetail from '@/pages/planDetail' 
+import XZcaizhong from '@/pages/XZcaizhong'
 Vue.use(Router)
 
 export default new Router({
@@ -28,6 +29,11 @@ export default new Router({
       path: '/planVC',
       name: 'PlanVC',
       component: PlanVC
+    },
+    {
+      path: '/XZcaizhong',
+      name: 'XZcaizhong',
+      component: XZcaizhong
     },
     {
       path: '/planVC/planDetail',

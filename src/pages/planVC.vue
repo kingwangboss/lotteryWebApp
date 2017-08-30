@@ -1,6 +1,5 @@
 <template>
     <div class="page-container">
-        <m-header :title="title"></m-header>
 
         <div class="page-wrap" :class="title.tabClass">
             <mt-tab-container class="page-tabbar-container" v-model="selected">
@@ -39,7 +38,7 @@
 
 
 <script>
-import mHeader from '../components/hearder/Hearder';
+
 import plan from './plan'
 import shujufenxi from './shujufenxi'
 import lishikaijiang from './lishikaijiang'
@@ -104,8 +103,11 @@ export default {
             tabList: tabList,
         };
     },
+    created(){
+        
+    },
+
     components: {
-        mHeader,
         plan,
         shujufenxi,
         lishikaijiang,

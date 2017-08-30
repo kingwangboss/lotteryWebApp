@@ -10,9 +10,9 @@
                     <div>
                         <input class="input" v-model="user.name" type="text" maxlength="20" placeholder="请输入手机号/昵称" @input="inputFuction">
                         <input class="input" v-model="user.pwd" type="password" maxlength="20" placeholder="请输入密码" @input="inputFuction">
-                        <div class="xuCZ">
+                        <div class="xuCZ" @click="XZcaizhongClick">
                             <img class="leftImg" src="../../static/images/login/Login-09.png" alt="">
-                            <span>请选择彩种</span>
+                            <span>{{czname}}</span>
                             <div>
                                 <img class="rightImg" src="../../static/images/login/Login-10.png" alt="">
                             </div>
@@ -98,7 +98,7 @@
             }
             span {
                 color: RGB(229, 164, 153);
-                font-size: 16px;
+                font-size: 12px;
             }
             div {
                 width: 55%;
@@ -165,9 +165,10 @@ export default {
             user: {
                 name: '',
                 pwd: '',
-                sid: '2',
+                sid: '',
             },
             disabled: true,
+            czname:localStorage.czname ? localStorage.czname : '幸运农场'
         };
     },
     components: {
@@ -177,6 +178,11 @@ export default {
         document.body.className = 'main-body';
     },
     methods: {
+        XZcaizhongClick(){
+            this.$router.push({
+                path:"/XZcaizhong",
+            })
+        },
         btnclick() {
             console.log("push")
             this.$router.push({
@@ -192,7 +198,15 @@ export default {
         },
         submit: function(event) {
 
+            if(this.user.sid){
+                
+            }else{
+                this.user.sid = "4"
+            }
+
+
             let signStr = this.user.sid + this.user.name + '4YCW1.0' + sha256.sha256(this.user.pwd).toUpperCase();
+            console.log(signStr);
             let data = new FormData();
             data.append('Action', 'Login');
             data.append('SID', this.user.sid);
@@ -214,6 +228,8 @@ export default {
                     // this.$store.commit('updateUsername', res.data.Data.NickName)
                     // this.$store.commit('updateToken', res.data.Data.Token)
                     // this.$store.commit('updatePaytype', res.data.Data.PayType)
+                    localStorage.isLogin = true;
+                    localStorage.sid = this.user.sid
                     localStorage.uid = res.data.Data.UID;
                     localStorage.AuthTypeName = res.data.Data.AuthTypeName;
                     localStorage.SiteUrl = res.data.Data.SiteUrl;
@@ -245,7 +261,8 @@ export default {
     },
 
     created() {
-        localStorage.sid = this.user.sid;
+         this.user.sid = localStorage.sid;
+
         // let u = navigator.userAgent;
         // alert(u)
         // this.$store.dispatch('fetchOrderList')

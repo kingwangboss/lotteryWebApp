@@ -1,21 +1,24 @@
 <template>
-    <div class="maincontainer">
+    <div>
+        <m-header :title="title"></m-header>
+        <div class="maincontainer">
 
-        <div class="middleLine">
+            <div class="middleLine">
+            </div>
+
+            <div class="middlecontainer">
+                <span class="textbtn first" style="border-left-width: 1px;" @click="xzCaizhongClick">选择彩种</span>
+                <span class="textbtn">更改计划</span>
+                <span class="textbtn">计划分享</span>
+                <span class="textbtn">切换公式</span>
+                <span class="textbtn last">近{{PlanData.CycleCount}}期计划</span>
+            </div>
+
+            <plancell :data="PlanData"></plancell>
+
+            <div class="bottom-title">善意提醒：小心参考，理性投资</div>
+
         </div>
-
-        <div class="middlecontainer">
-            <span class="textbtn first" style="border-left-width: 1px;">选择彩种</span>
-            <span class="textbtn">更改计划</span>
-            <span class="textbtn">计划分享</span>
-            <span class="textbtn">切换公式</span>
-            <span class="textbtn last">近{{PlanData.CycleCount}}期计划</span>
-        </div>
-
-        <plancell :data="PlanData"></plancell>
-
-        <div class="bottom-title">善意提醒：小心参考，理性投资</div>
-
     </div>
 </template>
 
@@ -81,17 +84,23 @@
 </style>
 
 <script>
+import mHeader from '../components/hearder/Hearder';
 import plancell from '../components/plancell/plancell'
 let AllData = require('../../static/data/GetPlanData2')
 import sha256 from '../util/sha256'
 export default {
     data() {
         return {
-            PlanData: ""
+            PlanData: "",
+            title: {
+                text: localStorage.czname,
+                showBack: false,
+            },
         }
     },
     components: {
         plancell,
+        mHeader,
     },
     created() {
         this.PlanData = AllData.Data
@@ -113,7 +122,12 @@ export default {
             }).catch(error => {
                 console.log(error);
             })
-        }
+        },
+        xzCaizhongClick() {
+            this.$router.push({
+                path: '/XZcaizhong'
+            })
+        },
     },
     mounted() {
         // 调用请求数据的方法

@@ -25,7 +25,7 @@
 
 <script>
 import kjnum from './kjnum'
-var data = require('../../../static/data/clock')
+// var data = require('../../../static/data/clock')
 import axios from 'axios';
 import http from '../../util/http'
 import sha256 from '../../util/sha256'
@@ -48,23 +48,7 @@ export default {
     // },
     created() {
         // console.log(data);
-        let tokenCode = localStorage.tokenCode;
-        let signStr = 'Action=Clock' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + '&CurrentLottery=0' + tokenCode;
-        let data = new FormData();
-        data.append('Action', 'Clock');
-        data.append('SID', localStorage.sid);
-        data.append('Token', localStorage.Token);
-        data.append('CurrentLottery', '0');
-        data.append('Sign', sha256.sha256(signStr).toUpperCase());
 
-        //getClock握手
-        this.$http.post(localStorage.SiteUrl, data).then(res => {
-            // console.log(res.data.Data);
-            this.KJData = res.data.Data
-            this.nextTime = res.data.Data.NewLottery.NextPeriodTime;
-        }).catch(error => {
-            console.log(error);
-        })
         // if(parseInt(this.KJData.NewLottery.NextPeriodTime)){
         //     console.log("---------------")
         //     console.log(parseInt(this.KJData.NewLottery.NextPeriodTime))
@@ -74,9 +58,34 @@ export default {
     },
     data() {
         return {
-            KJData: data,
-            nextTime:"",
+            KJData:"",
+            nextTime: "",
         }
+    },
+
+    methods: {
+        getData() {
+            let tokenCode = localStorage.tokenCode;
+            let signStr = 'Action=Clock' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + '&CurrentLottery=0' + tokenCode;
+            let data = new FormData();
+            data.append('Action', 'Clock');
+            data.append('SID', localStorage.sid);
+            data.append('Token', localStorage.Token);
+            data.append('CurrentLottery', '0');
+            data.append('Sign', sha256.sha256(signStr).toUpperCase());
+
+            //getClock握手
+            this.$http.post(localStorage.SiteUrl, data).then(res => {
+                // console.log(res.data.Data);
+                this.KJData = res.data.Data
+                this.nextTime = res.data.Data.NewLottery.NextPeriodTime;
+            }).catch(error => {
+                console.log(error);
+            })
+        }
+    },
+    mounted(){
+        this.getData();
     },
     computed: {
         shijian: {
@@ -110,13 +119,13 @@ export default {
                 return arr;
 
             },
-            
+
         },
         time: {
             get() {
                 return parseInt(this.nextTime);
             },
-        
+
         }
     }
 

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <m-header :title="title"></m-header>
     <cell :data="lishiData"></cell>
 
   </div>
@@ -9,18 +10,23 @@
 <script>
 import cell from '../components/lishicell/lishicell'
 var data = require('../../static/data/historyData')
-
+import mHeader from '../components/hearder/Hearder';
 import sha256 from '../util/sha256'
 export default {
   name: 'lishikaijiang',
   data() {
     return {
       lishiData: Array,
+      title: {
+        text: "历史开奖",
+        showBack: false,
+      },
     }
   },
 
   components: {
     cell,
+    mHeader
   },
   created() {
     this.lishiData = data.KJArr;
