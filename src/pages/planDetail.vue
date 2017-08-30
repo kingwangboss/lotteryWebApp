@@ -25,8 +25,8 @@
                     </div>
 
                     <!-- id控制 计划切换 -->
-                    <div class="detail-top-content" v-for="(item1,index1) in item.RightTimes.split(',')" :key="item1">
-                        <div class="psview">第{{index+1}}期中:</div>
+                    <div class="detail-top-content" v-for="(item1,index1) in item.RightTimes ? item.RightTimes.split(',') : 0" :key="item1" v-show="item.RightTimes">
+                        <div class="psview">第{{index1+1}}期中:</div>
                         <div class="psvalue">{{item1}}</div>
                         <div class="psview">次</div>
                     </div>
@@ -158,24 +158,38 @@ export default {
         };
     },
     created() {
-        let tokenCode = localStorage.tokenCode;
-        let signStr = 'Action=GetPlanDetails' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + tokenCode;
-        let data = new FormData();
-        data.append('Action', 'GetPlanDetails');
-        data.append('SID', localStorage.sid);
-        data.append('Token', localStorage.Token);
-        data.append('Sign', sha256.sha256(signStr).toUpperCase());
 
-        this.$http.post(localStorage.SiteUrl, data).then(res => {
-            this.listData = res.data.Data
-        }).catch(error => {
-            console.log(error);
-        })
     },
     methods: {
         handleClick(tab, event) {
             console.log(tab, event);
         },
+
+        getData() {
+            // 请求数据
+            let tokenCode = localStorage.tokenCode;
+            let signStr = 'Action=GetPlanDetails' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + tokenCode;
+            let data = new FormData();
+            data.append('Action', 'GetPlanDetails');
+            data.append('SID', localStorage.sid);
+            data.append('Token', localStorage.Token);
+            data.append('Sign', sha256.sha256(signStr).toUpperCase());
+
+            this.$http.post(localStorage.SiteUrl, data).then(res => {
+
+                this.listData = res.data.Data
+                for(var i = 0; i  < this.listData.length; i++){
+                    this.listData[i].PlanDetails = this.listData[i].PlanDetails.reverse();
+                }
+            }).catch(error => {
+                console.log(error);
+            })
+        },
+
+    },
+    mounted() {
+        // 调用请求数据的方法
+        this.getData()
 
     },
     computed: {

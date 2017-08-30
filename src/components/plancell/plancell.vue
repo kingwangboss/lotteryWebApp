@@ -4,9 +4,9 @@
             <!-- <span wx:if="{{DSType==0}}" class="txt-item1" style="border-top-left-radius: 25rpx;color: RGB(84, 128, 215); background:RGB(222, 231, 247);">{{Name}}</span> -->
             <!-- <span wx:else class="txt-item1" style="border-top-left-radius: 25rpx;color: RGB(199, 64, 78); background:RGB(247, 237, 237);">{{Name}}</span> -->
             <span v-if="cell.DSType === 0" class="txt-item1" style="width:18%;border-top-left-radius: 12.5px;color: RGB(84, 128, 215); background:RGB(222, 231, 247);">{{cell.Name}}</span>
-            <span v-else class="txt-item1" style="width:18%;border-top-left-radius: 12.5px;color: RGB(199, 64, 78); background:RGB(247, 237, 237);">{{cell.Name}}</span>
+            <span v-else-if="cell.DSType === 1" class="txt-item1" style="width:18%;border-top-left-radius: 12.5px;color: RGB(199, 64, 78); background:RGB(247, 237, 237);">{{cell.Name}}</span>
             <span class="txt-item1" style="width:20%;background:#fff; color:#767676;border-right: 1px dotted #d8d8d8;">{{cell.PlanSection}}</span>
-            <span class="txt-item2">{{cell.EndIndex}}</span>
+            <span class="txt-item2">{{cell.EndIndex ? cell.EndIndex : 1}}</span>
             <span class="txt-item3" style="width:40%">{{cell.GuessValue}}</span>
 
             <div class="zhengquelv" style="width:25%;border-top-right-radius: 12.5px;">
@@ -15,9 +15,8 @@
                 <div class="diandian">
                     <div v-for="item in dian[index]" :key="item">
                         <div v-if="item === '1'" class="dianMiddle" style="background:#30bb78;"></div>
-                        <div v-else-if="item === '0'" class="dianMiddle" style="background:#d82e4b;"></div>
-                        <div v-else-if="item === ','"></div>
-                        <div v-else class="dianMiddle" style="background:black;"></div>
+                            <div v-else-if="item === '0'" class="dianMiddle" style="background:#d82e4b;"></div>
+                            <div v-else class="dianMiddle" style="background:black;"></div>
                     </div>
                 </div>
 
@@ -132,7 +131,6 @@
 </style>
 
 <script>
-// let AllData = require('../../../static/data/GetPlanData2')
 
 
 export default {
@@ -141,6 +139,7 @@ export default {
             type: Object
         }
     },
+    
     created() {
         this.PlanData = this.data;
     },
@@ -155,9 +154,16 @@ export default {
             // getter
             get: function() {
                 var temp = [];
-                for (var i = 0; i < this.PlanData.Data.length; i++) {
-                    temp.push(this.PlanData.Data[i].GuessResultList.split(',').reverse().slice(0, 10))
+                if (this.PlanData.Data.length > 10) {
+                    for (var i = 0; i < this.PlanData.Data.length; i++) {
+                        temp.push(this.PlanData.Data[i].GuessResultList.split(',').reverse().slice(0, 10))
+                    }
+                } else {
+                    for (var i = 0; i < this.PlanData.Data.length; i++) {
+                        temp.push(this.PlanData.Data[i].GuessResultList.split(',').reverse())
+                    }
                 }
+            
                 return temp;
             },
             // setter

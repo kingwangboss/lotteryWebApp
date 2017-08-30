@@ -87,33 +87,38 @@ import sha256 from '../util/sha256'
 export default {
     data() {
         return {
-            PlanData: AllData.PlanData,
+            PlanData: ""
         }
     },
     components: {
         plancell,
     },
-    created(){
-        console.log(data);
-        let tokenCode = localStorage.tokenCode;
-        let signStr = 'Action=GetPlanDatas2&AutoOpt=0' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + tokenCode;
-        let data = new FormData();
-        data.append('Action', 'GetPlanDatas2');
-        data.append('AutoOpt', '0');
-        data.append('SID', localStorage.sid);
-        data.append('Token', localStorage.Token);
-        data.append('Sign', sha256.sha256(signStr).toUpperCase());
-        // console.log('tokencode'+tokenCode)
-        // console.log('toeken'+localStorage.Token)
-        // console.log('sign'+sha256.sha256(signStr).toUpperCase())
-        this.$http.post(localStorage.SiteUrl, data).then(res => {
-            // console.log(res);
-            this.PlanData = res.data.Data
-            // this.PlanData = res.data.Data
-        }).catch(error => {
-            console.log(error);
-        })
+    created() {
+        this.PlanData = AllData.Data
+
     },
+    methods: {
+        getData() {
+            // 请求数据
+            let tokenCode = localStorage.tokenCode;
+            let signStr = 'Action=GetPlanDatas2&AutoOpt=0' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + tokenCode;
+            let data = new FormData();
+            data.append('Action', 'GetPlanDatas2');
+            data.append('AutoOpt', '0');
+            data.append('SID', localStorage.sid);
+            data.append('Token', localStorage.Token);
+            data.append('Sign', sha256.sha256(signStr).toUpperCase());
+            this.$http.post(localStorage.SiteUrl, data).then(res => {
+                this.PlanData = res.data.Data;
+            }).catch(error => {
+                console.log(error);
+            })
+        }
+    },
+    mounted() {
+        // 调用请求数据的方法
+        this.getData()
+    }
 
 }
 </script>
