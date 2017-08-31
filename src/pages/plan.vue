@@ -7,7 +7,7 @@
 
             <div class="middlecontainer">
                 <span class="textbtn first" style="border-left-width: 1px;" @click="xzCaizhongClick">选择彩种</span>
-                <span class="textbtn">更改计划</span>
+                <span class="textbtn" @click="changePlanClick">更改计划</span>
                 <span class="textbtn">计划分享</span>
                 <span class="textbtn">切换公式</span>
                 <span class="textbtn last">近{{PlanData.CycleCount}}期计划</span>
@@ -112,6 +112,7 @@ export default {
             data.append('Sign', sha256.sha256(signStr).toUpperCase());
             this.$http.post(localStorage.SiteUrl, data).then(res => {
                 this.PlanData = res.data.Data;
+
             }).catch(error => {
                 console.log(error);
             })
@@ -119,6 +120,16 @@ export default {
         xzCaizhongClick() {
             this.$router.push({
                 path: '/XZcaizhong'
+            })
+        },
+        changePlanClick() {
+            var selectNameArr = [];
+            for (var i = 0; i < this.PlanData.Data.length; i++) {
+                selectNameArr.push(this.PlanData.Data[i].Name)
+            }
+            localStorage.selectNameArr = selectNameArr;
+            this.$router.push({
+                path: '/changePlan'
             })
         },
     },
