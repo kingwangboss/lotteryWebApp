@@ -1,6 +1,5 @@
 <template>
   <div class="maincontainer">
-    <m-header :title="title"></m-header>
     <div class="userinfo">
       <img class="userinfo-avatar" src="../../static/images/me/User-104.png" background-size="cover"></img>
       <span class="userinfo-nickname">{{nickname}}</span>
@@ -121,18 +120,12 @@
 </style>
 
 <script>
-import mHeader from '../components/hearder/Hearder';
 export default {
   components:{
-    mHeader,
   },
   data() {
     return {
       screenWidth: document.body.clientWidth,
-      title: {
-        text: "我",
-        showBack: false,
-      },
       nickname:localStorage.Username
     }
   },

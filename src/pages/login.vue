@@ -202,6 +202,7 @@ export default {
                 
             }else{
                 this.user.sid = "4"
+                localStorage.czname = '幸运农场'
             }
 
 

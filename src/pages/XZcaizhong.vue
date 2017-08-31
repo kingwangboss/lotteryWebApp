@@ -5,7 +5,7 @@
         <div class="maincontainer">
             <div class="cell" v-for="item in dataList" :key="item.toString()">
                 <div class="cell-btnview">
-                    <button class="btn" v-for="item1 in item.CPNames" :key="item1.toString()" :id="item1.SID" @click="btnClick">{{item1.CPName}}</button>
+                    <el-button class="btn" type="primary" v-for="item1 in item.CPNames" :key="item1.toString()"  @click="btnClick($event,item1.SID)">{{item1.CPName}}</el-button>
                 </div>
                 <div class="line">
                 </div>
@@ -40,9 +40,10 @@
     margin-top: 10px;
     display: flex;
     align-items: center;
+    color: #E5574D;
     padding: 5px 20px;
-    font-size: 13px;
-    border: 1px solid black;
+    // font-size: 13px;
+    // border: 1px solid black;
 }
 
 .line {
@@ -79,9 +80,9 @@ export default {
 
             });
         },
-        btnClick(btn) {
+        btnClick(btn,sid) {
             console.log(this.$route.params)
-            localStorage.sid = btn.target.id
+            localStorage.sid = sid
             localStorage.czname = btn.target.innerText
 
 

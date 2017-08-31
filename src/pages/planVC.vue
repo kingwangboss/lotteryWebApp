@@ -1,6 +1,6 @@
 <template>
     <div class="page-container">
-
+        <m-header :title="title"></m-header>
         <div class="page-wrap" :class="title.tabClass">
             <mt-tab-container class="page-tabbar-container" v-model="selected">
                 <mt-tab-container-item id="plan">
@@ -38,7 +38,7 @@
 
 
 <script>
-
+import mHeader from '../components/hearder/Hearder';
 import plan from './plan'
 import shujufenxi from './shujufenxi'
 import lishikaijiang from './lishikaijiang'
@@ -89,7 +89,7 @@ const tabList = {
         src: require('../../static/images/wo.png'),
         defaultSrc: require('../../static/images/wo.png'),
         activeSrc: require('../../static/images/wo1.png')
-        
+
     }
 };
 
@@ -99,15 +99,19 @@ export default {
         return {
             selected: 'plan',
             titleList: titleList,
-            title: titleList[0],
+            title:{
+                text: localStorage.czname,
+                showBack: false,
+            },
             tabList: tabList,
         };
     },
-    created(){
-        
+    created() {
+
     },
 
     components: {
+        mHeader,
         plan,
         shujufenxi,
         lishikaijiang,
@@ -145,13 +149,13 @@ export default {
 .page-wrap {
     overflow: auto;
     height: 100%;
-    margin-bottom:55px;
+    margin-bottom: 55px;
 
     .mint-tab-container {
         height: 100%;
-        margin-top:0;
-        margin-bottom:0;
-        z-index :0
+        margin-top: 0;
+        margin-bottom: 0;
+        z-index: 0
     }
 }
 

@@ -1,6 +1,5 @@
 <template>
     <div>
-        <m-header :title="title"></m-header>
         <div class="maincontainer">
 
             <div class="middleLine">
@@ -84,7 +83,6 @@
 </style>
 
 <script>
-import mHeader from '../components/hearder/Hearder';
 import plancell from '../components/plancell/plancell'
 let AllData = require('../../static/data/GetPlanData2')
 import sha256 from '../util/sha256'
@@ -92,15 +90,10 @@ export default {
     data() {
         return {
             PlanData: "",
-            title: {
-                text: localStorage.czname,
-                showBack: false,
-            },
         }
     },
     components: {
         plancell,
-        mHeader,
     },
     created() {
         this.PlanData = AllData.Data
