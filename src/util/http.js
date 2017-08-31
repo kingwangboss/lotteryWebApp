@@ -3,7 +3,7 @@ import router from '../router'
 import { Loading, Message } from 'element-ui'
 import { Toast, MessageBox } from 'mint-ui'
 // axios 配置
-axios.defaults.timeout = 5000;
+axios.defaults.timeout = 10000;
 axios.defaults.baseURL = '';
 var loadinginstace
 // http request 拦截器
@@ -89,7 +89,7 @@ axios.interceptors.response.use(
       }).then(action => {
         console.log('去升级')
       })
-    } else if(response.data.Msg!=null) {
+    } else if(response.data.Msg!=null && response.data.Msg != "" ) {
       Toast({
         message: response.data.Msg,
         position: 'bottom',

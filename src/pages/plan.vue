@@ -9,7 +9,7 @@
                 <span class="textbtn first" style="border-left-width: 1px;" @click="xzCaizhongClick">选择彩种</span>
                 <span class="textbtn" @click="changePlanClick">更改计划</span>
                 <span class="textbtn">计划分享</span>
-                <span class="textbtn">切换公式</span>
+                <span class="textbtn" @click="qhClick">切换公式</span>
                 <span class="textbtn last">近{{PlanData.CycleCount}}期计划</span>
             </div>
 
@@ -97,7 +97,7 @@ export default {
     },
     created() {
         this.PlanData = AllData.Data
-
+        
     },
     methods: {
         getData() {
@@ -132,11 +132,28 @@ export default {
                 path: '/changePlan'
             })
         },
+        qhClick(){
+            var that = this;
+            let tokenCode = localStorage.tokenCode;
+            let signStr = 'Action=GetPlanDatas' + '&SID=' + localStorage.sid + "&AutoOpt=1" + '&Token=' + localStorage.Token + tokenCode;
+            let data = new FormData();
+            data.append('Action', 'GetPlanDatas');
+            data.append('SID', localStorage.sid);
+            data.append('AutoOpt', '1');
+            data.append('Token', localStorage.Token);
+            data.append('Sign', sha256.sha256(signStr).toUpperCase());
+            this.$http.post(localStorage.SiteUrl, data).then(res => {
+                console.log(res)
+                that.getData()
+            }).catch(error => {
+                console.log(error);
+            })
+        },
     },
     mounted() {
         // 调用请求数据的方法
         this.getData()
-    }
+    },
 
 }
 </script>

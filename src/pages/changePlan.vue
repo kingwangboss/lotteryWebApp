@@ -8,7 +8,8 @@
             <img style="height:4px;width:100%;" src="../../static/images/Search-07.png" mode="scaleToFill"></img>
 
             <div class="top">
-                <el-button class="btn" v-for="item in selectNameArr" :key="item">{{item}}</el-button>
+                <el-button class="btn" v-for="(item,index) in selectNameArr" :key="item" @click="removeBtn(item)">{{item}}
+                </el-button>
                 <!-- <el-button class="btn" style="background-image: url('../../static/images/Select-05.png')">12122</el-button> -->
 
             </div>
@@ -24,7 +25,7 @@
 
             <div class="bottom-btnView">
                 <!-- <button plain="{{true}}" catchtap="ok" style="background-color: rgb(229, 87, 77);border-color:rgba(0,0,0,0);color:#fff;" class="bottom-btn">确定</button>
-                        <button plain="{{true}}" catchtap="cancel" style="background-color: rgb(232, 159, 109);border-color:rgba(0,0,0,0);color:#fff;" class="bottom-btn">重置</button> -->
+                                    <button plain="{{true}}" catchtap="cancel" style="background-color: rgb(232, 159, 109);border-color:rgba(0,0,0,0);color:#fff;" class="bottom-btn">重置</button> -->
             </div>
 
         </div>
@@ -135,9 +136,25 @@ export default {
             data.append('Sign', sha256.sha256(signStr).toUpperCase());
             this.$http.post(localStorage.SiteUrl, data).then(res => {
                 this.planNameData = res.data.Data;
+
             }).catch(error => {
                 console.log(error);
             })
+        },
+        remove(arr, item) {
+            var result = [];
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] != item) {
+                    result.push(arr[i]);
+                }
+            }
+            return result;
+        },
+        removeBtn(item) {
+            console.log(this.selectNameArr);
+            console.log(item);
+            this.selectNameArr = this.remove(this.selectNameArr,item)
+            console.log(this.selectNameArr);
         }
     },
     mounted() {
