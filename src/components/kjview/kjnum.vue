@@ -1,6 +1,7 @@
 <template>
     <div class="content">
-        <div class="kjnum" :style="{width:ojwidth+'px',height:height+'px'}" :key="item" v-for="item in numArr">{{item}}</div>
+        <div v-show="isLan(index)" class="kjnum" :style="{width:ojwidth+'px',height:height+'px'}" :key="item" v-for="(item,index) in numArr">{{item}}</div>
+        <div v-show="!isLan(index)" class="kjnum1" :style="{width:ojwidth+'px',height:height+'px'}" :key="item" v-for="(item,index) in numArr">{{item}}</div>
     </div>
 </template>
 
@@ -21,6 +22,17 @@
         color: #fffde4;
         background-color: #db3c3e;
     }
+    .kjnum1 {
+        border: 1px solid #f5bc8d;
+        line-height: 36px;
+        border-radius: 5px;
+        // width: 29px;
+        height: 36px;
+        text-align: center;
+        margin: 3px;
+        color: #fffde4;
+        background-color:rgb(63, 123, 244);
+    }
 }
 </style>
 
@@ -39,6 +51,15 @@ export default {
             // width: 100,
             height: 35,
             screenWidth: document.body.clientWidth   // 这里是给到了一个默认值 （这个很重要）
+        }
+    },
+    methods:{
+        isLan(index){
+            if(index === 20){
+                return false;
+            }else {
+                return true;
+            }
         }
     },
     created(){

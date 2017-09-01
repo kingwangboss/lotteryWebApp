@@ -8,7 +8,7 @@
             <img style="height:4px;width:100%;" src="../../static/images/Search-07.png" mode="scaleToFill"></img>
 
             <div class="top">
-                <el-button class="btn" v-for="(item,index) in selectNameArr" :key="item" @click="removeBtn(item)">{{item}}
+                <el-button type="text" class="btn" v-for="(item,index) in selectNameArr" :key="item" @click="removeBtn(item)">{{item}}
                 </el-button>
                 <!-- <el-button class="btn" style="background-image: url('../../static/images/Select-05.png')">12122</el-button> -->
 
@@ -19,14 +19,15 @@
             <div class="planItemCell" v-for="item in planNameData" :key="item.toString()">
                 <label class="lab" style="font-size:14px; margin-top:10px;margin-left:20px; font-weight:900;">{{item.Group}}</label>
                 <div>
-                    <el-button class="btn" v-for="item1 in item.PlanList" :key="item1.toString()" @click="addBtn(item1)">{{item1}}</el-button>
+                    <el-button v-show="isSelect(item1)" type="text" class="btnSelect" v-for="item1 in item.PlanList" :key="item1.toString()" @click="addBtn(item1)">{{item1}}</el-button>
+                    <el-button v-show="!isSelect(item1)" type="text" class="btn" v-for="item1 in item.PlanList" :key="item1.toString()" @click="addBtn(item1)">{{item1}}</el-button>
                 </div>
             </div>
 
             <div class="bottom-btnView">
 
                 <el-button class="bottom-btn" style="background-color: rgb(229, 87, 77);border-color:rgba(0,0,0,0);color:#fff;" @click="ok">确定</el-button>
-                <el-button class="bottom-btn" style="background-color: rgb(232, 159, 109);border-color:rgba(0,0,0,0);color:#fff;" @click="cancel">取消</el-button>
+                <el-button class="bottom-btn" style="background-color: rgb(232, 159, 109);border-color:rgba(0,0,0,0);color:#fff;" @click="cancel">重置</el-button>
                 
             </div>
 
@@ -49,14 +50,7 @@
 
 .top {
     margin-bottom: 10px;
-}
-
-.middle {
-    height: 20px;
-    background: #fbf9fe;
-}
-
-.btn {
+    .btn {
     height: 30px;
     align-content: center;
     background-size: 100% 100%;
@@ -68,7 +62,17 @@
     padding: 5px 20px;
     font-size: 13px;
     border-radius: 0px;
+    color: black;
+    background-image: url('../../static/images/Select-05.png')
 }
+}
+
+.middle {
+    height: 20px;
+    background: #fbf9fe;
+}
+
+
 
 
 .planItemCell {
@@ -86,6 +90,22 @@
         align-items: center;
         padding: 5px 20px;
         font-size: 13px;
+        color: black;
+        background-image: url('../../static/images/Select-05.png')
+    }
+    .btnSelect{
+        height: 30px;
+        align-content: center;
+        background-size: 100% 100%;
+        float: left;
+        margin-left: 10px;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        padding: 5px 20px;
+        font-size: 13px;
+        color:#f82b56;
+        background-image: url('../../static/images/Select-06.png')
     }
 }
 
@@ -121,6 +141,9 @@ export default {
             selectNameArr: [],
         };
     },
+    comments:{
+        
+    },
     created() {
         this.selectNameArr = localStorage.selectNameArr.split(',');
         console.log(this.selectNameArr);
@@ -129,6 +152,14 @@ export default {
         mHeader,
     },
     methods: {
+        isSelect(item1){
+            if(this.selectNameArr.indexOf(item1)>=0){
+                return true;
+            }else{
+                return false;
+            }
+
+        },
         getData() {
             let tokenCode = localStorage.tokenCode;
             let signStr = 'Action=GetAllPlanNames' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + tokenCode;
@@ -187,7 +218,8 @@ export default {
             })
         },
         cancel(){
-            this.$router.go(-1);
+            // this.$router.go(-1);
+            this.selectNameArr = [];
         }
     },
     mounted() {

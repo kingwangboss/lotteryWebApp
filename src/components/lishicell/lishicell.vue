@@ -9,8 +9,11 @@
             </div>
 
             <div class="KJnum">
-                <div v-for="item1 in item.Data.split(',')" :key="item1" :style="{width:ojwidth+'px',height:ojwidth+'px'}">
+                <div v-show="isLan(index1)" v-for="(item1,index1) in item.Data.split(',')" :key="item1" :style="{width:ojwidth+'px',height:ojwidth+'px'}">
                     <div class="num">{{item1}}</div>
+                </div>
+                <div v-show="!isLan(index1)" v-for="(item1,index1) in item.Data.split(',')" :key="item1" :style="{width:ojwidth+'px',height:ojwidth+'px'}">
+                    <div class="num1">{{item1}}</div>
                 </div>
             </div>
 
@@ -33,6 +36,16 @@ export default {
             kjArr: "",
             height: 35,
             screenWidth: document.body.clientWidth
+        }
+    },
+
+    methods:{
+        isLan(index){
+            if(index === 20){
+                return false;
+            }else {
+                return true;
+            }
         }
     },
     mounted() {
@@ -132,6 +145,19 @@ export default {
     color: #f82b56;
     font-size: 23px;
     background-image: url('../../../static/images/history/Records-04.png');
+}
+
+.num1 {
+    margin: 0px 5px;
+    padding-top: 5px;
+    height: 35px;
+    width: 35px;
+    background-repeat: no-repeat;
+
+    background-size: 35px;
+    color: white;
+    font-size: 23px;
+    background-image: url('../../../static/images/history/Records-41.png');
 }
 
 .top {

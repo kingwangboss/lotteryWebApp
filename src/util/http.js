@@ -43,53 +43,85 @@ axios.interceptors.response.use(
     console.log('拦截器 MsgType:' + response.data.MsgType)
     console.log('拦截器 Msg:' + response.data.Msg)
     console.log(response);
-    if (response.data.MsgType === 1 && response.data.Msg!=null) {
+    if (response.data.MsgType === 1 && response.data.Msg != null) {
       MessageBox({
         title: '提示',
         message: response.data.Msg,
         showCancelButton: false,
       })
-    } else if (response.data.MsgType === 2 && response.data.Msg!=null) {
+    } else if (response.data.MsgType === 2 && response.data.Msg != null) {
       MessageBox({
         title: '提示',
         message: response.data.Msg,
         showCancelButton: true,
         confirmButtonText: '去购买',
-        cancelButtonText: '知道了'
+        cancelButtonText: '知道了',
+        callback: (action, instance, done) => {
+          if (action === 'confirm') {
+            router.push({
+              path: '/buy'
+            })
+          } else {
+
+          }
+        },
       }).then(action => {
-        console.log('去购买')
+
       })
-    } else if (response.data.MsgType === 3 && response.data.Msg!=null) {
+    } else if (response.data.MsgType === 3 && response.data.Msg != null) {
       MessageBox({
         title: '提示',
         message: response.data.Msg,
         showCancelButton: true,
         confirmButtonText: '联系客服',
-        cancelButtonText: '知道了'
+        cancelButtonText: '知道了',
+        callback: (action, instance, done) => {
+          if (action === 'confirm') {
+            alert('联系客服')
+          } else {
+
+          }
+        },
       }).then(action => {
-        console.log('联系客服')
+
       })
-    } else if (response.data.MsgType === 4 && response.data.Msg!=null) {
+    } else if (response.data.MsgType === 4 && response.data.Msg != null) {
       MessageBox({
         title: '提示',
         message: response.data.Msg,
         showCancelButton: true,
         confirmButtonText: '了解详情',
-        cancelButtonText: '知道了'
+        cancelButtonText: '知道了',
+        callback: (action, instance, done) => {
+          if (action === 'confirm') {
+            alert('了解详情')
+          } else {
+
+          }
+        },
       }).then(action => {
-        console.log('了解详情')
+
       })
-    } else if (response.data.MsgType === 5 && response.data.Msg!=null) {
+    } else if (response.data.MsgType === 5 && response.data.Msg != null) {
       MessageBox({
         title: '提示',
         message: response.data.Msg,
         showCancelButton: true,
         confirmButtonText: '去升级',
-        cancelButtonText: '知道了'
+        cancelButtonText: '知道了',
+        callback: (action, instance, done) => {
+          if (action === 'confirm') {
+            router.push({
+              path: '/buy'
+            })
+          } else {
+
+          }
+        },
       }).then(action => {
-        console.log('去升级')
+
       })
-    } else if(response.data.Msg!=null && response.data.Msg != "" ) {
+    } else if (response.data.Msg != null && response.data.Msg != "") {
       Toast({
         message: response.data.Msg,
         position: 'bottom',

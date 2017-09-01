@@ -8,6 +8,7 @@ import PlanDetail from '@/pages/planDetail'
 import XZcaizhong from '@/pages/XZcaizhong'
 import changePlan from '@/pages/changePlan'
 import setParameter from '@/pages/setParameter'
+import buy from '@/pages/buy'
 Vue.use(Router)
 
 export default new Router({
@@ -41,6 +42,11 @@ export default new Router({
       path: '/changePlan',
       name: 'changePlan',
       component: changePlan
+    },
+    {
+      path: '/buy',
+      name: 'buy',
+      component: buy
     },
     {
       path: '/planVC/planDetail',

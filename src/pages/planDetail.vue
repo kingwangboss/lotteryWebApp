@@ -1,8 +1,8 @@
 <template>
     <div>
-        
+
         <m-header :title="title"></m-header>
-        
+
         <kjview></kjview>
         <el-tabs v-model="activeName" @tab-click="handleClick">
             <el-tab-pane :label="item.PlanName" :name="index.toString()" :index="index.toString()" v-for="(item,index) in listData" :key="index">
@@ -36,14 +36,22 @@
                 <!-- cell -->
                 <div class="detail-bottom">
 
-                    <div class="bottom-cell" style="background:RGB(250, 250, 250);" v-for="(itemCell,indexCell) in item.PlanDetails" :key="itemCell">
-                        <span class="cell-item1">{{itemCell.split('|')[0]}}</span>
-                        <span class="cell-item2">{{itemCell.split('|')[2] ? itemCell.split('|')[2] : '1'}}</span>
-                        <span class="cell-item3">{{itemCell.split('|')[1]}}</span>
+                    <div class="bottom-cell" v-for="(itemCell,indexCell) in item.PlanDetails" :key="itemCell">
+                        <span v-show="bgColor(indexCell)" class="cell-item1" style="background:RGB(250, 250, 250);">{{itemCell.split('|')[0]}}</span>
+                        <span v-show="!bgColor(indexCell)" class="cell-item1" style="background:RGB(248, 245, 245);">{{itemCell.split('|')[0]}}</span>
 
-                        <span v-if="itemCell.split('|')[5] === '对'" class="cell-item4" style="color:#16B482;">{{itemCell.split('|')[5]}}</span>
-                        <span v-else-if="itemCell.split('|')[5] === '错' " class="cell-item4" style="color:#f82b56;">{{itemCell.split('|')[5]}}</span>
-                        <span v-else class="cell-item4" style="color:#6E6E6E;">{{itemCell.split('|')[5]}}</span>
+                        <span v-show="bgColor(indexCell)" class="cell-item2" style="background:RGB(250, 250, 250);">{{itemCell.split('|')[2] ? itemCell.split('|')[2] : '1'}}</span>
+                        <span v-show="!bgColor(indexCell)" class="cell-item2" style="background:RGB(248, 245, 245);">{{itemCell.split('|')[2] ? itemCell.split('|')[2] : '1'}}</span>
+
+                        <span v-show="bgColor(indexCell)" class="cell-item3" style="background:RGB(250, 250, 250);">{{itemCell.split('|')[1]}}</span>
+                        <span v-show="!bgColor(indexCell)" class="cell-item3" style="background:RGB(248, 245, 245);">{{itemCell.split('|')[1]}}</span>
+
+                        <span v-show="bgColor(indexCell)" v-if="itemCell.split('|')[5] === '对'" class="cell-item4" style="color:#16B482;background:RGB(250, 250, 250);">{{itemCell.split('|')[5]}}</span>
+                        <span v-show="bgColor(indexCell)" v-else-if="itemCell.split('|')[5] === '错' " class="cell-item4" style="color:#f82b56;background:RGB(250, 250, 250);">{{itemCell.split('|')[5]}}</span>
+                        <span v-show="bgColor(indexCell)" v-else class="cell-item4" style="color:#6E6E6E;background:RGB(250, 250, 250);">{{itemCell.split('|')[5]}}</span>
+                        <span v-show="!bgColor(indexCell)" v-if="itemCell.split('|')[5] === '对'" class="cell-item4" style="color:#16B482;background:RGB(248, 245, 245);">{{itemCell.split('|')[5]}}</span>
+                        <span v-show="!bgColor(indexCell)" v-else-if="itemCell.split('|')[5] === '错' " class="cell-item4" style="color:#f82b56;background:RGB(248, 245, 245);">{{itemCell.split('|')[5]}}</span>
+                        <span v-show="!bgColor(indexCell)" v-else class="cell-item4" style="color:#6E6E6E;background:RGB(248, 245, 245);">{{itemCell.split('|')[5]}}</span>
                     </div>
 
                 </div>
@@ -123,7 +131,7 @@
 
 .cell-item3 {
     border-right: 5px solid #fff;
-    width: 40%;
+    width: 50%;
     font-size: 15px;
     text-align: center;
     line-height: auto;
@@ -136,7 +144,8 @@
     display: flex;
     align-items: center;
     font-size: 15px;
-    padding-left: 20px;
+    padding-left: 5px;
+    width: 13%;
 }
 </style>
 
@@ -152,7 +161,7 @@ export default {
             title: {
                 text: '计划详情',
                 showBack: true,
-                right:true,
+                right: true,
             },
             activeName: localStorage.detailID,
             listData: '',
@@ -180,13 +189,21 @@ export default {
             this.$http.post(localStorage.SiteUrl, data).then(res => {
 
                 this.listData = res.data.Data
-                for(var i = 0; i  < this.listData.length; i++){
+                for (var i = 0; i < this.listData.length; i++) {
                     this.listData[i].PlanDetails = this.listData[i].PlanDetails.reverse();
                 }
             }).catch(error => {
                 console.log(error);
             })
         },
+
+        bgColor(index) {
+            if (index % 2 === 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
 
     },
     mounted() {
