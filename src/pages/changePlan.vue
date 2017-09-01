@@ -19,13 +19,15 @@
             <div class="planItemCell" v-for="item in planNameData" :key="item.toString()">
                 <label class="lab" style="font-size:14px; margin-top:10px;margin-left:20px; font-weight:900;">{{item.Group}}</label>
                 <div>
-                    <el-button class="btn" v-for="item1 in item.PlanList" :key="item1.toString()">{{item1}}</el-button>
+                    <el-button class="btn" v-for="item1 in item.PlanList" :key="item1.toString()" @click="addBtn(item1)">{{item1}}</el-button>
                 </div>
             </div>
 
             <div class="bottom-btnView">
-                <!-- <button plain="{{true}}" catchtap="ok" style="background-color: rgb(229, 87, 77);border-color:rgba(0,0,0,0);color:#fff;" class="bottom-btn">确定</button>
-                                    <button plain="{{true}}" catchtap="cancel" style="background-color: rgb(232, 159, 109);border-color:rgba(0,0,0,0);color:#fff;" class="bottom-btn">重置</button> -->
+
+                <el-button class="bottom-btn" style="background-color: rgb(229, 87, 77);border-color:rgba(0,0,0,0);color:#fff;" @click="ok">确定</el-button>
+                <el-button class="bottom-btn" style="background-color: rgb(232, 159, 109);border-color:rgba(0,0,0,0);color:#fff;" @click="cancel">取消</el-button>
+                
             </div>
 
         </div>
@@ -42,6 +44,7 @@
 .maincontainer {
     display: flex;
     flex-direction: column;
+    margin-bottom: 45px;
 }
 
 .top {
@@ -71,7 +74,7 @@
 .planItemCell {
     display: flex;
     flex-direction: column;
-
+    
     .btn {
         height: 30px;
         align-content: center;
@@ -155,6 +158,36 @@ export default {
             console.log(item);
             this.selectNameArr = this.remove(this.selectNameArr,item)
             console.log(this.selectNameArr);
+        },
+        addBtn(item1){
+            console.log(item1);
+            console.log(this.selectNameArr.indexOf(item1));
+            if(this.selectNameArr.indexOf(item1)>=0){
+                this.selectNameArr = this.remove(this.selectNameArr,item1);
+            }else{
+                this.selectNameArr.push(item1)
+            }
+        },
+        ok(){
+            console.log(this.selectNameArr.join(','));
+            let tokenCode = localStorage.tokenCode;
+            let signStr = 'Action=UpdatePlanList' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + '&PlanList=' + this.selectNameArr.join(',') + tokenCode;
+            let data = new FormData();
+            data.append('Action', 'UpdatePlanList');
+            data.append('SID', localStorage.sid);
+            data.append('Token', localStorage.Token);
+            data.append('PlanList', this.selectNameArr.join(','));
+            data.append('Sign', sha256.sha256(signStr).toUpperCase());
+            this.$http.post(localStorage.SiteUrl, data).then(res => {
+                // this.planNameData = res.data.Data;
+                this.$router.go(-1);
+
+            }).catch(error => {
+                console.log(error);
+            })
+        },
+        cancel(){
+            this.$router.go(-1);
         }
     },
     mounted() {

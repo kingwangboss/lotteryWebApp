@@ -103,7 +103,7 @@
 .cell-item1 {
     padding-left: 5px;
     display: flex;
-    width: 60px;
+    width: 20%;
     font-size: 12px;
     color: #6E6E6E;
     align-items: center;
@@ -123,7 +123,7 @@
 
 .cell-item3 {
     border-right: 5px solid #fff;
-    width: 175px;
+    width: 40%;
     font-size: 15px;
     text-align: center;
     line-height: auto;
@@ -136,7 +136,7 @@
     display: flex;
     align-items: center;
     font-size: 15px;
-    padding-left: 25px;
+    padding-left: 20px;
 }
 </style>
 
