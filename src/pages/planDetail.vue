@@ -152,6 +152,7 @@ export default {
             title: {
                 text: '计划详情',
                 showBack: true,
+                right:true,
             },
             activeName: localStorage.detailID,
             listData: '',

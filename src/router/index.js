@@ -7,6 +7,7 @@ import lossPwdVC from '@/pages/lossPwd'
 import PlanDetail from '@/pages/planDetail' 
 import XZcaizhong from '@/pages/XZcaizhong'
 import changePlan from '@/pages/changePlan'
+import setParameter from '@/pages/setParameter'
 Vue.use(Router)
 
 export default new Router({
@@ -45,6 +46,11 @@ export default new Router({
       path: '/planVC/planDetail',
       name: 'PlanDetail',
       component: PlanDetail
+    },
+    {
+      path: '/planVC/planDetail/setParameter',
+      name: 'setParameter',
+      component: setParameter
     }
   ]
 })

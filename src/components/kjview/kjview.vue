@@ -31,7 +31,8 @@ import http from '../../util/http'
 import sha256 from '../../util/sha256'
 
 var time;
-
+var tiemInterval;
+var run;
 export default {
     components: {
         kjnum,
@@ -58,13 +59,14 @@ export default {
     },
     data() {
         return {
-            KJData:"",
+            KJData: "",
             nextTime: "",
         }
     },
 
     methods: {
         getData() {
+            clearInterval(run);
             let tokenCode = localStorage.tokenCode;
             let signStr = 'Action=Clock' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + '&CurrentLottery=0' + tokenCode;
             let data = new FormData();
@@ -76,16 +78,39 @@ export default {
 
             //getClock握手
             this.$http.post(localStorage.SiteUrl, data).then(res => {
-                // console.log(res.data.Data);
                 this.KJData = res.data.Data
                 this.nextTime = res.data.Data.NewLottery.NextPeriodTime;
+                // this.nextTime = 5;
+                // console.log("mounted" + this.time);
+
+                //设置定时器，每1秒刷新一次
+                var self = this;
+                tiemInterval = setInterval(getTotelNumber, 1000)
+                function getTotelNumber() {
+                    
+                    if(self.nextTime>0){
+                        self.nextTime--;
+                    }else{
+                        clearInterval(tiemInterval)
+                        var i = 0;
+                        run = setInterval(function(){
+                            self.$router.go(0);
+                        },5000);
+                    }
+                    // console.log(self.nextTime);
+                }
+
             }).catch(error => {
                 console.log(error);
             })
         }
     },
-    mounted(){
+    beforeDestroy(){
+        clearInterval(tiemInterval)
+    },
+    mounted() {
         this.getData();
+
     },
     computed: {
         shijian: {
@@ -101,8 +126,8 @@ export default {
         shijianArr: {
             get() {
                 time = parseInt(this.nextTime);
-                console.log('time')
-                console.log(time);
+                // console.log('time')
+                // console.log(time);
                 var minu = parseInt(time / 60);
                 var second = time % 60;
 

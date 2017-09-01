@@ -7,6 +7,10 @@
                 </span>
                 <!-- <span class="title">{{title.text}}</span> -->
                 <span class="title">{{title.text}}</span>
+
+                <span v-if="title.right" class="right" @click="right">
+                    <img src="../../../static/images/sousuobtn.png" alt="搜索" />
+                </span>
             </div>
         </div>
     </div>
@@ -24,18 +28,6 @@
         background-color: #E5574D;
         line-height: 44px;
         text-align: center;
-        .back {
-            width: 12%;
-            margin-left: -40px;
-            img {
-                width: 20px;
-                height: 20px;
-                line-height: 20px;
-                vertical-align: middle;
-                padding: 3px;
-            }
-        }
-
 
         .title-wrapper {
             font-size: 15px;
@@ -46,6 +38,28 @@
             .title {
                 width: 74%;
                 font-weight: 500;
+            }
+            .back {
+                width: 12%;
+                margin-left: -40px;
+                img {
+                    width: 20px;
+                    height: 20px;
+                    line-height: 20px;
+                    vertical-align: middle;
+                    padding: 3px;
+                }
+            }
+            .right {
+                width: 12%; 
+                margin-right: -40px;
+                img {
+                    width: 20px;
+                    height: 20px;
+                    line-height: 20px;
+                    vertical-align: middle;
+                    padding: 3px;
+                }
             }
         }
     }
@@ -62,12 +76,15 @@ export default {
     },
     data() {
         return {
-            
+
         }
     },
     methods: {
         back() {
             this.$router.go(-1);
+        },
+        right() {
+            this.$router.push('/planVC/planDetail/setParameter')
         }
     },
 }
