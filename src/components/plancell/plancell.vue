@@ -15,8 +15,8 @@
                 <div class="diandian">
                     <div v-for="item in dian[index]" :key="item">
                         <div v-if="item === '1'" class="dianMiddle" style="background:#30bb78;"></div>
-                            <div v-else-if="item === '0'" class="dianMiddle" style="background:#d82e4b;"></div>
-                            <div v-else class="dianMiddle" style="background:black;"></div>
+                        <div v-else-if="item === '0'" class="dianMiddle" style="background:#d82e4b;"></div>
+                        <div v-else class="dianMiddle" style="background:black;"></div>
                     </div>
                 </div>
 
@@ -139,9 +139,10 @@ export default {
             type: Object
         }
     },
-    
+
     created() {
         this.PlanData = this.data;
+        console.log(this.PlanData)
     },
     data() {
         return {
@@ -154,7 +155,7 @@ export default {
             // getter
             get: function() {
                 var temp = [];
-                if (this.PlanData.Data.length > 10) {
+                if (this.PlanData.Data[0].GuessResultList.split(',').length > 10) {
                     for (var i = 0; i < this.PlanData.Data.length; i++) {
                         temp.push(this.PlanData.Data[i].GuessResultList.split(',').reverse().slice(0, 10))
                     }
@@ -163,7 +164,7 @@ export default {
                         temp.push(this.PlanData.Data[i].GuessResultList.split(',').reverse())
                     }
                 }
-            
+                console.log(temp);
                 return temp;
             },
             // setter
@@ -183,7 +184,7 @@ export default {
         }
     },
     methods: {
-        pushDetail(event,index) {
+        pushDetail(event, index) {
             console.log("push");
             console.log(index);
             localStorage.detailID = index;
