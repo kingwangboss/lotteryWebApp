@@ -5,6 +5,10 @@
                 <span v-if="title.showBack" class="back" @click="back">
                     <img src="../../../static/images/back.png" alt="返回" />
                 </span>
+
+                <span v-if="title.showQH" class="back" @click="qhCaizhong">
+                    <img src="../../../static/images/left-qh.png" alt="" />
+                </span>
                 <!-- <span class="title">{{title.text}}</span> -->
                 <span class="title">{{title.text}}</span>
 
@@ -85,6 +89,9 @@ export default {
         },
         right() {
             this.$router.push('/planVC/planDetail/setParameter')
+        },
+        qhCaizhong(){
+            this.$router.push('/XZcaizhong')
         }
     },
 }

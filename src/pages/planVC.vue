@@ -102,6 +102,7 @@ export default {
             title:{
                 text: localStorage.czname,
                 showBack: false,
+                showQH:true
             },
             tabList: tabList,
         };

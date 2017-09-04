@@ -6,11 +6,11 @@
             </div>
 
             <div class="middlecontainer">
-                <span class="textbtn first" style="border-left-width: 1px;" @click="xzCaizhongClick">选择彩种</span>
-                <span class="textbtn" @click="changePlanClick">更改计划</span>
+                <!-- <span class="textbtn first" style="border-left-width: 1px;" @click="xzCaizhongClick">选择彩种</span> -->
+                <span class="textbtn first" style="border-left-width: 1px;" @click="changePlanClick">更改计划</span>
                 <span class="textbtn">计划分享</span>
                 <span class="textbtn" @click="qhClick">切换公式</span>
-                <span class="textbtn last">近{{PlanData.CycleCount}}期计划</span>
+                <span class="textbtn last" @click="selectNum">近{{PlanData.CycleCount}}期计划</span>
             </div>
 
             <plancell :data="PlanData"></plancell>
@@ -40,7 +40,7 @@
         .textbtn {
 
             font-size: 12px;
-            width: 17%;
+            width: 22%;
             margin-top: 10px;
             margin-bottom: 10px;
             line-height: 30px;
@@ -59,7 +59,7 @@
             &.last {
                 border-top-right-radius: 7.5px;
                 border-bottom-right-radius: 7.5px;
-                width: 26%;
+                width: 28%;
             }
         }
     }
@@ -86,6 +86,7 @@
 import plancell from '../components/plancell/plancell'
 let AllData = require('../../static/data/GetPlanData2')
 import sha256 from '../util/sha256'
+import { MessageBox } from 'mint-ui'
 export default {
     data() {
         return {
@@ -97,7 +98,7 @@ export default {
     },
     created() {
         this.PlanData = AllData.Data
-        
+
     },
     methods: {
         getData() {
@@ -117,11 +118,40 @@ export default {
                 console.log(error);
             })
         },
-        xzCaizhongClick() {
-            this.$router.push({
-                path: '/XZcaizhong'
+        selectNum() {
+
+            MessageBox.prompt(' ', '填写计划期数(1-100)', { inputPlaceholder: '请输入期数', inputType: 'int' }).then(({ value, action }) => {
+
+                if (value > 100) {
+                    value = 100;
+                } else if (value < 1) {
+                    value = 1;
+                }
+                console.log(value)
+                var that = this;
+                let tokenCode = localStorage.tokenCode;
+                let signStr = 'Action=GetPlanDatas2&AutoOpt=1' + '&CycleCount=' + value + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + tokenCode;
+                let data = new FormData();
+                data.append('Action', 'GetPlanDatas2');
+                data.append('AutoOpt', '1');
+                data.append('CycleCount', value);
+                data.append('SID', localStorage.sid);
+                data.append('Token', localStorage.Token);
+                data.append('Sign', sha256.sha256(signStr).toUpperCase());
+                this.$http.post(localStorage.SiteUrl, data).then(res => {
+                    console.log(res)
+                    // that.getData()
+                    that.$router.go(0);
+                }).catch(error => {
+                    console.log(error);
+                })
             })
         },
+        // xzCaizhongClick() {
+        //     this.$router.push({
+        //         path: '/XZcaizhong'
+        //     })
+        // },
         changePlanClick() {
             var selectNameArr = [];
             for (var i = 0; i < this.PlanData.Data.length; i++) {
@@ -132,7 +162,7 @@ export default {
                 path: '/changePlan'
             })
         },
-        qhClick(){
+        qhClick() {
             var that = this;
             let tokenCode = localStorage.tokenCode;
             let signStr = 'Action=GetPlanDatas' + '&SID=' + localStorage.sid + "&AutoOpt=1" + '&Token=' + localStorage.Token + tokenCode;
