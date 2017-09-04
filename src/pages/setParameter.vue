@@ -7,7 +7,7 @@
                 <div class="cell">
                     <span class="txt">定码个数：</span>
                     <el-button type="text" @click="jian1" class="btn">-</el-button>
-                    <el-input v-model="input1" class="input" type="number"></el-input>
+                    <el-input v-model="input1" class="input" type="number" > </el-input>
                     <el-button type="text" @click="jia1" class="btn">+</el-button>
                 </div>
 
@@ -170,14 +170,39 @@ export default {
             input52: '',
             input61: '',
             input62: '',
-            dataDuringValue:['1','2','3','1','2','3','1','2','3','1']
+            dataDuringValue:['1','2','3','1','2','3','1','2','3','1'],
+            planName:'',
         };
     },
-
+    created(){
+        this.planName = localStorage.selectNameArr.split(',')[localStorage.detailID];
+    },
+    mounted(){
+        this.getData();
+    },
     components: {
         mHeader,
     },
     methods:{
+        getData(){
+            console.log(this.planName);
+            // 请求数据
+            let tokenCode = localStorage.tokenCode;
+            let signStr = 'Action=GetPlanInfo' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + '&PlanName=' + this.planName + tokenCode;
+            let data = new FormData();
+            data.append('Action', 'GetPlanInfo');
+            data.append('SID', localStorage.sid);
+            data.append('Token', localStorage.Token);
+            data.append('PlanName', this.planName);
+            data.append('Sign', sha256.sha256(signStr).toUpperCase());
+            this.$http.post(localStorage.SiteUrl, data).then(res => {
+                this.PlanData = res.data.Data;
+
+            }).catch(error => {
+                console.log(error);
+            })
+        },
+
         jian1(){
 
         },

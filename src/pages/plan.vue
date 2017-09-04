@@ -113,7 +113,12 @@ export default {
             data.append('Sign', sha256.sha256(signStr).toUpperCase());
             this.$http.post(localStorage.SiteUrl, data).then(res => {
                 this.PlanData = res.data.Data;
-
+                var nameArr = [];
+                for(var i=0;i<this.PlanData.Data.length;i++){
+                    nameArr.push(this.PlanData.Data[i].Name);
+                }
+                console.log(nameArr);
+                localStorage.selectNameArr = nameArr.join(',');
             }).catch(error => {
                 console.log(error);
             })
