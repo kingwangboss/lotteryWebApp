@@ -148,7 +148,7 @@ export default {
     },
     kefuClick() {
       window.location.href = localStorage.QQUrl;
-      window.open();
+      // window.open();
     },
     shouquanClick() {
       this.$router.push({
@@ -162,7 +162,9 @@ export default {
 
     },
     aboutClick() {
-
+      this.$router.push({
+        path: "/wo/about"
+      })
     },
     buyClick(){
       this.$router.push({
