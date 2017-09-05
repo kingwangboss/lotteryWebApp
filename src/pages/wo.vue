@@ -156,17 +156,21 @@ export default {
       })
     },
     XGpwdClick() {
-
+      this.$router.push({
+        path: "/wo/XGpwd"
+      })
     },
     feedbackClick() {
-
+      this.$router.push({
+        path: "/wo/feeback"
+      })
     },
     aboutClick() {
       this.$router.push({
         path: "/wo/about"
       })
     },
-    buyClick(){
+    buyClick() {
       this.$router.push({
         path: "/buy"
       })

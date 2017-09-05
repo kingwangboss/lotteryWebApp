@@ -97,7 +97,7 @@ export default {
     name: 'planVC',
     data() {
         return {
-            selected: 'plan',
+            selected: localStorage.tab === "" ? 'plan' : localStorage.tab,
             titleList: titleList,
             title:{
                 text: localStorage.czname,
@@ -129,15 +129,19 @@ export default {
             switch (val) {
                 case 'plan':
                     this.title = this.titleList[0];
+                    localStorage.tab = 'plan'
                     break;
                 case 'shujufenxi':
                     this.title = this.titleList[1];
+                    localStorage.tab = 'shujufenxi'
                     break;
                 case 'lishi':
                     this.title = this.titleList[2];
+                    localStorage.tab = 'lishi'
                     break;
                 case 'wo':
                     this.title = this.titleList[3];
+                    localStorage.tab = 'wo'
                     break;
             }
         }
