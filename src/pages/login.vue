@@ -238,6 +238,7 @@ export default {
                     localStorage.Username = res.data.Data.NickName;
                     localStorage.Token = res.data.Data.Token;
                     localStorage.PayType = res.data.Data.PayType;
+                    localStorage.QQUrl = res.data.Data.QQUrl;
                     localStorage.tokenCode = sha256.sha256(res.data.Data.Token+localStorage.pwd).toUpperCase()
                     this.$router.push({
                         path: "/planVC"

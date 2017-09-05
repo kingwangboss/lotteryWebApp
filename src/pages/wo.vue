@@ -10,26 +10,26 @@
 
     <div class="bottom">
       <div class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth+'px'}">
-        <img src="../../static/images/me/User-05.png"></img>
+        <img src="../../static/images/me/User-05.png" @click="buyClick"></img>
         <span>购买授权</span>
       </div>
-      <div class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth+'px'}">
+      <div class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth+'px'}" @click="kefuClick">
         <img src="../../static/images/me/User-07.png"></img>
         <span>在线客服</span>
       </div>
-      <div class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth+'px'}" bindtap="shouquanClick">
+      <div class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth+'px'}" @click="shouquanClick">
         <img src="../../static/images/me/User-08.png"></img>
         <span>我的授权</span>
       </div>
-      <div class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth+'px'}" bindtap="XGpwdClick">
+      <div class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth+'px'}" @click="XGpwdClick">
         <img src="../../static/images/me/User-09.png"></img>
         <span>密码管理</span>
       </div>
-      <div class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth+'px'}" bindtap="feedbackClick">
+      <div class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth+'px'}" @click="feedbackClick">
         <img src="../../static/images/me/User-10.png"></img>
         <span>意见反馈</span>
       </div>
-      <div class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth+'px'}" bindtap="aboutClick">
+      <div class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth+'px'}" @click="aboutClick">
         <img src="../../static/images/me/User-11.png"></img>
         <span>关于我们</span>
       </div>
@@ -121,12 +121,12 @@
 
 <script>
 export default {
-  components:{
+  components: {
   },
   data() {
     return {
       screenWidth: document.body.clientWidth,
-      nickname:localStorage.Username
+      nickname: localStorage.Username
     }
   },
   mounted() {
@@ -144,6 +144,29 @@ export default {
       localStorage.clear();
       this.$router.push({
         path: '/',
+      })
+    },
+    kefuClick() {
+      window.location.href = localStorage.QQUrl;
+      window.open();
+    },
+    shouquanClick() {
+      this.$router.push({
+        path: "/wo/shouquan"
+      })
+    },
+    XGpwdClick() {
+
+    },
+    feedbackClick() {
+
+    },
+    aboutClick() {
+
+    },
+    buyClick(){
+      this.$router.push({
+        path: "/buy"
       })
     }
   },

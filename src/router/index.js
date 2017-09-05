@@ -9,6 +9,10 @@ import XZcaizhong from '@/pages/XZcaizhong'
 import changePlan from '@/pages/changePlan'
 import setParameter from '@/pages/setParameter'
 import buy from '@/pages/buy'
+import about from '@/pages/wo/about'
+import feeback from '@/pages/wo/feeback'
+import shouquan from '@/pages/wo/shouquan'
+import XGpwd from '@/pages/wo/XGpwd'
 Vue.use(Router)
 
 export default new Router({
@@ -47,6 +51,26 @@ export default new Router({
       path: '/buy',
       name: 'buy',
       component: buy
+    },
+    {
+      path: '/wo/about',
+      name: 'about',
+      component: about
+    },
+    {
+      path: '/wo/feeback',
+      name: 'feeback',
+      component: feeback
+    },
+    {
+      path: '/wo/shouquan',
+      name: 'shouquan',
+      component: shouquan
+    },
+    {
+      path: '/wo/XGpwd',
+      name: 'XGpwd',
+      component: XGpwd
     },
     {
       path: '/planVC/planDetail',
