@@ -116,7 +116,11 @@ export default {
             tabList['wo'].src = tabList['wo'].defaultSrc;
         }
         if (localStorage.tab === 'plan') {
-            this.title = this.titleList[0];
+            this.title = {
+                text: localStorage.czname,
+                showBack: false,
+                showQH: true
+            };
         } else if (localStorage.tab === 'shujufenxi') {
             this.title = this.titleList[1];
         } else if (localStorage.tab === 'lishi') {
