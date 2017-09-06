@@ -115,6 +115,17 @@ export default {
         if(typeof(localStorage.tab) === "undefined"){
             tabList['wo'].src = tabList['wo'].defaultSrc;
         }
+        if(localStorage.tab === 'plan'){
+            this.title = this.titleList[0];
+        }else if(localStorage.tab === 'shujufenxi'){
+            this.title = this.titleList[1];
+        }else if(localStorage.tab === 'lishi'){
+            this.title = this.titleList[2];
+        }else if(localStorage.tab === 'wo'){
+            this.title = this.titleList[3];
+        }else{
+            
+        }
     },
     mounted(){
         console.log(3);
