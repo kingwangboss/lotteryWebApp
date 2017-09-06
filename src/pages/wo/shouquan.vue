@@ -16,7 +16,7 @@
     </div>
 </template>
 
-<style lang="less">
+<style lang="less" scoped>
 .maincontainer {
     display: flex;
     flex-direction: column;

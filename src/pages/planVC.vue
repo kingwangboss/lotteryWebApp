@@ -32,7 +32,7 @@
             <mt-tab-item id="wo">
                 <img slot="icon" :src="tabList['wo'].src"> 我
             </mt-tab-item>
-            
+
         </mt-tabbar>
     </div>
 </template>
@@ -99,35 +99,35 @@ export default {
     data() {
         console.log(2);
         return {
-            selected: typeof(localStorage.tab) === "undefined" ? 'plan' : localStorage.tab,
+            selected: typeof (localStorage.tab) === "undefined" ? 'plan' : localStorage.tab,
             titleList: titleList,
-            title:{
+            title: {
                 text: localStorage.czname,
                 showBack: false,
-                showQH:true
+                showQH: true
             },
             tabList: tabList,
         };
     },
     created() {
         console.log(localStorage.tab);
-        tabList[typeof(localStorage.tab) === "undefined" ? 'plan' : localStorage.tab].src = tabList[typeof(localStorage.tab) === "undefined" ? 'plan' : localStorage.tab].activeSrc;
-        if(typeof(localStorage.tab) === "undefined"){
+        tabList[typeof (localStorage.tab) === "undefined" ? 'plan' : localStorage.tab].src = tabList[typeof (localStorage.tab) === "undefined" ? 'plan' : localStorage.tab].activeSrc;
+        if (typeof (localStorage.tab) === "undefined") {
             tabList['wo'].src = tabList['wo'].defaultSrc;
         }
-        if(localStorage.tab === 'plan'){
+        if (localStorage.tab === 'plan') {
             this.title = this.titleList[0];
-        }else if(localStorage.tab === 'shujufenxi'){
+        } else if (localStorage.tab === 'shujufenxi') {
             this.title = this.titleList[1];
-        }else if(localStorage.tab === 'lishi'){
+        } else if (localStorage.tab === 'lishi') {
             this.title = this.titleList[2];
-        }else if(localStorage.tab === 'wo'){
+        } else if (localStorage.tab === 'wo') {
             this.title = this.titleList[3];
-        }else{
-            
+        } else {
+
         }
     },
-    mounted(){
+    mounted() {
         console.log(3);
     },
 
@@ -148,7 +148,11 @@ export default {
             // console.log(this.tabList[val].src);
             switch (val) {
                 case 'plan':
-                    this.title = this.titleList[0];
+                    this.title = {
+                        text: localStorage.czname,
+                        showBack: false,
+                        showQH: true
+                    };
                     localStorage.tab = 'plan'
                     break;
                 case 'shujufenxi':

@@ -1,12 +1,17 @@
 <template>
     <div class="main">
         <m-header :title="title"></m-header>
-        
+        <div class="main">
+
+        </div>
     </div>
 </template>
 
-<style lang="less">
-
+<style lang="less" scoped>
+.main{
+    display: flex;
+    flex-direction: column;
+}
 </style>
 
 <script>
