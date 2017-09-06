@@ -32,6 +32,7 @@
             <mt-tab-item id="wo">
                 <img slot="icon" :src="tabList['wo'].src"> 我
             </mt-tab-item>
+            
         </mt-tabbar>
     </div>
 </template>
@@ -71,7 +72,7 @@ const titleList = [
 
 const tabList = {
     plan: {
-        src: require('../../static/images/shouye1.png'),
+        src: require('../../static/images/shouye.png'),
         defaultSrc: require('../../static/images/shouye.png'),
         activeSrc: require('../../static/images/shouye1.png')
     },
@@ -96,8 +97,9 @@ const tabList = {
 export default {
     name: 'planVC',
     data() {
+        console.log(2);
         return {
-            selected: localStorage.tab === "" ? 'plan' : localStorage.tab,
+            selected: typeof(localStorage.tab) === "undefined" ? 'plan' : localStorage.tab,
             titleList: titleList,
             title:{
                 text: localStorage.czname,
@@ -108,7 +110,14 @@ export default {
         };
     },
     created() {
-
+        console.log(localStorage.tab);
+        tabList[typeof(localStorage.tab) === "undefined" ? 'plan' : localStorage.tab].src = tabList[typeof(localStorage.tab) === "undefined" ? 'plan' : localStorage.tab].activeSrc;
+        if(typeof(localStorage.tab) === "undefined"){
+            tabList['wo'].src = tabList['wo'].defaultSrc;
+        }
+    },
+    mounted(){
+        console.log(3);
     },
 
     components: {
