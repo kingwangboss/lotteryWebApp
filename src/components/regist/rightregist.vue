@@ -83,6 +83,7 @@
 
 <script>
 import sha256 from '../../util/sha256'
+import { Toast, MessageBox } from 'mint-ui'
 export default {
   data() {
     return {
@@ -106,47 +107,53 @@ export default {
 
     submit: function(event) {
 
-      var formData = JSON.stringify(this.user); // 这里才是你的表单数据
-      console.log(formData);
+      if (this.user.newpwd1 === this.user.newpwd2) {
+        var formData = JSON.stringify(this.user); // 这里才是你的表单数据
+        console.log(formData);
 
-      var that = this;
-      let data = new FormData();
-      data.append('Action', 'GetVCode');
-      data.append('SID', localStorage.sid);
-      this.$http.post("https://ycwidx.cpnet.com", data).then(res => {
-        console.log(res);
-        this.user.vcode = res.data.Data;
+        var that = this;
+        let data = new FormData();
+        data.append('Action', 'GetVCode');
+        data.append('SID', localStorage.sid);
+        this.$http.post("https://ycwidx.cpnet.com", data).then(res => {
+          console.log(res);
+          this.user.vcode = res.data.Data;
 
-        let data1 = new FormData();
-        data1.append('Action', 'UserNameReg');
-        data1.append('AppVersion', '1.0');
-        data1.append('SID', localStorage.sid);
-        data1.append('UserName', that.user.name);
-        data1.append('Pwd', that.user.newpwd2);
-        data1.append('VCode', that.user.vcode)
-        data1.append('AppType', "4");
-        data1.append('AppCode', 'YCW')
-        that.$http.post('https://ycwidx.cpnet.com', data1).then(res => {
-          console.log(res)
-          if (res) {
-            localStorage.uid = res.data.Data.UID;
-            localStorage.AuthTypeName = res.data.Data.AuthTypeName;
-            localStorage.SiteUrl = res.data.Data.SiteUrl;
-            localStorage.AuthType = res.data.Data.AuthType;
-            localStorage.Username = res.data.Data.NickName;
-            localStorage.Token = res.data.Data.Token;
-            localStorage.PayType = res.data.Data.PayType;
-            localStorage.tokenCode = sha256.sha256(res.data.Data.Token + that.user.newpwd2).toUpperCase()
-            that.$router.push({
-              path: "/planVC"
-            })
-          }
-        }).catch(error => {
-          console.log(error);
-        });
-      })
-
-
+          let data1 = new FormData();
+          data1.append('Action', 'UserNameReg');
+          data1.append('AppVersion', '1.0');
+          data1.append('SID', localStorage.sid);
+          data1.append('UserName', that.user.name);
+          data1.append('Pwd', that.user.newpwd2);
+          data1.append('VCode', that.user.vcode)
+          data1.append('AppType', "4");
+          data1.append('AppCode', 'YCW')
+          that.$http.post('https://ycwidx.cpnet.com', data1).then(res => {
+            console.log(res)
+            if (res) {
+              localStorage.uid = res.data.Data.UID;
+              localStorage.AuthTypeName = res.data.Data.AuthTypeName;
+              localStorage.SiteUrl = res.data.Data.SiteUrl;
+              localStorage.AuthType = res.data.Data.AuthType;
+              localStorage.Username = res.data.Data.NickName;
+              localStorage.Token = res.data.Data.Token;
+              localStorage.PayType = res.data.Data.PayType;
+              localStorage.tokenCode = sha256.sha256(res.data.Data.Token + that.user.newpwd2).toUpperCase()
+              that.$router.push({
+                path: "/planVC"
+              })
+            }
+          }).catch(error => {
+            console.log(error);
+          });
+        })
+      } else {
+        MessageBox({
+          title: '提示',
+          message: '两次输入密码不同，请重新输入',
+          showCancelButton: false,
+        })
+      }
 
     }
   },

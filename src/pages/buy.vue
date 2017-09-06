@@ -1,12 +1,88 @@
 <template>
-    <div>
+    <div style="overflow:hidden">
         <m-header :title="title"></m-header>
-        BUY
+        <div class="rectangle">
+            <div>
+                <div class="top">
+                    <div style="font-size:15px;color:#58C5E0;font-weight:900">标准版一年授权</div>
+                    <div style="font-size:15px;color:#AED6E0;font-weight:900;text-decoration:line-through">￥280.00</div>
+                    <div style="font-size:15px;color:#58C5E0;font-weight:900">￥280.00</div>
+                    <el-button>购买</el-button>
+                </div>
+                <div class="line">
+                </div>
+                <p style="color:#58C5E0">包含计划追号、更改计划、公司切换、公式搜索等常用功能</p>
+            </div>
+        </div>
+
+         <div class="rectangle">
+            <div>
+                <div class="top">
+                    <div style="font-size:15px;color:#58C5E0;font-weight:900">标准版一年授权</div>
+                    <div style="font-size:15px;color:#AED6E0;font-weight:900;text-decoration:line-through">￥280.00</div>
+                    <div style="font-size:15px;color:#58C5E0;font-weight:900">￥280.00</div>
+                    <el-button>购买</el-button>
+                </div>
+                <div class="line">
+                </div>
+                <p style="color:#58C5E0">包含计划追号、更改计划、公司切换、公式搜索等常用功能</p>
+            </div>
+        </div>
+
+         <div class="rectangle">
+            <div>
+                <div class="top">
+                    <div style="font-size:15px;color:#58C5E0;font-weight:900">标准版一年授权</div>
+                    <div style="font-size:15px;color:#AED6E0;font-weight:900;text-decoration:line-through">￥280.00</div>
+                    <div style="font-size:15px;color:#58C5E0;font-weight:900">￥280.00</div>
+                    <el-button>购买</el-button>
+                </div>
+                <div class="line">
+                </div>
+                <p style="color:#58C5E0">包含计划追号、更改计划、公司切换、公式搜索等常用功能</p>
+            </div>
+        </div>
+
     </div>
 </template>
 
 <style lang="less">
-
+.rectangle {
+    margin: 20px 5px;
+    background-image: url('../../static/images/Pruchase/Pruchase-06.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    .top {
+        margin-left: 10px;
+        height: 62px;
+        line-height: 62px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        div {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        button {
+            height: 40px;
+            width: 70px;
+        }
+    }
+    .line {
+        margin: 0px 11px;
+        border: 1px dashed #58C5E0; // background: rebeccapurple;
+    }
+    p {
+        margin: 0px 10px;
+        margin-top: 5px;
+        text-align: left;
+        height: 30px;
+        font-size: 12px;
+    }
+}
 </style>
 
 
@@ -21,7 +97,7 @@ export default {
                 showBack: true,
                 right: false,
             },
-            listData:'',
+            listData: '',
         };
     },
     components: {
