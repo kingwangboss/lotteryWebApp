@@ -326,7 +326,11 @@ export default {
             this.input1 = this.input1 - 1 < 1 ? 1 : this.input1 - 1;
         },
         jia1() {
-            this.input1 = this.input1 + 1 > this.dataDuringValue.length - 1 ? this.dataDuringValue.length - 1 : this.input1 + 1;
+            if(this.dataDuringValue.length>0){
+                this.input1 = this.input1 + 1 > this.dataDuringValue.length - 1 ? this.dataDuringValue.length - 1 : this.input1 + 1;
+            }else{
+                this.input1 = this.input1 + 1 > 9 ? 9 : this.input1 + 1;
+            }
         },
         change1(value) {
             if (value < 0 || value === null || value === "") {
