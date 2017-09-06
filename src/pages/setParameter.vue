@@ -203,7 +203,7 @@ export default {
             input52: '10',
             input61: '-10',
             input62: '10',
-            dataDuringValue: ['1', '2', '3', '1', '2', '3', '1', '2', '3', '1'],
+            dataDuringValue: [],
             dataDuringIndex: [],
             planName: '',
             selectNameArr: [],

@@ -121,7 +121,7 @@
 }
 
 .dian-dian {
-    background: black;
+    background: #767676;
     height: 4px;
     width: 4px;
     margin-left: 4px;
