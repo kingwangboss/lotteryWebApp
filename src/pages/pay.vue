@@ -158,6 +158,17 @@ export default {
 
             this.$http.post('https://ycwidx.cpnet.com', data).then(res => {
                 this.listData = res.data.Data;
+                var arr =[];
+                for(var i = 0; i < this.paytype.length; i++){
+                    for(var j =0; j < this.listData.PriceList.length;j++){
+                        if(this.paytype[i] == this.listData.PriceList[j].PayType){
+                            arr.push(this.listData.PriceList[j]);
+                        }
+                    }
+                }
+                // console.log(arr);
+                this.listData.PriceList = arr;
+
                 this.price = this.listData.PriceList[0].PayTypeDisPrice.toFixed(2);
 
             }).catch(error => {
