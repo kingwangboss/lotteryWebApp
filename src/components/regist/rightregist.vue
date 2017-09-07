@@ -96,6 +96,7 @@ export default {
       disabled: true,
     };
   },
+  
   methods: {
     inputFuction() {
       if (this.user.name.length > 0 && this.user.newpwd1.length > 0 && this.user.newpwd2.length > 0) {

@@ -13,6 +13,7 @@ import about from '@/pages/wo/about'
 import feeback from '@/pages/wo/feeback'
 import shouquan from '@/pages/wo/shouquan'
 import XGpwd from '@/pages/wo/XGpwd'
+import pay from '@/pages/pay'
 Vue.use(Router)
 
 export default new Router({
@@ -51,6 +52,11 @@ export default new Router({
       path: '/buy',
       name: 'buy',
       component: buy
+    },
+    {
+      path: '/pay',
+      name: 'pay',
+      component: pay
     },
     {
       path: '/wo/about',

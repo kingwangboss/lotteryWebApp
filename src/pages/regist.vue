@@ -66,6 +66,15 @@ export default {
       isA:false,
     };
   },
+  created(){
+    if (localStorage.sid) {
+
+      } else {
+        this.$router.push({
+          path:'/XZcaizhong'
+        })
+      }
+  },
   components: {
     mHeader,
     leftRegist,
