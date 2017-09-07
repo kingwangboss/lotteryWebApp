@@ -85,7 +85,7 @@
                         <div class="top-div" style="color: #58C5E0;">{{listData.PriceList[0].AuthTitle}}</div>
                         <div class="top-div" style="color:#AED6E0;text-decoration:line-through">{{listData.PriceList[0].SourcePrice.toFixed(2)}}</div>
                         <div class="top-div" style="color:#58C5E0;">{{listData.PriceList[0].Price.toFixed(2)}}</div>
-                        <el-button class="btn" type="primary" @click="btn1Click">{{listData.PriceList[0].PurchaseType}}</el-button>
+                        <el-button class="btn" type="primary">{{listData.PriceList[0].PurchaseType}}</el-button>
                     </div>
                     <div class="line">
                     </div>
@@ -318,9 +318,7 @@ export default {
                 console.log(error);
             })
         },
-        btn1Click() {
-            console.log("btn1");
-        },
+    
         pushPay(index) {
             localStorage.pid = this.listData.PriceList[index].ID;
             this.$router.push({
