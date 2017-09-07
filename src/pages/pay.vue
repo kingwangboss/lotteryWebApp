@@ -11,8 +11,8 @@
                             <span class="title-span1">支付宝支付</span>
                             <span class="title-span2">{{listData.PriceList[index].PayTypeDesc}}</span>
                         </div>
-                        <img v-show="isValue" src="../../static/images/quan1.png" alt="">
-                        <img v-show="!isValue" src="../../static/images/quan2.png" alt="">
+                        <img v-show="isSelect != 2" src="../../static/images/quan1.png" alt="">
+                        <img v-show="isSelect == 2" src="../../static/images/quan2.png" alt="">
                     </div>
                     <div class="line">
                     </div>
@@ -24,8 +24,8 @@
                             <span class="title-span1">微信支付</span>
                             <span class="title-span2">{{listData.PriceList[index].PayTypeDesc}}</span>
                         </div>
-                        <img v-show="isValue" src="../../static/images/quan2.png" alt="">
-                        <img v-show="!isValue" src="../../static/images/quan1.png" alt="">
+                        <img v-show="isSelect != 1" src="../../static/images/quan1.png" alt="">
+                        <img v-show="isSelect == 1" src="../../static/images/quan2.png" alt="">
                     </div>
                     <div class="line">
                     </div>
@@ -112,12 +112,11 @@ export default {
                 right: false,
             },
             pid: localStorage.pid,
-            paytype: localStorage.paytype,
             listData: "",
-            isValue: false,
             price: '',
             url: '',
             paytype: localStorage.PayType.split(','),
+            isSelect: '',
         };
     },
     components: {
@@ -137,11 +136,12 @@ export default {
             window.location.href = this.url;
         },
         cellClick(index) {
-            this.isValue = !this.isValue
-            if (this.isValue) {
+
+            this.isSelect = this.paytype[index];
+            if (this.isSelect == 1) {
                 console.log('微信');
                 this.price = this.listData.PriceList[index].PayTypeDisPrice.toFixed(2);
-            } else {
+            } else if(this.isSelect == 2) {
                 console.log('zhifubao');
                 this.price = this.listData.PriceList[index].PayTypeDisPrice.toFixed(2);
             }
@@ -171,7 +171,7 @@ export default {
     mounted() {
         // 调用请求数据的方法
         this.getData()
-
+        this.cellClick(0);
     }
 }
 </script>
