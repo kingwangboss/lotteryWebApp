@@ -14,6 +14,7 @@ import feeback from '@/pages/wo/feeback'
 import shouquan from '@/pages/wo/shouquan'
 import XGpwd from '@/pages/wo/XGpwd'
 import pay from '@/pages/pay'
+import planShare from '@/pages/planShare'
 Vue.use(Router)
 
 export default new Router({
@@ -57,6 +58,11 @@ export default new Router({
       path: '/pay',
       name: 'pay',
       component: pay
+    },
+    {
+      path: '/planShare',
+      name: 'planShare',
+      component: planShare
     },
     {
       path: '/wo/about',

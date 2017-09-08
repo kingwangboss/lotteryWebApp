@@ -8,7 +8,7 @@
                     <div class="cell" @click="cellClick(index)">
                         <img src="../../static/images/zflog.png" alt="">
                         <div class="title">
-                            <span class="title-span1">支付宝支付</span>
+                            <span class="title-span1">{{listData.PriceList[index].PayTypeTitle}}</span>
                             <span class="title-span2">{{listData.PriceList[index].PayTypeDesc}}</span>
                         </div>
                         <img v-show="isSelect != 2" src="../../static/images/quan1.png" alt="">
@@ -21,7 +21,7 @@
                     <div class="cell" @click="cellClick(index)">
                         <img src="../../static/images/wxlog.png" alt="">
                         <div class="title">
-                            <span class="title-span1">微信支付</span>
+                            <span class="title-span1">{{listData.PriceList[index].PayTypeTitle}}</span>
                             <span class="title-span2">{{listData.PriceList[index].PayTypeDesc}}</span>
                         </div>
                         <img v-show="isSelect != 1" src="../../static/images/quan1.png" alt="">

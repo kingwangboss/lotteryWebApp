@@ -8,7 +8,7 @@
             <div class="middlecontainer">
                 <!-- <span class="textbtn first" style="border-left-width: 1px;" @click="xzCaizhongClick">选择彩种</span> -->
                 <span class="textbtn first" style="border-left-width: 1px;" @click="changePlanClick">更改计划</span>
-                <span class="textbtn">计划分享</span>
+                <span class="textbtn" @click="planShareClick">计划分享</span>
                 <span class="textbtn" @click="qhClick">切换公式</span>
                 <span class="textbtn last" @click="selectNum">近{{PlanData.CycleCount}}期计划</span>
             </div>
@@ -157,6 +157,11 @@ export default {
         //         path: '/XZcaizhong'
         //     })
         // },
+        planShareClick(){
+            this.$router.push({
+                path: '/planShare'
+            })
+        },
         changePlanClick() {
             var selectNameArr = [];
             for (var i = 0; i < this.PlanData.Data.length; i++) {
