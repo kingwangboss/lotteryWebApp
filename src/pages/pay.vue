@@ -66,13 +66,13 @@
         display: flex;
         flex-direction: column;
         .title-span1 {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 900;
             color: black;
         }
         .title-span2 {
             margin-top: 5px;
-            font-size: 13px;
+            font-size: 11px;
             color: #B7B7B7;
         }
     }
