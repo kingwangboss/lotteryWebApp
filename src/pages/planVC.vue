@@ -97,7 +97,6 @@ const tabList = {
 export default {
     name: 'planVC',
     data() {
-        console.log(2);
         return {
             selected: typeof (localStorage.tab) === "undefined" ? 'plan' : localStorage.tab,
             titleList: titleList,
@@ -122,7 +121,12 @@ export default {
                 showQH: true
             };
         } else if (localStorage.tab === 'shujufenxi') {
-            this.title = this.titleList[1];
+            this.title = {
+                text: '数据分析',
+                showBack: false,
+                showQH: false,
+                setting: true
+            };
         } else if (localStorage.tab === 'lishi') {
             this.title = this.titleList[2];
         } else if (localStorage.tab === 'wo') {
@@ -160,7 +164,12 @@ export default {
                     localStorage.tab = 'plan'
                     break;
                 case 'shujufenxi':
-                    this.title = this.titleList[1];
+                    this.title = {
+                        text: '数据分析',
+                        showBack: false,
+                        showQH: false,
+                        setting: true
+                    };
                     localStorage.tab = 'shujufenxi'
                     break;
                 case 'lishi':

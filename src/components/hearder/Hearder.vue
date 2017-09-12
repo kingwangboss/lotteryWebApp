@@ -15,6 +15,10 @@
                 <span v-if="title.right" class="right" @click="right">
                     <img src="../../../static/images/sousuobtn.png" alt="搜索" />
                 </span>
+
+                <span v-if="title.setting" class="right" @click="setting">
+                    <img src="../../../static/images/settings.png" alt="设置" />
+                </span>
             </div>
         </div>
     </div>
@@ -92,6 +96,9 @@ export default {
         },
         qhCaizhong(){
             this.$router.push('/XZcaizhong')
+        },
+        setting(){
+            console.log("设置");
         }
     },
 }
