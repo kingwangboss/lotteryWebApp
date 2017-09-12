@@ -56,6 +56,7 @@ export default {
   },
   created() {
     console.log("created");
+    localStorage.shujufenxi = '1';
   },
   methods: {
     item0() {
@@ -76,6 +77,8 @@ export default {
 
         var datas = jsString;
         var titles = this.listData.KeyNumberNames + '-遗漏分析';
+        this.listData.KeyNumberNames = "万位,千位"
+        localStorage.selectKeyNumberName1 = this.listData.KeyNumberNames.split(',');
 
         window.parent.document.txt0.demo(datas, titles);
       }).catch(error => {

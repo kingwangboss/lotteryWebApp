@@ -19,6 +19,10 @@
                 <span v-if="title.setting" class="right" @click="setting">
                     <img src="../../../static/images/settings.png" alt="设置" />
                 </span>
+
+                <span v-if="title.ok" class="right" @click="okClick">
+                    <span>确定</span>
+                </span>
             </div>
         </div>
     </div>
@@ -59,7 +63,7 @@
                 }
             }
             .right {
-                width: 12%; 
+                width: 12%;
                 margin-right: -40px;
                 img {
                     width: 20px;
@@ -94,12 +98,20 @@ export default {
         right() {
             this.$router.push('/planVC/planDetail/setParameter')
         },
-        qhCaizhong(){
+        qhCaizhong() {
             this.$router.push('/XZcaizhong')
         },
-        setting(){
-            console.log("设置");
-        }
+        setting() {
+
+            if (localStorage.shujufenxi == '1') {
+                this.$router.push('/shujufenxi/setting1')
+            } else {
+
+            }
+        },
+        okClick() {
+            console.log("确定");
+        },
     },
 }
 </script>

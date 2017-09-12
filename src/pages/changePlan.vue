@@ -153,6 +153,8 @@ export default {
     },
     methods: {
         isSelect(item1){
+            console.log(this.selectNameArr);
+            console.log(item1);
             if(this.selectNameArr.indexOf(item1)>=0){
                 return true;
             }else{

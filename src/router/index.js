@@ -15,6 +15,7 @@ import shouquan from '@/pages/wo/shouquan'
 import XGpwd from '@/pages/wo/XGpwd'
 import pay from '@/pages/pay'
 import planShare from '@/pages/planShare'
+import setting1 from '@/pages/shujufenxi/setting1'
 Vue.use(Router)
 
 export default new Router({
@@ -93,6 +94,11 @@ export default new Router({
       path: '/planVC/planDetail/setParameter',
       name: 'setParameter',
       component: setParameter
+    },
+    {
+      path: '/shujufenxi/setting1',
+      name: 'setting1',
+      component: setting1
     }
   ]
 })
