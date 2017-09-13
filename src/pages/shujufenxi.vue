@@ -41,12 +41,13 @@ export default {
       screenHeight: document.documentElement.clientHeight - 88 - 68,
       // screenWidth:  document.documentElement.screenWidth
       listData: '',
-      keyNumName1: '',
-      keyNumName2: '',
+      keyNum1: localStorage.keyNum1 === null ? "0" : localStorage.keyNum1,
+      keyNum2: localStorage.keyNum2 === null ? "0" : localStorage.keyNum2,
       Norm1: '',
       Norm2: '',
-      dataCount1: 100,
+      dataCount1: localStorage.selectDataCount1 === null ? "50" : localStorage.selectDataCount1,
       dataCount2: 500,
+
     };
   },
   mounted() {
@@ -56,19 +57,19 @@ export default {
   },
   created() {
     console.log("created");
-    localStorage.shujufenxi = '1';
+    
   },
   methods: {
     item0() {
       var iframe1 = document.getElementsByName('txt0').contentWindow
 
       let tokenCode = localStorage.tokenCode;
-      let signStr = 'Action=GetYiLouData' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + '&KeyNumbers=' + this.keyNumName1 + tokenCode;
+      let signStr = 'Action=GetYiLouData' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + '&KeyNumbers=' + this.keyNum1 + tokenCode;
       let data = new FormData();
       data.append('Action', 'GetYiLouData');
       data.append('SID', localStorage.sid);
       data.append('Token', localStorage.Token);
-      data.append('KeyNumbers', this.keyNumName1);
+      data.append('KeyNumbers', this.keyNum1);
       data.append('Sign', sha256.sha256(signStr).toUpperCase());
       this.$http.post(localStorage.SiteUrl, data).then(res => {
         this.listData = res.data.Data;
@@ -77,9 +78,8 @@ export default {
 
         var datas = jsString;
         var titles = this.listData.KeyNumberNames + '-遗漏分析';
-        this.listData.KeyNumberNames = "万位,千位"
         localStorage.selectKeyNumberName1 = this.listData.KeyNumberNames.split(',');
-
+        localStorage.shujufenxi = '1';
         window.parent.document.txt0.demo(datas, titles);
       }).catch(error => {
         console.log(error);
@@ -89,12 +89,12 @@ export default {
     item1() {
       var iframe1 = document.getElementsByName('bxt0').contentWindow
       let tokenCode = localStorage.tokenCode;
-      let signStr = 'Action=GetLengReData' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + '&KeyNumbers=' + this.keyNumName2 + '&DataCount=' + this.dataCount1 + tokenCode;
+      let signStr = 'Action=GetLengReData' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + '&KeyNumbers=' + this.keyNum2 + '&DataCount=' + this.dataCount1 + tokenCode;
       let data = new FormData();
       data.append('Action', 'GetLengReData');
       data.append('SID', localStorage.sid);
       data.append('Token', localStorage.Token);
-      data.append('KeyNumbers', this.keyNumName2);
+      data.append('KeyNumbers', this.keyNum2);
       data.append('DataCount', this.dataCount1);
       data.append('Sign', sha256.sha256(signStr).toUpperCase());
       this.$http.post(localStorage.SiteUrl, data).then(res => {
@@ -104,7 +104,10 @@ export default {
 
         var datas = jsString;
         var titles = this.listData.KeyNumberNames + '近' + this.listData.DataCount + '-冷热分析';
-
+        localStorage.selectKeyNumberName2 = this.listData.KeyNumberNames.split(',');
+        localStorage.selectDataCount1 = this.listData.DataCount;
+        
+        localStorage.shujufenxi = "2";
         window.parent.document.bxt0.demo(datas, titles);
       }).catch(error => {
         console.log(error);
@@ -113,12 +116,11 @@ export default {
     item2() {
       var iframe1 = document.getElementsByName('txt1').contentWindow
       let tokenCode = localStorage.tokenCode;
-      let signStr = 'Action=GetNormYiLouData' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + '&Norm=' + this.Norm1 + tokenCode;
+      let signStr = 'Action=GetNormYiLouData' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + tokenCode;
       let data = new FormData();
       data.append('Action', 'GetNormYiLouData');
       data.append('SID', localStorage.sid);
       data.append('Token', localStorage.Token);
-      data.append('Norm', this.Norm1);
       data.append('Sign', sha256.sha256(signStr).toUpperCase());
       this.$http.post(localStorage.SiteUrl, data).then(res => {
         this.listData = res.data.Data;
@@ -127,7 +129,9 @@ export default {
 
         var datas = jsString;
         var titles = this.listData.Norm + '-指标遗漏分析';
+        // localStorage.selectKeyNumberName3 = this.listData.KeyNumberNames.split(',');
 
+        localStorage.shujufenxi = "3";
         window.parent.document.txt1.demo(datas, titles);
       }).catch(error => {
         console.log(error);
@@ -152,6 +156,7 @@ export default {
         var datas = jsString;
         var titles = this.listData.Norm + '近' + this.listData.DataCount + '-指标冷热分析';
 
+        localStorage.shujufenxi = "4";
         window.parent.document.bxt1.demo(datas, titles);
       }).catch(error => {
         console.log(error);

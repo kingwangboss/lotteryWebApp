@@ -16,6 +16,9 @@ import XGpwd from '@/pages/wo/XGpwd'
 import pay from '@/pages/pay'
 import planShare from '@/pages/planShare'
 import setting1 from '@/pages/shujufenxi/setting1'
+import setting2 from '@/pages/shujufenxi/setting2'
+import setting3 from '@/pages/shujufenxi/setting3'
+import setting4 from '@/pages/shujufenxi/setting4'
 Vue.use(Router)
 
 export default new Router({
@@ -99,6 +102,21 @@ export default new Router({
       path: '/shujufenxi/setting1',
       name: 'setting1',
       component: setting1
+    },
+    {
+      path: '/shujufenxi/setting2',
+      name: 'setting2',
+      component: setting2
+    },
+    {
+      path: '/shujufenxi/setting3',
+      name: 'setting3',
+      component: setting3
+    },
+    {
+      path: '/shujufenxi/setting4',
+      name: 'setting4',
+      component: setting4
     }
   ]
 })

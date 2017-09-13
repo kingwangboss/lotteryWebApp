@@ -9,8 +9,8 @@
             <label class="lab" style="font-size:14px; margin-top:10px;margin-left:20px; font-weight:900;">数据遗漏</label>
             <div class="planItemCell" >
                 <div>
-                    <el-button v-show="!isSelect(item)" type="text" class="btnSelect" v-for="item in KeyNumbers" :key="item.toString()" @click="addBtn(item)">{{item}}</el-button>
-                    <el-button v-show="isSelect(item)" type="text" class="btn" v-for="item in KeyNumbers" :key="item.toString()" @click="addBtn(item)">{{item}}</el-button>
+                    <el-button v-show="isSelect(item)" type="text" class="btnSelect" v-for="item in KeyNumbers" :key="item.toString()" @click="addBtn(item)">{{item}}</el-button>
+                    <el-button v-show="!isSelect(item)" type="text" class="btn" v-for="item in KeyNumbers" :key="item.toString()" @click="addBtn(item)">{{item}}</el-button>
                     <!-- <el-button v-show="isSelect(item1)" type="text" class="btnSelect" v-for="item1 in item.PlanList" :key="item1.toString()" @click="addBtn(item1)">{{item1}}</el-button>
                     <el-button v-show="!isSelect(item1)" type="text" class="btn" v-for="item1 in item.PlanList" :key="item1.toString()" @click="addBtn(item1)">{{item1}}</el-button> -->
                 </div>
@@ -78,7 +78,10 @@ export default {
                 showBack: true,
                 ok: true,
             },
+            //总计划
             KeyNumbers:[],
+            selectKeyNumberName1 : localStorage.selectKeyNumberName1.split(','),
+            
         }
     },
     components: {
@@ -96,22 +99,48 @@ export default {
             this.$http.post(localStorage.SiteUrl, data).then(res => {
                 this.listData = res.data.Data;
                 this.KeyNumbers = this.listData.KeyNumbers.split(',')
+                localStorage.allKeyNumName1 = this.listData.KeyNumbers;
+                console.log(this.listData.KeyNumbers);
             }).catch(error => {
                 console.log(error);
             })
         },
         isSelect(item1){
-            console.log(localStorage.selectKeyNumberName1)
-            console.log(item1)
-            console.log(this.KeyNumbers);
-            if(this.KeyNumbers.indexOf(item1)>0){
+            
+            if(this.selectKeyNumberName1.indexOf(item1)>=0){
                 return true;
             }else{
                 return false;
             }
 
         },
-        
+        remove(arr, item) {
+            var result = [];
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] != item) {
+                    result.push(arr[i]);
+                }
+            }
+            return result;
+        },
+        removeBtn(item) {
+            // console.log(localStorage.selectKeyNumberName1);
+            // console.log(item);
+            this.selectKeyNumberName1 = this.remove(this.selectKeyNumberName1,item)
+            
+        },
+        addBtn(item1){
+            if(this.selectKeyNumberName1.indexOf(item1)>=0){
+                this.selectKeyNumberName1 = this.remove(this.selectKeyNumberName1,item1);
+            }else{
+                this.selectKeyNumberName1.push(item1)
+            }
+            localStorage.selectKeyNumberName1 = this.selectKeyNumberName1;
+        },
+    },
+    created(){
+        console.log(localStorage.selectKeyNumberName1);
+        console.log(localStorage.selectKeyNumberName1.split(','))
     },
     mounted() {
         this.getData();
