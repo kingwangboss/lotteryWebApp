@@ -154,10 +154,12 @@ export default {
                 console.log(selectNum);
             }
             else if (localStorage.shujufenxi == '3'){
-                
+                localStorage.Norm1 = localStorage.selectKeyNumberName3;
+                this.$router.go(-1);
             }
             else if (localStorage.shujufenxi == '4'){
-                
+                localStorage.Norm2 = localStorage.selectKeyNumberName4;
+                this.$router.go(-1);
             } else {
 
             }

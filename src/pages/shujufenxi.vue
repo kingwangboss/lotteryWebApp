@@ -43,10 +43,10 @@ export default {
       listData: '',
       keyNum1: localStorage.keyNum1 === null ? "0" : localStorage.keyNum1,
       keyNum2: localStorage.keyNum2 === null ? "0" : localStorage.keyNum2,
-      Norm1: '',
-      Norm2: '',
+      Norm1: typeof(localStorage.Norm1)=="undefined" ? "" : localStorage.Norm1,
+      Norm2: typeof(localStorage.Norm2)=="undefined" ? "" : localStorage.Norm2,
       dataCount1: localStorage.selectDataCount1 === null ? "50" : localStorage.selectDataCount1,
-      dataCount2: 500,
+      dataCount2: localStorage.selectDataCount2 === null ? "50" : localStorage.selectDataCount2,
 
     };
   },
@@ -57,7 +57,7 @@ export default {
   },
   created() {
     console.log("created");
-    
+    console.log(localStorage.Norm1)
   },
   methods: {
     item0() {
@@ -116,11 +116,12 @@ export default {
     item2() {
       var iframe1 = document.getElementsByName('txt1').contentWindow
       let tokenCode = localStorage.tokenCode;
-      let signStr = 'Action=GetNormYiLouData' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + tokenCode;
+      let signStr = 'Action=GetNormYiLouData' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + '&Norm=' + this.Norm1 + tokenCode;
       let data = new FormData();
       data.append('Action', 'GetNormYiLouData');
       data.append('SID', localStorage.sid);
       data.append('Token', localStorage.Token);
+      data.append('Norm', this.Norm1);
       data.append('Sign', sha256.sha256(signStr).toUpperCase());
       this.$http.post(localStorage.SiteUrl, data).then(res => {
         this.listData = res.data.Data;
@@ -129,7 +130,7 @@ export default {
 
         var datas = jsString;
         var titles = this.listData.Norm + '-指标遗漏分析';
-        // localStorage.selectKeyNumberName3 = this.listData.KeyNumberNames.split(',');
+        localStorage.selectKeyNumberName3 = this.listData.Norm.split(',');
 
         localStorage.shujufenxi = "3";
         window.parent.document.txt1.demo(datas, titles);
@@ -155,7 +156,8 @@ export default {
 
         var datas = jsString;
         var titles = this.listData.Norm + '近' + this.listData.DataCount + '-指标冷热分析';
-
+        localStorage.selectKeyNumberName4 = this.listData.Norm.split(',');
+        localStorage.selectDataCount2 = this.listData.DataCount;
         localStorage.shujufenxi = "4";
         window.parent.document.bxt1.demo(datas, titles);
       }).catch(error => {
