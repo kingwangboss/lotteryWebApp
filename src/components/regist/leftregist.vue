@@ -61,6 +61,7 @@
       width: 100%;
       padding-left: 10px;
       font-size: 12px;
+      color: white;
     }
     .top {
       margin-top: 10%;
@@ -76,6 +77,7 @@
         width: 100%;
         padding-left: 10px;
         font-size: 12px;
+        color: white;
       }
       .btn {
         // #bundle>.juzhong;
@@ -104,6 +106,7 @@
         width: 100%;
         padding-left: 10px;
         font-size: 12px;
+        color: white;
       }
     }
 

@@ -131,7 +131,7 @@
     margin: 17px 8px;
     background: #f3f4f5;
     width: 14%; // height: 25px;
-    font-size: 5px;
+    font-size: 10px;
 }
 
 .bottom {
@@ -142,8 +142,8 @@
 }
 
 .bottom-btn {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     font-size: 13px;
     line-height: 25px;
     margin: 10px 5px;
@@ -155,8 +155,8 @@
     
 }
 .bottom-btn-select{
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     font-size: 13px;
     line-height: 25px;
     margin: 10px 5px;

@@ -143,7 +143,7 @@ export default {
 
     background-size: 35px;
     color: #f82b56;
-    font-size: 23px;
+    font-size: 20px;
     background-image: url('../../../static/images/history/Records-04.png');
 }
 
@@ -156,7 +156,7 @@ export default {
 
     background-size: 35px;
     color: white;
-    font-size: 23px;
+    font-size: 20px;
     background-image: url('../../../static/images/history/Records-41.png');
 }
 

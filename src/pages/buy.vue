@@ -3,7 +3,7 @@
         <m-header :title="title"></m-header>
         <div v-if="isAuthtype == 2">
             <div class="rectangle1">
-                <div>
+                <div class="cell">
                     <div class="top" @click="pushPay(0)">
                         <div class="top-div" style="color:#8A73FD;">{{listData.PriceList[0].AuthTitle}}</div>
                         <div class="top-div" style="color:#BDB6E3;text-decoration:line-through">{{listData.PriceList[0].SourcePrice.toFixed(2)}}</div>
@@ -13,7 +13,7 @@
                     <div class="line" style="border: 1px dashed #8A73FD;">
                     </div>
                 </div>
-                <div>
+                <div class="cell">
                     <div class="top" @click="pushPay(1)">
                         <div class="top-div" style="color:#8A73FD;">{{listData.PriceList[1].AuthTitle}}</div>
                         <div class="top-div" style="color:#BDB6E3;text-decoration:line-through">{{listData.PriceList[1].SourcePrice.toFixed(2)}}</div>
@@ -27,7 +27,7 @@
             </div>
 
             <div class="rectangle2" >
-                <div>
+                <div class="cell">
                     <div class="top" @click="pushPay(2)">
                         <div class="top-div" style="color:#F76587;">{{listData.PriceList[2].AuthTitle}}</div>
                         <div class="top-div" style="color:#ECB7C4;text-decoration:line-through">{{listData.PriceList[2].SourcePrice.toFixed(2)}}</div>
@@ -37,7 +37,7 @@
                     <div class="line" style="border: 1px dashed #F76587;">
                     </div>
                 </div>
-                <div>
+                <div class="cell">
                     <div class="top" @click="pushPay(3)">
                         <div class="top-div" style="color:#F76587;">{{listData.PriceList[3].AuthTitle}}</div>
                         <div class="top-div" style="color:#ECB7C4;text-decoration:line-through">{{listData.PriceList[3].SourcePrice.toFixed(2)}}</div>
@@ -54,7 +54,7 @@
         <div v-else-if="isAuthtype == 3">
 
             <div class="rectangle2">
-                <div>
+                <div class="cell">
                     <div class="top" @click="pushPay(0)">
                         <div class="top-div" style="color:#F76587;">{{listData.PriceList[0].AuthTitle}}</div>
                         <div class="top-div" style="color:#ECB7C4;text-decoration:line-through">{{listData.PriceList[0].SourcePrice.toFixed(2)}}</div>
@@ -64,7 +64,7 @@
                     <div class="line" style="border: 1px dashed #F76587;">
                     </div>
                 </div>
-                <div>
+                <div class="cell">
                     <div class="top" @click="pushPay(1)">
                         <div class="top-div" style="color:#F76587;">{{listData.PriceList[1].AuthTitle}}</div>
                         <div class="top-div" style="color:#ECB7C4;text-decoration:line-through">{{listData.PriceList[1].SourcePrice.toFixed(2)}}</div>
@@ -80,7 +80,7 @@
 
         <div v-else>
             <div class="rectangle">
-                <div>
+                <div class="cell">
                     <div class="top" @click="pushPay(0)">
                         <div class="top-div" style="color: #58C5E0;">{{listData.PriceList[0].AuthTitle}}</div>
                         <div class="top-div" style="color:#AED6E0;text-decoration:line-through">{{listData.PriceList[0].SourcePrice.toFixed(2)}}</div>
@@ -94,7 +94,7 @@
             </div>
 
             <div class="rectangle1">
-                <div>
+                <div class="cell">
                     <div class="top" @click="pushPay(1)">
                         <div class="top-div" style="color:#8A73FD;">{{listData.PriceList[1].AuthTitle}}</div>
                         <div class="top-div" style="color:#BDB6E3;text-decoration:line-through">{{listData.PriceList[1].SourcePrice.toFixed(2)}}</div>
@@ -104,7 +104,7 @@
                     <div class="line" style="border: 1px dashed #8A73FD;">
                     </div>
                 </div>
-                <div>
+                <div class="cell">
                     <div class="top" @click="pushPay(2)">
                         <div class="top-div" style="color:#8A73FD;">{{listData.PriceList[2].AuthTitle}}</div>
                         <div class="top-div" style="color:#BDB6E3;text-decoration:line-through">{{listData.PriceList[2].SourcePrice.toFixed(2)}}</div>
@@ -118,7 +118,7 @@
             </div>
 
             <div class="rectangle2">
-                <div>
+                <div class="cell">
                     <div class="top" @click="pushPay(3)">
                         <div class="top-div" style="color:#F76587;">{{listData.PriceList[3].AuthTitle}}</div>
                         <div class="top-div" style="color:#ECB7C4;text-decoration:line-through">{{listData.PriceList[3].SourcePrice.toFixed(2)}}</div>
@@ -128,7 +128,7 @@
                     <div class="line" style="border: 1px dashed #F76587;">
                     </div>
                 </div>
-                <div>
+                <div class="cell">
                     <div class="top" @click="pushPay(4)">
                         <div class="top-div" style="color:#F76587;">{{listData.PriceList[4].AuthTitle}}</div>
                         <div class="top-div" style="color:#ECB7C4;text-decoration:line-through">{{listData.PriceList[4].SourcePrice.toFixed(2)}}</div>
@@ -145,6 +145,9 @@
 </template>
 
 <style lang="less" scoped>
+// .cell{
+//     width: 400px;
+// }
 .rectangle {
     margin: 20px 5px;
     background-image: url('../../static/images/Pruchase/Pruchase-06.png');
@@ -153,11 +156,12 @@
     display: flex;
     flex-direction: column;
     .top {
-        margin-left: 10px;
+
         height: 62px; // line-height: 62px;
         display: flex;
         flex-direction: row;
         align-items: center;
+        text-align:right;
         .top-div {
             margin-left: 3%;
             margin-right: 3%;
@@ -197,7 +201,6 @@
     display: flex;
     flex-direction: column;
     .top {
-        margin-left: 10px;
         height: 62px; // line-height: 62px;
         display: flex;
         flex-direction: row;
@@ -241,7 +244,6 @@
     display: flex;
     flex-direction: column;
     .top {
-        margin-left: 10px;
         height: 62px; // line-height: 62px;
         display: flex;
         flex-direction: row;

@@ -19,14 +19,14 @@
                 </div>
                 <div class="line">
                 </div>
-                <div class="cell" @click="changTeam">
+                <div v-show="AuthType=='3'" class="cell" @click="changTeam">
                     <span class="cell-span">团队名称:</span>
                     <label class="cell-label1">{{(listData.TeamName == null || listData.TeamName == "" || listData.TeamName == "null") ? '无' : listData.TeamName}}</label>
                     <img class="cell-img" src="../../static/images/share/Share-07.png" alt="">
                 </div>
-                <div class="line">
+                <div v-show="AuthType=='3'" class="line">
                 </div>
-                <div class="cell" @click="dialogVisible = true">
+                <div v-show="AuthType=='3'" class="cell" @click="dialogVisible = true">
                     <span class="cell-span">联系方式:</span>
                     <label class="cell-label2">{{(listData.Contact == null || listData.Contact == "" || listData.Contact == "null") ? '无' : listData.Contact}}</label>
                     <img v-if="radio == '1'" class="cell-icon" src="../../static/images/share/Share-08.png" alt="" @click.stop="qhTupian">
@@ -34,7 +34,7 @@
                     <img class="cell-icon1" src="../../static/images/share/Share-10.png" alt="">
                     <img class="cell-img" src="../../static/images/share/Share-07.png" alt="">
                 </div>
-                <div class="line">
+                <div v-show="AuthType=='3'" class="line">
                 </div>
             </div>
             <div class="bottom">
@@ -105,8 +105,8 @@
             }
             .cell-img {
                 // margin-top: 10px;
-                height: 40px;
-                width: 40px;
+                height: 25px;
+                width: 25px;
             }
             .cell-icon {
                 // margin-top: 10px;
@@ -160,6 +160,7 @@ export default {
             dialogVisible: false,
             radio: '1',
             input: '',
+            AuthType : localStorage.AuthType,
         };
     },
     components: {
@@ -175,7 +176,7 @@ export default {
             data.append('Token', localStorage.Token);
             data.append('Sign', sha256.sha256(signStr).toUpperCase());
             this.$http.post(localStorage.SiteUrl, data).then(res => {
-                this.listData = res.data.Data;
+                this.listData.ShareUrl = res.data.Data.ShareUrl;
                 console.log(res.data.Data);
             }).catch(error => {
                 console.log(error);

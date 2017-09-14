@@ -55,6 +55,7 @@
       width: 100%;
       padding-left: 10px;
       font-size: 12px;
+      color: white;
     }
     .btnDefault {
       margin-top: 30px;
