@@ -5,12 +5,19 @@
             <div class="middleLine">
             </div>
 
-            <div class="middlecontainer">
+            <div v-show="AuthType != '1'" class="middlecontainer">
                 <!-- <span class="textbtn first" style="border-left-width: 1px;" @click="xzCaizhongClick">选择彩种</span> -->
                 <span class="textbtn first" style="border-left-width: 1px;" @click="changePlanClick">更改计划</span>
                 <span class="textbtn" @click="planShareClick">计划分享</span>
                 <span class="textbtn" @click="qhClick">切换公式</span>
                 <span class="textbtn last" @click="selectNum">近{{PlanData.CycleCount}}期计划</span>
+            </div>
+
+            <div v-show="AuthType == '1'" class="middlecontainer">
+                <!-- <span class="textbtn first" style="border-left-width: 1px;" @click="xzCaizhongClick">选择彩种</span> -->
+                <span class="textbtn first" style="border-left-width: 1px; width:30%;" @click="changePlanClick">更改计划</span>
+                <span class="textbtn" style="width:30%;" @click="planShareClick">计划分享</span>
+                <span class="textbtn last" style="width:30%;" @click="qhClick">切换公式</span>
             </div>
 
             <plancell :data="PlanData"></plancell>
@@ -91,6 +98,7 @@ export default {
     data() {
         return {
             PlanData: "",
+            AuthType : localStorage.AuthType,
         }
     },
     components: {

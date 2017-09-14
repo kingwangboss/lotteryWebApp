@@ -136,7 +136,7 @@ export default {
 
 .num {
     margin: 0px 5px;
-    padding-top: 5px;
+    line-height: 35px;
     height: 35px;
     width: 35px;
     background-repeat: no-repeat;
@@ -149,7 +149,7 @@ export default {
 
 .num1 {
     margin: 0px 5px;
-    padding-top: 5px;
+    line-height: 35px;
     height: 35px;
     width: 35px;
     background-repeat: no-repeat;
