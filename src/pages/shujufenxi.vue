@@ -2,10 +2,10 @@
   <div class="main">
     <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
       <el-tab-pane label="遗漏分析" name="first">
-        <iframe class="ichart" name="txt0" :style="{height:screenHeight+'px'}" src="https://ycws1.cpnet.com/chart/txt.html" frameborder="0" marginheight="0px"></iframe>
+        <iframe class="ichart" name="txt0" :style="{height:screenHeight+'px'}" src="http://192.168.1.40/JYYC1/txt.html" frameborder="0" marginheight="0px"></iframe>
       </el-tab-pane>
       <el-tab-pane label="冷热分析" name="second">
-        <iframe class="ichart" :style="{height:screenHeight+'px'}" name="bxt0" src="http://project.camew.com:8020" frameborder="0" marginheight="0px"></iframe>
+        <iframe class="ichart" :style="{height:screenHeight+'px'}" name="bxt0" src="../../static/JYYC1/bxt.html" frameborder="0" marginheight="0px"></iframe>
       </el-tab-pane>
       <el-tab-pane label="指标遗漏分析" name="third">
         <iframe class="ichart" :style="{height:screenHeight+'px'}" name="txt1" src="../../static/JYYC1/txt.html" frameborder="0" marginheight="0px"></iframe>
@@ -62,7 +62,7 @@ export default {
   methods: {
     item0() {
       var iframe1 = document.getElementsByName('txt0').contentWindow
-
+      window.txt0.fMain();
       let tokenCode = localStorage.tokenCode;
       let signStr = 'Action=GetYiLouData' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + '&KeyNumbers=' + this.keyNum1 + tokenCode;
       let data = new FormData();
@@ -88,6 +88,7 @@ export default {
     },
     item1() {
       var iframe1 = document.getElementsByName('bxt0').contentWindow
+      
       let tokenCode = localStorage.tokenCode;
       let signStr = 'Action=GetLengReData' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + '&KeyNumbers=' + this.keyNum2 + '&DataCount=' + this.dataCount1 + tokenCode;
       let data = new FormData();
