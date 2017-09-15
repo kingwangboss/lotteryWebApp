@@ -25,6 +25,7 @@ export default {
     this.lishiData = data.KJArr;
   },
   methods: {
+    
     getData() {
       let tokenCode = localStorage.tokenCode;
       let signStr = 'Action=GetCPDatas' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + '&Page=1' + tokenCode;

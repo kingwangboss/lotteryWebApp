@@ -37,14 +37,14 @@ export default {
   name: 'shujufenxi',
   data() {
     return {
-      activeName2: 'first',
+      activeName2: localStorage.activeName2,
       screenHeight: document.documentElement.clientHeight - 88 - 68,
       // screenWidth:  document.documentElement.screenWidth
       listData: '',
       keyNum1: localStorage.keyNum1 === null ? "0" : localStorage.keyNum1,
       keyNum2: localStorage.keyNum2 === null ? "0" : localStorage.keyNum2,
-      Norm1: typeof(localStorage.Norm1)=="undefined" ? "" : localStorage.Norm1,
-      Norm2: typeof(localStorage.Norm2)=="undefined" ? "" : localStorage.Norm2,
+      Norm1: typeof (localStorage.Norm1) == "undefined" ? "" : localStorage.Norm1,
+      Norm2: typeof (localStorage.Norm2) == "undefined" ? "" : localStorage.Norm2,
       dataCount1: localStorage.selectDataCount1 === null ? "50" : localStorage.selectDataCount1,
       dataCount2: localStorage.selectDataCount2 === null ? "50" : localStorage.selectDataCount2,
 
@@ -53,7 +53,20 @@ export default {
   mounted() {
     console.log("mounted");
     console.log(document.documentElement.clientHeight)
-    this.item0();
+
+    if (localStorage.activeName2 == 'first') {
+      this.item0();
+    }else if(localStorage.activeName2 == 'second'){
+      this.item1();
+    }
+    else if(localStorage.activeName2 == 'third'){
+      this.item2();
+    }
+    else if(localStorage.activeName2 == 'fourth'){
+      this.item3();
+    }else{
+      this.item0();
+    }
   },
   created() {
     console.log("created");
@@ -61,6 +74,9 @@ export default {
   },
   methods: {
     item0() {
+      this.activeName2 = 'first';
+      localStorage.activeName2 = this.activeName2;
+
       var iframe1 = document.getElementsByName('txt0').contentWindow
       // window.txt0.fMain();
       let tokenCode = localStorage.tokenCode;
@@ -87,8 +103,11 @@ export default {
 
     },
     item1() {
+      this.activeName2 = 'second';
+      localStorage.activeName2 = this.activeName2;
+
       var iframe1 = document.getElementsByName('bxt0').contentWindow
-      
+
       let tokenCode = localStorage.tokenCode;
       let signStr = 'Action=GetLengReData' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + '&KeyNumbers=' + this.keyNum2 + '&DataCount=' + this.dataCount1 + tokenCode;
       let data = new FormData();
@@ -107,7 +126,7 @@ export default {
         var titles = this.listData.KeyNumberNames + '近' + this.listData.DataCount + '-冷热分析';
         localStorage.selectKeyNumberName2 = this.listData.KeyNumberNames.split(',');
         localStorage.selectDataCount1 = this.listData.DataCount;
-        
+
         localStorage.shujufenxi = "2";
         window.parent.document.bxt0.demo(datas, titles);
       }).catch(error => {
@@ -115,6 +134,9 @@ export default {
       });
     },
     item2() {
+      this.activeName2 = 'third';
+      localStorage.activeName2 = this.activeName2;
+
       var iframe1 = document.getElementsByName('txt1').contentWindow
       let tokenCode = localStorage.tokenCode;
       let signStr = 'Action=GetNormYiLouData' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + '&Norm=' + this.Norm1 + tokenCode;
@@ -140,6 +162,9 @@ export default {
       });
     },
     item3() {
+      this.activeName2 = 'fourth';
+      localStorage.activeName2 = this.activeName2;
+
       var iframe1 = document.getElementsByName('bxt1').contentWindow
       let tokenCode = localStorage.tokenCode;
       let signStr = 'Action=GetNormLengReData' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + '&Norm=' + this.Norm2 + '&DataCount=' + this.dataCount2 + tokenCode;

@@ -90,6 +90,7 @@ export default {
 
                     if (self.nextTime > 0) {
                         self.nextTime--;
+                        
                     } else {
                         clearInterval(tiemInterval)
                         var i = 0;
@@ -176,7 +177,7 @@ export default {
         align-items: center;
         padding-top: 15px;
         .qishu1 {
-            width: 180px;
+            width: 150px;
             font-size: 14px;
             padding: 5px 10px 5px 5px;
             background-repeat: no-repeat;
@@ -192,7 +193,7 @@ export default {
         }
         .xian {
             background-color: #eb8e89;
-            width: 130px;
+            width: 40%;
             height: 1px;
         }
     }

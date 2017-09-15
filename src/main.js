@@ -11,6 +11,8 @@ import {post,fetch,patch,put} from './util/http'
 import axios from 'axios'
 import store from './store/index'
 import {getCookie,setCookie,delCookie} from './util/util'
+import { InfiniteScroll } from 'mint-ui';
+Vue.use(InfiniteScroll);
 
 Vue.config.productionTip = false
 Vue.use(Mint);
