@@ -16,7 +16,7 @@
 
             <div class="bottom">
                 <span>官方网站：</span>
-                <el-button type="text" style="color:blue" @click="urlClick">http://ycw.cpnet.com</el-button>
+                <el-button type="text" style="color:blue" @click="urlClick">{{OfficialUrl}}</el-button>
                 <p>版权所有：深圳市彩软科技有限公司</p>
             </div>
         </div>
@@ -64,6 +64,7 @@ export default {
                 text: '关于我们',
                 showBack: true,
             },
+            OfficialUrl : localStorage.OfficialUrl,
         };
     },
     components: {
