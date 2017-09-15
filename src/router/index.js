@@ -19,6 +19,7 @@ import setting1 from '@/pages/shujufenxi/setting1'
 import setting2 from '@/pages/shujufenxi/setting2'
 import setting3 from '@/pages/shujufenxi/setting3'
 import setting4 from '@/pages/shujufenxi/setting4'
+import routerPush from '@/pages/routerPush'
 Vue.use(Router)
 
 export default new Router({
@@ -117,6 +118,11 @@ export default new Router({
       path: '/shujufenxi/setting4',
       name: 'setting4',
       component: setting4
-    }
+    },
+    {
+      path: '/routerPush',
+      name: 'routerPush',
+      component: routerPush
+    },
   ]
 })

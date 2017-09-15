@@ -153,10 +153,9 @@ export default {
                 data.append('Sign', sha256.sha256(signStr).toUpperCase());
                 this.$http.post(localStorage.SiteUrl, data).then(res => {
                     console.log(res)
-                    // that.getData()
                     that.$router.push({
-                        path:'/planVC'
-                    });
+                        path:'/routerPush'
+                    })
                 }).catch(error => {
                     console.log(error);
                 })

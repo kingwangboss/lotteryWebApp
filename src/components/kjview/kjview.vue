@@ -87,15 +87,17 @@ export default {
                 var self = this;
                 tiemInterval = setInterval(getTotelNumber, 1000)
                 function getTotelNumber() {
-                    
-                    if(self.nextTime>0){
+
+                    if (self.nextTime > 0) {
                         self.nextTime--;
-                    }else{
+                    } else {
                         clearInterval(tiemInterval)
                         var i = 0;
-                        run = setInterval(function(){
-                            self.$router.go(0);
-                        },5000);
+                        run = setInterval(function() {
+                            self.$router.push({
+                                path: '/routerPush'
+                            })
+                        }, 5000);
                     }
                     // console.log(self.nextTime);
                 }
@@ -105,7 +107,7 @@ export default {
             })
         }
     },
-    beforeDestroy(){
+    beforeDestroy() {
         clearInterval(tiemInterval)
     },
     mounted() {
