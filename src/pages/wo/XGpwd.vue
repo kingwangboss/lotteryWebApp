@@ -15,8 +15,8 @@
                 <input v-model="pwd.newpwd1" placeholder="请在此输入新密码" type="password" maxlength="20" @input="inputFuction">
             </div>
             <div>
-                <el-button v-if="disabled" :disabled="disabled" class="btnEnable" type="text" @click="btnClick">修改密码</el-button>
-                <el-button v-else :disabled="disabled" class="btnDefault" type="text" @click="btnClick">修改密码</el-button>
+                <el-button v-if="disabled" class="btnDefault" type="text" @click="btnClick">修改密码</el-button>
+                <el-button v-else class="btnDefault" type="text" @click="btnClick">修改密码</el-button>
             </div>
         </div>
     </div>
@@ -35,7 +35,7 @@
         span {
             font-size: 14px;
             font-weight: 900;
-            color:black;
+            color: black;
             width: 20%;
             margin: 3% 3%;
             text-align: right;
@@ -93,30 +93,38 @@ export default {
             console.log(this.pwd.oldpwd);
             console.log(this.pwd.newpwd);
             console.log(this.pwd.newpwd1);
-            if (this.pwd.newpwd === this.pwd.newpwd1) {
-                let tokenCode = localStorage.tokenCode;
-                let signStr = 'Action=ChangePwd' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + '&OldPwd=' + sha256.sha256(this.pwd.oldpwd).toUpperCase() + '&NewPwd=' + sha256.sha256(this.pwd.newpwd1).toUpperCase() + tokenCode;
-                let data = new FormData();
-                data.append('Action', 'ChangePwd');
-                data.append('SID', localStorage.sid);
-                data.append('Token', localStorage.Token);
-                data.append('OldPwd', sha256.sha256(this.pwd.oldpwd).toUpperCase());
-                data.append('NewPwd', sha256.sha256(this.pwd.newpwd1).toUpperCase());
-                data.append('Sign', sha256.sha256(signStr).toUpperCase());
-
-                this.$http.post(localStorage.SiteUrl, data).then(res => {
-
-                    this.$router.go(-1);
-
-                }).catch(error => {
-                    console.log(error);
-                })
-            } else {
+            if (this.pwd.oldpwd.length ==0 || this.pwd.newpwd == 0 || this.pwd.newpwd1 == 0){
                 MessageBox({
-                    title: '提示',
-                    message: '两次输入密码不同，请重新输入',
-                    showCancelButton: false,
-                })
+                        title: '提示',
+                        message: '输入未完全',
+                        showCancelButton: false,
+                    })
+            } else {
+                if (this.pwd.newpwd === this.pwd.newpwd1) {
+                    let tokenCode = localStorage.tokenCode;
+                    let signStr = 'Action=ChangePwd' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + '&OldPwd=' + sha256.sha256(this.pwd.oldpwd).toUpperCase() + '&NewPwd=' + sha256.sha256(this.pwd.newpwd1).toUpperCase() + tokenCode;
+                    let data = new FormData();
+                    data.append('Action', 'ChangePwd');
+                    data.append('SID', localStorage.sid);
+                    data.append('Token', localStorage.Token);
+                    data.append('OldPwd', sha256.sha256(this.pwd.oldpwd).toUpperCase());
+                    data.append('NewPwd', sha256.sha256(this.pwd.newpwd1).toUpperCase());
+                    data.append('Sign', sha256.sha256(signStr).toUpperCase());
+
+                    this.$http.post(localStorage.SiteUrl, data).then(res => {
+
+                        this.$router.go(-1);
+
+                    }).catch(error => {
+                        console.log(error);
+                    })
+                } else {
+                    MessageBox({
+                        title: '提示',
+                        message: '两次输入密码不同，请重新输入',
+                        showCancelButton: false,
+                    })
+                }
             }
         },
 
