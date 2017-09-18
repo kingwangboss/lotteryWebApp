@@ -65,6 +65,28 @@ export default {
     },
 
     methods: {
+        getData1() {
+            let tokenCode = localStorage.tokenCode;
+            let signStr = 'Action=Clock' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + '&CurrentLottery=0' + tokenCode;
+            let data = new FormData();
+            data.append('Action', 'Clock');
+            data.append('SID', localStorage.sid);
+            data.append('Token', localStorage.Token);
+            data.append('CurrentLottery', '0');
+            data.append('Sign', sha256.sha256(signStr).toUpperCase());
+            this.$http.post(localStorage.SiteUrl, data).then(res => {
+                if (res.data.Data.NewLottery.NextPeriodTime > 0) {
+                    clearInterval(run);
+                    this.$router.push({
+                        path: '/routerPush'
+                    });
+                } else {
+
+                }
+            }).catch(error => {
+                console.log(error);
+            })
+        },
         getData() {
             clearInterval(run);
             let tokenCode = localStorage.tokenCode;
@@ -90,14 +112,15 @@ export default {
 
                     if (self.nextTime > 0) {
                         self.nextTime--;
-                        
+
                     } else {
                         clearInterval(tiemInterval)
                         var i = 0;
                         run = setInterval(function() {
-                            self.$router.push({
-                                path: '/routerPush'
-                            });
+                            // self.$router.push({
+                            //     path: '/routerPush'
+                            // });
+                            self.getData1();
                         }, 5000);
                     }
                     // console.log(self.nextTime);
