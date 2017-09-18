@@ -397,7 +397,7 @@
   --------------------------*/
 }
 .el-tag{
-    background-color: rgb(165, 138, 131);
+    background-color: #909090;
     display: inline-block;
     padding: 0 5px;
     height: 24px;
@@ -425,7 +425,7 @@
 }
 .el-tag .el-icon-close:hover{
     background-color: #fff;
-    color: rgb(165, 138, 131);
+    color: #909090;
 }
 .el-tag--gray{
     background-color: rgb(241, 232, 228);

@@ -97,7 +97,7 @@ export default {
                         run = setInterval(function() {
                             self.$router.push({
                                 path: '/routerPush'
-                            })
+                            });
                         }, 5000);
                     }
                     // console.log(self.nextTime);

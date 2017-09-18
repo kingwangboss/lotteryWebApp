@@ -378,7 +378,7 @@
     color: rgb(190, 160, 151);
 }
 .el-input__inner:hover{
-    border-color: rgb(165, 138, 131);
+    border-color: #909090;
 }
 .el-input__inner:focus{
     outline: none;
@@ -407,10 +407,10 @@
 .el-input__icon.is-clickable{}
 .el-input__icon.is-clickable:hover{
     cursor: pointer;
-    color: rgb(165, 138, 131);
+    color: #909090;
 }
 .el-input__icon.is-clickable:hover + .el-input__inner{
-    border-color: rgb(165, 138, 131);
+    border-color: #909090;
 }
 .el-input--large{
     font-size: 16px;
@@ -529,7 +529,7 @@
     color: rgb(190, 160, 151);
 }
 .el-textarea__inner:hover{
-    border-color: rgb(165, 138, 131);
+    border-color: #909090;
 }
 .el-textarea__inner:focus{
     outline: none;
@@ -627,7 +627,7 @@
   --------------------------*/
 }
 .el-tag{
-    background-color: rgb(165, 138, 131);
+    background-color: #909090;
     display: inline-block;
     padding: 0 5px;
     height: 24px;
@@ -655,7 +655,7 @@
 }
 .el-tag .el-icon-close:hover{
     background-color: #fff;
-    color: rgb(165, 138, 131);
+    color: #909090;
 }
 .el-tag--gray{
     background-color: rgb(241, 232, 228);
@@ -1100,7 +1100,7 @@
     position: relative;
 }
 .el-select:hover .el-input__inner{
-    border-color: rgb(165, 138, 131);
+    border-color: #909090;
 }
 .el-select .el-input__inner{
     cursor: pointer;

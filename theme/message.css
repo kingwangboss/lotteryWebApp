@@ -114,7 +114,7 @@
 }
 
 .el-message .el-icon-information{
-    color: #E5574D;
+    color: black;
 }
 
 .el-message .el-icon-warning{
@@ -136,7 +136,7 @@
     font-size: 14px;
     margin: 0 34px 0 0;
     white-space: nowrap;
-    color: rgb(165, 138, 131);
+    color: #909090;
     text-align: justify;
 }
 

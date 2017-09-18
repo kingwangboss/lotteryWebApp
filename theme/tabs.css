@@ -152,7 +152,7 @@
   cursor: pointer;
   line-height: 44px;
   font-size: 12px;
-  color: rgb(165, 138, 131);
+  color: #909090;
 }
 
 .el-tabs__nav-next{
@@ -178,7 +178,7 @@
   display: inline-block;
   list-style: none;
   font-size: 14px;
-  color: rgb(165, 138, 131);
+  color: #909090;
   position: relative;
 }
 

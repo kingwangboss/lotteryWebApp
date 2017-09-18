@@ -121,12 +121,12 @@
 }
 
 .dian-dian {
-    background: #767676;
+    background: #909090;
     height: 4px;
     width: 4px;
     margin-left: 4px;
     border-radius: 4px;
-    color: #767676;
+    // color: #767676;
 }
 </style>
 

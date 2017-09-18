@@ -16,7 +16,7 @@
   --color-success: #13ce66;
   --color-warning: #f7ba2a;
   --color-danger: #ff4949;
-  --color-info: #E5574D;
+  --color-info: black;
 
   --color-secondary: color(var(--color-primary) s(99%) l(*0.9));
   --color-white: #fff;
@@ -27,7 +27,7 @@
   --color-light-black: color(var(--color-base-black) h(+5) s(27%) l(27%));
   --color-extra-light-black: color(var(--color-base-black) h(+2) s(19%) l(35%));
 
-  --color-base-silver: color(var(--color-base-black) h(+3) s(16%) l(58%));
+  --color-base-silver: #909090;
   --color-light-silver: color(var(--color-base-black) h(+3) s(23%) l(67%));
   --color-extra-light-silver: color(var(--color-base-black) s(26%) l(80%));
 

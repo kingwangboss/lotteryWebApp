@@ -112,7 +112,7 @@
 }
 
 .el-notification .el-icon-information{
-    color: #E5574D;
+    color: black;
 }
 
 .el-notification .el-icon-warning{
@@ -138,7 +138,7 @@
     font-size: 14px;
     line-height: 21px;
     margin: 10px 0 0 0;
-    color: rgb(165, 138, 131);
+    color: #909090;
     text-align: justify;
 }
 
