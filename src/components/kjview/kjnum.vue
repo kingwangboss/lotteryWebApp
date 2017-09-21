@@ -1,6 +1,6 @@
 <template>
     <div class="content">
-        <div v-show="isLan(index)" class="kjnum" :style="{width:ojwidth+'px',height:height+'px'}" :key="item" v-for="(item,index) in numArr">{{item}}</div>
+        <div v-show="isLan(index)" class="kjnum" :style="{width:ojwidth+'px',height:height+'px',}" :key="item" v-for="(item,index) in numArr">{{item}}</div>
         <div v-show="!isLan(index)" class="kjnum1" :style="{width:ojwidth+'px',height:height+'px'}" :key="item" v-for="(item,index) in numArr">{{item}}</div>
     </div>
 </template>
@@ -12,26 +12,30 @@
     margin-top: 20px;
     flex-wrap: wrap;
     .kjnum {
-        border: 1px solid #f5bc8d;
+        // border: 1px solid #f5bc8d;
+        background-image: url('../../../static/images/Plan-05.png');
+        background-size: 100% 100%;
         line-height: 36px;
-        border-radius: 5px;
+        // border-radius: 5px;
         // width: 29px;
         height: 36px;
         text-align: center;
         margin: 3px;
         color: #fffde4;
-        background-color: #db3c3e;
+        // background-color: #db3c3e;
     }
     .kjnum1 {
-        border: 1px solid #f5bc8d;
+        // border: 1px solid #f5bc8d;
+        background-image: url('../../../static/images/Plan-51.png');
+        background-size: 100% 100%;
         line-height: 36px;
-        border-radius: 5px;
+        // border-radius: 5px;
         // width: 29px;
         height: 36px;
         text-align: center;
         margin: 3px;
         color: #fffde4;
-        background-color:rgb(63, 123, 244);
+        // background-color:rgb(63, 123, 244);
     }
 }
 </style>

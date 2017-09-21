@@ -222,7 +222,7 @@ export default {
     }
 
     .top-middle {
-        margin: 10px 0;
+        margin: 10px 5px;
     }
 
     .top-bottom {
