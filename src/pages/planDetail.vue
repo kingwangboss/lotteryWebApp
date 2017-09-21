@@ -75,7 +75,7 @@
 
 .detail-top-content {
     height: 15px;
-    width: 75px;
+    width: 20%;
     align-content: center;
     margin-left: 15px;
     margin-top: 5px;

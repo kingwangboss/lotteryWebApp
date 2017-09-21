@@ -5,10 +5,10 @@
       <el-button :class="{ 'btnDefault' : isA, 'btnEnable': !isA}" type="primary" @click="btnClick">手机注册</el-button>
       <el-button :class="{ 'btnEnable' : isA, 'btnDefault': !isA}" type="primary" @click="btnClick">用户名注册</el-button>
     </div>
-    
+
     <leftRegist v-show="!isA"></leftRegist>
     <rightRegist v-show="isA"></rightRegist>
-    
+
   </div>
 </template>
 
@@ -21,10 +21,10 @@
   .btnDefault {
     margin-left: 0;
     margin-right: 0;
-    border-radius:0;
+    border-radius: 0;
     width: 50%;
     height: 100%;
-    background-color: RGB(251, 230, 231);
+    // background-color: RGB(251, 230, 231);
     background-image: url(../../static/images/login/Register-03.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -35,15 +35,15 @@
   .btnEnable {
     margin-left: 0;
     margin-right: 0;
-    border-radius:0;
+    border-radius: 0;
     width: 50%;
     height: 100%;
-    background-color: RGB(251, 230, 231);
+    // background-color: RGB(251, 230, 231);
     background-image: url(../../static/images/login/Register-02.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     border: 0;
-    color:white;
+    color: white;
     font-size: 15px;
   }
 }
@@ -63,24 +63,26 @@ export default {
         text: "注册",
         showBack: true,
       },
-      isA:false,
+      isA: false,
     };
   },
-  created(){
+  created() {
     if (localStorage.sid) {
 
-      } else {
-        this.$router.push({
-          path:'/XZcaizhong'
-        })
-      }
+    } else {
+      // this.$router.push({
+      //   path: '/XZcaizhong'
+      // })
+      localStorage.sid = '2';
+      localStorage.czname = '北京pk10'
+    }
   },
   components: {
     mHeader,
     leftRegist,
     rightRegist
   },
-  methods:{
+  methods: {
     btnClick(event) {
       this.isA = !this.isA;
     }
