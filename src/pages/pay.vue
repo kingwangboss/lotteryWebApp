@@ -55,9 +55,9 @@
     flex-direction: row;
     height: 60px;
     img {
-        margin: 10px 10px;
-        height: 40px;
-        widows: 40px;
+        margin: 15px 15px;
+        height: 30px;
+        widows: 30px;
     }
     .title {
         margin: 10px 10px;
@@ -71,7 +71,7 @@
             color: black;
         }
         .title-span2 {
-            margin-top: 5px;
+            margin-top: 10px;
             font-size: 11px;
             color: #B7B7B7;
         }

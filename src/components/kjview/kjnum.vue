@@ -12,12 +12,12 @@
     margin-top: 20px;
     flex-wrap: wrap;
     .kjnum {
-        // border: 1px solid #f5bc8d;
-        background-image: url('../../../static/images/Plan-05.png');
-        background-size: 100% 100%;
+        border: 1px solid #f5bc8d;
+        // background-image: url('../../../static/images/Plan-05.png');
+        // background-size: 100% 100%;
         line-height: 36px;
-        // border-radius: 5px;
-        // width: 29px;
+        border-radius: 5px;
+        width: 29px;
         height: 36px;
         text-align: center;
         margin: 3px;
@@ -25,12 +25,12 @@
         // background-color: #db3c3e;
     }
     .kjnum1 {
-        // border: 1px solid #f5bc8d;
-        background-image: url('../../../static/images/Plan-51.png');
-        background-size: 100% 100%;
+        border: 1px solid #f5bc8d;
+        // background-image: url('../../../static/images/Plan-51.png');
+        // background-size: 100% 100%;
         line-height: 36px;
-        // border-radius: 5px;
-        // width: 29px;
+        border-radius: 5px;
+        width: 29px;
         height: 36px;
         text-align: center;
         margin: 3px;
@@ -105,7 +105,7 @@ export default {
                 var colnum = 10;//列
                 colnum = this.numArr.length > colnum ? colnum : this.numArr.length;
                 var rownum = this.numArr.length / colnum;//行
-                margin = this.numArr.length > 5 ? 3 : 4;//间距
+                margin = this.numArr.length > 5 ? 4 : 5;//间距
                 ojwidth = (this.screenWidth - (2 * (margin +1) * colnum)) / colnum;//格子的宽
                 return ojwidth;
             },

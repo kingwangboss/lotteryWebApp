@@ -91,6 +91,7 @@
 }
 
 .psvalue {
+    font-size: 10px;
     padding-left: 3px;
     color: #f00;
 }

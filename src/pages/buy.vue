@@ -165,16 +165,17 @@
         .top-div {
             margin-left: 3%;
             margin-right: 3%;
-            font-size: 12px;
+            font-size: 15px;
             font-weight: 900;
             
         }
         .btn {
             position: relative;
             right:-5%;
-            height: 30px;
-            width: 17%;
-            border-radius: 30px;
+            height: 25px;
+            line-height: 6px;
+            width: 15%;
+            border-radius: 25px;
             background-color: #58C5E0;
             border: 0;
             color: white;
@@ -209,15 +210,17 @@
         .top-div {
             margin-left: 3%;
             margin-right: 3%;
-            font-size: 12px;
-            font-weight: 900
+            font-size: 15px;
+            font-weight: 900;
+            
         }
         .btn {
             position: relative;
             right:-5%;
-            height: 30px;
-            width: 17%;
-            border-radius: 30px;
+            height: 25px;
+            line-height: 6px;
+            width: 15%;
+            border-radius: 25px;
             background-color: #58C5E0;
             border: 0;
             color: white;
@@ -252,15 +255,17 @@
         .top-div {
             margin-left: 3%;
             margin-right: 3%;
-            font-size: 12px;
-            font-weight: 900
+            font-size: 15px;
+            font-weight: 900;
+            
         }
         .btn {
             position: relative;
             right:-5%;
-            height: 30px;
-            width: 17%;
-            border-radius: 30px;
+            height: 25px;
+            line-height: 6px;
+            width: 15%;
+            border-radius: 25px;
             background-color: #58C5E0;
             border: 0;
             color: white;
