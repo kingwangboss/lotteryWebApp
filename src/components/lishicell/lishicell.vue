@@ -132,6 +132,7 @@ export default {
     flex-wrap: wrap;
     justify-content: flex-start;
     text-align: center;
+    margin-bottom: 5px;
 }
 
 .num {
@@ -143,7 +144,7 @@ export default {
 
     background-size: 35px;
     color: #f82b56;
-    font-size: 20px;
+    font-size: 15px;
     background-image: url('../../../static/images/history/Records-04.png');
 }
 
@@ -161,8 +162,8 @@ export default {
 }
 
 .top {
-    height: 15px;
-    background: #FBF9FE;
+    height: 10px;
+    background:RGB(243, 244, 245);
 }
 </style>
 

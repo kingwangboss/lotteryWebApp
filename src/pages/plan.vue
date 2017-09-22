@@ -1,30 +1,31 @@
 <template>
-    <div>
-        <div class="maincontainer">
+    <div class="maincontainer">
 
-            <div class="middleLine">
-            </div>
-
-            <div v-show="AuthType != '1'" class="middlecontainer">
-                <!-- <span class="textbtn first" style="border-left-width: 1px;" @click="xzCaizhongClick">选择彩种</span> -->
-                <span class="textbtn first" style="border-left-width: 1px;" @click="changePlanClick">更改计划</span>
-                <span class="textbtn" @click="planShareClick">计划分享</span>
-                <span class="textbtn" @click="qhClick">切换公式</span>
-                <span class="textbtn last" @click="selectNum">近{{PlanData.CycleCount}}期计划</span>
-            </div>
-
-            <div v-show="AuthType == '1'" class="middlecontainer">
-                <!-- <span class="textbtn first" style="border-left-width: 1px;" @click="xzCaizhongClick">选择彩种</span> -->
-                <span class="textbtn first" style="border-left-width: 1px; width:30%;" @click="changePlanClick">更改计划</span>
-                <span class="textbtn" style="width:30%;" @click="planShareClick">计划分享</span>
-                <span class="textbtn last" style="width:30%;" @click="qhClick">切换公式</span>
-            </div>
-
-            <plancell :data="PlanData"></plancell>
-
-            <div class="bottom-title">善意提醒：小心参考，理性投资</div>
-
+        <div class="middleLine">
         </div>
+
+        <div v-show="AuthType != '1'" class="middlecontainer">
+            <!-- <span class="textbtn first" style="border-left-width: 1px;" @click="xzCaizhongClick">选择彩种</span> -->
+            <span class="textbtn first" style="border-left-width: 1px;" @click="changePlanClick">更改计划</span>
+            <span class="textbtn" @click="planShareClick">计划分享</span>
+            <span class="textbtn" @click="qhClick">切换公式</span>
+            <span class="textbtn last" @click="selectNum">近{{PlanData.CycleCount}}期计划
+                <img class="icon" src="../../static/images/shouye-71.png"/>
+            </span>
+        </div>
+
+        <div v-show="AuthType == '1'" class="middlecontainer">
+            <!-- <span class="textbtn first" style="border-left-width: 1px;" @click="xzCaizhongClick">选择彩种</span> -->
+            <span class="textbtn first" style="border-left-width: 1px; width:30%;" @click="changePlanClick">更改计划</span>
+            <span class="textbtn" style="width:30%;" @click="planShareClick">计划分享</span>
+            <span class="textbtn last" style="width:30%;" @click="qhClick">切换公式
+            </span>
+        </div>
+
+        <plancell :data="PlanData"></plancell>
+
+        <div class="bottom-title">善意提醒：小心参考，理性投资</div>
+
     </div>
 </template>
 
@@ -52,7 +53,8 @@
             margin-bottom: 10px;
             line-height: 30px;
             height: 30px;
-            background: #f6f6f6;
+            // background: #f6f6f6;
+            background: rgba(0, 0, 0, 0);
             border: 1px solid #d8d8d8;
             border-left-width: 0px;
             text-align: center;
@@ -68,6 +70,10 @@
                 border-bottom-right-radius: 7.5px;
                 width: 28%;
             }
+        }
+        .icon {
+            width: 10px;
+            height: 10px;
         }
     }
     p {
@@ -98,7 +104,7 @@ export default {
     data() {
         return {
             PlanData: "",
-            AuthType : localStorage.AuthType,
+            AuthType: localStorage.AuthType,
         }
     },
     components: {
@@ -122,7 +128,7 @@ export default {
             this.$http.post(localStorage.SiteUrl, data).then(res => {
                 this.PlanData = res.data.Data;
                 var nameArr = [];
-                for(var i=0;i<this.PlanData.Data.length;i++){
+                for (var i = 0; i < this.PlanData.Data.length; i++) {
                     nameArr.push(this.PlanData.Data[i].Name);
                 }
                 console.log(nameArr);
@@ -154,7 +160,7 @@ export default {
                 this.$http.post(localStorage.SiteUrl, data).then(res => {
                     console.log(res)
                     that.$router.push({
-                        path:'/routerPush'
+                        path: '/routerPush'
                     })
                 }).catch(error => {
                     console.log(error);
@@ -166,7 +172,7 @@ export default {
         //         path: '/XZcaizhong'
         //     })
         // },
-        planShareClick(){
+        planShareClick() {
             this.$router.push({
                 path: '/planShare'
             })

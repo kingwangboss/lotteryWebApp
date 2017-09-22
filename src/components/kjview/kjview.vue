@@ -200,8 +200,8 @@ export default {
         align-items: center;
         padding-top: 15px;
         .qishu1 {
-            width: 150px;
-            font-size: 14px;
+            width: 120px;
+            font-size: 12px;
             padding: 5px 10px 5px 5px;
             background-repeat: no-repeat;
             background-size: 100% 100%;
@@ -210,13 +210,14 @@ export default {
         }
         .qishu2 {
             // margin-left: 30px;
+            font-size: 12px;
             width: 70px;
             align-content: right;
             color: #fff;
         }
         .xian {
             background-color: #eb8e89;
-            width: 40%;
+            width: 45%;
             height: 1px;
         }
     }
@@ -234,7 +235,7 @@ export default {
         height: 20px;
         .label1 {
             color: #fffde4;
-            font-size: 13px;
+            font-size: 12px;
             line-height: 20px;
             height: 20px;
         }
