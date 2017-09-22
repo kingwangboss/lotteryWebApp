@@ -23,6 +23,10 @@
                 <span v-if="title.ok" class="right" @click="okClick">
                     <span>确定</span>
                 </span>
+
+                <span v-if="title.changeOK" class="right" @click="changeOkClick">
+                    <span>确定</span>
+                </span>
             </div>
         </div>
     </div>
@@ -80,6 +84,7 @@
 
 
 <script>
+import sha256 from '../../util/sha256'
 export default {
     props: {
         title: {
@@ -164,6 +169,45 @@ export default {
 
             }
         },
+
+        changeOkClick(){
+            if (localStorage.isLogin) {
+                let signStr = localStorage.sid + localStorage.Username + '4YCW1.0' + localStorage.pwd;
+                let data = new FormData();
+                data.append('Action', 'Login');
+                data.append('SID', localStorage.sid);
+                data.append('Account', localStorage.Username);
+                data.append('AppType', '4');
+                data.append('AppCode', 'YCW');
+                data.append('AppVersion', '1.0');
+                data.append('Sign', sha256.sha256(signStr).toUpperCase());
+
+                this.$http.post('https://ycwidx.cpnet.com', data).then(res => {
+                    if (res) {
+
+                        localStorage.uid = res.data.Data.UID;
+                        localStorage.AuthTypeName = res.data.Data.AuthTypeName;
+                        localStorage.SiteUrl = res.data.Data.SiteUrl;
+                        localStorage.AuthType = res.data.Data.AuthType;
+                        localStorage.Username = res.data.Data.NickName;
+                        localStorage.Token = res.data.Data.Token;
+                        localStorage.PayType = res.data.Data.PayType;
+                        localStorage.tokenCode = sha256.sha256(res.data.Data.Token + localStorage.pwd).toUpperCase()
+                        this.$router.push({
+                            path: "/planVC"
+                        })
+                    }
+
+                }).catch(error => {
+                    console.log(error);
+                })
+                
+            } else {
+                this.$router.push({
+                    path: "/"
+                })
+            }
+        }
     },
 }
 </script>

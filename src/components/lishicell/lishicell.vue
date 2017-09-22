@@ -124,6 +124,8 @@ export default {
     display: flex;
     align-items: center;
     font-size: 12.5px;
+    margin-top: 5px;
+    margin-right: 5px;
 }
 
 .KJnum {

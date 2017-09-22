@@ -5,12 +5,12 @@
         <div class="maincontainer">
             <div class="cell" v-for="item in dataList" :key="item.toString()">
                 <div class="cell-btnview">
-                    <el-button class="btn" type="primary" v-for="item1 in item.CPNames" :key="item1.toString()"  @click="btnClick($event,item1.SID)">{{item1.CPName}}</el-button>
+                    <el-button v-show="isSelect(item1)" class="btnSelect" :class="{'btnSelect':ind === item1.SID}" type="text" v-for="item1 in item.CPNames" :key="item1.toString()" @click="btnClick($event,item1.SID)">{{item1.CPName}}</el-button>
+                    <el-button v-show="!isSelect(item1)" class="btn" :class="{'btnSelect':ind === item1.SID}" type="text" v-for="item1 in item.CPNames" :key="item1.toString()" @click="btnClick($event,item1.SID)">{{item1.CPName}}</el-button>
                 </div>
                 <div class="line">
                 </div>
             </div>
-
         </div>
     </div>
 </template>
@@ -33,17 +33,32 @@
 
 .btn {
     height: 30px;
-    align-content: center; // background-size: 100% 100%;
-    background: white;
+    align-content: center;
+    background-size: 100% 100%;
     float: left;
     margin-left: 10px;
     margin-top: 10px;
     display: flex;
     align-items: center;
-    color: #E5574D;
     padding: 5px 20px;
-    // font-size: 13px;
-    // border: 1px solid black;
+    font-size: 13px;
+    color: black;
+    background-image: url('../../static/images/Select-05.png')
+}
+
+.btnSelect {
+    height: 30px;
+    align-content: center;
+    background-size: 100% 100%;
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    padding: 5px 20px;
+    font-size: 13px;
+    color: #f82b56;
+    background-image: url('../../static/images/Select-06.png')
 }
 
 .line {
@@ -62,10 +77,13 @@ export default {
             title: {
                 text: '选择彩种',
                 showBack: true,
+                changeOK:true
             },
             dataList: [],
+            ind:"",
         };
     },
+    
     components: {
         mHeader,
     },
@@ -80,53 +98,26 @@ export default {
 
             });
         },
-        btnClick(btn,sid) {
+        btnClick(btn, sid) {
             console.log(this.$route.params)
-            localStorage.sid = sid
+            console.log(btn);
+            localStorage.sid = sid ? sid : localStorage.sid;
             localStorage.czname = btn.target.innerText
+            this.ind = sid;
 
 
-            if (localStorage.isLogin) {
-                let signStr = localStorage.sid + localStorage.Username + '4YCW1.0' + localStorage.pwd;
-                let data = new FormData();
-                data.append('Action', 'Login');
-                data.append('SID', localStorage.sid);
-                data.append('Account', localStorage.Username);
-                data.append('AppType', '4');
-                data.append('AppCode', 'YCW');
-                data.append('AppVersion', '1.0');
-                data.append('Sign', sha256.sha256(signStr).toUpperCase());
-
-                this.$http.post('https://ycwidx.cpnet.com', data).then(res => {
-                    if (res) {
-
-                        localStorage.uid = res.data.Data.UID;
-                        localStorage.AuthTypeName = res.data.Data.AuthTypeName;
-                        localStorage.SiteUrl = res.data.Data.SiteUrl;
-                        localStorage.AuthType = res.data.Data.AuthType;
-                        localStorage.Username = res.data.Data.NickName;
-                        localStorage.Token = res.data.Data.Token;
-                        localStorage.PayType = res.data.Data.PayType;
-                        localStorage.tokenCode = sha256.sha256(res.data.Data.Token + localStorage.pwd).toUpperCase()
-                        this.$router.push({
-                            path: "/planVC"
-                        })
-                    }
-
-                }).catch(error => {
-                    console.log(error);
-                })
-            } else {
-                this.$router.push({
-                    path: "/"
-                })
+        },
+        isSelect(item1) {
+            if(item1.SID == localStorage.sid){
+                return true;
+            }else{
+                return false;
             }
-
         }
     },
     mounted() {
         this.getData();
-
+        this.ind = localStorage.sid;
     }
 }
 </script>

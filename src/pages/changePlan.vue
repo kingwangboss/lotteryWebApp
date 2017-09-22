@@ -11,7 +11,6 @@
                 <el-button type="text" class="btn" v-for="(item,index) in selectNameArr" :key="item" @click="removeBtn(item)">{{item}}
                 </el-button>
                 <!-- <el-button class="btn" style="background-image: url('../../static/images/Select-05.png')">12122</el-button> -->
-
             </div>
 
             <div class="middle"></div>
@@ -26,8 +25,8 @@
 
             <div class="bottom-btnView">
 
-                <el-button class="bottom-btn" style="background-color: rgb(229, 87, 77);border-color:rgba(0,0,0,0);color:#fff;" @click="ok">确定</el-button>
-                <el-button class="bottom-btn" style="background-color: rgb(232, 159, 109);border-color:rgba(0,0,0,0);color:#fff;" @click="cancel">重置</el-button>
+                <button class="bottom-btn" style="background-color: rgb(229, 87, 77);border-color:rgba(0,0,0,0);color:#fff;" @click="ok">确定</button>
+                <button class="bottom-btn" style="background-color: rgb(232, 159, 109);border-color:rgba(0,0,0,0);color:#fff;" @click="cancel">重置</button>
                 
             </div>
 

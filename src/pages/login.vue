@@ -92,24 +92,23 @@
             display: flex;
             flex-direction: row;
             .leftImg {
-                width: 30px;
-                height: 30px;
-                padding-top: 7px;
-                padding-right: 7px;
+                width: 20px;
+                height: 20px;
+                padding-top: 12px;
+                padding-right: 12px;
             }
             span {
                 color: RGB(229, 164, 153);
                 font-size: 12px;
             }
             div {
-                width: 55%;
+                width: 65%;
                 height: 100%;
                 .rightImg {
-                    padding-top: 7px;
-                    padding-right: 7px;
+                    padding-top: 12px;
                     float: right;
-                    height: 30px;
-                    width: 30px;
+                    height: 20px;
+                    width: 20px;
                 }
             }
         }
