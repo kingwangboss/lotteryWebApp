@@ -79,8 +79,8 @@
 
         <div class="bottom-btnView1">
 
-            <el-button class="bottom-btn1" style="background-color: rgb(229, 87, 77);border-color:rgba(0,0,0,0);color:#fff;" @click="ok">确定</el-button>
-            <el-button class="bottom-btn1" style="background-color: rgb(232, 159, 109);border-color:rgba(0,0,0,0);color:#fff;" @click="cancel">取消</el-button>
+            <button class="bottom-btn1" style="background-color: rgb(229, 87, 77);border-color:rgba(0,0,0,0);color:#fff;" @click="ok">确定</button>
+            <button class="bottom-btn1" style="background-color: rgb(232, 159, 109);border-color:rgba(0,0,0,0);color:#fff;" @click="cancel">取消</button>
 
         </div>
     </div>
@@ -129,10 +129,11 @@
 
 .input {
     margin: 17px 8px;
-    background: #f3f4f5;
+    background: #F4F4F4;
     width: 14%; // height: 25px;
     font-size: 10px;
 }
+
 
 .bottom {
     display: flex;

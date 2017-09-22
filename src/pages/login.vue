@@ -67,6 +67,7 @@
             margin-top: 10%;
         }
         .input {
+            outline: none;
             margin-top: 10%;
             background-color: transparent;
             background-image: url('../../static/images/login/a2.png');

@@ -36,7 +36,7 @@
     </div>
 
     <div class="bottom-btndiv">
-      <button class="bottom-btn" @click="loginOut">退出登录</button>
+      <el-button type="text" class="bottom-btn" @click="loginOut">退出登录</el-button>
     </div>
 
   </div>
@@ -46,8 +46,7 @@
 .userinfo {
   display: flex;
   flex-direction: column;
-  align-items: center; 
-  // background: rgb(229, 87, 77);
+  align-items: center; // background: rgb(229, 87, 77);
   background: url(../../static/images/me/bg.png);
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -67,7 +66,7 @@
 }
 
 .middle {
-  background: #EDEDED;
+  background: #F0F0F0;
   height: 10px;
 }
 
@@ -110,14 +109,14 @@
 }
 
 .bottom-btn {
+  background-image: url('../../static/images/me/User-12.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   margin-top: 40px;
   margin-bottom: 20px;
-  width: 50%;
+  width: 70%;
   height: 40px;
-  border-radius: 20px;
-  line-height: 35px;
-  background-color: rgb(229, 87, 77);
-  border-color: rgba(0, 0, 0, 0);
+  font-size: 16px;
   color: #fff;
 }
 </style>
