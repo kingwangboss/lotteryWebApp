@@ -132,6 +132,7 @@ export default {
     flex-wrap: wrap;
     justify-content: flex-start;
     text-align: center;
+    margin-top: 2.5px;
     margin-bottom: 5px;
 }
 
@@ -157,7 +158,7 @@ export default {
 
     background-size: 35px;
     color: white;
-    font-size: 20px;
+    font-size: 15px;
     background-image: url('../../../static/images/history/Records-41.png');
 }
 

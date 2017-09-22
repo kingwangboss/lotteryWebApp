@@ -169,7 +169,7 @@ export default {
                 sid: '',
             },
             disabled: true,
-            czname:localStorage.czname ? localStorage.czname : '北京pk10'
+            czname:localStorage.czname ? localStorage.czname : '北京PK拾'
         };
     },
     components: {
@@ -203,7 +203,7 @@ export default {
                 
             }else{
                 this.user.sid = "2"
-                localStorage.czname = '北京pk10'
+                localStorage.czname = '北京PK10'
             }
 
 

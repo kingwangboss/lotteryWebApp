@@ -101,7 +101,7 @@ export default {
             selected: typeof (localStorage.tab) === "undefined" ? 'plan' : localStorage.tab,
             titleList: titleList,
             title: {
-                text: localStorage.czname,
+                text: localStorage.czname + " " + localStorage.AuthTypeName,
                 showBack: false,
                 showQH: true
             },
@@ -116,7 +116,7 @@ export default {
         }
         if (localStorage.tab === 'plan') {
             this.title = {
-                text: localStorage.czname,
+                text: localStorage.czname + ' ' + localStorage.AuthTypeName,
                 showBack: false,
                 showQH: true
             };

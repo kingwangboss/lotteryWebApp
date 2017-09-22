@@ -46,8 +46,11 @@
 .userinfo {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background: rgb(229, 87, 77);
+  align-items: center; 
+  // background: rgb(229, 87, 77);
+  background: url(../../static/images/me/bg.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .userinfo-avatar {
