@@ -15,8 +15,9 @@
         border: 1px solid #f5bc8d;
         // background-image: url('../../../static/images/Plan-05.png');
         // background-size: 100% 100%;
+        background: rgb(219, 60, 62);
         line-height: 36px;
-        border-radius: 5px;
+        // border-radius: 5px;
         width: 29px;
         height: 36px;
         text-align: center;
@@ -28,8 +29,9 @@
         border: 1px solid #f5bc8d;
         // background-image: url('../../../static/images/Plan-51.png');
         // background-size: 100% 100%;
+        background: rgb(63, 123, 244);
         line-height: 36px;
-        border-radius: 5px;
+        // border-radius: 5px;
         width: 29px;
         height: 36px;
         text-align: center;

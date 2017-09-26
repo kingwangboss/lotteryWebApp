@@ -29,7 +29,9 @@
 }
 
 .cell-btnview {
+    margin-top: 10px;
     margin-bottom: 10px;
+    height: 50px;
 }
 
 .btn {
