@@ -103,7 +103,7 @@
                 font-size: 12px;
             }
             div {
-                width: 65%;
+                width: 55%;
                 height: 100%;
                 .rightImg {
                     padding-top: 12px;
@@ -164,8 +164,8 @@ export default {
                 tabClass: 'loginVC',
             },
             user: {
-                name: '',
-                pwd: '',
+                name: localStorage.user_name == null ? "" : localStorage.user_name,
+                pwd: localStorage.user_pwd == null ? "" : localStorage.user_pwd,
                 sid: '',
             },
             disabled: true,
@@ -242,6 +242,9 @@ export default {
                     localStorage.QQUrl = res.data.Data.QQUrl;
                     localStorage.tokenCode = sha256.sha256(res.data.Data.Token+localStorage.pwd).toUpperCase()
                     localStorage.OfficialUrl = res.data.Data.OfficialUrl;
+
+                    localStorage.user_name = this.user.name;
+                    localStorage.user_pwd = this.user.pwd;
                     this.$router.push({
                         path: "/planVC"
                     })

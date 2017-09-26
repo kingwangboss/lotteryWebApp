@@ -7,11 +7,12 @@
             <img style="height:4px;width:100%;" src="../../../static/images/Search-07.png" mode="scaleToFill"></img>
 
             <div class="top">
-                <el-button v-show="isSelect1(item)" type="text" class="btnSelect" v-for="(item,index) in KeyCountData1" :key="item" @click="addBtn1(item)">{{item}}
+                <!-- <el-button v-show="isSelect1(item)" type="text" class="btnSelect" v-for="(item,index) in KeyCountData1" :key="item" @click="addBtn1(item)">{{item}}
                 </el-button>
                 <el-button v-show="!isSelect1(item)" type="text" class="btn" v-for="(item,index) in KeyCountData1" :key="item" @click="addBtn1(item)">{{item}}
+                </el-button> -->
+                <el-button :class="{'btnSelect':selectKeyCount1 == item}" type="text" class="btn" v-for="(item,index) in KeyCountData1" :key="item" @click="addBtn1(item)">{{item}}
                 </el-button>
-
             </div>
 
             <div class="middle"></div>
@@ -21,8 +22,9 @@
             <label class="lab" style="font-size:14px; margin-top:10px;margin-left:20px; font-weight:900;">数据遗漏</label>
             <div class="planItemCell" >
                 <div>
-                    <el-button v-show="isSelect(item)" type="text" class="btnSelect" v-for="item in KeyNumbers" :key="item.toString()" @click="addBtn(item)">{{item}}</el-button>
-                    <el-button v-show="!isSelect(item)" type="text" class="btn" v-for="item in KeyNumbers" :key="item.toString()" @click="addBtn(item)">{{item}}</el-button>
+                    <!-- <el-button v-show="isSelect(item)" type="text" class="btnSelect" v-for="item in KeyNumbers" :key="item.toString()" @click="addBtn(item)">{{item}}</el-button>
+                    <el-button v-show="!isSelect(item)" type="text" class="btn" v-for="item in KeyNumbers" :key="item.toString()" @click="addBtn(item)">{{item}}</el-button> -->
+                    <el-button :class="{'btnSelect':selectKeyNumberName2.indexOf(item) > -1}" type="text" class="btn" v-for="item in KeyNumbers" :key="item.toString()" @click="addBtn(item)">{{item}}</el-button>
                 </div>
             </div>
 

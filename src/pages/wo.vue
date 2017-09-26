@@ -12,6 +12,7 @@
       <div class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth+'px'}">
         <img src="../../static/images/me/User-05.png" @click="buyClick"></img>
         <span>购买授权</span>
+        <div class="rightLine"></div>
       </div>
       <div class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth+'px'}" @click="kefuClick">
         <img src="../../static/images/me/User-07.png"></img>
@@ -70,6 +71,11 @@
   height: 10px;
 }
 
+.rightLine{
+  background: gray;
+  height: 10px;
+}
+
 .bottom {
   display: flex;
   width: 100%;
@@ -79,7 +85,8 @@
 .bottom-cell {
   width: 124px;
   height: 124px;
-  border: 1px solid gray; // border-style: none solid solid none;
+  // border: 1px solid gray; 
+  // border-style: none solid solid none;
   flex-direction: column;
   display: -webkit-flex;
   -webkit-align-items: center;
@@ -143,7 +150,20 @@ export default {
   },
   methods: {
     loginOut() {
-      localStorage.clear();
+      // localStorage.clear();
+      localStorage.removeItem('isLogin');
+      localStorage.removeItem('sid');
+      localStorage.removeItem('uid');
+      localStorage.removeItem('AuthTypeName');
+      localStorage.removeItem('SiteUrl');
+      localStorage.removeItem('AuthType');
+      localStorage.removeItem('Username');
+      localStorage.removeItem('Token');
+      localStorage.removeItem('PayType');
+      localStorage.removeItem('QQUrl');
+      localStorage.removeItem('tokenCode');
+      localStorage.removeItem('OfficialUrl');
+      
       this.$router.push({
         path: '/',
       })

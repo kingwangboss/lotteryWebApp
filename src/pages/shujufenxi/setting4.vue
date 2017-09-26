@@ -7,9 +7,11 @@
             <img style="height:4px;width:100%;" src="../../../static/images/Search-07.png" mode="scaleToFill"></img>
 
             <div class="top">
-                <el-button v-show="isSelect1(item)" type="text" class="btnSelect" v-for="(item,index) in KeyCountData2" :key="item" @click="addBtn1(item)">{{item}}
+                <!-- <el-button v-show="isSelect1(item)" type="text" class="btnSelect" v-for="(item,index) in KeyCountData2" :key="item" @click="addBtn1(item)">{{item}}
                 </el-button>
                 <el-button v-show="!isSelect1(item)" type="text" class="btn" v-for="(item,index) in KeyCountData2" :key="item" @click="addBtn1(item)">{{item}}
+                </el-button> -->
+                <el-button :class="{'btnSelect':selectKeyCount2 == item}" type="text" class="btn" v-for="(item,index) in KeyCountData2" :key="item" @click="addBtn1(item)">{{item}}
                 </el-button>
 
             </div>
@@ -22,8 +24,9 @@
             <div class="planItemCell" v-for="item in listData.Norms" :key="item.toString()">
                 <label class="lab" style="font-size:14px; margin-top:10px;margin-left:20px; font-weight:900;">{{item.Group}}</label>
                 <div>
-                    <el-button v-show="isSelect(item1)" type="text" class="btnSelect" v-for="item1 in item.NormList" :key="item1.toString()" @click="addBtn(item1)">{{item1}}</el-button>
-                    <el-button v-show="!isSelect(item1)" type="text" class="btn" v-for="item1 in item.NormList" :key="item1.toString()" @click="addBtn(item1)">{{item1}}</el-button>
+                    <!-- <el-button v-show="isSelect(item1)" type="text" class="btnSelect" v-for="item1 in item.NormList" :key="item1.toString()" @click="addBtn(item1)">{{item1}}</el-button>
+                    <el-button v-show="!isSelect(item1)" type="text" class="btn" v-for="item1 in item.NormList" :key="item1.toString()" @click="addBtn(item1)">{{item1}}</el-button> -->
+                    <el-button :class="{'btnSelect':selectKeyNumberName4 == item1}" type="text" class="btn" v-for="item1 in item.NormList" :key="item1.toString()" @click="addBtn(item1)">{{item1}}</el-button>
                 </div>
             </div>
 

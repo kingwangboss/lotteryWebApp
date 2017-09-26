@@ -5,8 +5,9 @@
         <div class="maincontainer">
             <div class="cell" v-for="item in dataList" :key="item.toString()">
                 <div class="cell-btnview">
-                    <el-button v-show="isSelect(item1)" class="btnSelect" :class="{'btnSelect':ind === item1.SID}" type="text" v-for="item1 in item.CPNames" :key="item1.toString()" @click="btnClick($event,item1.SID)">{{item1.CPName}}</el-button>
-                    <el-button v-show="!isSelect(item1)" class="btn" :class="{'btnSelect':ind === item1.SID}" type="text" v-for="item1 in item.CPNames" :key="item1.toString()" @click="btnClick($event,item1.SID)">{{item1.CPName}}</el-button>
+                    <!-- <el-button v-show="isSelect(item1)" class="btnSelect" :class="{'btnSelect':ind === item1.SID}" type="text" v-for="item1 in item.CPNames" :key="item1.toString()" @click="btnClick($event,item1.SID)">{{item1.CPName}}</el-button>
+                    <el-button v-show="!isSelect(item1)" class="btn" :class="{'btnSelect':ind === item1.SID}" type="text" v-for="item1 in item.CPNames" :key="item1.toString()" @click="btnClick($event,item1.SID)">{{item1.CPName}}</el-button> -->
+                    <el-button class="btn" :class="{'btnSelect':ind == item1.SID}" type="text" v-for="item1 in item.CPNames" :key="item1.toString()" @click="btnClick($event,item1.SID)">{{item1.CPName}}</el-button>
                 </div>
                 <div class="line">
                 </div>
@@ -101,11 +102,9 @@ export default {
         btnClick(btn, sid) {
             console.log(this.$route.params)
             console.log(btn);
-            localStorage.sid = sid ? sid : localStorage.sid;
-            localStorage.czname = btn.target.innerText
+            localStorage.sid1 = sid ? sid : localStorage.sid;
+            localStorage.czname1 = btn.target.innerText
             this.ind = sid;
-
-
         },
         isSelect(item1) {
             if(item1.SID == localStorage.sid){

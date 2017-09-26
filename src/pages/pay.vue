@@ -90,13 +90,14 @@
 .bottom-btn {
     margin-top: 100%;
     margin-bottom: 20px;
-    width: 50%;
+    width: 60%;
     height: 40px;
     border-radius: 20px;
     line-height: 35px;
     background-color: rgb(229, 87, 77);
     border-color: rgba(0, 0, 0, 0);
     color: #fff;
+    outline: none;
 }
 </style>
 

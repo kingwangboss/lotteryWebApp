@@ -149,7 +149,7 @@ export default {
                 console.log(localStorage.allKeyNumName2)
                 var selectNum = [];
                 for (var j = 0; j < localStorage.selectKeyNumberName2.split(',').length; j++) {
-                    for (var i = 0; i < localStorage.selectKeyNumberName2.split(',').length; i++) {
+                    for (var i = 0; i < localStorage.allKeyNumName2.split(',').length; i++) {
                         if (localStorage.selectKeyNumberName2.split(',')[j] == localStorage.allKeyNumName2.split(',')[i]) {
                             selectNum.push(i)
                         } else {
@@ -174,6 +174,8 @@ export default {
         },
 
         changeOkClick() {
+            localStorage.sid = localStorage.sid1;
+            localStorage.czname = localStorage.czname1;
             if (localStorage.isLogin) {
                 let signStr = localStorage.sid + localStorage.Username + '4YCW1.0' + localStorage.pwd;
                 let data = new FormData();

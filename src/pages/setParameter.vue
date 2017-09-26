@@ -67,10 +67,13 @@
             <img style="height:4px;width:100%;" src="../../static/images/Search-07.png" mode="scaleToFill"></img>
 
             <div class="bottom">
-                <el-button v-show="isSelect(item)" @click="addBtn(item)" type="text" v-for="item in dataDuringValue" :key="item" class="bottom-btn-select">
+                <!-- <el-button v-show="isSelect(item)" @click="addBtn(item)" type="text" v-for="item in dataDuringValue" :key="item" class="bottom-btn-select">
                     {{item}}
                 </el-button>
                 <el-button v-show="!isSelect(item)" @click="addBtn(item)" type="text" v-for="item in dataDuringValue" :key="item" class="bottom-btn">
+                    {{item}}
+                </el-button> -->
+                <el-button :class="{'bottom-btn-select':selectNameArr.indexOf(item) >  -1}" @click="addBtn(item)" type="text" v-for="item in dataDuringValue" :key="item" class="bottom-btn">
                     {{item}}
                 </el-button>
             </div>
@@ -132,6 +135,8 @@
     background: #F4F4F4;
     width: 14%; // height: 25px;
     font-size: 10px;
+    outline: none;
+    
 }
 
 
@@ -272,12 +277,13 @@ export default {
         },
         addBtn(item){
             // console.log(item);
-            // console.log(this.selectNameArr.indexOf(item));
+            console.log(this.selectNameArr.indexOf(item));
             if(this.selectNameArr.indexOf(item)>=0){
                 this.selectNameArr = this.remove(this.selectNameArr,item);
             }else{
                 this.selectNameArr.push(item)
             }
+            console.log(this.selectNameArr.indexOf(item));
         },
 
         ok() {
