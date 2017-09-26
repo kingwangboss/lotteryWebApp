@@ -67,10 +67,12 @@ export default {
     }else{
       this.item0();
     }
+    
   },
   created() {
     console.log("created");
     console.log(localStorage.Norm1)
+
   },
   methods: {
     item0() {

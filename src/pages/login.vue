@@ -168,7 +168,8 @@ export default {
                 pwd: localStorage.user_pwd == null ? "" : localStorage.user_pwd,
                 sid: '',
             },
-            disabled: true,
+            // disabled: true,
+            disabled: localStorage.user_name == null ? true : false,
             czname:localStorage.czname ? localStorage.czname : '北京PK拾'
         };
     },
