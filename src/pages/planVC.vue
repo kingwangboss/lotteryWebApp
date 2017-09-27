@@ -162,6 +162,7 @@ export default {
                         showQH: true
                     };
                     localStorage.tab = 'plan'
+                    this.$router.push('/routerPush')
                     break;
                 case 'shujufenxi':
                     this.title = {
@@ -171,10 +172,12 @@ export default {
                         setting: true
                     };
                     localStorage.tab = 'shujufenxi'
+                    this.$router.push('/routerPush')
                     break;
                 case 'lishi':
                     this.title = this.titleList[2];
                     localStorage.tab = 'lishi'
+                    this.$router.push('/routerPush')
                     break;
                 case 'wo':
                     this.title = this.titleList[3];
