@@ -118,6 +118,7 @@ export default {
     background-repeat: no-repeat;
     background-size: 100% 100%;
     color: #fff;
+    margin-top: 5px;
 }
 
 .top-right {

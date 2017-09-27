@@ -53,7 +53,7 @@ export default {
   mounted() {
     console.log("mounted");
     console.log(document.documentElement.clientHeight)
-
+    
     if (localStorage.activeName2 == 'first') {
       this.item0();
     }else if(localStorage.activeName2 == 'second'){
@@ -69,6 +69,7 @@ export default {
     }
     
   },
+  
   created() {
     console.log("created");
     console.log(localStorage.Norm1)

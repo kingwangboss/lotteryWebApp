@@ -217,7 +217,7 @@ export default {
         }
         .xian {
             background-color: #eb8e89;
-            width: 45%;
+            width: 50%;
             height: 1px;
         }
     }

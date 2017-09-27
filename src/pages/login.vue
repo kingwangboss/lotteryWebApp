@@ -8,8 +8,19 @@
 
                 <form @submit.prevent="submit">
                     <div>
-                        <input class="input" v-model="user.name" type="text" maxlength="20" placeholder="请输入手机号/昵称" @input="inputFuction">
-                        <input class="input" v-model="user.pwd" type="password" maxlength="20" placeholder="请输入密码" @input="inputFuction">
+                        <!-- <input class="input" v-model="user.name" type="text" maxlength="20" placeholder="请输入手机号/昵称" @input="inputFuction">
+                            <input class="input" v-model="user.pwd" type="password" maxlength="20" placeholder="请输入密码" @input="inputFuction"> -->
+
+                        <div class="div-bor">
+                            <i class="icon-user"></i>
+                            <input type="text" class="user" v-model="user.name" maxlength="20" placeholder="请输入手机号/昵称" @input="inputFuction">
+                        </div>
+
+                        <div class="div-bor">
+                            <i class="icon-user1"></i>
+                            <input type="password" class="user" v-model="user.pwd" maxlength="20" placeholder="请输入密码" @input="inputFuction">
+                        </div>
+
                         <div class="xuCZ" @click="XZcaizhongClick">
                             <img class="leftImg" src="../../static/images/login/Login-09.png" alt="">
                             <span>{{czname}}</span>
@@ -65,7 +76,61 @@
             width: 120px;
             height: 80px;
             margin-top: 10%;
+            margin-bottom: 10%;
         }
+        .div-bor {
+            position: relative;
+            width: 270px;
+            margin-bottom: 10%;
+        }
+        .icon-user {
+            position: absolute;
+            left: 10px;
+            top:10px;
+            z-index:5;
+            background-image: url('../../static/images/login/Login-03.png');
+            background-size: 90% 90%;
+            /*引入图片图片*/
+            background-repeat: no-repeat;
+            /*设置图片不重复*/
+            background-position: 0px 0px;
+            /*图片显示的位置*/
+            width: 25px;
+            /*设置图片显示的宽*/
+            height: 28px;
+            /*图片显示的高*/
+        }
+        .icon-user1 {
+            position: absolute;
+            left: 10px;
+            top:10px;
+            z-index:5;
+            background-image: url('../../static/images/login/Login-02.png');
+            background-size: 90% 90%;
+            /*引入图片图片*/
+            background-repeat: no-repeat;
+            /*设置图片不重复*/
+            background-position: 0px 0px;
+            /*图片显示的位置*/
+            width: 28px;
+            /*设置图片显示的宽*/
+            height: 28px;
+            /*图片显示的高*/
+        }
+        .user{
+            outline: none;
+            background-color: transparent;
+            background-image: url('../../static/images/login/a2.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            height: 44px;
+            line-height: 44px;
+            width: 88%;
+            padding-left: 40px;
+            font-size: 12px;
+            color: white;
+        }
+
         .input {
             outline: none;
             margin-top: 10%;
@@ -99,11 +164,11 @@
                 padding-right: 12px;
             }
             span {
-                color: RGB(229, 164, 153);
+                color: white;
                 font-size: 12px;
             }
             div {
-                width: 55%;
+                width: 63%;
                 height: 100%;
                 .rightImg {
                     padding-top: 12px;
@@ -170,7 +235,7 @@ export default {
             },
             // disabled: true,
             disabled: localStorage.user_name == null ? true : false,
-            czname:localStorage.czname ? localStorage.czname : '北京PK拾'
+            czname: localStorage.czname ? localStorage.czname : '北京PK拾'
         };
     },
     components: {
@@ -180,9 +245,9 @@ export default {
         document.body.className = 'main-body';
     },
     methods: {
-        XZcaizhongClick(){
+        XZcaizhongClick() {
             this.$router.push({
-                path:"/XZcaizhong",
+                path: "/XZcaizhong",
             })
         },
         btnclick() {
@@ -200,9 +265,9 @@ export default {
         },
         submit: function(event) {
 
-            if(this.user.sid){
-                
-            }else{
+            if (this.user.sid) {
+
+            } else {
                 this.user.sid = "2"
                 localStorage.czname = '北京PK10'
             }
@@ -218,7 +283,7 @@ export default {
             data.append('AppCode', 'YCW');
             data.append('AppVersion', '1.0');
             data.append('Sign', sha256.sha256(signStr).toUpperCase());
-            
+
             localStorage.pwd = sha256.sha256(this.user.pwd).toUpperCase();
             this.$http.post('https://ycwidx.cpnet.com', data).then(res => {
                 // console.log(res);
@@ -241,7 +306,7 @@ export default {
                     localStorage.Token = res.data.Data.Token;
                     localStorage.PayType = res.data.Data.PayType;
                     localStorage.QQUrl = res.data.Data.QQUrl;
-                    localStorage.tokenCode = sha256.sha256(res.data.Data.Token+localStorage.pwd).toUpperCase()
+                    localStorage.tokenCode = sha256.sha256(res.data.Data.Token + localStorage.pwd).toUpperCase()
                     localStorage.OfficialUrl = res.data.Data.OfficialUrl;
 
                     localStorage.user_name = this.user.name;
@@ -269,7 +334,7 @@ export default {
     },
 
     created() {
-         this.user.sid = localStorage.sid;
+        this.user.sid = localStorage.sid;
 
         // let u = navigator.userAgent;
         // alert(u)
