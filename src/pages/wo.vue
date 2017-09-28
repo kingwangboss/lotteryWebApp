@@ -150,8 +150,9 @@ export default {
   methods: {
     loginOut() {
       // localStorage.clear();
-      localStorage.removeItem('isLogin');
-      localStorage.removeItem('sid');
+      localStorage.isLogin = false;
+      // localStorage.removeItem('isLogin');
+      // localStorage.removeItem('sid');
       localStorage.removeItem('uid');
       localStorage.removeItem('AuthTypeName');
       localStorage.removeItem('SiteUrl');

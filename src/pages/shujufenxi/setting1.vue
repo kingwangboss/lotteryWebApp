@@ -13,7 +13,7 @@
                     <el-button v-show="!isSelect(item)" type="text" class="btn" v-for="item in KeyNumbers" :key="item.toString()" @click="addBtn(item)">{{item}}</el-button> -->
                     <el-button :class="{'btnSelect':selectKeyNumberName1.indexOf(item) > -1}" type="text" class="btn" v-for="item in KeyNumbers" :key="item.toString()" @click="addBtn(item)">{{item}}
                         <img src="../../../static/images/you_image.png" v-if="selectKeyNumberName1.indexOf(item) > -1" class="you_image_select" alt="">
-                        <img src="" v-else class="you_image" alt="">
+                        <!-- <img src="" v-else class="you_image" alt=""> -->
                     </el-button>
                 </div>
             </div>
@@ -54,6 +54,7 @@
         border: 1px solid rgb(222, 222, 222);
     }
     .btnSelect {
+        outline: none;
         height: 30px;
         line-height: 30px;
         align-content: center;

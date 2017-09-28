@@ -13,7 +13,7 @@
                         </el-button> -->
                 <el-button :class="{'btnSelect':selectKeyCount2 == item}" type="text" class="btn" v-for="(item,index) in KeyCountData2" :key="item" @click="addBtn1(item)">{{item}}
                     <img src="../../../static/images/you_image.png" v-if="selectKeyCount2 == item" class="you_image_select" alt="">
-                    <img src="" v-else class="you_image" alt="">
+                    <!-- <img src="" v-else class="you_image" alt=""> -->
                 </el-button>
 
             </div>
@@ -30,7 +30,7 @@
                             <el-button v-show="!isSelect(item1)" type="text" class="btn" v-for="item1 in item.NormList" :key="item1.toString()" @click="addBtn(item1)">{{item1}}</el-button> -->
                     <el-button :class="{'btnSelect':selectKeyNumberName4 == item1}" type="text" class="btn" v-for="item1 in item.NormList" :key="item1.toString()" @click="addBtn(item1,item.Group)">{{item1}}
                         <img src="../../../static/images/you_image.png" v-if="selectKeyNumberName4.indexOf(item1) > -1 && groupName == item.Group" class="you_image_select" alt="">
-                        <img src="" v-else class="you_image" alt="">
+                        <!-- <img src="" v-else class="you_image" alt=""> -->
                     </el-button>
                 </div>
             </div>
@@ -166,7 +166,7 @@ export default {
             KeyCountData2: [],
             selectKeyNumberName4: localStorage.selectKeyNumberName4.split(','),
             selectKeyCount2: localStorage.selectDataCount2,
-            groupName:'',
+            groupName:localStorage.groupName,
         }
     },
     components: {

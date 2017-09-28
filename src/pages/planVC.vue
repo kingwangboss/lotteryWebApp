@@ -23,7 +23,7 @@
             <mt-tab-item id="plan">
                 <img slot="icon" :src="tabList['plan'].src"> 计划追号
             </mt-tab-item>
-            <mt-tab-item id="shujufenxi">
+            <mt-tab-item id="shujufenxi" v-show="sid != '9'">
                 <img slot="icon" :src="tabList['shujufenxi'].src"> 数据分析
             </mt-tab-item>
             <mt-tab-item id="lishi">
@@ -106,6 +106,7 @@ export default {
                 showQH: true
             },
             tabList: tabList,
+            sid:localStorage.sid,
         };
     },
     created() {

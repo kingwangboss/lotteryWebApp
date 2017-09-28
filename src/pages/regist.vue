@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @touchmove.prevent>
     <m-header :title="title"></m-header>
     <div class="btnview">
       <el-button :class="{ 'btnDefault' : isA, 'btnEnable': !isA}" type="primary" @click="btnClick">手机注册</el-button>
@@ -15,7 +15,7 @@
 <style lang="less" scoped>
 .btnview {
   width: 100%;
-  height: 10%;
+  height: 44px;
   display: flex;
   flex-direction: row;
   .btnDefault {

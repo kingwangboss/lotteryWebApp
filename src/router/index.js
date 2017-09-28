@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import PlanVC from '@/pages/planVC' 
+import PlanVC from '@/pages/planVC'
 import loginVC from '@/pages/login'
 import registVC from '@/pages/regist'
 import lossPwdVC from '@/pages/lossPwd'
-import PlanDetail from '@/pages/planDetail' 
+import PlanDetail from '@/pages/planDetail'
 import XZcaizhong from '@/pages/XZcaizhong'
 import changePlan from '@/pages/changePlan'
 import setParameter from '@/pages/setParameter'
@@ -49,7 +49,14 @@ export default new Router({
     {
       path: '/planVC',
       name: 'PlanVC',
-      component: PlanVC
+      component: PlanVC,
+      beforeEnter(to, form, next) {
+        if (to.path === '/login') {
+          next({ name: 'loginVC' })
+        }
+
+        next()
+      }
     },
     {
       path: '/XZcaizhong',

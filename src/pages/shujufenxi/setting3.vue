@@ -16,7 +16,7 @@
                     <el-button v-show="!isSelect(item1)" type="text" class="btn" v-for="item1 in item.NormList" :key="item1.toString()" @click="addBtn(item1)">{{item1}}</el-button> -->
                     <el-button :class="{'btnSelect':selectKeyNumberName3 == item1}" type="text" class="btn" v-for="item1 in item.NormList" :key="item1.toString()" @click="addBtn(item1)">{{item1}}
                         <img src="../../../static/images/you_image.png" v-if="selectKeyNumberName3 == item1" class="you_image_select" alt="">
-                        <img src="" v-else class="you_image" alt="">
+                        <!-- <img src="" v-else class="you_image" alt=""> -->
                     </el-button>
                 </div>
             </div>

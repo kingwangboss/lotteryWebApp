@@ -6,60 +6,60 @@
             <div class="top">
                 <div class="cell">
                     <span class="txt">定码个数：</span>
-                    <div type="text" @click="jian1" class="btn">-</div>
+                    <div type="text" @click="jian1" class="btn"></div>
                     <el-input v-model="input1" class="input" type="number" size="mini" @change="change1"> </el-input>
-                    <div type="text" @click="jia1" class="btn">+</div>
+                    <div type="text" @click="jia1" class="btn1"></div>
                 </div>
 
                 <div class="cell">
                     <span class="txt">计划周期：</span>
-                    <div type="text" @click="jian2" class="btn">-</div>
+                    <div type="text" @click="jian2" class="btn"></div>
                     <el-input v-model="input2" class="input" type="number" size="mini" @change="change2"></el-input>
-                    <div type="text" @click="jia2" class="btn">+</div>
+                    <div type="text" @click="jia2" class="btn1"></div>
                 </div>
 
                 <div class="cell">
                     <span class="txt">准确率：</span>
-                    <div type="text" @click="jian31" class="btn">-</div>
+                    <div type="text" @click="jian31" class="btn"></div>
                     <el-input v-model="input31" class="input" type="text" size="mini" @change="change31" @focus="focus31" @blur="blur31"></el-input>
-                    <div type="text" @click="jia31" class="btn">+</div>
+                    <div type="text" @click="jia31" class="btn1"></div>
                     <span class="txt">至</span>
-                    <div type="text" @click="jian32" class="btn">-</div>
+                    <div type="text" @click="jian32" class="btn"></div>
                     <el-input v-model="input32" class="input" type="text" size="mini" @change="change32" @focus="focus32" @blur="blur32"></el-input>
-                    <div type="text" @click="jia32" class="btn">+</div>
+                    <div type="text" @click="jia32" class="btn1"></div>
                 </div>
 
                 <div class="cell">
                     <span class="txt">最大连对</span>
-                    <div type="text" @click="jian41" class="btn">-</div>
+                    <div type="text" @click="jian41" class="btn"></div>
                     <el-input v-model="input41" class="input" type="number" size="mini" @change="change41"></el-input>
-                    <div type="text" @click="jia41" class="btn">+</div>
+                    <div type="text" @click="jia41" class="btn1"></div>
                     <span class="txt">至</span>
-                    <div type="text" @click="jian42" class="btn">-</div>
+                    <div type="text" @click="jian42" class="btn"></div>
                     <el-input v-model="input42" class="input" type="number" size="mini" @change="change42"></el-input>
-                    <div type="text" @click="jia42" class="btn">+</div>
+                    <div type="text" @click="jia42" class="btn1"></div>
                 </div>
 
                 <div class="cell">
                     <span class="txt">最大连错：</span>
-                    <div type="text" @click="jian51" class="btn">-</div>
+                    <div type="text" @click="jian51" class="btn"></div>
                     <el-input v-model="input51" class="input" type="number" size="mini" @change="change51"></el-input>
-                    <div type="text" @click="jia51" class="btn">+</div>
+                    <div type="text" @click="jia51" class="btn1"></div>
                     <span class="txt">至</span>
-                    <div type="text" @click="jian52" class="btn">-</div>
+                    <div type="text" @click="jian52" class="btn"></div>
                     <el-input v-model="input52" class="input" type="number" size="mini" @change="change52"></el-input>
-                    <div type="text" @click="jia52" class="btn">+</div>
+                    <div type="text" @click="jia52" class="btn1"></div>
                 </div>
 
                 <div class="cell">
                     <span class="txt">当前连对/错：</span>
-                    <div type="text" @click="jian61" class="btn">-</div>
+                    <div type="text" @click="jian61" class="btn"></div>
                     <el-input v-model="input61" class="input" type="number" size="mini" @change="change61"></el-input>
-                    <div type="text" @click="jia61" class="btn">+</div>
+                    <div type="text" @click="jia61" class="btn1"></div>
                     <span class="txt">至</span>
-                    <div type="text" @click="jian62" class="btn">-</div>
+                    <div type="text" @click="jian62" class="btn"></div>
                     <el-input v-model="input62" class="input" type="number" size="mini" @change="change62"></el-input>
-                    <div type="text" @click="jia62" class="btn">+</div>
+                    <div type="text" @click="jia62" class="btn1"></div>
                 </div>
             </div>
 
@@ -68,12 +68,12 @@
 
             <div class="bottom">
                 <!-- <el-button v-show="isSelect(item)" @click="addBtn(item)" type="text" v-for="item in dataDuringValue" :key="item" class="bottom-btn-select">
-                    {{item}}
-                </el-button>
-                <el-button v-show="!isSelect(item)" @click="addBtn(item)" type="text" v-for="item in dataDuringValue" :key="item" class="bottom-btn">
-                    {{item}}
-                </el-button> -->
-                <el-button :class="{'bottom-btn-select':selectNameArr.indexOf(item) >  -1}" @click="addBtn(item)" type="text" v-for="item in dataDuringValue" :key="item" class="bottom-btn">
+                                {{item}}
+                            </el-button>
+                            <el-button v-show="!isSelect(item)" @click="addBtn(item)" type="text" v-for="item in dataDuringValue" :key="item" class="bottom-btn">
+                                {{item}}
+                            </el-button> -->
+                <el-button :class="{'bottom-btn-select':selectNameArr.indexOf(item) >  -1}" :style="{width:ojwidth+'px',height:ojwidth+'px',}" @click="addBtn(item)" type="text" v-for="item in dataDuringValue" :key="item" class="bottom-btn">
                     {{item}}
                 </el-button>
             </div>
@@ -118,17 +118,35 @@
 }
 
 .btn {
-    width: 25px;
-    height: 25px;
-    font-size: 25px;
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
     line-height: 25px;
-    margin: 15px 0px;
+    margin: 17px 0px;
     border-radius: 13px;
     padding: 0px;
     color: black;
     border: 1px solid #f3f4f5;
     background-color: #f3f4f5;
     text-align: center;
+    background-image: url('../../static/images/OJSetParameter/Search-03.png');
+    background-size: 100% 100%;
+}
+
+.btn1 {
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    line-height: 25px;
+    margin: 17px 0px;
+    border-radius: 13px;
+    padding: 0px;
+    color: black;
+    border: 1px solid #f3f4f5;
+    background-color: #f3f4f5;
+    text-align: center;
+    background-image: url('../../static/images/OJSetParameter/Search-05.png');
+    background-size: 100% 100%;
 }
 
 .input {
@@ -137,42 +155,46 @@
     width: 14%; // height: 25px;
     font-size: 10px;
     outline: none;
-    
 }
 
 
 .bottom {
     display: flex;
-    flex-direction: row;
-    // margin-left: 10px;
+    flex-direction: row; // margin-left: 10px;
     flex-wrap: wrap;
+    margin-bottom: 40px;
+    .bottom-btn {
+        // width: 20px;
+        // height: 20px;
+        font-size: 13px;
+        line-height: 25px; // margin: 10px 5px;
+        margin-left: 4px;
+        margin-right: 4px;
+        margin-top: 4px;
+        border-radius: 13px;
+        padding: 0px;
+        color: black;
+        background-size: 100% 100%;
+        background-image: url('../../static/images/OJSetParameter/Search-08.png');
+    }
+
+    .bottom-btn-select {
+        // width: 20px;
+        // height: 20px;
+        font-size: 13px;
+        line-height: 25px; // margin: 10px 5px;
+        margin-left: 4px;
+        margin-right: 4px;
+        margin-top: 4px;
+        border-radius: 13px;
+        padding: 0px;
+        color: white;
+        background-size: 100% 100%;
+        background-image: url('../../static/images/OJSetParameter/Search-08-9.png');
+    }
 }
 
-.bottom-btn {
-    width: 30px;
-    height: 30px;
-    font-size: 13px;
-    line-height: 25px;
-    margin: 10px 5px;
-    border-radius: 13px;
-    padding: 0px;
-    color: black;
-    background-size: 100% 100%;
-    background-image: url('../../static/images/OJSetParameter/Search-08.png');
-    
-}
-.bottom-btn-select{
-    width: 30px;
-    height: 30px;
-    font-size: 13px;
-    line-height: 25px;
-    margin: 10px 5px;
-    border-radius: 13px;
-    padding: 0px;
-    color:white;
-    background-size: 100% 100%;
-    background-image: url('../../static/images/OJSetParameter/Search-08-9.png');
-}
+
 
 .bottom-btnView1 {
     width: 100%;
@@ -214,13 +236,54 @@ export default {
             dataDuringIndex: [],
             planName: '',
             selectNameArr: [],
+            screenWidth: document.body.clientWidth   // 这里是给到了一个默认值 （这个很重要）
         };
     },
     created() {
         this.planName = localStorage.selectNameArr.split(',')[localStorage.detailID];
     },
     mounted() {
+        const that = this
+        window.onresize = () => {
+            return (() => {
+                window.screenWidth = document.body.clientWidth
+                that.screenWidth = window.screenWidth
+            })()
+        }
         this.getData();
+    },
+    watch: {
+        screenWidth(val) {
+            if (!this.timer) {
+                this.screenWidth = val
+                this.timer = true
+                let that = this
+                setTimeout(function() {
+
+                    that.timer = false
+                }, 400)
+            }
+        }
+    },
+
+    computed: {
+        ojwidth: {
+            // getter
+            get: function() {
+                var ojwidth;
+                var margin;
+                var colnum = 10;//列
+                colnum = this.dataDuringValue.length > colnum ? colnum : this.dataDuringValue.length;
+                var rownum = this.dataDuringValue.length / colnum;//行
+                margin = 4;
+                ojwidth = (this.screenWidth - (2 * (margin) * colnum)) / colnum;//格子的宽
+                return ojwidth;
+            },
+            // setter
+            set: function(newValue) {
+
+            }
+        }
     },
     components: {
         mHeader,
@@ -259,10 +322,10 @@ export default {
                 console.log(error);
             })
         },
-        isSelect(item){
-            if(this.selectNameArr.indexOf(item)>=0){
+        isSelect(item) {
+            if (this.selectNameArr.indexOf(item) >= 0) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
 
@@ -276,12 +339,12 @@ export default {
             }
             return result;
         },
-        addBtn(item){
+        addBtn(item) {
             // console.log(item);
             console.log(this.selectNameArr.indexOf(item));
-            if(this.selectNameArr.indexOf(item)>=0){
-                this.selectNameArr = this.remove(this.selectNameArr,item);
-            }else{
+            if (this.selectNameArr.indexOf(item) >= 0) {
+                this.selectNameArr = this.remove(this.selectNameArr, item);
+            } else {
                 this.selectNameArr.push(item)
             }
             console.log(this.selectNameArr.indexOf(item));
@@ -301,9 +364,9 @@ export default {
             console.log(this.selectNameArr);
 
             let tokenCode = localStorage.tokenCode;
-            let signStr = 'Action=OptimizePlan' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + '&PlanName=' + this.planName + '&PlanCycle=' + this.input2 + '&DMSMCount='+
-            this.input1 + '&Accuracy=' + parseFloat(this.input31) + ':' + parseFloat(this.input32) + '&CurrentLianDui=' + parseInt(this.input61) + ':' + parseInt(this.input62) + '&MaxLianDui=' + 
-            parseInt(this.input41) + ':' + parseInt(this.input42) + '&MaxLianCuo=' + parseInt(this.input51) + ':' + parseInt(this.input52) + '&DataDuring=' + this.selectNameArr.toString() + tokenCode;
+            let signStr = 'Action=OptimizePlan' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + '&PlanName=' + this.planName + '&PlanCycle=' + this.input2 + '&DMSMCount=' +
+                this.input1 + '&Accuracy=' + parseFloat(this.input31) + ':' + parseFloat(this.input32) + '&CurrentLianDui=' + parseInt(this.input61) + ':' + parseInt(this.input62) + '&MaxLianDui=' +
+                parseInt(this.input41) + ':' + parseInt(this.input42) + '&MaxLianCuo=' + parseInt(this.input51) + ':' + parseInt(this.input52) + '&DataDuring=' + this.selectNameArr.toString() + tokenCode;
             let data = new FormData();
             data.append('Action', 'OptimizePlan');
             data.append('SID', localStorage.sid);
@@ -334,9 +397,9 @@ export default {
             this.input1 = this.input1 - 1 < 1 ? 1 : this.input1 - 1;
         },
         jia1() {
-            if(this.dataDuringValue.length>0){
+            if (this.dataDuringValue.length > 0) {
                 this.input1 = this.input1 + 1 > this.dataDuringValue.length - 1 ? this.dataDuringValue.length - 1 : this.input1 + 1;
-            }else{
+            } else {
                 this.input1 = this.input1 + 1 > 9 ? 9 : this.input1 + 1;
             }
         },

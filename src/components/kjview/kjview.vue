@@ -120,7 +120,11 @@ export default {
                             // self.$router.push({
                             //     path: '/routerPush'
                             // });
-                            self.getData1();
+                            if(localStorage.isLogin == 'true') {
+                                self.getData1();
+                            }else {
+                                clearInterval(tiemInterval)
+                            }
                         }, 5000);
                     }
                     // console.log(self.nextTime);

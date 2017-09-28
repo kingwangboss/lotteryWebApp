@@ -1,5 +1,5 @@
 <template>
-  <div class="maincontainer">
+  <div class="maincontainer" @touchmove.prevent>
     <div class="content">
       <form @submit.prevent="submit">
         <div>
@@ -37,8 +37,8 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
   width: 100%;
-  height: 90%;
-  position: absolute;
+  height: 100%;
+  position: fixed;
   #bundle>.juzhong;
   .content {
     width: 70%;

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @touchmove.prevent>
     <m-header :title="title"></m-header>
 
     <div class="maincontainer">
@@ -49,11 +49,13 @@
   width: 100%;
   height: 100%;
   position: absolute;
+  top:0px;
   .content {
     #bundle>.juzhong;
     margin-top: 20%;
     flex-direction: column;
     .top {
+      margin-top: 20%;
       display: flex;
       flex-direction: row;
       .input1 {

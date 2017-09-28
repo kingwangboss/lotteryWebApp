@@ -12,6 +12,7 @@ axios.interceptors.request.use(
     // element ui Loading方法
     loadinginstace = Loading.service({ fullscreen: true })
     return config
+
   }, error => {
     loadinginstace.close()
     Message.error({
@@ -43,10 +44,10 @@ axios.interceptors.response.use(
     console.log('拦截器 MsgType:' + response.data.MsgType)
     console.log('拦截器 Msg:' + response.data.Msg)
     console.log(response);
-    if(localStorage.tab == 'lishi'){
+    if (localStorage.tab == 'lishi') {
 
-    }else{
-      
+    } else {
+
     }
     if (response.data.MsgType === 1 && response.data.Msg != null) {
       MessageBox({
@@ -55,9 +56,9 @@ axios.interceptors.response.use(
         showCancelButton: false,
       })
     } else if (response.data.MsgType === 2 && response.data.Msg != null) {
-      if(localStorage.tab == 'shujufenxi'){
+      if (localStorage.tab == 'shujufenxi') {
 
-      }else {
+      } else {
         MessageBox({
           title: '提示',
           message: response.data.Msg,
@@ -70,11 +71,11 @@ axios.interceptors.response.use(
                 path: '/buy'
               })
             } else {
-  
+
             }
           },
         }).then(action => {
-  
+
         })
       }
     } else if (response.data.MsgType === 3 && response.data.Msg != null) {

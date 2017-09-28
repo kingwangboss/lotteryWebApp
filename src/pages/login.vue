@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div @touchmove.prevent>
         <m-header :title="title"></m-header>
 
         <div class="maincontainer">
@@ -69,13 +69,14 @@
     width: 100%;
     height: 100%;
     position: absolute;
+    top: 0px;
     .content {
         #bundle>.juzhong;
         flex-direction: column;
         .topImg {
             width: 120px;
-            height: 80px;
-            margin-top: 10%;
+            height: 10%;
+            margin-top: 30%;
             margin-bottom: 10%;
         }
         .div-bor {
@@ -89,7 +90,7 @@
             top:12px;
             z-index:5;
             background-image: url('../../static/images/login/Login-03.png');
-            background-size: 80% 80%;
+            background-size: 70% 70%;
             /*引入图片图片*/
             background-repeat: no-repeat;
             /*设置图片不重复*/
@@ -106,7 +107,7 @@
             top:12px;
             z-index:5;
             background-image: url('../../static/images/login/Login-02.png');
-            background-size: 80% 80%;
+            background-size: 70% 70%;
             /*引入图片图片*/
             background-repeat: no-repeat;
             /*设置图片不重复*/
@@ -166,9 +167,11 @@
             span {
                 color: white;
                 font-size: 16px;
+                width: 75%;
+                text-align: left;
             }
             div {
-                width: 60%;
+                // width: 40%;
                 height: 100%;
                 .rightImg {
                     padding-top: 12px;
