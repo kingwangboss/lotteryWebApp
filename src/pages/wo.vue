@@ -12,7 +12,6 @@
       <div class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth+'px'}">
         <img src="../../static/images/me/User-05.png" @click="buyClick"></img>
         <span>购买授权</span>
-        <div class="rightLine"></div>
       </div>
       <div class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth+'px'}" @click="kefuClick">
         <img src="../../static/images/me/User-07.png"></img>

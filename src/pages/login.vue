@@ -85,11 +85,11 @@
         }
         .icon-user {
             position: absolute;
-            left: 10px;
-            top:10px;
+            left: 12px;
+            top:12px;
             z-index:5;
             background-image: url('../../static/images/login/Login-03.png');
-            background-size: 90% 90%;
+            background-size: 80% 80%;
             /*引入图片图片*/
             background-repeat: no-repeat;
             /*设置图片不重复*/
@@ -102,11 +102,11 @@
         }
         .icon-user1 {
             position: absolute;
-            left: 10px;
-            top:10px;
+            left: 12px;
+            top:12px;
             z-index:5;
             background-image: url('../../static/images/login/Login-02.png');
-            background-size: 90% 90%;
+            background-size: 80% 80%;
             /*引入图片图片*/
             background-repeat: no-repeat;
             /*设置图片不重复*/
@@ -165,10 +165,10 @@
             }
             span {
                 color: white;
-                font-size: 12px;
+                font-size: 16px;
             }
             div {
-                width: 63%;
+                width: 60%;
                 height: 100%;
                 .rightImg {
                     padding-top: 12px;
