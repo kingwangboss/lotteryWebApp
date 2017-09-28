@@ -48,10 +48,10 @@
   position: absolute;
   .content {
     #bundle>.juzhong;
-    margin-top: 20%;
+    margin-top: 15%;
     flex-direction: column;
     .input {
-      margin-top: 10%;
+      // margin-top: 10%;
       background-color: transparent;
       background-image: url('../../../static/images/login/a2.png');
       background-repeat: no-repeat;

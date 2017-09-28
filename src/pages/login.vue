@@ -127,24 +127,24 @@
             line-height: 44px;
             width: 88%;
             padding-left: 40px;
-            font-size: 12px;
+            font-size: 16px;
             color: white;
         }
 
-        .input {
-            outline: none;
-            margin-top: 10%;
-            background-color: transparent;
-            background-image: url('../../static/images/login/a2.png');
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
-            height: 44px;
-            line-height: 44px;
-            width: 100%;
-            padding-left: 10px;
-            font-size: 12px;
-            color: white;
-        }
+        // .input {
+        //     outline: none;
+        //     margin-top: 10%;
+        //     background-color: transparent;
+        //     background-image: url('../../static/images/login/a2.png');
+        //     background-repeat: no-repeat;
+        //     background-size: 100% 100%;
+        //     height: 44px;
+        //     line-height: 44px;
+        //     width: 100%;
+        //     padding-left: 10px;
+        //     font-size: 12px;
+        //     color: white;
+        // }
         .xuCZ {
             margin-top: 10%;
             background-color: transparent;

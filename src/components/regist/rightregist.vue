@@ -42,7 +42,7 @@
   #bundle>.juzhong;
   .content {
     width: 70%;
-    margin-top: 20%;
+    margin-top: 10%;
     flex-direction: column;
     .input {
       margin-top: 10%;

@@ -82,16 +82,16 @@
     margin-bottom: 5px;
     display: flex;
     flex-direction: row;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .psview {
     color: #8e7b7b;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .psvalue {
-    font-size: 10px;
+    font-size: 12px;
     padding-left: 3px;
     color: #f00;
 }
@@ -119,8 +119,8 @@
 }
 
 .cell-item2 {
-    border-right: 5px solid #fff;
-    border-left: 5px solid #fff;
+    border-right: 3px solid #fff;
+    border-left: 3px solid #fff;
     width: 25px;
     font-size: 15px;
     text-align: center;
@@ -131,7 +131,7 @@
 }
 
 .cell-item3 {
-    border-right: 5px solid #fff;
+    border-right: 3px solid #fff;
     width: 50%;
     font-size: 15px;
     text-align: center;

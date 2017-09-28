@@ -85,7 +85,7 @@
 .bottom-cell {
   width: 124px;
   height: 124px;
-  border: 1px solid gray; 
+  // border: 1px solid gray; 
   // border-style: none solid solid none;
   flex-direction: column;
   display: -webkit-flex;

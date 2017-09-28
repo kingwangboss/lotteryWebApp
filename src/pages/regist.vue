@@ -24,13 +24,14 @@
     border-radius: 0;
     width: 50%;
     height: 100%;
-    // background-color: RGB(251, 230, 231);
-    background-image: url(../../static/images/login/Register-03.png);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-color: RGB(241, 155, 133);
+    // background-image: url(../../static/images/login/Register-03.png);
+    // background-repeat: no-repeat;
+    // background-size: 100% 100%;
     border: 0;
     color: #B54123;
     font-size: 15px;
+    padding: 15px 0px;
   }
   .btnEnable {
     margin-left: 0;
@@ -38,13 +39,14 @@
     border-radius: 0;
     width: 50%;
     height: 100%;
-    // background-color: RGB(251, 230, 231);
-    background-image: url(../../static/images/login/Register-02.png);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-color: RGB(209, 62, 40);
+    // background-image: url(../../static/images/login/Register-02.png);
+    // background-repeat: no-repeat;
+    // background-size: 100% 100%;
     border: 0;
     color: white;
     font-size: 15px;
+    padding: 15px 0px;
   }
 }
 </style>

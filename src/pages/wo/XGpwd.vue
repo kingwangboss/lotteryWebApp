@@ -23,6 +23,12 @@
 </template>
 
 <style lang="less" scoped>
+::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: rgb(199, 199, 205);
+    font-size: 14px;
+}
+
 .top {
     display: flex;
     flex-direction: column;
@@ -34,13 +40,14 @@
         flex-direction: row;
         span {
             font-size: 14px;
-            font-weight: 900;
+            font-weight: 320;
             color: black;
             width: 20%;
-            margin: 3% 3%;
+            margin: 3% 1%;
             text-align: right;
         }
         input {
+
             width: 70%;
         }
     }
@@ -93,12 +100,12 @@ export default {
             console.log(this.pwd.oldpwd);
             console.log(this.pwd.newpwd);
             console.log(this.pwd.newpwd1);
-            if (this.pwd.oldpwd.length ==0 || this.pwd.newpwd == 0 || this.pwd.newpwd1 == 0){
+            if (this.pwd.oldpwd.length == 0 || this.pwd.newpwd == 0 || this.pwd.newpwd1 == 0) {
                 MessageBox({
-                        title: '提示',
-                        message: '输入未完全',
-                        showCancelButton: false,
-                    })
+                    title: '提示',
+                    message: '输入未完全',
+                    showCancelButton: false,
+                })
             } else {
                 if (this.pwd.newpwd === this.pwd.newpwd1) {
                     let tokenCode = localStorage.tokenCode;

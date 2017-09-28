@@ -114,11 +114,12 @@ export default {
 .top-left {
     background-image: url('../../../static/images/history/Records-02.png');
     font-size: 12.5px;
-    padding: 2.5px 15px 2.5px 5px;
+    padding: 3px 15px 3px 5px;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     color: #fff;
-    margin-top: 5px;
+
+    // margin-top: 5px;
 }
 
 .top-right {

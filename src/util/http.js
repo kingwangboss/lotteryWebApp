@@ -43,6 +43,11 @@ axios.interceptors.response.use(
     console.log('拦截器 MsgType:' + response.data.MsgType)
     console.log('拦截器 Msg:' + response.data.Msg)
     console.log(response);
+    if(localStorage.tab == 'lishi'){
+
+    }else{
+      
+    }
     if (response.data.MsgType === 1 && response.data.Msg != null) {
       MessageBox({
         title: '提示',
@@ -50,24 +55,28 @@ axios.interceptors.response.use(
         showCancelButton: false,
       })
     } else if (response.data.MsgType === 2 && response.data.Msg != null) {
-      MessageBox({
-        title: '提示',
-        message: response.data.Msg,
-        showCancelButton: true,
-        confirmButtonText: '去购买',
-        cancelButtonText: '知道了',
-        callback: (action, instance, done) => {
-          if (action === 'confirm') {
-            router.push({
-              path: '/buy'
-            })
-          } else {
+      if(localStorage.tab == 'shujufenxi'){
 
-          }
-        },
-      }).then(action => {
-
-      })
+      }else {
+        MessageBox({
+          title: '提示',
+          message: response.data.Msg,
+          showCancelButton: true,
+          confirmButtonText: '去购买',
+          cancelButtonText: '知道了',
+          callback: (action, instance, done) => {
+            if (action === 'confirm') {
+              router.push({
+                path: '/buy'
+              })
+            } else {
+  
+            }
+          },
+        }).then(action => {
+  
+        })
+      }
     } else if (response.data.MsgType === 3 && response.data.Msg != null) {
       MessageBox({
         title: '提示',
@@ -134,7 +143,7 @@ axios.interceptors.response.use(
       return response
     } else if (response.data.Code === 'PushedOffLine') {
       router.push({
-        path: "/"
+        path: "/login"
       })
     }
   }, error => {

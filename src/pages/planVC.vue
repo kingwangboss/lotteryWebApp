@@ -82,9 +82,9 @@ const tabList = {
         activeSrc: require('../../static/images/rizhi1.png')
     },
     lishi: {
-        src: require('../../static/images/lishikaijiang.png'),
-        defaultSrc: require('../../static/images/lishikaijiang.png'),
-        activeSrc: require('../../static/images/lishikaijiang1.png')
+        src: require('../../static/images/lishi.png'),
+        defaultSrc: require('../../static/images/lishi.png'),
+        activeSrc: require('../../static/images/lishi1.png')
     },
     wo: {
         src: require('../../static/images/wo.png'),
@@ -162,7 +162,7 @@ export default {
                         showQH: true
                     };
                     localStorage.tab = 'plan'
-                    this.$router.push('/routerPush')
+                    // this.$router.push('/routerPush')
                     break;
                 case 'shujufenxi':
                     this.title = {
@@ -177,7 +177,7 @@ export default {
                 case 'lishi':
                     this.title = this.titleList[2];
                     localStorage.tab = 'lishi'
-                    this.$router.push('/routerPush')
+                    // this.$router.push('/routerPush')
                     break;
                 case 'wo':
                     this.title = this.titleList[3];
@@ -206,6 +206,6 @@ export default {
 
 
 .mint-tabbar>.mint-tab-item.is-selected {
-    color: #ff0000;
+    color: rgb(229, 87, 77);
 }
 </style>

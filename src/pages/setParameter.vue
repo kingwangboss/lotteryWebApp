@@ -6,60 +6,60 @@
             <div class="top">
                 <div class="cell">
                     <span class="txt">定码个数：</span>
-                    <el-button type="text" @click="jian1" class="btn">-</el-button>
+                    <div type="text" @click="jian1" class="btn">-</div>
                     <el-input v-model="input1" class="input" type="number" size="mini" @change="change1"> </el-input>
-                    <el-button type="text" @click="jia1" class="btn">+</el-button>
+                    <div type="text" @click="jia1" class="btn">+</div>
                 </div>
 
                 <div class="cell">
                     <span class="txt">计划周期：</span>
-                    <el-button type="text" @click="jian2" class="btn">-</el-button>
+                    <div type="text" @click="jian2" class="btn">-</div>
                     <el-input v-model="input2" class="input" type="number" size="mini" @change="change2"></el-input>
-                    <el-button type="text" @click="jia2" class="btn">+</el-button>
+                    <div type="text" @click="jia2" class="btn">+</div>
                 </div>
 
                 <div class="cell">
                     <span class="txt">准确率：</span>
-                    <el-button type="text" @click="jian31" class="btn">-</el-button>
+                    <div type="text" @click="jian31" class="btn">-</div>
                     <el-input v-model="input31" class="input" type="text" size="mini" @change="change31" @focus="focus31" @blur="blur31"></el-input>
-                    <el-button type="text" @click="jia31" class="btn">+</el-button>
+                    <div type="text" @click="jia31" class="btn">+</div>
                     <span class="txt">至</span>
-                    <el-button type="text" @click="jian32" class="btn">-</el-button>
+                    <div type="text" @click="jian32" class="btn">-</div>
                     <el-input v-model="input32" class="input" type="text" size="mini" @change="change32" @focus="focus32" @blur="blur32"></el-input>
-                    <el-button type="text" @click="jia32" class="btn">+</el-button>
+                    <div type="text" @click="jia32" class="btn">+</div>
                 </div>
 
                 <div class="cell">
                     <span class="txt">最大连对</span>
-                    <el-button type="text" @click="jian41" class="btn">-</el-button>
+                    <div type="text" @click="jian41" class="btn">-</div>
                     <el-input v-model="input41" class="input" type="number" size="mini" @change="change41"></el-input>
-                    <el-button type="text" @click="jia41" class="btn">+</el-button>
+                    <div type="text" @click="jia41" class="btn">+</div>
                     <span class="txt">至</span>
-                    <el-button type="text" @click="jian42" class="btn">-</el-button>
+                    <div type="text" @click="jian42" class="btn">-</div>
                     <el-input v-model="input42" class="input" type="number" size="mini" @change="change42"></el-input>
-                    <el-button type="text" @click="jia42" class="btn">+</el-button>
+                    <div type="text" @click="jia42" class="btn">+</div>
                 </div>
 
                 <div class="cell">
                     <span class="txt">最大连错：</span>
-                    <el-button type="text" @click="jian51" class="btn">-</el-button>
+                    <div type="text" @click="jian51" class="btn">-</div>
                     <el-input v-model="input51" class="input" type="number" size="mini" @change="change51"></el-input>
-                    <el-button type="text" @click="jia51" class="btn">+</el-button>
+                    <div type="text" @click="jia51" class="btn">+</div>
                     <span class="txt">至</span>
-                    <el-button type="text" @click="jian52" class="btn">-</el-button>
+                    <div type="text" @click="jian52" class="btn">-</div>
                     <el-input v-model="input52" class="input" type="number" size="mini" @change="change52"></el-input>
-                    <el-button type="text" @click="jia52" class="btn">+</el-button>
+                    <div type="text" @click="jia52" class="btn">+</div>
                 </div>
 
                 <div class="cell">
                     <span class="txt">当前连对/错：</span>
-                    <el-button type="text" @click="jian61" class="btn">-</el-button>
+                    <div type="text" @click="jian61" class="btn">-</div>
                     <el-input v-model="input61" class="input" type="number" size="mini" @change="change61"></el-input>
-                    <el-button type="text" @click="jia61" class="btn">+</el-button>
+                    <div type="text" @click="jia61" class="btn">+</div>
                     <span class="txt">至</span>
-                    <el-button type="text" @click="jian62" class="btn">-</el-button>
+                    <div type="text" @click="jian62" class="btn">-</div>
                     <el-input v-model="input62" class="input" type="number" size="mini" @change="change62"></el-input>
-                    <el-button type="text" @click="jia62" class="btn">+</el-button>
+                    <div type="text" @click="jia62" class="btn">+</div>
                 </div>
             </div>
 
@@ -120,7 +120,7 @@
 .btn {
     width: 25px;
     height: 25px;
-    font-size: 20px;
+    font-size: 25px;
     line-height: 25px;
     margin: 15px 0px;
     border-radius: 13px;
@@ -128,6 +128,7 @@
     color: black;
     border: 1px solid #f3f4f5;
     background-color: #f3f4f5;
+    text-align: center;
 }
 
 .input {
@@ -143,7 +144,7 @@
 .bottom {
     display: flex;
     flex-direction: row;
-    margin-left: 10px;
+    // margin-left: 10px;
     flex-wrap: wrap;
 }
 
