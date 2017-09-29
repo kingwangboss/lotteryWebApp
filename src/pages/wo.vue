@@ -163,6 +163,7 @@ export default {
       localStorage.removeItem('QQUrl');
       localStorage.removeItem('tokenCode');
       localStorage.removeItem('OfficialUrl');
+      localStorage.removeItem('tab');
       
       this.$router.push({
         path: '/',

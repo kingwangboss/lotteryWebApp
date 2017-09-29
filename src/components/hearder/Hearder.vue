@@ -43,11 +43,9 @@
         height: 44px;
         background-color: rgb(230, 103, 70);
         line-height: 44px;
-        text-align: center;
-        // background-image: url('../../../static/images/topbg.png');
+        text-align: center; // background-image: url('../../../static/images/topbg.png');
         // background-repeat: no-repeat;
         // background-size: 100% 100%;
-
         .title-wrapper {
             font-size: 15px;
             color: #FCFCFC;
@@ -176,7 +174,7 @@ export default {
         changeOkClick() {
             localStorage.sid = localStorage.sid1;
             localStorage.czname = localStorage.czname1;
-            if (localStorage.isLogin) {
+            if (localStorage.isLogin == 'true') {
                 let signStr = localStorage.sid + localStorage.Username + '4YCW1.0' + localStorage.pwd;
                 let data = new FormData();
                 data.append('Action', 'Login');
@@ -198,6 +196,15 @@ export default {
                         localStorage.Token = res.data.Data.Token;
                         localStorage.PayType = res.data.Data.PayType;
                         localStorage.tokenCode = sha256.sha256(res.data.Data.Token + localStorage.pwd).toUpperCase()
+
+                        localStorage.removeItem('keyNum1');
+                        localStorage.removeItem('keyNum2');
+                        localStorage.removeItem('Norm1');
+                        localStorage.removeItem('Norm2');
+                        localStorage.removeItem('selectDataCount1');
+                        localStorage.removeItem('selectDataCount2');
+                        localStorage.removeItem('shujufenxi');
+
                         this.$router.push({
                             path: "/planVC"
                         })

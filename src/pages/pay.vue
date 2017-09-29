@@ -126,10 +126,11 @@ export default {
     methods: {
         payClick() {
             console.log(this.pid);
-            if (this.isValue) {
+            console.log(this.isSelect);
+            if (this.isSelect == 1) {
                 console.log('微信');
                 this.url = 'http://wz.cpnet.com/wechat/purchase/#/wxservicePrice/' + this.pid + '?uid=' + localStorage.uid;
-            } else {
+            } else if(this.isSelect == 2) {
                 console.log('zhifubao');
                 this.url = 'http://wz.cpnet.com/wechat/purchase/#/servicePrice/' + this.pid + '?uid=' + localStorage.uid;
             }

@@ -8,7 +8,7 @@
           <div>
             <div class="top">
               <input type="number" class="input1" v-model="user.num" maxlength="11" placeholder="请输入正确的手机号码" @input="inputFuction">
-              <el-button class="btn" type="primary">获取验证码</el-button>
+              <el-button class="btn" type="primary" @click="ResetPwdSMS">获取验证码</el-button>
             </div>
             <div class="bottom">
               <input class="input" v-model="user.verify" type="text" maxlength="20" placeholder="请输入验证码" @input="inputFuction">
@@ -49,7 +49,7 @@
   width: 100%;
   height: 100%;
   position: absolute;
-  top:0px;
+  top: 0px;
   .content {
     #bundle>.juzhong;
     margin-top: 20%;
@@ -59,6 +59,7 @@
       display: flex;
       flex-direction: row;
       .input1 {
+        outline: none;
         background-color: transparent;
         background-image: url('../../static/images/login/a4.png');
         background-repeat: no-repeat;
@@ -87,6 +88,7 @@
       display: flex;
       flex-direction: column;
       .input {
+        outline: none;
         margin-top: 10%;
         background-color: transparent;
         background-image: url('../../static/images/login/a2.png');
@@ -152,17 +154,74 @@ export default {
         this.disabled = true;
       }
     },
+    ResetPwdSMS() {
+
+      let data = new FormData();
+      data.append('Action', 'GetVCode');
+      data.append('SID', this.user.sid);
+
+      this.$http.post('https://ycwidx.cpnet.com', data).then(res => {
+
+        if (res) {
+          console.log(res.data.Data);
+
+          localStorage.vcode = res.data.Data;
+          let data = new FormData();
+          data.append('Action', 'ResetPwdSMS');
+          data.append('SID', localStorage.sid);
+          data.append('Mobile', this.user.num);
+          data.append('AppType', '4');
+          data.append('VCode', res.data.Data);
+
+          this.$http.post('https://ycwidx.cpnet.com', data).then(res1 => {
+
+            if (res1) {
+              console.log(res1);
+            }
+
+          }).catch(error1 => {
+            console.log(error1);
+          })
+
+        }
+
+      }).catch(error => {
+        console.log(error);
+      })
+
+
+    },
 
     submit: function(event) {
 
-      var formData = JSON.stringify(this.user); // 这里才是你的表单数据
-      console.log(formData);
-
-      // this.$http.post('/path/to', formData).then((response) => {
-      //     // success callback
-      // }, (response) => {
-      //     // error callback
-      // });
+      // var formData = JSON.stringify(this.user); // 这里才是你的表单数据
+      // console.log(formData);
+      if (this.user.newpwd1 == this.user.newpwd2) {
+        // 请求数据
+        let data = new FormData();
+        data.append('Action', 'ResetPwd');
+        data.append('SID', localStorage.sid);
+        data.append('Mobile', this.user.num);
+        data.append('SMSCode', this.user.verify);
+        data.append('Pwd', this.user.newpwd1);
+        data.append('AppType', '4');
+        this.$http.post('https://ycwidx.cpnet.com', data).then(res => {
+          console.log(res);
+          if(res.data.Code == 'Suc'){
+            this.$router.push({
+              path:'/login'
+            })
+          }
+        }).catch(error => {
+          console.log(error);
+        })
+      } else {
+        MessageBox({
+          title: '提示',
+          message: '两次输入密码不同，请重新输入',
+          showCancelButton: false,
+        })
+      }
 
     }
   },
