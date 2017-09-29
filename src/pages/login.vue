@@ -76,8 +76,8 @@
         .topImg {
             width: 120px;
             height: 10%;
-            margin-top: 30%;
-            margin-bottom: 10%;
+            margin-top: 100px;
+            margin-bottom: 50px;
         }
         .div-bor {
             position: relative;
