@@ -9,6 +9,7 @@
                     <span class="cell-span">计划网址:</span>
                     <div class="cell-label" @click.stop="urlClick">{{(listData.ShareUrl == null || listData.ShareUrl == '' || listData.ShareUrl == 'null') ? '无' : listData.ShareUrl}}</div>
                     <img class="cell-img" src="../../static/images/share/Share-06.png" alt="" @click="copy">
+                    <textarea id="jihuawangzhi" rows="10" cols="10" style="height:0;width:0;opacity: 0;"></textarea>
                 </div>
                 <div class="line">
                 </div>
@@ -160,7 +161,7 @@ export default {
             dialogVisible: false,
             radio: '1',
             input: '',
-            AuthType : localStorage.AuthType,
+            AuthType: localStorage.AuthType,
         };
     },
     components: {
@@ -183,10 +184,17 @@ export default {
             })
         },
         copy() {
-            console.log(window.clipboardData)
-            // var clipBoardContent = this.listData.ShareUrl;
-            // window.clipboardData.setData("Text", clipBoardContent);
-            // alert("复制成功!");
+
+            var e = document.getElementById("jihuawangzhi");//获取textarea的id  
+            // e.value = document.getElementById("oDiv").innerText;//把标签的文本内容赋值给textarea  
+            e.value = this.listData.ShareUrl;
+            e.select(); //选择textarea的文本内容  
+            document.execCommand("Copy"); //执行浏览器复制命令 
+            MessageBox({
+                title: '提示',
+                message: '复制成功',
+                showCancelButton: false,
+            })
 
         },
         getData() {
@@ -242,24 +250,24 @@ export default {
                 })
             })
         },
-        qhTupian(){
+        qhTupian() {
 
-            if(this.radio == '1'){
+            if (this.radio == '1') {
                 this.radio = '2';
-            }else if(this.radio == '2'){
+            } else if (this.radio == '2') {
                 this.radio = '1';
             }
         },
-        urlClick(){
+        urlClick() {
             window.location.href = this.listData.ShareUrl;
         },
         changeContact() {
             this.dialogVisible = false;
             let contactType = '';
             let contact = '';
-            if(this.radio == '1'){
+            if (this.radio == '1') {
                 contactType = "QQ";
-            }else if(this.radio == '2'){
+            } else if (this.radio == '2') {
                 contactType = "微信";
             }
             contact = this.input;
@@ -290,8 +298,8 @@ export default {
                 .catch(_ => { });
         }
     },
-    created(){
-        if(localStorage.contactType){
+    created() {
+        if (localStorage.contactType) {
             this.radio = localStorage.contactType;
         }
     },

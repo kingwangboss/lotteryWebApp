@@ -204,6 +204,7 @@ export default {
                         localStorage.removeItem('selectDataCount1');
                         localStorage.removeItem('selectDataCount2');
                         localStorage.removeItem('shujufenxi');
+                        localStorage.removeItem('activeName2');
 
                         this.$router.push({
                             path: "/planVC"

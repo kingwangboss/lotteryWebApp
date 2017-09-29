@@ -164,6 +164,8 @@ export default {
       localStorage.removeItem('tokenCode');
       localStorage.removeItem('OfficialUrl');
       localStorage.removeItem('tab');
+      localStorage.removeItem('shujufenxi');
+      localStorage.removeItem('activeName2');
       
       this.$router.push({
         path: '/',

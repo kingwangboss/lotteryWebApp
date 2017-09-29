@@ -119,7 +119,7 @@ export default {
                     data.append('Sign', sha256.sha256(signStr).toUpperCase());
 
                     this.$http.post(localStorage.SiteUrl, data).then(res => {
-
+                        localStorage.user_pwd = this.pwd.newpwd1;
                         this.$router.go(-1);
 
                     }).catch(error => {
