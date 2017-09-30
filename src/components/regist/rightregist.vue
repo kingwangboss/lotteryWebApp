@@ -97,7 +97,7 @@ export default {
       disabled: true,
     };
   },
-  
+
   methods: {
     inputFuction() {
       if (this.user.name.length > 0 && this.user.newpwd1.length > 0 && this.user.newpwd2.length > 0) {
@@ -133,6 +133,8 @@ export default {
           that.$http.post('https://ycwidx.cpnet.com', data1).then(res => {
             console.log(res)
             if (res) {
+              localStorage.isLogin = true;
+
               localStorage.uid = res.data.Data.UID;
               localStorage.AuthTypeName = res.data.Data.AuthTypeName;
               localStorage.SiteUrl = res.data.Data.SiteUrl;
@@ -141,8 +143,11 @@ export default {
               localStorage.Token = res.data.Data.Token;
               localStorage.PayType = res.data.Data.PayType;
               localStorage.tokenCode = sha256.sha256(res.data.Data.Token + that.user.newpwd2).toUpperCase()
+
+              localStorage.user_name = this.user.name;
+              localStorage.user_pwd = this.user.newpwd1;
               that.$router.push({
-                path: "/planVC"
+                path: "/"
               })
             }
           }).catch(error => {

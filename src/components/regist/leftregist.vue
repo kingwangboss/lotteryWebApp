@@ -201,6 +201,8 @@ export default {
       this.$http.post('https://ycwidx.cpnet.com', data).then(res => {
 
         if (res) {
+          localStorage.isLogin = true;
+
           localStorage.uid = res.data.Data.UID;
           localStorage.AuthTypeName = res.data.Data.AuthTypeName;
           localStorage.SiteUrl = res.data.Data.SiteUrl;
@@ -209,8 +211,11 @@ export default {
           localStorage.Token = res.data.Data.Token;
           localStorage.PayType = res.data.Data.PayType;
           localStorage.tokenCode = sha256.sha256(res.data.Data.Token + that.user.newpwd2).toUpperCase()
+
+          localStorage.user_name = this.mobile.num;
+          localStorage.user_pwd = this.mobile.newpwd1;
           this.$router.push({
-            path: "/planVC"
+            path: "/"
           })
         }
       }).catch(error => {
