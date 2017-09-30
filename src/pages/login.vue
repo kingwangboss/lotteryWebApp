@@ -83,6 +83,11 @@
             position: relative;
             width: 270px;
             margin-bottom: 10%;
+            background-image: url('../../static/images/login/a2.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+             height: 44px;
+            line-height: 44px;
         }
         .icon-user {
             position: absolute;
@@ -121,11 +126,7 @@
         .user{
             outline: none;
             background-color: transparent;
-            background-image: url('../../static/images/login/a2.png');
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
-            height: 44px;
-            line-height: 44px;
+            margin-top: 3px;
             width: 88%;
             padding-left: 40px;
             font-size: 16px;

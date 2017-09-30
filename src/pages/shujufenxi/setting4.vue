@@ -132,7 +132,7 @@
 
 
 .you_image_select {
-    width: 20px;
+    // width: 20px;
     height: 20px;
     position: relative;
     right: 0px;
@@ -140,7 +140,7 @@
 }
 
 .you_image {
-    width: 20px;
+    // width: 20px;
     height: 20px;
     position: relative;
     right: 0px;

@@ -204,9 +204,9 @@ export default {
         align-items: center;
         padding-top: 15px;
         .qishu1 {
-            width: 120px;
+            width: 135px;
             font-size: 12px;
-            padding: 5px 10px 5px 5px;
+            padding: 6px 10px 6px 5px;
             background-repeat: no-repeat;
             background-size: 100% 100%;
             color: #fff;
@@ -215,13 +215,16 @@ export default {
         .qishu2 {
             // margin-left: 30px;
             font-size: 12px;
-            width: 70px;
+            width: 60px;
             align-content: right;
             color: #fff;
+
         }
         .xian {
-            background-color: #eb8e89;
-            width: 50%;
+            margin-left: -2px;
+            margin-top: -1px;
+            background-color: rgb(250, 143, 104);
+            width: 58%;
             height: 1px;
         }
     }
@@ -244,11 +247,13 @@ export default {
             height: 20px;
         }
         .img {
-            width: 15px;
-            height: 15px;
+            width: 10px;
+            height: 10px;
+            margin-top: 3px;
+            margin-right: 5px;
             padding-top: 2.5px;
             background: url(../../../static/images/shouyeicon.png);
-            -moz-background-size: 100% 100%;
+            -moz-background-size: 70% 70%;
             background-repeat: no-repeat;
             background-size: 100% 100%;
         }
@@ -256,7 +261,7 @@ export default {
             margin: 0px 2.5px;
             background-color: #fffde4;
             border-radius: 2.5px;
-            line-height: 20px;
+            line-height: 22px;
             height: 20px;
             width: 14px;
             text-align: center;

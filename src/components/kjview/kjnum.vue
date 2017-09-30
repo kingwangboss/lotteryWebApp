@@ -12,30 +12,30 @@
     margin-top: 20px;
     flex-wrap: wrap;
     .kjnum {
-        border: 1px solid #f5bc8d;
+        border: 1px solid #DFC9BD;
         // background-image: url('../../../static/images/Plan-05.png');
         // background-size: 100% 100%;
+        font-size: 18px;
         background: rgb(219, 60, 62);
-        line-height: 36px;
+        line-height: 32px;
         // border-radius: 5px;
         width: 29px;
-        height: 36px;
         text-align: center;
-        margin: 3px;
+        margin: 4px;
         color: #fffde4;
         // background-color: #db3c3e;
     }
     .kjnum1 {
-        border: 1px solid #f5bc8d;
+        border: 1px solid #DFC9BD;
         // background-image: url('../../../static/images/Plan-51.png');
         // background-size: 100% 100%;
         background: rgb(63, 123, 244);
-        line-height: 36px;
+        font-size: 18px;
+        line-height: 32px;
         // border-radius: 5px;
         width: 29px;
-        height: 36px;
         text-align: center;
-        margin: 3px;
+        margin: 4px;
         color: #fffde4;
         // background-color:rgb(63, 123, 244);
     }
@@ -55,7 +55,7 @@ export default {
         return {
             numArr: "",
             // width: 100,
-            height: 35,
+            height: 30,
             screenWidth: document.body.clientWidth   // 这里是给到了一个默认值 （这个很重要）
         }
     },
@@ -107,7 +107,7 @@ export default {
                 var colnum = 10;//列
                 colnum = this.numArr.length > colnum ? colnum : this.numArr.length;
                 var rownum = this.numArr.length / colnum;//行
-                margin = this.numArr.length > 5 ? 4 : 5;//间距
+                margin = this.numArr.length >= 10 ? 4.5 : 5;//间距
                 ojwidth = (this.screenWidth - (2 * (margin +1) * colnum)) / colnum;//格子的宽
                 return ojwidth;
             },

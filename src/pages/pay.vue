@@ -60,17 +60,18 @@
         widows: 30px;
     }
     .title {
-        margin: 10px 10px;
+        margin: 10px 0px;
         height: 40px;
         width: 80%;
         display: flex;
         flex-direction: column;
         .title-span1 {
+            text-align: left;
             font-size: 16px;
-            font-weight: 900;
             color: black;
         }
         .title-span2 {
+            text-align: left;
             margin-top: 10px;
             font-size: 11px;
             color: #B7B7B7;
@@ -89,7 +90,7 @@
 
 .bottom-btn {
     margin-top: 100%;
-    margin-bottom: 20px;
+    margin-top: 100px;
     width: 60%;
     height: 40px;
     border-radius: 20px;

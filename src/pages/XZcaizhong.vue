@@ -33,8 +33,8 @@
 
 .cell-btnview {
     margin-top: 10px;
-    margin-bottom: 10px;
-    height: 50px;
+    margin-bottom: 20px;
+    // height: 50px;
     .btn {
         height: 30px;
         align-content: center;
@@ -69,14 +69,14 @@
         border: 1px solid #f82b56;
     }
     .you_image_select {
-        width: 20px;
+        // width: 20px;
         height: 20px;
         position: relative;
         right: 0px;
         bottom: -8px;
     }
     .you_image{
-        width: 20px;
+        // width: 20px;
         height: 20px;
         position: relative;
         right: 0px;
