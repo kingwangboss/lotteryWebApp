@@ -273,7 +273,7 @@ export default {
                 var ojwidth;
                 var margin;
                 var colnum = 10;//列
-                colnum = this.dataDuringValue.length > colnum ? colnum : this.dataDuringValue.length;
+                // colnum = this.dataDuringValue.length > colnum ? colnum : this.dataDuringValue.length;
                 var rownum = this.dataDuringValue.length / colnum;//行
                 margin = 4;
                 ojwidth = (this.screenWidth - (2 * (margin) * colnum)) / colnum;//格子的宽

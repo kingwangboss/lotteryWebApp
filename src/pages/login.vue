@@ -162,7 +162,7 @@
                 width: 20px;
                 height: 20px;
                 padding-top: 12px;
-                padding-right: 12px;
+                padding-right: 7px;
             }
             span {
                 color: white;
