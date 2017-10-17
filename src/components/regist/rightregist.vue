@@ -4,9 +4,15 @@
       <form @submit.prevent="submit">
         <div>
           <input class="input" v-model="user.name" type="text" maxlength="20" placeholder="请输入用户名" @input="inputFuction">
+          <input class="input" v-model="user.num" type="number" maxlength="11" placeholder="安全手机" @input="inputFuction">
           <input class="input" v-model="user.newpwd1" type="password" maxlength="18" placeholder="请输入密码" @input="inputFuction">
           <input class="input" v-model="user.newpwd2" type="password" maxlength="18" placeholder="请确认密码" @input="inputFuction">
+          <div style="display:flex; align-items: middle;">
+            <input style="width:50%,margin-top:0px;" class="input" v-model="user.yanzhengma" type="text" maxlength="4" placeholder="验证码" @input="inputFuction">
+            <img style="margin-top:20px;margin-left:10px;" :src="user.imgurl" alt="">
+          </div>
         </div>
+
         <el-button v-if="disabled" :disabled="disabled" class="btnEnable" type="primary" native-type="submit">注册</el-button>
         <el-button v-else :disabled="disabled" class="btnDefault" type="primary" native-type="submit">注册</el-button>
       </form>
@@ -90,17 +96,35 @@ export default {
     return {
       user: {
         name: '',
+        num: '',
         newpwd1: '',
         newpwd2: '',
         vcode: '',
+        imgurl: '',
+        yanzhengma: '',
       },
       disabled: true,
     };
   },
+  mounted() {
+    this.getData();
+  },
 
   methods: {
+    getData() {
+      let data = new FormData();
+      data.append('Action', 'GetImgVCode');
+      this.$http.post("https://ycwidx.cpnet.com", data).then(res => {
+        console.log(res);
+        this.user.vcode = res.data.Data.token;
+        this.user.imgurl = "https://ycwidx.cpnet.com" + res.data.Data.imgpath;
+      }).catch(error => {
+        console.log(error);
+      });
+    },
+
     inputFuction() {
-      if (this.user.name.length > 0 && this.user.newpwd1.length > 0 && this.user.newpwd2.length > 0) {
+      if (this.user.name.length > 0 && this.user.newpwd1.length > 0 && this.user.newpwd2.length > 0 && this.user.num.length > 0 && this.user.yanzhengma.length > 0) {
         this.disabled = false;
       } else {
         this.disabled = true;
@@ -114,46 +138,39 @@ export default {
         console.log(formData);
 
         var that = this;
-        let data = new FormData();
-        data.append('Action', 'GetVCode');
-        data.append('SID', localStorage.sid);
-        this.$http.post("https://ycwidx.cpnet.com", data).then(res => {
-          console.log(res);
-          this.user.vcode = res.data.Data;
+        let data1 = new FormData();
+        data1.append('Action', 'UserNameReg2');
+        data1.append('AppVersion', '1.0');
+        data1.append('SID', localStorage.sid);
+        data1.append('UserName', that.user.name);
+        data1.append('Pwd', that.user.newpwd2);
+        data1.append('ImgCode', that.user.vcode + that.user.yanzhengma)
+        data1.append('SafeMobile', that.user.num)
+        data1.append('AppType', "4");
+        data1.append('AppCode', 'YCW')
+        that.$http.post('https://ycwidx.cpnet.com', data1).then(res => {
+          console.log(res)
+          if (res) {
+            localStorage.isLogin = true;
 
-          let data1 = new FormData();
-          data1.append('Action', 'UserNameReg');
-          data1.append('AppVersion', '1.0');
-          data1.append('SID', localStorage.sid);
-          data1.append('UserName', that.user.name);
-          data1.append('Pwd', that.user.newpwd2);
-          data1.append('VCode', that.user.vcode)
-          data1.append('AppType', "4");
-          data1.append('AppCode', 'YCW')
-          that.$http.post('https://ycwidx.cpnet.com', data1).then(res => {
-            console.log(res)
-            if (res) {
-              localStorage.isLogin = true;
+            localStorage.uid = res.data.Data.UID;
+            localStorage.AuthTypeName = res.data.Data.AuthTypeName;
+            localStorage.SiteUrl = res.data.Data.SiteUrl;
+            localStorage.AuthType = res.data.Data.AuthType;
+            localStorage.Username = res.data.Data.NickName;
+            localStorage.Token = res.data.Data.Token;
+            localStorage.PayType = res.data.Data.PayType;
+            localStorage.tokenCode = sha256.sha256(res.data.Data.Token + that.user.newpwd2).toUpperCase()
 
-              localStorage.uid = res.data.Data.UID;
-              localStorage.AuthTypeName = res.data.Data.AuthTypeName;
-              localStorage.SiteUrl = res.data.Data.SiteUrl;
-              localStorage.AuthType = res.data.Data.AuthType;
-              localStorage.Username = res.data.Data.NickName;
-              localStorage.Token = res.data.Data.Token;
-              localStorage.PayType = res.data.Data.PayType;
-              localStorage.tokenCode = sha256.sha256(res.data.Data.Token + that.user.newpwd2).toUpperCase()
-
-              localStorage.user_name = this.user.name;
-              localStorage.user_pwd = this.user.newpwd1;
-              that.$router.push({
-                path: "/"
-              })
-            }
-          }).catch(error => {
-            console.log(error);
-          });
-        })
+            localStorage.user_name = this.user.name;
+            localStorage.user_pwd = this.user.newpwd1;
+            that.$router.push({
+              path: "/"
+            })
+          }
+        }).catch(error => {
+          console.log(error);
+        });
       } else {
         MessageBox({
           title: '提示',

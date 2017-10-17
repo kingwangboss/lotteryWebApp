@@ -4,6 +4,7 @@ import PlanVC from '@/pages/planVC'
 import loginVC from '@/pages/login'
 import registVC from '@/pages/regist'
 import lossPwdVC from '@/pages/lossPwd'
+import lossPwdVC1 from '@/pages/lossPwd1'
 import PlanDetail from '@/pages/planDetail'
 import XZcaizhong from '@/pages/XZcaizhong'
 import changePlan from '@/pages/changePlan'
@@ -46,6 +47,11 @@ export default new Router({
       path: '/lossPwd',
       name: 'lossPwdVC',
       component: lossPwdVC
+    },
+    {
+      path: '/lossPwd1',
+      name: 'lossPwdVC1',
+      component: lossPwdVC1
     },
     {
       path: '/planVC',
