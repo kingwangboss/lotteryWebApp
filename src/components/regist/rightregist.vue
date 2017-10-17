@@ -138,7 +138,7 @@ export default {
         console.log(formData);
 
         var that = this;
-<<<<<<< HEAD
+
         let data1 = new FormData();
         data1.append('Action', 'UserNameReg2');
         data1.append('AppVersion', '1.0');
@@ -162,37 +162,6 @@ export default {
             localStorage.Token = res.data.Data.Token;
             localStorage.PayType = res.data.Data.PayType;
             localStorage.tokenCode = sha256.sha256(res.data.Data.Token + that.user.newpwd2).toUpperCase()
-=======
-        let data = new FormData();
-        data.append('Action', 'GetVCode');
-        data.append('SID', localStorage.sid);
-        this.$http.post("https://ycwidx.cpnet.com", data).then(res => {
-          console.log(res);
-          this.user.vcode = res.data.Data;
-
-          let data1 = new FormData();
-          data1.append('Action', 'UserNameReg');
-          data1.append('AppVersion', '1.0');
-          data1.append('SID', localStorage.sid);
-          data1.append('UserName', that.user.name);
-          data1.append('Pwd', sha256.sha256(that.user.newpwd2).toUpperCase());
-          data1.append('VCode', that.user.vcode)
-          data1.append('AppType', "4");
-          data1.append('AppCode', 'YCW')
-          that.$http.post('https://ycwidx.cpnet.com', data1).then(res => {
-            console.log(res)
-            if (res) {
-              localStorage.isLogin = true;
-
-              localStorage.uid = res.data.Data.UID;
-              localStorage.AuthTypeName = res.data.Data.AuthTypeName;
-              localStorage.SiteUrl = res.data.Data.SiteUrl;
-              localStorage.AuthType = res.data.Data.AuthType;
-              localStorage.Username = res.data.Data.NickName;
-              localStorage.Token = res.data.Data.Token;
-              localStorage.PayType = res.data.Data.PayType;
-              localStorage.tokenCode = sha256.sha256(res.data.Data.Token + sha256.sha256(that.user.newpwd2).toUpperCase()).toUpperCase()
->>>>>>> 8652f51060d31613cb99f70fbf3dcbfbc918cfc2
 
             localStorage.user_name = this.user.name;
             localStorage.user_pwd = this.user.newpwd1;
