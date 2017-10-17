@@ -9,7 +9,7 @@
           <input class="input" v-model="user.newpwd2" type="password" maxlength="18" placeholder="请确认密码" @input="inputFuction">
           <div style="display:flex; align-items: middle;">
             <input style="width:50%,margin-top:0px;" class="input" v-model="user.yanzhengma" type="text" maxlength="4" placeholder="验证码" @input="inputFuction">
-            <img style="margin-top:20px;margin-left:10px;" :src="user.imgurl" alt="">
+            <img style="margin-top:20px;margin-left:10px;" :src="user.imgurl" alt="" @click="getData()">
           </div>
         </div>
 

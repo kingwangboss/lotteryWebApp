@@ -7,7 +7,7 @@
         <form @submit.prevent="submit">
           <div>
             <div class="top">
-              <input type="number" class="input1" v-model="user.num" maxlength="11" placeholder="请输入正确的手机号码" @input="inputFuction">
+              <input type="text" disabled="disabled" style="color:#ccc;" class="input1" v-model="user.num1" maxlength="11" placeholder="请输入正确的手机号码" @input="inputFuction">
               <el-button class="btn" type="primary" @click="ResetPwdSMS">获取验证码</el-button>
             </div>
             <div class="bottom">
@@ -138,7 +138,8 @@ export default {
         showBack: true
       },
       user: {
-        num: '',
+        num: localStorage.phoneNum,
+        num1: "",
         verify: '',
         newpwd1: '',
         newpwd2: '',
@@ -146,7 +147,19 @@ export default {
       disabled: true,
     };
   },
+
+  mounted(){
+    var str = "*******";
+    for(var i = 0; i < this.user.num.length ; i++){
+      if(i > 6){
+        str = str + this.user.num[i];
+      }
+    }
+    this.user.num1 = str;
+  },
+
   methods: {
+    
     inputFuction() {
       if (this.user.num.length > 0 && this.user.verify.length > 0 && this.user.newpwd1.length > 0 && this.user.newpwd2.length > 0) {
         this.disabled = false;
@@ -192,6 +205,8 @@ export default {
 
     },
 
+
+
     submit: function(event) {
 
       // var formData = JSON.stringify(this.user); // 这里才是你的表单数据
@@ -207,9 +222,9 @@ export default {
         data.append('AppType', '4');
         this.$http.post('https://ycwidx.cpnet.com', data).then(res => {
           console.log(res);
-          if(res.data.Code == 'Suc'){
+          if (res.data.Code == 'Suc') {
             this.$router.push({
-              path:'/login'
+              path: '/login'
             })
           }
         }).catch(error => {
