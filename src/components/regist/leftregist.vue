@@ -193,11 +193,11 @@ export default {
       data.append('SID', localStorage.sid);
       data.append('AppVersion', '1.0');
       data.append('Mobile', this.mobile.num);
-      data.append('Pwd', this.mobile.newpwd2);
       data.append('AppType', '4')
-      data.append('Pwd', this.mobile.newpwd2);
+      data.append('Pwd',  sha256.sha256(this.mobile.newpwd2).toUpperCase());
       data.append('SMSCode', this.mobile.verify)
       data.append('AppCode', 'YCW');
+
       this.$http.post('https://ycwidx.cpnet.com', data).then(res => {
 
         if (res) {
@@ -210,7 +210,7 @@ export default {
           localStorage.Username = res.data.Data.NickName;
           localStorage.Token = res.data.Data.Token;
           localStorage.PayType = res.data.Data.PayType;
-          localStorage.tokenCode = sha256.sha256(res.data.Data.Token + that.user.newpwd2).toUpperCase()
+          localStorage.tokenCode = sha256.sha256(res.data.Data.Token + sha256.sha256(this.mobile.newpwd2).toUpperCase()).toUpperCase()
 
           localStorage.user_name = this.mobile.num;
           localStorage.user_pwd = this.mobile.newpwd1;
