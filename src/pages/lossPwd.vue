@@ -129,6 +129,7 @@
 
 <script>
 import mHeader from '../components/hearder/Hearder';
+import sha256 from '../util/sha256'
 export default {
   name: 'lossPwdVC',
   data() {
@@ -212,9 +213,11 @@ export default {
       // var formData = JSON.stringify(this.user); // 这里才是你的表单数据
       // console.log(formData);
       if (this.user.newpwd1 == this.user.newpwd2) {
+        this.user.newpwd1 = sha256.sha256(this.user.newpwd1).toUpperCase();
         // 请求数据
         let data = new FormData();
-        data.append('Action', 'ResetPwd');
+        data.append('Action', 'ResetPwd2');
+        data.append('Account', localStorage.Username);
         data.append('SID', localStorage.sid);
         data.append('Mobile', this.user.num);
         data.append('SMSCode', this.user.verify);
