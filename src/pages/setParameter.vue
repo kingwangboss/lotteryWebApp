@@ -365,7 +365,7 @@ export default {
 
             let tokenCode = localStorage.tokenCode;
             let signStr = 'Action=OptimizePlan' + '&SID=' + localStorage.sid + '&Token=' + localStorage.Token + '&PlanName=' + this.planName + '&PlanCycle=' + this.input2 + '&DMSMCount=' +
-                this.input1 + '&Accuracy=' + parseFloat(this.input31) + ':' + parseFloat(this.input32) + '&CurrentLianDui=' + parseInt(this.input61) + ':' + parseInt(this.input62) + '&MaxLianDui=' +
+                this.input1 + '&Accuracy=' + parseFloat(this.input31)/100 + ':' + parseFloat(this.input32)/100 + '&CurrentLianDui=' + parseInt(this.input61) + ':' + parseInt(this.input62) + '&MaxLianDui=' +
                 parseInt(this.input41) + ':' + parseInt(this.input42) + '&MaxLianCuo=' + parseInt(this.input51) + ':' + parseInt(this.input52) + '&DataDuring=' + this.selectNameArr.toString() + tokenCode;
             let data = new FormData();
             data.append('Action', 'OptimizePlan');
@@ -374,7 +374,7 @@ export default {
             data.append('PlanName', this.planName);
             data.append('PlanCycle', this.input2);
             data.append('DMSMCount', this.input1);
-            data.append('Accuracy', parseFloat(this.input31) + ':' + parseFloat(this.input32));
+            data.append('Accuracy', parseFloat(this.input31)/100 + ':' + parseFloat(this.input32)/100);
             data.append('CurrentLianDui', parseInt(this.input61) + ':' + parseInt(this.input62));
             data.append('MaxLianDui', parseInt(this.input41) + ':' + parseInt(this.input42));
             data.append('MaxLianCuo', parseInt(this.input51) + ':' + parseInt(this.input52));
