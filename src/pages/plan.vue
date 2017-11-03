@@ -1,8 +1,8 @@
 <template>
     <div class="maincontainer">
 
-        <div class="middleLine">
-        </div>
+        <!-- <div class="middleLine">
+        </div> -->
 
         <div v-show="AuthType != '1'" class="middlecontainer">
             <!-- <span class="textbtn first" style="border-left-width: 1px;" @click="xzCaizhongClick">选择彩种</span> -->
@@ -35,7 +35,7 @@
     height: auto;
     display: flex;
     flex-direction: column;
-    background: #fbf9fe;
+    background: #fafafa;
     .middleLine {
         height: 10px;
         background: #ededed;
