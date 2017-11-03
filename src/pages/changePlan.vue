@@ -16,7 +16,7 @@
             <div class="middle"></div>
 
             <div class="planItemCell" v-for="item in planNameData" :key="item.toString()">
-                <label class="lab" style="font-size:14px; margin-top:10px;margin-left:20px; font-weight:900;">{{item.Group}}</label>
+                <label class="lab" style="font-size:14px; margin-top:30px;margin-left:20px;color:#b0b0b0">{{item.Group}}</label>
                 <div>
                     <!-- <el-button v-show="isSelect(item1)" type="text" class="btnSelect" v-for="item1 in item.PlanList" :key="item1.toString()" @click="addBtn(item1)">{{item1}}</el-button>
                     <el-button v-show="!isSelect(item1)" type="text" class="btn" v-for="item1 in item.PlanList" :key="item1.toString()" @click="addBtn(item1)">{{item1}}</el-button> -->
