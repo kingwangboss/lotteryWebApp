@@ -133,6 +133,7 @@ export default {
 
     submit: function(event) {
       this.getData();
+      this.user.yanzhengma = null;
       if (this.user.newpwd1 === this.user.newpwd2) {
         var formData = JSON.stringify(this.user); // 这里才是你的表单数据
         console.log(formData);

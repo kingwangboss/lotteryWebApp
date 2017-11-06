@@ -140,6 +140,7 @@ export default {
 
         submit: function(event) {
                 this.getData();
+                this.user.verify = null;
 
                 // 请求数据
                 let data = new FormData();
