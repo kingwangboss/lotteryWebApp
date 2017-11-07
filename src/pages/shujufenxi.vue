@@ -2,16 +2,16 @@
   <div class="main">
     <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
       <el-tab-pane label="遗漏分析" name="first">
-        <iframe class="ichart" name="txt0" :style="{height:screenHeight+'px'}" src="https://ycwapp.cpnet.com/static/JYYC1/txt.html" frameborder="0" marginheight="0px"></iframe>
+        <iframe class="ichart" name="txt0" :style="{height:screenHeight+'px'}" src="http://ycwapp.cpnet.com/static/JYYC1/txt.html" frameborder="0" marginheight="0px"></iframe>
       </el-tab-pane>
       <el-tab-pane label="冷热分析" name="second">
-        <iframe class="ichart" :style="{height:screenHeight+'px'}" name="bxt0" src="https://ycwapp.cpnet.com/static/JYYC1/bxt.html" frameborder="0" marginheight="0px"></iframe>
+        <iframe class="ichart" :style="{height:screenHeight+'px'}" name="bxt0" src="http://ycwapp.cpnet.com/static/JYYC1/bxt.html" frameborder="0" marginheight="0px"></iframe>
       </el-tab-pane>
       <el-tab-pane label="指标遗漏分析" name="third">
-        <iframe class="ichart" :style="{height:screenHeight+'px'}" name="txt1" src="https://ycwapp.cpnet.com/static/JYYC1/txt.html" frameborder="0" marginheight="0px"></iframe>
+        <iframe class="ichart" :style="{height:screenHeight+'px'}" name="txt1" src="http://ycwapp.cpnet.com/static/JYYC1/txt.html" frameborder="0" marginheight="0px"></iframe>
       </el-tab-pane>
       <el-tab-pane label="指标冷热分析" name="fourth">
-        <iframe class="ichart" :style="{height:screenHeight+'px'}" name="bxt1" src="https://ycwapp.cpnet.com/static/JYYC1/bxt.html" frameborder="0" marginheight="0px"></iframe>
+        <iframe class="ichart" :style="{height:screenHeight+'px'}" name="bxt1" src="http://ycwapp.cpnet.com/static/JYYC1/bxt.html" frameborder="0" marginheight="0px"></iframe>
       </el-tab-pane>
     </el-tabs>
   </div>
