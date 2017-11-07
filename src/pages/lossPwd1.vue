@@ -22,152 +22,155 @@
 
 <style lang="less" scoped>
 #bundle {
-    .juzhong {
-        display: -webkit-flex;
-        display: flex;
-        -webkit-align-items: center;
-        align-items: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-    }
+  .juzhong {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+  }
 }
 
 ::-webkit-input-placeholder {
-    /* WebKit browsers */
-    color: RGB(229, 164, 153);
-    font-size: 12px;
+  /* WebKit browsers */
+  color: RGB(229, 164, 153);
+  font-size: 12px;
 }
 
 .maincontainer {
-    background-image: url('../../static/images/login/Passwordbg.png');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0px;
-    .content {
-        #bundle>.juzhong;
-        margin-top: 20%;
-        flex-direction: column;
+  background-image: url("../../static/images/login/Passwordbg.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  .content {
+    #bundle > .juzhong;
+    margin-top: 20%;
+    flex-direction: column;
 
-        .bottom {
-            display: flex;
-            flex-direction: column;
-            width: 270px;
-            .input {
-
-                outline: none;
-                margin-top: 10%;
-                background-color: transparent;
-                background-image: url('../../static/images/login/a2.png');
-                background-repeat: no-repeat;
-                background-size: 100% 100%;
-                height: 44px;
-                line-height: 44px;
-                width: 100%;
-                padding-left: 10px;
-                font-size: 12px;
-                color: white;
-            }
-        }
-        .btnDefault {
-            margin-top: 30px;
-            height: 40px;
-            width: 100%;
-            border-radius: 40px;
-            background-color: RGB(251, 230, 231);
-            border: 0;
-            color: red;
-            font-size: 18px;
-        }
-        .btnEnable {
-            margin-top: 30px;
-            height: 40px;
-            width: 100%;
-            border-radius: 40px;
-            background-color: RGB(240, 144, 156);
-            border: 0;
-            color: #fff;
-            font-size: 18px;
-        }
+    .bottom {
+      display: flex;
+      flex-direction: column;
+      width: 270px;
+      .input {
+        outline: none;
+        margin-top: 10%;
+        background-color: transparent;
+        background-image: url("../../static/images/login/a2.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        height: 44px;
+        line-height: 44px;
+        width: 100%;
+        padding-left: 10px;
+        font-size: 12px;
+        color: white;
+      }
     }
+    .btnDefault {
+      margin-top: 30px;
+      height: 40px;
+      width: 100%;
+      border-radius: 40px;
+      background-color: RGB(251, 230, 231);
+      border: 0;
+      color: red;
+      font-size: 18px;
+    }
+    .btnEnable {
+      margin-top: 30px;
+      height: 40px;
+      width: 100%;
+      border-radius: 40px;
+      background-color: RGB(240, 144, 156);
+      border: 0;
+      color: #fff;
+      font-size: 18px;
+    }
+  }
 }
 </style>
 
 
 <script>
-import mHeader from '../components/hearder/Hearder';
+import mHeader from "../components/hearder/Hearder";
 export default {
-    name: 'lossPwdVC',
-    data() {
-        return {
-            title: {
-                text: "忘记密码",
-                showBack: true
-            },
-            user: {
-                username: '',
-                verify: '',
-                vcode: '',
-                imgurl: '',
-            },
-            disabled: true,
-        };
+  name: "lossPwdVC",
+  data() {
+    return {
+      title: {
+        text: "忘记密码",
+        showBack: true
+      },
+      user: {
+        username: "",
+        verify: "",
+        vcode: "",
+        imgurl: ""
+      },
+      disabled: true
+    };
+  },
+  mounted() {
+    this.getData();
+  },
+  methods: {
+    getData() {
+      let data = new FormData();
+      data.append("Action", "GetImgVCode");
+      this.$http
+        .post("https://ycwidx.cpnet.com", data)
+        .then(res => {
+          console.log(res);
+          this.user.vcode = res.data.Data.token;
+          this.user.imgurl = "https://ycwidx.cpnet.com" + res.data.Data.imgpath;
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
-    mounted() {
-        this.getData();
+    inputFuction() {
+      if (this.user.username.length > 0 && this.user.verify.length > 0) {
+        this.disabled = false;
+      } else {
+        this.disabled = true;
+      }
     },
-    methods: {
-        getData() {
-            let data = new FormData();
-            data.append('Action', 'GetImgVCode');
-            this.$http.post("https://ycwidx.cpnet.com", data).then(res => {
-                console.log(res);
-                this.user.vcode = res.data.Data.token;
-                this.user.imgurl = "https://ycwidx.cpnet.com" + res.data.Data.imgpath;
-            }).catch(error => {
-                console.log(error);
+
+    submit: function(event) {
+      this.getData();
+
+      // 请求数据
+      let data = new FormData();
+      data.append("Action", "QueryUserByAccount");
+      data.append("Account", this.user.username);
+      data.append("ImgCode", this.user.vcode + this.user.verify);
+      localStorage.Username = this.user.username;
+
+      this.$http
+        .post("https://ycwidx.cpnet.com", data)
+        .then(res => {
+          console.log(res);
+          if (res.data.Code == "Suc") {
+            localStorage.phoneNum = res.data.Data;
+            this.$router.push({
+              path: "/lossPwd"
             });
-        },
-        inputFuction() {
-            if (this.user.username.length > 0 && this.user.verify.length > 0) {
-                this.disabled = false;
-            } else {
-                this.disabled = true;
-            }
-        },
-
-        submit: function(event) {
-                this.getData();
-                this.user.verify = null;
-
-                // 请求数据
-                let data = new FormData();
-                data.append('Action', 'QueryUserByAccount');
-                data.append('Account', this.user.username);
-                data.append('ImgCode', this.user.vcode + this.user.verify);
-                localStorage.Username = this.user.username;
-
-                this.$http.post('https://ycwidx.cpnet.com', data).then(res => {
-                    console.log(res);
-                    if (res.data.Code == 'Suc') {
-                        localStorage.phoneNum = res.data.Data
-                        this.$router.push({
-                            path: '/lossPwd'
-                        })
-                    }else{
-                        localStorage.removeItem('phoneNum');
-                    }
-                }).catch(error => {
-                    console.log(error);
-                })
-
-
-        }
-    },
-    components: {
-        mHeader
-    },
-}
+          } else {
+            localStorage.removeItem("phoneNum");
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+      this.user.verify = null;
+    }
+  },
+  components: {
+    mHeader
+  }
+};
 </script>
