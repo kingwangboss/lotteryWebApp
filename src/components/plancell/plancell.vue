@@ -8,11 +8,11 @@
             <span class="txt-item1" style="width:20%;background:#fff; color:#767676;border-right: 1px dotted #d8d8d8;">{{cell.PlanSection}}</span>
             <div class="txt-item2">
                 <span class="btn" v-if="cell.DSType === 0">{{cell.EndIndex ? cell.EndIndex : 1}} 定</span>
-                <span class="btn" v-else>{{cell.EndIndex ? cell.EndIndex : 1}} 杀</span>
+                <span class="btn1" v-else>{{cell.EndIndex ? cell.EndIndex : 1}} 杀</span>
             </div>
             <span class="txt-item3" style="width:40%">{{cell.GuessValue}}</span>
 
-            <div class="zhengquelv" style="width:25%;border-top-right-radius: 5px;">
+            <div class="zhengquelv" style="width:28%;border-top-right-radius: 5px;">
                 <span class="baifenbi">{{cell.GuessPercent}}</span>
 
                 <div class="diandian">
@@ -62,15 +62,15 @@
     padding-left: 5px;
     display: flex;
     width: 60px;
-    font-size: 12px;
+    font-size: 10px;
     background: #f7eded;
     #bundle>.juzhong;
 }
 
 .txt-item2 {
     border-right: 1px dotted #d8d8d8;
-    width: 50px;
-    font-size: 13px;
+    width: 60px;
+    font-size: 10px;
     background: #fff;
     text-align: center;
     display: flex;
@@ -79,17 +79,28 @@
     #bundle>.juzhong;
     .btn{
         // background: rgb(88, 88, 88);
-        // padding: 3px;
-        // border: 1px solid black;
-        border-radius: 10px;
-        // color: white;
+        width: 30px;
+        padding: 1px;
+        border: 1px solid RGB(84, 128, 215);
+        border-radius: 9px;
+        font-size: 10px;
+        color: RGB(84, 128, 215);
+    }
+     .btn1{
+         width: 30px;
+        // background: rgb(88, 88, 88);
+        padding: 1px;
+        border: 1px solid RGB(199, 64, 78);
+        border-radius: 9px;
+        font-size: 10px;
+        color: RGB(199, 64, 78);
     }
 }
 
 .txt-item3 {
     border-right: 1px dotted #d8d8d8;
     width: 125px;
-    font-size: 15px;
+    font-size: 10px;
     background: #fff;
     text-align: center;
     line-height: auto;
