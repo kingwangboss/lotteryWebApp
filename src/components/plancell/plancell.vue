@@ -6,7 +6,10 @@
             <span v-if="cell.DSType === 0" class="txt-item1" style="width:18%;border-top-left-radius: 5px;color: RGB(84, 128, 215); background:RGB(222, 231, 247);">{{cell.Name}}</span>
             <span v-else-if="cell.DSType === 1" class="txt-item1" style="width:18%;border-top-left-radius: 5px;color: RGB(199, 64, 78); background:RGB(247, 237, 237);">{{cell.Name}}</span>
             <span class="txt-item1" style="width:20%;background:#fff; color:#767676;border-right: 1px dotted #d8d8d8;">{{cell.PlanSection}}</span>
-            <span class="txt-item2">{{cell.EndIndex ? cell.EndIndex : 1}}</span>
+            <div class="txt-item2">
+                <span class="btn" v-if="cell.DSType === 0">{{cell.EndIndex ? cell.EndIndex : 1}} 定</span>
+                <span class="btn" v-else>{{cell.EndIndex ? cell.EndIndex : 1}} 杀</span>
+            </div>
             <span class="txt-item3" style="width:40%">{{cell.GuessValue}}</span>
 
             <div class="zhengquelv" style="width:25%;border-top-right-radius: 5px;">
@@ -66,14 +69,21 @@
 
 .txt-item2 {
     border-right: 1px dotted #d8d8d8;
-    width: 25px;
-    font-size: 15px;
+    width: 50px;
+    font-size: 13px;
     background: #fff;
     text-align: center;
     display: flex;
     align-items: center; // padding: 0px 5px;
     color: #767676;
     #bundle>.juzhong;
+    .btn{
+        // background: rgb(88, 88, 88);
+        // padding: 3px;
+        // border: 1px solid black;
+        border-radius: 10px;
+        // color: white;
+    }
 }
 
 .txt-item3 {
