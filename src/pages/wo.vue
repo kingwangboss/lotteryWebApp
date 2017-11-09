@@ -9,7 +9,7 @@
     </div>
 
     <div class="bottom">
-      <div class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth+'px'}">
+      <div v-if="paytype" class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth+'px'}">
         <img src="../../static/images/me/User-05.png" @click="buyClick"></img>
         <span>购买授权</span>
       </div>
@@ -134,7 +134,8 @@ export default {
   data() {
     return {
       screenWidth: document.body.clientWidth,
-      nickname: localStorage.Username
+      nickname: localStorage.Username,
+      paytype:localStorage.PayType
     }
   },
   mounted() {
