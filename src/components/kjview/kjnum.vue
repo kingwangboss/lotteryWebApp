@@ -147,7 +147,7 @@ export default {
         var colnum = 10; //列
         colnum = this.numArr.length > colnum ? colnum : this.numArr.length;
         var rownum = this.numArr.length / colnum; //行
-        margin = this.numArr.length >= 10 ? 11.5 : 13; //间距
+        margin = this.numArr.length >= 10 ? 11.5 : 12.5; //间距
         ojwidth = (this.screenWidth - 2 * (margin + 1) * colnum) / colnum; //格子的宽
         return ojwidth;
       },
