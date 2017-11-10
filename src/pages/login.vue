@@ -155,7 +155,7 @@
             background-size: 100% 100%;
             height: 44px;
             line-height: 44px;
-            width: 100%;
+            width: 96%;
             padding-left: 10px;
             display: flex;
             flex-direction: row;

@@ -7,8 +7,8 @@
             <span v-else-if="cell.DSType === 1" class="txt-item1" style="width:22%;border-top-left-radius: 5px;color: RGB(199, 64, 78); background:RGB(247, 237, 237);">{{cell.Name}}</span>
             <span class="txt-item1" style="width:22%;background:#fff; color:#767676;border-right: 1px dotted #d8d8d8;">{{cell.PlanSection}}</span>
             <div class="txt-item2">
-                <span class="btn" v-if="cell.DSType === 0">{{cell.EndIndex ? cell.EndIndex : 1}} 定</span>
-                <span class="btn1" v-else>{{cell.EndIndex ? cell.EndIndex : 1}} 杀</span>
+                <span class="btn" v-if="cell.DSType === 0">{{cell.EndIndex ? cell.EndIndex+' ' : ""}}定</span>
+                <span class="btn1" v-else>{{cell.EndIndex ? cell.EndIndex+" " : ""}}杀</span>
             </div>
             <span class="txt-item3" style="">{{cell.GuessValue}}</span>
 
@@ -79,18 +79,22 @@
     #bundle>.juzhong;
     .btn{
         // background: rgb(88, 88, 88);
-        width: 30px;
-        padding: 1px;
-        border: 1px solid RGB(84, 128, 215);
+        // width: 30px;
+        line-height: 14px;
+        // padding: 1px 5px;
+        min-width: 30px;
+        border: 1px solid rgba(84, 128, 215,0.5);
         border-radius: 9px;
         font-size: 10px;
         color: RGB(84, 128, 215);
     }
      .btn1{
-         width: 30px;
+        //  width: 30px;
         // background: rgb(88, 88, 88);
-        padding: 1px;
-        border: 1px solid RGB(199, 64, 78);
+        line-height: 14px;
+        min-width: 30px;
+        // padding: 1px 5px;
+        border: 1px solid RGBA(199, 64, 78,0.5);
         border-radius: 9px;
         font-size: 10px;
         color: RGB(199, 64, 78);
