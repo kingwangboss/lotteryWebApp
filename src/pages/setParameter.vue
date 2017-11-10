@@ -233,6 +233,7 @@ export default {
       dataDuringIndex: [],
       planName: "",
       selectNameArr: [],
+      selectIndexArr:[],
       screenWidth: document.body.clientWidth // 这里是给到了一个默认值 （这个很重要）
     };
   },
@@ -322,6 +323,7 @@ export default {
           console.log(this.dataDuringIndex);
           console.log(this.dataDuringValue);
           this.selectNameArr = this.dataDuringValue;
+          this.selectIndexArr = this.dataDuringIndex;
           // this.dataDuringValue = dataDuringValue;
           // this.dataDuringIndex = dataDuringIndex;
         })
@@ -350,13 +352,16 @@ export default {
       console.log(this.selectNameArr.indexOf(item));
       if (this.selectNameArr.indexOf(item) >= 0) {
         this.selectNameArr = this.remove(this.selectNameArr, item);
+        this.selectIndexArr = this.remove(this.selectIndexArr,index);
       } else {
         this.selectNameArr.push(item);
+        this.selectIndexArr.push(index);
       }
       console.log(this.selectNameArr.indexOf(item));
     },
 
     ok() {
+      console.log(this.selectIndexArr)
       console.log(this.input1);
       console.log(this.input2);
       console.log(this.input31);
@@ -400,7 +405,7 @@ export default {
         ":" +
         parseInt(this.input52) +
         "&DataDuring=" +
-        this.selectNameArr.toString() +
+        this.selectIndexArr.toString() +
         tokenCode;
       let data = new FormData();
       data.append("Action", "OptimizePlan");
@@ -425,7 +430,7 @@ export default {
         "MaxLianCuo",
         parseInt(this.input51) + ":" + parseInt(this.input52)
       );
-      data.append("DataDuring", this.selectNameArr.toString());
+      data.append("DataDuring", this.selectIndexArr.toString());
       data.append("Sign", sha256.sha256(signStr).toUpperCase());
       this.$http
         .post(localStorage.SiteUrl, data)
