@@ -4,7 +4,7 @@
       <form @submit.prevent="submit">
         <div>
           <input class="input" v-model="user.name" type="text" maxlength="20" placeholder="请输入用户名" @input="inputFuction">
-          <input class="input" v-model="user.num" type="number" maxlength="11" placeholder="安全手机" @input="inputFuction">
+          <input class="input" v-model="user.num" type="number" maxlength="11" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="安全手机" @input="inputFuction">
           <input class="input" v-model="user.newpwd1" type="password" maxlength="18" placeholder="请输入密码" @input="inputFuction">
           <input class="input" v-model="user.newpwd2" type="password" maxlength="18" placeholder="请确认密码" @input="inputFuction">
           <div style="display:flex; align-items: middle;">
@@ -51,6 +51,7 @@
     margin-top: 10%;
     flex-direction: column;
     .input {
+      outline: none;
       margin-top: 10%;
       background-color: transparent;
       background-image: url('../../../static/images/login/a2.png');

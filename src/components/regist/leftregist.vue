@@ -3,7 +3,7 @@
     <div class="content">
       <form @submit.prevent="submit">
         <div>
-          <input class="input" v-model="mobile.num" type="text" maxlength="20" placeholder="请输入手机号码" @input="inputFuction">
+          <input class="input" v-model="mobile.num" type="text" maxlength="11" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="请输入手机号码" @input="inputFuction">
           <div class="top">
             <input type="number" class="input1" v-model="mobile.verify" maxlength="11" placeholder="请输入验证码" @input="inputFuction">
             <el-button class="btn" type="primary" @click="getVcode">获取验证码</el-button>
@@ -52,6 +52,7 @@
     flex-direction: column;
     .input {
       // margin-top: 10%;
+      outline: none;
       background-color: transparent;
       background-image: url('../../../static/images/login/a2.png');
       background-repeat: no-repeat;
@@ -68,6 +69,7 @@
       display: flex;
       flex-direction: row;
       .input1 {
+        outline: none;
         background-color: transparent;
         background-image: url('../../../static/images/login/a4.png');
         background-repeat: no-repeat;

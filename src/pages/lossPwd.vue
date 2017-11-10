@@ -130,6 +130,7 @@
 <script>
 import mHeader from '../components/hearder/Hearder';
 import sha256 from '../util/sha256'
+import { Toast, MessageBox } from "mint-ui";
 export default {
   name: 'lossPwdVC',
   data() {

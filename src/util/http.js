@@ -140,12 +140,12 @@ axios.interceptors.response.use(
     }
 
 
-    if (response.data.Code === 'Suc') {
-      return response
-    } else if (response.data.Code === 'PushedOffLine') {
+    if (response.data.Code === 'PushedOffLine') {
       router.push({
         path: "/login"
       })
+    }else{
+      return response
     }
   }, error => {
     loadinginstace.close()
