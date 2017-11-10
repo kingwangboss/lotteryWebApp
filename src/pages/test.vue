@@ -32,7 +32,7 @@
     background: url("../../static/images/ball_center.png");
     background-repeat: repeat;
     // padding: 10px;
-    width: 300px;
+    width: 100px;
   }
   .line3 {
     // background: url('../../static/images/ball_right.png');

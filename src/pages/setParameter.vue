@@ -73,7 +73,7 @@
                             <el-button v-show="!isSelect(item)" @click="addBtn(item)" type="text" v-for="item in dataDuringValue" :key="item" class="bottom-btn">
                                 {{item}}
                             </el-button> -->
-                <el-button :class="{'bottom-btn-select':selectNameArr.indexOf(item) >  -1}" :style="{width:ojwidth+'px',height:ojwidth+'px',}" @click="addBtn(item)" type="text" v-for="item in dataDuringValue" :key="item" class="bottom-btn">
+                <el-button :class="{'bottom-btn-select':selectNameArr.indexOf(item) >  -1}" :style="{width:ojwidth+'px',height:ojwidth+'px',}" @click="addBtn(index,item)" type="text" v-for="(item,index) in dataDuringValue" :key="item" class="bottom-btn">
                     {{item}}
                 </el-button>
             </div>
@@ -224,11 +224,11 @@ export default {
       input31: "0%",
       input32: "100%",
       input41: "0",
-      input42: "10",
+      input42: localStorage.cycleCount,
       input51: "0",
-      input52: "10",
-      input61: "-10",
-      input62: "10",
+      input52: localStorage.cycleCount,
+      input61: "-"+localStorage.cycleCount,
+      input62: localStorage.cycleCount,
       dataDuringValue: [],
       dataDuringIndex: [],
       planName: "",
@@ -345,7 +345,7 @@ export default {
       }
       return result;
     },
-    addBtn(item) {
+    addBtn(index,item) {
       // console.log(item);
       console.log(this.selectNameArr.indexOf(item));
       if (this.selectNameArr.indexOf(item) >= 0) {
@@ -368,6 +368,7 @@ export default {
       console.log(this.input61);
       console.log(this.input62);
       console.log(this.selectNameArr);
+      console.log(this.planName)
 
       let tokenCode = localStorage.tokenCode;
       let signStr =
@@ -599,7 +600,7 @@ export default {
     },
     jia42() {
       var num = parseInt(this.input42);
-      var max = 10;
+      var max = parseInt(localStorage.cycleCount);
       if (num + 1 >= max) {
         this.input42 = max;
       } else {
@@ -609,8 +610,8 @@ export default {
     change42(value) {
       if (value <= parseInt(this.input41)) {
         this.input42 = this.input41;
-      } else if (value > 10) {
-        this.input42 = 10;
+      } else if (value > parseInt(localStorage.cycleCount)) {
+        this.input42 = parseInt(localStorage.cycleCount);
       } else {
         this.input42 = value;
       }
@@ -652,7 +653,7 @@ export default {
     },
     jia52() {
       var num = parseInt(this.input52);
-      var max = 10;
+      var max = parseInt(localStorage.cycleCount);
       if (num + 1 >= max) {
         this.input52 = max;
       } else {
@@ -662,16 +663,16 @@ export default {
     change52(value) {
       if (value <= parseInt(this.input51)) {
         this.input52 = this.input51;
-      } else if (value > 10) {
-        this.input52 = 10;
+      } else if (value > parseInt(localStorage.cycleCount)) {
+        this.input52 = parseInt(localStorage.cycleCount);
       } else {
         this.input52 = value;
       }
     },
     jian61() {
       var num = parseInt(this.input61);
-      if (num - 1 < -10) {
-        this.input61 = -10;
+      if (num - 1 < -(parseInt(localStorage.cycleCount))) {
+        this.input61 = -(parseInt(localStorage.cycleCount));
       } else {
         this.input61 = num - 1;
       }
@@ -686,8 +687,8 @@ export default {
       }
     },
     change61(value) {
-      if (value <= -10) {
-        this.input61 = -10;
+      if (value <= -(parseInt(localStorage.cycleCount))) {
+        this.input61 = -(parseInt(localStorage.cycleCount));
       } else if (value > parseInt(this.input62)) {
         this.input61 = this.input62;
       } else {
@@ -705,7 +706,7 @@ export default {
     },
     jia62() {
       var num = parseInt(this.input62);
-      var max = 10;
+      var max = localStorage.cycleCount;
       if (num + 1 >= max) {
         this.input62 = max;
       } else {
@@ -715,8 +716,8 @@ export default {
     change62(value) {
       if (value <= parseInt(this.input61)) {
         this.input62 = this.input61;
-      } else if (value > 10) {
-        this.input62 = 10;
+      } else if (value > parseInt(localStorage.cycleCount)) {
+        this.input62 = localStorage.cycleCount;
       } else {
         this.input62 = value;
       }
