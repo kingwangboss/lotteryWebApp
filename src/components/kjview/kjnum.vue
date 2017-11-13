@@ -39,18 +39,23 @@
     color: #fffde4;
     //   background: red;
     .line1 {
+      background-repeat: no-repeat;
+      width: 4px;
     }
     .line21 {
       background: url("../../../static/images/ball_center.png");
       background-repeat: repeat;
-      font-size: 14px;
+      font-size: 12px;
+      padding:0px 6px;
     }
     .line22 {
       background: url("../../../static/images/ball_center2.png");
       background-repeat: repeat;
-      font-size: 14px;
+      font-size: 12px;
     }
     .line3 {
+      background-repeat: no-repeat;
+      width: 4px;
     }
   }
   .kjnum {
