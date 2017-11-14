@@ -4,22 +4,22 @@
         <div v-show="!isLan(index)" class="kjnum1" :style="{width:ojwidth+'px',height:height+'px'}" :key="item" v-for="(item,index) in numArr">{{item}}</div> -->
 
         <div class="main" v-show="isLan(index)"  :key="item" v-for="(item,index) in numArr">
-            <img class="line1" src="../../../static/images/ball_left.png">
+            <img class="line1" src="../../../static/images/ball_left11.png">
             </img>
-            <div class="line21" :style="{width:ojwidth+'px',height:height+'px',}">
+            <div class="line21" :style="{width:ojwidth +10 +'px',height:height+'px',}">
                 {{item}}
             </div>
-            <img class="line3" src="../../../static/images/ball_right.png">
+            <img class="line3" src="../../../static/images/ball_right11.png">
             </img>
         </div>
 
         <div class="main" v-show="!isLan(index)"  :key="item" v-for="(item,index) in numArr">
-            <img class="line1" src="../../../static/images/ball_left2.png">
+            <img class="line1" src="../../../static/images/ball_left22.png">
             </img>
-            <div class="line22" :style="{width:ojwidth+'px',height:height+'px',}">
+            <div class="line22" :style="{width:ojwidth +10 +'px',height:height+'px',}">
                 {{item}}
             </div>
-            <img class="line3" src="../../../static/images/ball_right2.png">
+            <img class="line3" src="../../../static/images/ball_right22.png">
             </img>
         </div>
     </div>
@@ -35,28 +35,30 @@
     display: flex;
     flex-direction: row;
     margin: 2px;
-    line-height: 36px;
+    line-height: 38px;
     color: #fffde4;
     //   background: red;
     .line1 {
       background-repeat: no-repeat;
-      width: 4px;
+      width: 5px;
     }
     .line21 {
       background: url("../../../static/images/ball_center.png");
       background-repeat: repeat;
+      z-index: 100;
       font-size: 12px;
-      padding:0px 6px;
+      padding:0px -5px 0px -5px;
     }
     .line22 {
       background: url("../../../static/images/ball_center2.png");
       background-repeat: repeat;
+      z-index: 100;
       font-size: 12px;
-      padding:0px 6px;
+      padding:0px -5px 0px -5px;
     }
     .line3 {
       background-repeat: no-repeat;
-      width: 4px;
+      width: 5px;
     }
   }
   .kjnum {
