@@ -10,12 +10,12 @@
                 <span class="btn" v-if="cell.DSType === 0">{{cell.EndIndex ? cell.EndIndex+' ' : ""}}定</span>
                 <span class="btn1" v-else>{{cell.EndIndex ? cell.EndIndex+" " : ""}}杀</span>
             </div>
-            <span class="txt-item3" style="">{{cell.GuessValue}}</span>
+            <span class="txt-item3">{{cell.GuessValue}}</span>
 
-            <div class="zhengquelv" style="width:28%;border-top-right-radius: 5px;">
+            <div class="zhengquelv" style="border-top-right-radius: 5px;">
                 <span class="baifenbi">{{cell.GuessPercent}}</span>
 
-                <div class="diandian">
+                <div class="diandian" style="width:72px;">
                     <div v-for="item in dian[index]" :key="item">
                         <div v-if="item === '1'" class="dianMiddle" style="background:#30bb78;"></div>
                         <div v-else-if="item === '0'" class="dianMiddle" style="background:#d82e4b;"></div>
@@ -23,11 +23,11 @@
                     </div>
                 </div>
 
-                <div class="dian" v-show="isSandian">
+                <!-- <div class="dian" v-show="isSandian">
                     <div class="dian-dian"></div>
                     <div class="dian-dian"></div>
                     <div class="dian-dian"></div>
-                </div>
+                </div> -->
 
             </div>
         </div>
@@ -82,7 +82,7 @@
         // width: 30px;
         line-height: 14px;
         // padding: 1px 5px;
-        min-width: 30px;
+        min-width: 32px;
         border: 1px solid rgba(84, 128, 215,0.5);
         border-radius: 9px;
         font-size: 10px;
@@ -92,7 +92,7 @@
         //  width: 30px;
         // background: rgb(88, 88, 88);
         line-height: 14px;
-        min-width: 30px;
+        min-width: 32px;
         // padding: 1px 5px;
         border: 1px solid RGBA(199, 64, 78,0.5);
         border-radius: 9px;
@@ -103,7 +103,7 @@
 
 .txt-item3 {
     border-right: 1px dotted #d8d8d8;
-    width: 40%;
+    width: 200px;;
     font-size: 10px;
     background: #fff;
     text-align: center;
@@ -114,7 +114,7 @@
 }
 
 .zhengquelv {
-    width: 100%;
+    width: 140px;
     background: #fff;
     display: flex;
     flex-direction: column;
@@ -125,20 +125,26 @@
     font-size: 13px;
     #bundle>.juzhong;
     color: #767676;
+    margin-top: 5px;
 }
 
 .diandian {
     margin-bottom: 5px;
-    #bundle>.juzhong;
+    // #bundle>.juzhong;
+    display: flex;
+    flex-direction: row;
+    // width: 100%;
+    flex-wrap: wrap;
+
 }
 
 .dianMiddle {
     background: red;
-    height: 4px;
-    width: 4px;
-    margin-left: 3px;
-    border-radius: 4px;
-    margin-top: 5px;
+    height: 2px;
+    width: 5px;
+    margin-left: 2px;
+    // border-radius: 4px;
+    margin-top: 2px;
 }
 
 .dian {
@@ -182,7 +188,7 @@ export default {
                 var temp = [];
                 if (this.PlanData.Data[0].GuessResultList.split(',').length > 10) {
                     for (var i = 0; i < this.PlanData.Data.length; i++) {
-                        temp.push(this.PlanData.Data[i].GuessResultList.split(',').reverse().slice(0, 10))
+                        temp.push(this.PlanData.Data[i].GuessResultList.split(',').reverse())
                     }
                 } else {
                     for (var i = 0; i < this.PlanData.Data.length; i++) {

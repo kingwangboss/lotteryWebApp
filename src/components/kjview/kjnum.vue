@@ -45,14 +45,14 @@
     .line21 {
       background: url("../../../static/images/ball_center.png");
       background-repeat: repeat;
-      z-index: 100;
+      // z-index: 100;
       font-size: 12px;
       padding:0px -5px 0px -5px;
     }
     .line22 {
       background: url("../../../static/images/ball_center2.png");
       background-repeat: repeat;
-      z-index: 100;
+      // z-index: 100;
       font-size: 12px;
       padding:0px -5px 0px -5px;
     }
