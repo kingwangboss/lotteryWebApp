@@ -52,6 +52,7 @@
       background: url("../../../static/images/ball_center2.png");
       background-repeat: repeat;
       font-size: 12px;
+      padding:0px 6px;
     }
     .line3 {
       background-repeat: no-repeat;
