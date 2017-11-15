@@ -3,15 +3,49 @@
     <div class="content">
       <form @submit.prevent="submit">
         <div>
-          <input class="input" v-model="mobile.num" type="text" maxlength="11" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="请输入手机号码" @input="inputFuction">
+          <!-- <input class="input" v-model="mobile.num" type="text" maxlength="11" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="请输入手机号码" @input="inputFuction"> -->
+          <div class="main">
+                            <img class="line1" src="../../../static/images/zuo.png">
+                            </img>
+                            <input class="line21" v-model="mobile.num" type="text" maxlength="11" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="请输入手机号码" @input="inputFuction">
+                            </input>
+                            <img class="line3" src="../../../static/images/you.png">
+                            </img>
+          </div>
+
           <div class="top">
-            <input type="number" class="input1" v-model="mobile.verify" maxlength="11" placeholder="请输入验证码" @input="inputFuction">
+            <!-- <input type="number" class="input1" v-model="mobile.verify" maxlength="11" placeholder="请输入验证码" @input="inputFuction"> -->
+            <div class="main">
+                              <img class="line1" src="../../../static/images/zuo.png">
+                              </img>
+                              <input class="line21" style="width:60%" type="number" v-model="mobile.verify" maxlength="11" placeholder="请输入验证码" @input="inputFuction">
+                              </input>
+                              <img class="line3" src="../../../static/images/you.png">
+                              </img>
+            </div>
             <el-button class="btn" type="primary" @click="getVcode">获取验证码</el-button>
           </div>
           <div class="bottom">
 
-            <input class="input" v-model="mobile.newpwd1" type="password" maxlength="18" placeholder="请输入密码" @input="inputFuction">
-            <input class="input" v-model="mobile.newpwd2" type="password" maxlength="18" placeholder="请确认密码" @input="inputFuction">
+            <!-- <input class="input" v-model="mobile.newpwd1" type="password" maxlength="18" placeholder="请输入密码" @input="inputFuction">
+            <input class="input" v-model="mobile.newpwd2" type="password" maxlength="18" placeholder="请确认密码" @input="inputFuction"> -->
+            <div class="main">
+                <img class="line1" src="../../../static/images/zuo.png">
+                </img>
+                <input class="line21" v-model="mobile.newpwd1" type="password" maxlength="18" placeholder="请输入密码" @input="inputFuction">
+                </input>
+                <img class="line3" src="../../../static/images/you.png">
+                </img>
+            </div>
+
+            <div class="main">
+                <img class="line1" src="../../../static/images/zuo.png">
+                </img>
+                <input class="line21" v-model="mobile.newpwd2" type="password" maxlength="18" placeholder="请确认密码" @input="inputFuction">
+                </input>
+                <img class="line3" src="../../../static/images/you.png">
+                </img>
+            </div>
           </div>
         </div>
         <el-button v-if="disabled" :disabled="disabled" class="btnEnable" type="primary" native-type="submit">注册</el-button>
@@ -22,6 +56,40 @@
 </template>
 
 <style lang="less" scoped>
+.main {
+    display: flex;
+    flex-direction: row;
+    // margin: 2px;
+    line-height: 38px;
+    color: #fffde4;
+    position: relative;
+    margin-bottom: 10%;
+    //   background: red;
+    .line1 {
+      background-repeat: no-repeat;
+      height: 40px;
+      width: 19px;
+    }
+    .line21 {
+        outline: none;
+      background: url("../../../static/images/zhong.png");
+      background-repeat: repeat;
+      font-size: 12px;
+      height: 40px;
+      width: 225px;
+      color: white;
+      // padding-left: 10px;
+    //   padding:0px -5px 0px -5px;
+    }
+    
+    .line3 {
+      background-repeat: no-repeat;
+      height:40px;
+      width: 19px;
+    }
+
+
+}
 #bundle {
   .juzhong {
     display: -webkit-flex;
@@ -85,7 +153,7 @@
       }
       .btn {
         // #bundle>.juzhong;
-        margin-left: 20px;
+        margin-left: 10px;
         height: 40px;
         width: 40%;
         border-radius: 5px;

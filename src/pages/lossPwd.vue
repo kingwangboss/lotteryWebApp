@@ -7,13 +7,45 @@
         <form @submit.prevent="submit">
           <div>
             <div class="top">
-              <input type="text" disabled="disabled" style="color:#ccc;" class="input1" v-model="user.num1" maxlength="11" placeholder="请输入正确的手机号码" @input="inputFuction">
+              <!-- <input type="text" disabled="disabled" style="color:#ccc;" class="input1" v-model="user.num1" maxlength="11" placeholder="请输入正确的手机号码" @input="inputFuction"> -->
+              <div class="main" style="margin-top:0px;">
+                              <img class="line1" src="../../static/images/zuo.png">
+                              </img>
+                              <input class="line21" type="text" disabled="disabled" style="color:#ccc;width:60%;" v-model="user.num1" maxlength="11" placeholder="请输入正确的手机号码" @input="inputFuction">
+                              </input>
+                              <img class="line3" src="../../static/images/you.png">
+                              </img>
+              </div>
               <el-button class="btn" type="primary" @click="ResetPwdSMS">获取验证码</el-button>
             </div>
             <div class="bottom">
-              <input class="input" v-model="user.verify" type="text" maxlength="20" placeholder="请输入验证码" @input="inputFuction">
+              <!-- <input class="input" v-model="user.verify" type="text" maxlength="20" placeholder="请输入验证码" @input="inputFuction">
               <input class="input" v-model="user.newpwd1" type="password" maxlength="18" placeholder="请输入6-18位新密码" @input="inputFuction">
-              <input class="input" v-model="user.newpwd2" type="password" maxlength="18" placeholder="确认输入" @input="inputFuction">
+              <input class="input" v-model="user.newpwd2" type="password" maxlength="18" placeholder="确认输入" @input="inputFuction"> -->
+              <div class="main">
+                  <img class="line1" src="../../static/images/zuo.png">
+                  </img>
+                  <input class="line21" v-model="user.verify" type="text" maxlength="20" placeholder="请输入验证码" @input="inputFuction">
+                  </input>
+                  <img class="line3" src="../../static/images/you.png">
+                  </img>
+              </div>
+              <div class="main">
+                  <img class="line1" src="../../static/images/zuo.png">
+                  </img>
+                  <input class="line21" v-model="user.newpwd1" type="password" maxlength="18" placeholder="请输入6-18位新密码" @input="inputFuction">
+                  </input>
+                  <img class="line3" src="../../static/images/you.png">
+                  </img>
+              </div>
+              <div class="main">
+                  <img class="line1" src="../../static/images/zuo.png">
+                  </img>
+                  <input class="line21" v-model="user.newpwd2" type="password" maxlength="18" placeholder="确认输入" @input="inputFuction">
+                  </input>
+                  <img class="line3" src="../../static/images/you.png">
+                  </img>
+              </div>
             </div>
           </div>
           <el-button v-if="disabled" :disabled="disabled" class="btnEnable" type="primary" native-type="submit">确认修改</el-button>
@@ -25,6 +57,39 @@
 </template>
 
 <style lang="less" scoped>
+.main {
+    display: flex;
+    flex-direction: row;
+    // margin: 2px;
+    line-height: 38px;
+    color: #fffde4;
+    position: relative;
+    margin-top: 10%;
+    //   background: red;
+    .line1 {
+      background-repeat: no-repeat;
+      height: 40px;
+      width: 19px;
+    }
+    .line21 {
+        outline: none;
+      background: url("../../static/images/zhong.png");
+      background-repeat: repeat;
+      font-size: 12px;
+      height: 40px;
+      width: 225px;
+      color: white;
+      // padding-left: 10px;
+    //   padding:0px -5px 0px -5px;
+    }
+    
+    .line3 {
+      background-repeat: no-repeat;
+      height:40px;
+      width: 19px;
+    }
+}
+
 #bundle {
   .juzhong {
     display: -webkit-flex;
@@ -73,7 +138,7 @@
       }
       .btn {
         // #bundle>.juzhong;
-        margin-left: 20px;
+        margin-left: 10px;
         height: 40px;
         width: 40%;
         border-radius: 5px;

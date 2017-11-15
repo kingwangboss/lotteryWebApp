@@ -3,13 +3,61 @@
     <div class="content">
       <form @submit.prevent="submit">
         <div>
-          <input class="input" v-model="user.name" type="text" maxlength="20" placeholder="请输入用户名" @input="inputFuction">
+          <!-- <input class="input" v-model="user.name" type="text" maxlength="20" placeholder="请输入用户名" @input="inputFuction">
           <input class="input" v-model="user.num" type="number" maxlength="11" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="安全手机" @input="inputFuction">
           <input class="input" v-model="user.newpwd1" type="password" maxlength="18" placeholder="请输入密码" @input="inputFuction">
-          <input class="input" v-model="user.newpwd2" type="password" maxlength="18" placeholder="请确认密码" @input="inputFuction">
-          <div style="display:flex; align-items: middle;">
+          <input class="input" v-model="user.newpwd2" type="password" maxlength="18" placeholder="请确认密码" @input="inputFuction"> -->
+          <div class="main">
+                <img class="line1" src="../../../static/images/zuo.png">
+                </img>
+                <input class="line21" v-model="user.name" type="text" maxlength="20" placeholder="请输入用户名" @input="inputFuction">
+                </input>
+                <img class="line3" src="../../../static/images/you.png">
+                </img>
+          </div>
+
+          <div class="main">
+                <img class="line1" src="../../../static/images/zuo.png">
+                </img>
+                <input class="line21" v-model="user.num" type="number" maxlength="11" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="安全手机" @input="inputFuction">
+                </input>
+                <img class="line3" src="../../../static/images/you.png">
+                </img>
+          </div>
+
+          <div class="main">
+                <img class="line1" src="../../../static/images/zuo.png">
+                </img>
+                <input class="line21" v-model="user.newpwd1" type="password" maxlength="18" placeholder="请输入密码" @input="inputFuction">
+                </input>
+                <img class="line3" src="../../../static/images/you.png">
+                </img>
+          </div>
+
+          <div class="main">
+                <img class="line1" src="../../../static/images/zuo.png">
+                </img>
+                <input class="line21" v-model="user.newpwd2" type="password" maxlength="18" placeholder="请确认密码" @input="inputFuction">
+                </input>
+                <img class="line3" src="../../../static/images/you.png">
+                </img>
+          </div>
+          
+          <!-- <div style="display:flex; align-items: middle;">
             <input style="width:50%,margin-top:0px;" class="input" v-model="user.yanzhengma" type="text" maxlength="4" placeholder="验证码" @input="inputFuction">
             <img style="margin-top:20px;margin-left:10px;" :src="user.imgurl" alt="" @click="getData()">
+          </div> -->
+
+          <div class="top">
+            <div class="main">
+                              <img class="line1" src="../../../static/images/zuo.png">
+                              </img>
+                              <input class="line21" style="width:60%" v-model="user.yanzhengma" type="text" maxlength="4" placeholder="验证码" @input="inputFuction">
+                              </input>
+                              <img class="line3" src="../../../static/images/you.png">
+                              </img>
+            </div>
+            <img style="margin-left:10px;height:40px" :src="user.imgurl" alt="" @click="getData()">
           </div>
         </div>
 
@@ -21,6 +69,45 @@
 </template>
 
 <style lang="less" scoped>
+.top {
+      margin-top: 10%;
+      display: flex;
+      flex-direction: row;
+}
+.main {
+    display: flex;
+    flex-direction: row;
+    // margin: 2px;
+    line-height: 38px;
+    color: #fffde4;
+    position: relative;
+    margin-bottom: 10%;
+    //   background: red;
+    .line1 {
+      background-repeat: no-repeat;
+      height: 40px;
+      width: 19px;
+    }
+    .line21 {
+        outline: none;
+      background: url("../../../static/images/zhong.png");
+      background-repeat: repeat;
+      font-size: 12px;
+      height: 40px;
+      width: 240px;
+      color: white;
+      // padding-left: 10px;
+    //   padding:0px -5px 0px -5px;
+    }
+    
+    .line3 {
+      background-repeat: no-repeat;
+      height:40px;
+      width: 19px;
+    }
+
+
+}
 #bundle {
   .juzhong {
     display: -webkit-flex;
