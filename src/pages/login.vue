@@ -86,7 +86,7 @@
             background-image: url('../../static/images/login/a2.png');
             background-repeat: no-repeat;
             background-size: 100% 100%;
-             height: 44px;
+            height: 44px;
             line-height: 44px;
         }
         .icon-user {
