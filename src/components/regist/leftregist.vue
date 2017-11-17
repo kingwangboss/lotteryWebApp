@@ -7,8 +7,10 @@
           <div class="main">
                             <img class="line1" src="../../../static/images/zuo.png">
                             </img>
-                            <input class="line21" v-model="mobile.num" type="text" maxlength="11" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="请输入手机号码" @input="inputFuction">
-                            </input>
+                            <div class="line21">
+                              <input class="line22" v-model="mobile.num" type="text" maxlength="11" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="请输入手机号码" @input="inputFuction">
+                              </input>
+                            </div>
                             <img class="line3" src="../../../static/images/you.png">
                             </img>
           </div>
@@ -18,8 +20,10 @@
             <div class="main">
                               <img class="line1" src="../../../static/images/zuo.png">
                               </img>
-                              <input class="line21" style="width:60%" type="number" v-model="mobile.verify" maxlength="11" placeholder="请输入验证码" @input="inputFuction">
-                              </input>
+                              <div class="line21" style="width:50%">
+                                <input class="line22" type="number" v-model="mobile.verify" maxlength="11" placeholder="请输入验证码" @input="inputFuction">
+                                </input>
+                              </div>
                               <img class="line3" src="../../../static/images/you.png">
                               </img>
             </div>
@@ -32,8 +36,10 @@
             <div class="main">
                 <img class="line1" src="../../../static/images/zuo.png">
                 </img>
-                <input class="line21" v-model="mobile.newpwd1" type="password" maxlength="18" placeholder="请输入密码" @input="inputFuction">
-                </input>
+                <div class="line21">
+                  <input class="line22" v-model="mobile.newpwd1" type="password" maxlength="18" placeholder="请输入密码" @input="inputFuction">
+                  </input>
+                </div>
                 <img class="line3" src="../../../static/images/you.png">
                 </img>
             </div>
@@ -41,8 +47,10 @@
             <div class="main">
                 <img class="line1" src="../../../static/images/zuo.png">
                 </img>
-                <input class="line21" v-model="mobile.newpwd2" type="password" maxlength="18" placeholder="请确认密码" @input="inputFuction">
-                </input>
+                <div class="line21">
+                  <input class="line22" v-model="mobile.newpwd2" type="password" maxlength="18" placeholder="请确认密码" @input="inputFuction">
+                  </input>
+                </div>
                 <img class="line3" src="../../../static/images/you.png">
                 </img>
             </div>
@@ -71,14 +79,22 @@
       width: 19px;
     }
     .line21 {
-        outline: none;
       background: url("../../../static/images/zhong.png");
       background-repeat: repeat;
       font-size: 12px;
       height: 40px;
       width: 225px;
       color: white;
-      // padding-left: 10px;
+    //   padding:0px -5px 0px -5px;
+    }
+    .line22 {
+        outline: none;
+      font-size: 12px;
+      height: 40px;
+      width: 225px;
+      color: white;
+      // padding-left: 15px;
+      background: rgba(255,255,255,0);
     //   padding:0px -5px 0px -5px;
     }
     
@@ -153,7 +169,7 @@
       }
       .btn {
         // #bundle>.juzhong;
-        margin-left: 10px;
+        margin-left: -70px;
         height: 40px;
         width: 40%;
         border-radius: 5px;

@@ -11,8 +11,10 @@
                         <div class="main">
                             <img class="line1" src="../../static/images/zuo.png">
                             </img>
-                            <input class="line21" v-model="user.username" type="text" maxlength="20" placeholder="请输入账号" @input="inputFuction">
-                            </input>
+                            <div class="line21">
+                              <input class="line22" v-model="user.username" type="text" maxlength="20" placeholder="请输入账号" @input="inputFuction">
+                              </input>
+                            </div>
                             <img class="line3" src="../../static/images/you.png">
                             </img>
                         </div>
@@ -22,12 +24,14 @@
                             <div class="main">
                               <img class="line1" src="../../static/images/zuo.png">
                               </img>
-                              <input class="line21" type="text" style="width:60%" v-model="user.verify" maxlength="4" placeholder="验证码" @input="inputFuction">
-                              </input>
+                              <div class="line21" style="width:50%">
+                                <input class="line22" type="text" v-model="user.verify" maxlength="4" placeholder="验证码" @input="inputFuction">
+                                </input>
+                              </div>
                               <img class="line3" src="../../static/images/you.png">
                               </img>
                             </div>
-                            <img style="margin-top:20px;margin-left:10px;" :src="user.imgurl" alt="" @click="getData()">
+                            <img style="margin-top:20px;margin-left:-60px;" :src="user.imgurl" alt="" @click="getData()">
                         </div>
                     </div>
                     <el-button v-if="disabled" :disabled="disabled" class="btnEnable" type="primary" native-type="submit">下一步</el-button>
@@ -54,14 +58,21 @@
       width: 19px;
     }
     .line21 {
-        outline: none;
       background: url("../../static/images/zhong.png");
       background-repeat: repeat;
       font-size: 12px;
       height: 40px;
       width: 215px;
       color: white;
-      // padding-left: 10px;
+    //   padding:0px -5px 0px -5px;
+    }
+    .line22 {
+        outline: none;
+      font-size: 12px;
+      height: 40px;
+      width: 215px;
+      color: white;
+      background: rgba(255,255,255,0);
     //   padding:0px -5px 0px -5px;
     }
     

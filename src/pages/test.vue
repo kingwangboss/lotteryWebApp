@@ -2,10 +2,10 @@
     <div class="main">
             <img class="line1" src="../../static/images/zuo.png">
             </img>
-            <!-- <div class="line21">
+            <div class="line21">
                 sdgdsgsdfgsdfgdfgsdfg
-            </div> -->
-            <img style="width:100px;height:40px;" src="../../static/images/zhong.png" alt="">
+            </div>
+            <!-- <img style="width:100px;height:40px;" src="../../static/images/zhong.png" alt=""> -->
             <img class="line3" src="../../static/images/you.png">
             </img>
     </div>

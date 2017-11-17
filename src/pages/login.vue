@@ -24,10 +24,12 @@
                         <div class="main">
                             <img class="line1" src="../../static/images/zuo.png">
                             </img>
-                        
-                            <i class="icon-user"></i>
-                            <input class="line21" type="text" v-model="user.name" maxlength="20" placeholder="请输入手机号/昵称" @input="inputFuction">
-                            </input>
+                            <div class="line21">
+                                <i class="icon-user"></i>
+                                <input class="line22" type="text" v-model="user.name" maxlength="20" placeholder="请输入手机号/昵称" @input="inputFuction">
+                                </input>
+                            </div>
+                            
                             <img class="line3" src="../../static/images/you.png">
                             </img>
                         </div>
@@ -35,9 +37,11 @@
                         <div class="main">
                             <img class="line1" src="../../static/images/zuo.png">
                             </img>
-                            <i class="icon-user1"></i>
-                            <input class="line21" type="password" v-model="user.pwd" maxlength="20" placeholder="请输入密码" @input="inputFuction">
-                            </input>
+                            <div class="line21">
+                                <i class="icon-user1"></i>
+                                <input class="line22" type="password" v-model="user.pwd" maxlength="20" placeholder="请输入密码" @input="inputFuction">
+                                </input>
+                            </div>
                             <img class="line3" src="../../static/images/you.png">
                             </img>
                         </div>
@@ -82,14 +86,22 @@
       background-size: 19px;
     }
     .line21 {
-        outline: none;
       background: url("../../static/images/zhong.png");
       background-repeat: repeat;
       font-size: 12px;
       height: 40px;
       width: 215px;
       color: white;
+    //   padding:0px -5px 0px -5px;
+    }
+    .line22 {
+        outline: none;
+      font-size: 12px;
+      height: 40px;
+      width: 215px;
+      color: white;
       padding-left: 15px;
+      background: rgba(255,255,255,0);
     //   padding:0px -5px 0px -5px;
     }
     
