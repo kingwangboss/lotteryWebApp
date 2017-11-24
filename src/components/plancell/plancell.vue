@@ -130,7 +130,7 @@
 
 .diandian {
     margin-bottom: 5px;
-    // #bundle>.juzhong;
+    #bundle>.juzhong;
     display: flex;
     flex-direction: row;
     // width: 100%;
