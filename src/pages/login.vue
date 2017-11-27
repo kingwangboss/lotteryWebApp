@@ -11,7 +11,7 @@
                         <!-- <input class="input" v-model="user.name" type="text" maxlength="20" placeholder="请输入手机号/昵称" @input="inputFuction">
                             <input class="input" v-model="user.pwd" type="password" maxlength="20" placeholder="请输入密码" @input="inputFuction"> -->
 
-                        <!-- <div class="div-bor">
+                        <div class="div-bor">
                             <i class="icon-user"></i>
                             <input type="text" class="user" v-model="user.name" maxlength="20" placeholder="请输入手机号/昵称" @input="inputFuction">
                         </div>
@@ -19,9 +19,9 @@
                         <div class="div-bor">
                             <i class="icon-user1"></i>
                             <input type="password" class="user" v-model="user.pwd" maxlength="20" placeholder="请输入密码" @input="inputFuction">
-                        </div> -->
+                        </div>
 
-                        <div class="main">
+                        <!-- <div class="main">
                             <img class="line1" src="../../static/images/zuo.png">
                             </img>
                             <div class="line21">
@@ -44,7 +44,7 @@
                             </div>
                             <img class="line3" src="../../static/images/you.png">
                             </img>
-                        </div>
+                        </div> -->
 
                         <div class="xuCZ" @click="XZcaizhongClick">
                             <img class="leftImg" src="../../static/images/login/Login-09.png" alt="">
@@ -154,7 +154,7 @@
       background-image: url("../../static/images/login/a2.png");
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      height: 44px;
+      height: 40px;
       line-height: 44px;
     }
     .icon-user {
@@ -223,7 +223,7 @@
       background-size: 100% 100%;
       height: 40px;
       line-height: 40px;
-      width: 96%;
+      // width: 96%;
       padding-left: 10px;
       display: flex;
       flex-direction: row;
