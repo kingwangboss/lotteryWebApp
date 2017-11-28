@@ -2,16 +2,16 @@
   <div class="main">
     <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
       <el-tab-pane label="遗漏分析" name="first">
-        <iframe class="ichart" name="txt0" :style="{height:screenHeight+'px'}" src="http://ycwapp.cpnet.com/static/JYYC1/txt.html" frameborder="0" marginheight="0px"></iframe>
+        <iframe class="ichart" name="txt0" :style="{height:screenHeight+'px'}" :src="url1" frameborder="0" marginheight="0px"></iframe>
       </el-tab-pane>
       <el-tab-pane label="冷热分析" name="second">
-        <iframe class="ichart" :style="{height:screenHeight+'px'}" name="bxt0" src="http://ycwapp.cpnet.com/static/JYYC1/bxt.html" frameborder="0" marginheight="0px"></iframe>
+        <iframe class="ichart" :style="{height:screenHeight+'px'}" name="bxt0" :src="url2" frameborder="0" marginheight="0px"></iframe>
       </el-tab-pane>
       <el-tab-pane label="指标遗漏分析" name="third">
-        <iframe class="ichart" :style="{height:screenHeight+'px'}" name="txt1" src="http://ycwapp.cpnet.com/static/JYYC1/txt.html" frameborder="0" marginheight="0px"></iframe>
+        <iframe class="ichart" :style="{height:screenHeight+'px'}" name="txt1" :src="url1" frameborder="0" marginheight="0px"></iframe>
       </el-tab-pane>
       <el-tab-pane label="指标冷热分析" name="fourth">
-        <iframe class="ichart" :style="{height:screenHeight+'px'}" name="bxt1" src="http://ycwapp.cpnet.com/static/JYYC1/bxt.html" frameborder="0" marginheight="0px"></iframe>
+        <iframe class="ichart" :style="{height:screenHeight+'px'}" name="bxt1" :src="url2" frameborder="0" marginheight="0px"></iframe>
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -37,6 +37,8 @@ export default {
   name: "shujufenxi",
   data() {
     return {
+      url1:"//ycwapp.cpnet.com/static/JYYC1/txt.html",
+      url2:"//ycwapp.cpnet.com/static/JYYC1/bxt.html",
       activeName2: localStorage.activeName2,
       screenHeight: document.documentElement.clientHeight - 88 - 68,
       // screenWidth:  document.documentElement.screenWidth
@@ -78,6 +80,11 @@ export default {
   created() {
     console.log("created");
     console.log(localStorage.Norm1);
+    console.log(window.location.protocol );
+    this.url1 = window.location.protocol + this.url1;
+    this.url2 = window.location.protocol + this.url2;
+    console.log(this.url1);
+    console.log(this.url2);
   },
   methods: {
     item0() {

@@ -4,28 +4,38 @@
         <div v-show="!isLan(index)" class="kjnum1" :style="{width:ojwidth+'px',height:height+'px'}" :key="item" v-for="(item,index) in numArr">{{item}}</div> -->
 
         <div class="main" v-show="isLan(index)"  :key="item" v-for="(item,index) in numArr">
-            <img class="line1" src="../../../static/images/ball_left11.png">
+            <img class="line1" src="../../../static/images/red_left.png">
             </img>
-            <div class="line21" :style="{width:ojwidth +10 +'px',height:height+'px',}">
+            <!-- <div class="line21" :style="{width:ojwidth +10 +'px',height:height+'px',}">
                 {{item}}
-            </div>
-            <img class="line3" src="../../../static/images/ball_right11.png">
+            </div> -->
+            <img src="../../../static/images/red_center.png" alt="" :style="{width:ojwidth +10 +'px',height:height+'px',}">
+            <img class="line3" src="../../../static/images/red_right.png">
             </img>
+            <div :style="{left: -ojwidth1 +'px'}">
+                <span>{{item}}</span>
+            </div>
+          
         </div>
 
         <div class="main" v-show="!isLan(index)"  :key="item" v-for="(item,index) in numArr">
-            <img class="line1" src="../../../static/images/ball_left22.png">
+            <img class="line1" src="../../../static/images/blue_left.png">
             </img>
-            <div class="line22" :style="{width:ojwidth +10 +'px',height:height+'px',}">
+            <!-- <div class="line22" :style="{width:ojwidth +10 +'px',height:height+'px',}">
                 {{item}}
-            </div>
-            <img class="line3" src="../../../static/images/ball_right22.png">
+            </div> -->
+            <img src="../../../static/images/blue_center.png" alt="" :style="{width:ojwidth +10 +'px',height:height+'px',}">
+            <img class="line3" src="../../../static/images/blue_right.png">
             </img>
+            <div :style="{left: -ojwidth1 +'px'}">
+                <span>{{item}}</span>
+            </div>
         </div>
     </div>
 </template>
 
 <style lang="less" scoped>
+
 .content {
   display: flex;
   flex-direction: row;
@@ -37,26 +47,36 @@
     margin: 2px;
     line-height: 38px;
     color: #fffde4;
+    position: relative;
+    div{
+      position: absolute;
+      width:20px;
+
+    }
     //   background: red;
     .line1 {
       background-repeat: no-repeat;
       width: 5px;
+      height: 36px;
     }
     .line21 {
-      background: url("../../../static/images/ball_center.png");
+      background: url("../../../static/images/red_center.png");
       background-repeat: repeat;
+      height: 36px;
       // z-index: 100;
       font-size: 12px;
       padding:0px -5px 0px -5px;
     }
     .line22 {
-      background: url("../../../static/images/ball_center2.png");
+      background: url("../../../static/images/blue_center.png");
       background-repeat: repeat;
+      height: 36px;
       // z-index: 100;
       font-size: 12px;
       padding:0px -5px 0px -5px;
     }
     .line3 {
+      height: 36px;
       background-repeat: no-repeat;
       width: 5px;
     }
@@ -155,9 +175,24 @@ export default {
         var colnum = 10; //列
         colnum = this.numArr.length > colnum ? colnum : this.numArr.length;
         var rownum = this.numArr.length / colnum; //行
-        margin = this.numArr.length >= 10 ? 11.5 : 12.5; //间距
+        margin = this.numArr.length >= 10 ? 11.5 : 13; //间距
         ojwidth = (this.screenWidth - 2 * (margin + 1) * colnum) / colnum; //格子的宽
         return ojwidth;
+      },
+      // setter
+      set: function(newValue) {}
+    },
+    ojwidth1: {
+      // getter
+      get: function() {
+        var ojwidth;
+        var margin;
+        var colnum = 10; //列
+        colnum = this.numArr.length > colnum ? colnum : this.numArr.length;
+        var rownum = this.numArr.length / colnum; //行
+        margin = this.numArr.length >= 10 ? 11.5 : 12.5; //间距
+        ojwidth = (this.screenWidth - 2 * (margin + 1) * colnum) / colnum; //格子的宽
+        return -ojwidth/2 ;
       },
       // setter
       set: function(newValue) {}
