@@ -40,7 +40,7 @@
                     <i class="icon-verify"></i>
                     <input class="input1"  v-model="user.yanzhengma" type="text" maxlength="4" placeholder="验证码" @input="inputFuction"></input>
                 </div>
-                <img style="margin-left:15px;height:40px" :src="user.imgurl" alt="" @click="getData()">
+                <img style="margin-left:15px;width:100px;height:40px" :src="user.imgurl" alt="" @click="getData()">
             </div>
         </div>
 
@@ -84,17 +84,18 @@
   position: fixed;
   #bundle>.juzhong;
   .content {
-    width: 70%;
+    // width: 70%;
     margin-top: 10%;
     flex-direction: column;
     .div-bor {
       position: relative;
-    //   width: 270px;
-      margin-bottom: 10%;
+      width: 270px;
+      margin-bottom: 7%;
       height: 40px;
       line-height: 42px;
       border: solid #dedede 1px;
       border-radius: 4px;
+      background-color: white;
       .input {
         background: red;
         outline: none;
@@ -108,12 +109,13 @@
     }
     .div-bor1 {
       position: relative;
-    //   width: 155px;
-      margin-bottom: 10%;
+      width: 155px;
+      margin-bottom: 7%;
       height: 40px;
       line-height: 42px;
       border: solid #dedede 1px;
       border-radius: 4px;
+      background-color: white;
       .input1 {
         outline: none;
         width: 100%;
@@ -194,7 +196,7 @@
       /*图片显示的高*/
     }
     .btnDefault {
-      margin-top: 30px;
+      margin-top: 15px;
       width: 100%;
     //   border-radius: 40px;
     //   background-color: RGB(251, 230, 231);
@@ -206,7 +208,7 @@
       font-size: 18px;
     }
     .btnEnable {
-      margin-top: 30px;
+      margin-top: 15px;
       width: 100%;
     //   border-radius: 40px;
     //   background-color: RGB(240, 144, 156);

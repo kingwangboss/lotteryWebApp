@@ -66,7 +66,7 @@
   position: fixed;
   .content {
     #bundle > .juzhong;
-    margin-top: 15%;
+    margin-top: 10%;
     flex-direction: column;
     .div-bor {
       position: relative;
@@ -76,6 +76,7 @@
       line-height: 42px;
       border: solid #dedede 1px;
       border-radius: 4px;
+      background-color: white;
       .input {
         background: red;
         outline: none;
@@ -95,6 +96,7 @@
       line-height: 42px;
       border: solid #dedede 1px;
       border-radius: 4px;
+      background-color: white;
       .input1 {
         outline: none;
         background-color: transparent;
