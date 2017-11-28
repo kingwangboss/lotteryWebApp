@@ -88,7 +88,7 @@
 
 .line {
     height: 1px;
-    background: #D8D8D8;
+    background: #EFEFEF;
 }
 </style>
 

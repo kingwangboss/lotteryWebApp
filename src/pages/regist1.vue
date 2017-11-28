@@ -29,27 +29,28 @@
   margin-bottom: -5px;
   .btnview {
     width: 100%;
-    bottom: 4.5px;
+    bottom: 6px;
     position: absolute;
     display: flex;
     justify-content: space-around;
     .btnDefault {
-    //   width: 20%;
+      width: 40%;
       height: 100%;
       background-color: RGBA(0, 0, 0, 0);
       border: 0;
       color: #ffffff66;
-      font-size: 15px;
+      font-size: 16px;
       border-radius: 0;
-    //   border-bottom: solid #fff 5px;
+      //   border-bottom: solid #fff 5px;
     }
     .btnEnable {
-    //   width: 20%;
+      //   width: 20%;
+      width: 40%;
       height: 100%;
       background-color: RGBA(0, 0, 0, 0);
       border: 0;
       color: #fff;
-      font-size: 15px;
+      font-size: 16px;
       border-radius: 0;
       border-bottom: solid #fff 5px;
     }
@@ -60,8 +61,8 @@
 
 <script>
 import mHeader from "../components/hearder/Hearder";
-import leftRegist from '../components/regist/leftregist1'
-import rightRegist from '../components/regist/rightregist1'
+import leftRegist from "../components/regist/leftregist1";
+import rightRegist from "../components/regist/rightregist1";
 
 export default {
   name: "registVC",
@@ -71,7 +72,7 @@ export default {
         text: "注册",
         showBack: true
       },
-      isA: false,
+      isA: false
     };
   },
   created() {
@@ -93,6 +94,6 @@ export default {
     btnClick(event) {
       this.isA = !this.isA;
     }
-  },
+  }
 };
 </script>

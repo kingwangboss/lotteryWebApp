@@ -169,7 +169,7 @@
         margin-left: 15px;
         height: 40px;
         width: 100px;
-        border-radius: 5px;
+        border-radius: 4px;
         background-color: #f0f0f0;
         border: solid #dedede 1px;
         // border: 0;

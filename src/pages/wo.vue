@@ -9,39 +9,39 @@
     </div>
 
     <div class="bottom">
-      <div v-if="paytype" class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth+'px'}">
+      <div v-if="paytype" class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth + 10+'px'}">
         <img src="../../static/images/me/User-05.png" @click="buyClick" style="margin-top:30px;"></img>
         <span>购买授权</span>
-        <div style="background:#cdcdcd;margin-top:20px;" :style="{width:ojwidth - 40+'px',height:1+'px'}"></div>
+        <div style="background:#EFEFEF;margin-top:20px;" :style="{width:ojwidth - 40+'px',height:1+'px'}"></div>
       </div>
-      <div v-if="paytype" style="background:#cdcdcd;margin-top:20px;" :style="{width:1+'px',height:ojwidth - 40+'px'}"></div>
+      <div v-if="paytype" style="background:#EFEFEF;margin-top:20px;" :style="{width:1+'px',height:ojwidth - 40+'px'}"></div>
 
-      <div class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth+'px'}" @click="kefuClick">
+      <div class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth + 10 +'px'}" @click="kefuClick">
         <img src="../../static/images/me/User-07.png" style="margin-top:30px;"></img>
         <span>在线客服</span>
-        <div style="background:#cdcdcd;margin-top:20px;" :style="{width:ojwidth - 40+'px',height:1+'px'}"></div>
+        <div style="background:#EFEFEF;margin-top:20px;" :style="{width:ojwidth - 40+'px',height:1+'px'}"></div>
       </div>
-      <div style="background:#cdcdcd;margin-top:20px;" :style="{width:1+'px',height:ojwidth - 40+'px'}"></div>
+      <div style="background:#EFEFEF;margin-top:20px;" :style="{width:1+'px',height:ojwidth - 40+'px'}"></div>
 
-      <div class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth+'px'}" @click="shouquanClick">
+      <div class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth + 10 +'px'}" @click="shouquanClick">
         <img src="../../static/images/me/User-08.png" style="margin-top:30px;"></img>
         <span>我的授权</span>
-        <div style="background:#cdcdcd;margin-top:20px;" :style="{width:ojwidth - 40+'px',height:1+'px'}"></div>
+        <div style="background:#EFEFEF;margin-top:20px;" :style="{width:ojwidth - 40+'px',height:1+'px'}"></div>
       </div>
-      <div v-if="!paytype" style="background:#cdcdcd;margin-top:20px;" :style="{width:1+'px',height:ojwidth - 40+'px'}"></div>
+      <div v-if="!paytype" style="background:#EFEFEF;margin-top:20px;" :style="{width:1+'px',height:ojwidth - 40+'px'}"></div>
 
       <div class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth+'px'}" @click="XGpwdClick">
         <img src="../../static/images/me/User-09.png"></img>
         <span>密码管理</span>
-        <div v-if="!paytype" style="background:#cdcdcd;margin-top:20px;" :style="{width:ojwidth - 40+'px',height:1+'px'}"></div>
+        <div v-if="!paytype" style="background:#EFEFEF;margin-top:20px;" :style="{width:ojwidth - 40+'px',height:1+'px'}"></div>
       </div>
-      <div v-if="paytype" style="background:#cdcdcd;margin-top:20px;" :style="{width:1+'px',height:ojwidth - 40+'px'}"></div>
+      <div v-if="paytype" style="background:#EFEFEF;margin-top:10px;" :style="{width:1+'px',height:ojwidth - 40+'px'}"></div>
 
       <div class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth+'px'}" @click="feedbackClick">
         <img src="../../static/images/me/User-10.png"></img>
         <span>意见反馈</span>
       </div>
-      <div style="background:#cdcdcd;margin-top:20px;" :style="{width:1+'px',height:ojwidth - 40+'px'}"></div>
+      <div style="background:#EFEFEF;margin-top:10px;" :style="{width:1+'px',height:ojwidth - 40+'px'}"></div>
       <div class="bottom-cell" :style="{width:ojwidth+'px',height:ojwidth+'px'}" @click="aboutClick">
         <img src="../../static/images/me/User-11.png"></img>
         <span>关于我们</span>
@@ -105,11 +105,16 @@
   align-items: center;
   -webkit-justify-content: center;
   justify-content: center;
+  span{
+    font-size: 12px;
+    line-height: 20px;
+  }
 }
 
 .bottom-cell img {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
+  margin-top: -10px;
 }
 
 .bottom-cell text {
