@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import PlanVC from '@/pages/planVC'
 import loginVC from '@/pages/login'
 import registVC from '@/pages/regist'
+import regist1VC from '@/pages/regist1'
 import lossPwdVC from '@/pages/lossPwd'
 import lossPwdVC1 from '@/pages/lossPwd1'
 import PlanDetail from '@/pages/planDetail'
@@ -42,6 +43,11 @@ export default new Router({
       path: '/regist',
       name: 'registVC',
       component: registVC
+    },
+    {
+      path: '/regist1',
+      name: 'regist1VC',
+      component: regist1VC
     },
     {
       path: '/lossPwd',

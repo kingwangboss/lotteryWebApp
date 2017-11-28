@@ -60,7 +60,7 @@
 
                 <div class="bottom">
                     <router-link class="bottom-left" to="/lossPwd1">忘记密码？</router-link>
-                    <router-link class="bottom-right" to="/regist">立即注册>></router-link>
+                    <router-link class="bottom-right" to="/regist1">立即注册>></router-link>
                 </div>
 
             </div>
