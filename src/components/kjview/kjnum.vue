@@ -9,7 +9,7 @@
             <!-- <div class="line21" :style="{width:ojwidth +10 +'px',height:height+'px',}">
                 {{item}}
             </div> -->
-            <img src="../../../static/images/red_center.png" alt="" :style="{width:ojwidth +10 +'px',height:height+'px',}">
+            <img src="../../../static/images/red_center.png" alt="" :style="{width:ojwidth +'px',height:height+'px',}">
             <img class="line3" src="../../../static/images/red_right.png">
             </img>
             <div :style="{left: -ojwidth1 +'px'}">
@@ -24,7 +24,7 @@
             <!-- <div class="line22" :style="{width:ojwidth +10 +'px',height:height+'px',}">
                 {{item}}
             </div> -->
-            <img src="../../../static/images/blue_center.png" alt="" :style="{width:ojwidth +10 +'px',height:height+'px',}">
+            <img src="../../../static/images/blue_center.png" alt="" :style="{width:ojwidth +'px',height:height+'px',}">
             <img class="line3" src="../../../static/images/blue_right.png">
             </img>
             <div :style="{left: -ojwidth1 +'px'}">
@@ -175,8 +175,8 @@ export default {
         var colnum = 10; //列
         colnum = this.numArr.length > colnum ? colnum : this.numArr.length;
         var rownum = this.numArr.length / colnum; //行
-        margin = this.numArr.length >= 10 ? 11.5 : 13; //间距
-        ojwidth = (this.screenWidth - 2 * (margin + 1) * colnum) / colnum; //格子的宽
+        margin = 2 + 5; //间距
+        ojwidth = (this.screenWidth - 10 - 2 * margin * colnum) / colnum; //格子的宽
         return ojwidth;
       },
       // setter
