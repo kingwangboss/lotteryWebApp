@@ -56,7 +56,7 @@
     //   background: red;
     .line1 {
       background-repeat: no-repeat;
-      width: 5px;
+      width: 4px;
       height: 36px;
     }
     .line21 {
@@ -78,7 +78,7 @@
     .line3 {
       height: 36px;
       background-repeat: no-repeat;
-      width: 5px;
+      width: 4px;
     }
   }
   .kjnum {
@@ -175,7 +175,7 @@ export default {
         var colnum = 10; //列
         colnum = this.numArr.length > colnum ? colnum : this.numArr.length;
         var rownum = this.numArr.length / colnum; //行
-        margin = 2 + 5; //间距
+        margin = 2 + 4; //间距
         ojwidth = (this.screenWidth - 10 - 2 * margin * colnum) / colnum; //格子的宽
         return ojwidth;
       },
