@@ -185,7 +185,7 @@
     .line {
         margin: 0px 11px;
         border-top: 1px dashed #58C5E0; // background: rebeccapurple;
-        margin-top: -1px;
+        margin-top: -2px;
     }
     p {
         margin: 0px 10px;
