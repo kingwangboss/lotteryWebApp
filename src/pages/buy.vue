@@ -10,7 +10,7 @@
                         <div class="top-div" style="color:#8A73FD;width: 13%;">{{listData.PriceList[0].Price.toFixed(2)}}</div>
                         <el-button style="background-color: #8A73FD;" class="btn" type="primary">{{listData.PriceList[0].PurchaseType}}</el-button>
                     </div>
-                    <div class="line" style="border: 1px dashed #8A73FD;">
+                    <div class="line" style="border-top: 1px dashed #8A73FD;">
                     </div>
                 </div>
                 <div class="cell">
@@ -20,7 +20,7 @@
                         <div class="top-div" style="color:#8A73FD;width: 13%;">{{listData.PriceList[1].Price.toFixed(2)}}</div>
                         <el-button style="background-color: #8A73FD;" class="btn" type="primary">{{listData.PriceList[1].PurchaseType}}</el-button>
                     </div>
-                    <div class="line" style="border: 1px dashed #8A73FD;">
+                    <div class="line" style="border-top: 1px dashed #8A73FD;">
                     </div>
                     <p style="color:#8A73FD">{{listData.DesceList[0].Desc}}</p>
                 </div>
@@ -34,7 +34,7 @@
                         <div class="top-div" style="color:#F76587;width: 13%;">{{listData.PriceList[2].Price.toFixed(2)}}</div>
                         <el-button style="background-color: #F76587;" class="btn" type="primary">{{listData.PriceList[2].PurchaseType}}</el-button>
                     </div>
-                    <div class="line" style="border: 1px dashed #F76587;">
+                    <div class="line" style="border-top: 1px dashed #F76587;">
                     </div>
                 </div>
                 <div class="cell">
@@ -44,7 +44,7 @@
                         <div class="top-div" style="color:#F76587;width: 13%;">{{listData.PriceList[3].Price.toFixed(2)}}</div>
                         <el-button style="background-color: #F76587;" class="btn" type="primary">{{listData.PriceList[3].PurchaseType}}</el-button>
                     </div>
-                    <div class="line" style="border: 1px dashed #F76587;">
+                    <div class="line" style="border-top: 1px dashed #F76587;">
                     </div>
                     <p style="color:#F76587">{{listData.DesceList[1].Desc}}</p>
                 </div>
@@ -61,7 +61,7 @@
                         <div class="top-div" style="color:#F76587;width: 13%;">{{listData.PriceList[0].Price.toFixed(2)}}</div>
                         <el-button style="background-color: #F76587;" class="btn" type="primary">{{listData.PriceList[0].PurchaseType}}</el-button>
                     </div>
-                    <div class="line" style="border: 1px dashed #F76587;">
+                    <div class="line" style="border-top: 1px dashed #F76587;">
                     </div>
                 </div>
                 <div class="cell">
@@ -71,7 +71,7 @@
                         <div class="top-div" style="color:#F76587;width: 13%;">{{listData.PriceList[1].Price.toFixed(2)}}</div>
                         <el-button style="background-color: #F76587;" class="btn" type="primary">{{listData.PriceList[1].PurchaseType}}</el-button>
                     </div>
-                    <div class="line" style="border: 1px dashed #F76587;">
+                    <div class="line" style="border-top: 1px dashed #F76587;">
                     </div>
                     <p style="color:#F76587">{{listData.DesceList[0].Desc}}</p>
                 </div>
@@ -101,7 +101,7 @@
                         <div class="top-div" style="color:#8A73FD;width: 13%;">{{listData.PriceList[1].Price.toFixed(2)}}</div>
                         <el-button style="background-color: #8A73FD;" class="btn" type="primary">{{listData.PriceList[1].PurchaseType}}</el-button>
                     </div>
-                    <div class="line" style="border: 1px dashed #8A73FD;">
+                    <div class="line" style="border-top: 1px dashed #8A73FD;">
                     </div>
                 </div>
                 <div class="cell">
@@ -111,7 +111,7 @@
                         <div class="top-div" style="color:#8A73FD;width: 13%;">{{listData.PriceList[2].Price.toFixed(2)}}</div>
                         <el-button style="background-color: #8A73FD;" class="btn" type="primary">{{listData.PriceList[2].PurchaseType}}</el-button>
                     </div>
-                    <div class="line" style="border: 1px dashed #8A73FD;">
+                    <div class="line" style="border-top: 1px dashed #8A73FD;">
                     </div>
                     <p style="color:#8A73FD">{{listData.DesceList[1].Desc}}</p>
                 </div>
@@ -125,7 +125,7 @@
                         <div class="top-div" style="color:#F76587;width: 13%;">{{listData.PriceList[3].Price.toFixed(2)}}</div>
                         <el-button style="background-color: #F76587;" class="btn" type="primary">{{listData.PriceList[3].PurchaseType}}</el-button>
                     </div>
-                    <div class="line" style="border: 1px dashed #F76587;">
+                    <div class="line" style="border-top: 1px dashed #F76587;">
                     </div>
                 </div>
                 <div class="cell">
@@ -135,7 +135,7 @@
                         <div class="top-div" style="color:#F76587;width: 13%;">{{listData.PriceList[4].Price.toFixed(2)}}</div>
                         <el-button style="background-color: #F76587;" class="btn" type="primary">{{listData.PriceList[4].PurchaseType}}</el-button>
                     </div>
-                    <div class="line" style="border: 1px dashed #F76587;">
+                    <div class="line" style="border-top: 1px dashed #F76587;">
                     </div>
                     <p style="color:#F76587">{{listData.DesceList[2].Desc}}</p>
                 </div>
@@ -184,7 +184,8 @@
     }
     .line {
         margin: 0px 11px;
-        border: 1px dashed #58C5E0; // background: rebeccapurple;
+        border-top: 1px dashed #58C5E0; // background: rebeccapurple;
+        margin-top: -1px;
     }
     p {
         margin: 0px 10px;
@@ -229,7 +230,8 @@
     }
     .line {
         margin: 0px 11px;
-        border: 1px dashed #58C5E0; // background: rebeccapurple;
+        border-top: 1px dashed #58C5E0; // background: rebeccapurple;
+        margin-top: -3px;
     }
     p {
         margin: 0px 10px;
@@ -274,7 +276,8 @@
     }
     .line {
         margin: 0px 11px;
-        border: 1px dashed #58C5E0; // background: rebeccapurple;
+        border-top: 1px dashed #58C5E0; // background: rebeccapurple;
+        margin-top: -3px;
     }
     p {
         margin: 0px 10px;
