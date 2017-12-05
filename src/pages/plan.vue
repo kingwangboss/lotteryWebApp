@@ -177,9 +177,9 @@ export default {
         this.$http
           .post(localStorage.SiteUrl, data)
           .then(res => {
-            console.log(res);
+            console.log(res+'111111111');
             if (res.data.Code == "Suc") {
-                localStorage.cycleCount = value;
+              localStorage.cycleCount = value;
               that.$router.push({
                 path: "/routerPush"
               });
