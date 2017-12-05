@@ -232,7 +232,7 @@ export default {
         .then(res => {
           console.log(res);
           that.getData();
-          that.$router.go(0);
+          // that.$router.go(0);
         })
         .catch(error => {
           console.log(error);
