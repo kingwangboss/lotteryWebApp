@@ -99,14 +99,6 @@ export default {
   },
   methods: {
     drawPie1(id) {
-      var colorList = [
-        "#4f81bd",
-        "#c0504d",
-        "#9bbb59",
-        "#604a7b",
-        "#948a54",
-        "#e46c0b"
-      ];
 
       this.charts = echarts.init(document.getElementById(id));
       this.charts.setOption({
@@ -165,18 +157,7 @@ export default {
               normal: {
                 //每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组
                 color: function(params) {
-                  var colorList = [
-                    "#db9034",
-                    "#a5c2d5",
-                    "#cbab4f",
-                    "#76a871",
-                    "#9f7961",
-                    "#a56f8f",
-                    "#db9034",
-                    "#a5c2d5",
-                    "#cbab4f",
-                    "#76a871"
-                  ];
+                  var colorList = ["#db9034","#a5c2d5","#cbab4f","#76a871","#9f7961","#a56f8f","#db9034","#a5c2d5","#cbab4f","#76a871","#9f7961","#a56f8f","#db9034","#a5c2d5","#cbab4f","#76a871","#9f7961","#a56f8f","#db9034","#a5c2d5","#cbab4f","#76a871","#9f7961","#a56f8f"];
                   return colorList[params.dataIndex];
                 }
               },
@@ -212,7 +193,7 @@ export default {
         series: [
           {
             type: "pie",
-            radius: "55%",
+            radius: "42%",
             center: ["50%", "50%"],
             selectedMode: "single",
             data: this.data1,
