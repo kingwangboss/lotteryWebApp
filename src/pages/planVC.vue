@@ -41,7 +41,8 @@
 <script>
 import mHeader from '../components/hearder/Hearder';
 import plan from './plan'
-import shujufenxi from './shujufenxi'
+// import shujufenxi from './shujufenxi'
+import shujufenxi from './shujufenxi1'
 import lishikaijiang from './lishikaijiang'
 import wo from './wo'
 import kjview from '../components/kjview/kjview'
