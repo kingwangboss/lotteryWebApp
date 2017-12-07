@@ -149,7 +149,7 @@ export default {
             label: {
               normal: {
                 show: true,
-                position: "inside"
+                position: "right"
               }
             },
             itemStyle: {
