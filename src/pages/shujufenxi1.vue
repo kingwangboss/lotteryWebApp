@@ -121,7 +121,7 @@ export default {
         },
         grid: {
           left: "3%",
-          right: "4%",
+          right: "7%",
           bottom: "3%",
           containLabel: true
         },
@@ -269,6 +269,7 @@ export default {
         "&DataCount=" +
         this.dataCount1 +
         tokenCode;
+    
       let data = new FormData();
       data.append("Action", "GetLengReData");
       data.append("SID", localStorage.sid);
