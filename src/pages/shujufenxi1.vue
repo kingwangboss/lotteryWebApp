@@ -99,16 +99,38 @@ export default {
   },
   methods: {
     drawPie1(id) {
-
+      if (this.data.length >= 12) {
+        var end = 12 / this.data.length * 100;
+        var show = true;
+      } else {
+        var end = 100;
+        var show = false;
+      }
       this.charts = echarts.init(document.getElementById(id));
       this.charts.setOption({
+        animation: false,
+        dataZoom: [
+          {
+            type: "slider",
+            show: show,
+            yAxisIndex: [0],
+            start: 100,
+            end: 100-end
+          },
+          {
+            type: "inside",
+            yAxisIndex: [0],
+            start: 100,
+            end: 100-end
+          }
+        ],
         title: {
           text: this.title,
           x: "center",
-          textStyle:{
+          textStyle: {
             // lineHeight:200,
             // height:100,
-            fontSize:20,
+            fontSize: 20
           }
         },
         // color: ["#a5c2d5","red"],
@@ -136,6 +158,7 @@ export default {
         ],
         xAxis: [
           {
+            max:Math.max.apply( Math,this.data),
             position: "bottom",
             type: "value"
           }
@@ -157,7 +180,51 @@ export default {
               normal: {
                 //每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组
                 color: function(params) {
-                  var colorList = ["#db9034","#a5c2d5","#cbab4f","#76a871","#9f7961","#a56f8f","#db9034","#a5c2d5","#cbab4f","#76a871","#9f7961","#a56f8f","#db9034","#a5c2d5","#cbab4f","#76a871","#9f7961","#a56f8f","#db9034","#a5c2d5","#cbab4f","#76a871","#9f7961","#a56f8f"];
+                  var colorList = [
+                    "#db9034",
+                    "#a5c2d5",
+                    "#cbab4f",
+                    "#76a871",
+                    "#9f7961",
+                    "#a56f8f",
+                    "#db9034",
+                    "#a5c2d5",
+                    "#cbab4f",
+                    "#76a871",
+                    "#9f7961",
+                    "#a56f8f",
+                    "#db9034",
+                    "#a5c2d5",
+                    "#cbab4f",
+                    "#76a871",
+                    "#9f7961",
+                    "#a56f8f",
+                    "#db9034",
+                    "#a5c2d5",
+                    "#cbab4f",
+                    "#76a871",
+                    "#9f7961",
+                    "#a56f8f",
+                    "#db9034",
+                    "#a5c2d5",
+                    "#cbab4f",
+                    "#76a871",
+                    "#9f7961",
+                    "#a56f8f",
+                    "#db9034",
+                    "#a5c2d5",
+                    "#cbab4f",
+                    "#76a871",
+                    "#9f7961",
+                    "#a56f8f",
+                    "#db9034",
+                    "#a5c2d5",
+                    "#cbab4f",
+                    "#76a871",
+                    "#9f7961",
+                    "#a56f8f",
+                    
+                  ];
                   return colorList[params.dataIndex];
                 }
               },
@@ -179,13 +246,13 @@ export default {
         title: {
           text: this.title,
           left: "center",
-          textStyle:{
+          textStyle: {
             // lineHeight:200,
             // height:100,
-            fontSize:20,
+            fontSize: 20
           }
         },
-        
+
         legend: {
           bottom: 10,
           left: "center"
@@ -270,7 +337,7 @@ export default {
         "&DataCount=" +
         this.dataCount1 +
         tokenCode;
-    
+
       let data = new FormData();
       data.append("Action", "GetLengReData");
       data.append("SID", localStorage.sid);
