@@ -236,6 +236,7 @@ export default {
 
           this.name = echartGetName.strWithName(this.listData.AnalysisData);
           this.data = echartGetData.strWithData(this.listData.AnalysisData);
+          this.name.reverse();
           this.data.reverse();
           this.title = this.listData.KeyNumberNames + "-遗漏分析";
 
@@ -329,6 +330,7 @@ export default {
           this.listData = res.data.Data;
           this.name = echartGetName.strWithName(this.listData.AnalysisData);
           this.data = echartGetData.strWithData(this.listData.AnalysisData);
+          this.name.reverse();
           this.data.reverse();
           this.title = this.listData.Norm + "-指标遗漏分析";
           localStorage.selectKeyNumberName3 = this.listData.Norm.split(",");
