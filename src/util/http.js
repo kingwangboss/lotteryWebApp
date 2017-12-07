@@ -131,6 +131,8 @@ axios.interceptors.response.use(
       }).then(action => {
 
       })
+    }else if (response.data.MsgType === 6 && response.data.Msg != null) {
+      window.location.href=response.data.Msg; 
     } else if (response.data.Msg != null && response.data.Msg != "") {
       Toast({
         message: response.data.Msg,
