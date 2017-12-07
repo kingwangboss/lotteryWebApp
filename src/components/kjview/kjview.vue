@@ -14,9 +14,9 @@
         <div class="top-bottom" v-else>
             <span class="label1">第{{KJData.NewLottery.NextPeriod}}期开奖倒计时</span>
             <div class="img"> </div>
-            <span v-show="shijianArr[0] > 0 && shijianArr[1] > 0" class="sj">{{shijianArr[0]}}</span>
-            <span v-show="shijianArr[0] > 0 && shijianArr[1] > 0" class="sj">{{shijianArr[1]}}</span>
-            <span v-show="shijianArr[0] > 0 && shijianArr[1] > 0" style="color:#FFFDE4">:</span>
+            <span v-show="shijianArr[1] > 0" class="sj">{{shijianArr[0]}}</span>
+            <span v-show="shijianArr[1] > 0" class="sj">{{shijianArr[1]}}</span>
+            <span v-show="shijianArr[1] > 0" style="color:#FFFDE4">:</span>
             <span class="sj">{{shijianArr[2]}}</span>
             <span class="sj">{{shijianArr[3]}}</span>
             <span style="color:#FFFDE4">:</span>
