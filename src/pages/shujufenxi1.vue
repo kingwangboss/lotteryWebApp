@@ -115,13 +115,13 @@ export default {
             show: show,
             yAxisIndex: [0],
             start: 100,
-            end: 100-end
+            end: 100 - end
           },
           {
             type: "inside",
             yAxisIndex: [0],
             start: 100,
-            end: 100-end
+            end: 100 - end
           }
         ],
         title: {
@@ -158,7 +158,7 @@ export default {
         ],
         xAxis: [
           {
-            max:Math.max.apply( Math,this.data),
+            max: Math.max.apply(Math, this.data),
             position: "bottom",
             type: "value"
           }
@@ -222,8 +222,7 @@ export default {
                     "#cbab4f",
                     "#76a871",
                     "#9f7961",
-                    "#a56f8f",
-                    
+                    "#a56f8f"
                   ];
                   return colorList[params.dataIndex];
                 }
@@ -357,15 +356,18 @@ export default {
             "近" +
             this.listData.DataCount +
             "-冷热分析";
+
           localStorage.selectKeyNumberName2 = this.listData.KeyNumberNames.split(
             ","
           );
           localStorage.selectDataCount1 = this.listData.DataCount;
 
           localStorage.shujufenxi = "2";
+
           this.$nextTick(function() {
             this.drawPie2("main2");
           });
+
         })
         .catch(error => {
           console.log(error);
@@ -400,9 +402,17 @@ export default {
           this.name.reverse();
           this.data.reverse();
           this.title = this.listData.Norm + "-指标遗漏分析";
-          localStorage.selectKeyNumberName3 = this.listData.Norm.split(",");
 
-          localStorage.shujufenxi = "3";
+          if (localStorage.selectKeyNumberName3) {
+            localStorage.selectKeyNumberName3 = this.listData.Norm.split(",");
+
+            localStorage.shujufenxi = "3";
+          } else {
+            localStorage.selectKeyNumberName3 = this.listData.Norm.split(",");
+
+            localStorage.shujufenxi = "3";
+            this.$router.push("/shujufenxi/setting3");
+          }
           this.$nextTick(function() {
             this.drawPie1("main3");
           });
@@ -444,9 +454,18 @@ export default {
 
           this.title =
             this.listData.Norm + "近" + this.listData.DataCount + "-指标冷热分析";
-          localStorage.selectKeyNumberName4 = this.listData.Norm.split(",");
-          localStorage.selectDataCount2 = this.listData.DataCount;
-          localStorage.shujufenxi = "4";
+
+          if (localStorage.selectKeyNumberName4) {
+            localStorage.selectKeyNumberName4 = this.listData.Norm.split(",");
+            localStorage.selectDataCount2 = this.listData.DataCount;
+            localStorage.shujufenxi = "4";
+          } else {
+            localStorage.selectKeyNumberName4 = this.listData.Norm.split(",");
+            localStorage.selectDataCount2 = this.listData.DataCount;
+            localStorage.shujufenxi = "4";
+            this.$router.push("/shujufenxi/setting4");
+          }
+
           this.$nextTick(function() {
             this.drawPie2("main4");
           });
