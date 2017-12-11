@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
+    <el-tabs v-model="activeName2" @tab-click="handleClick">
       <el-tab-pane label="遗漏分析" name="first">
         <!-- <iframe class="ichart" name="txt0" :style="{height:screenHeight+'px'}" :src="url1" frameborder="0" marginheight="0px"></iframe> -->
         <div id="main1" class="ichart" name="txt0" :style="{height:screenHeight+'px'}"></div>
