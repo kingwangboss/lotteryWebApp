@@ -5,7 +5,7 @@
         <div class="maincontainer">
             <div class="top">
                 <div class="cell">
-                    <span class="txt">定码个数：</span>
+                    <span class="txt">定杀个数：</span>
                     <div type="text" @click="jian1" class="btn"></div>
                     <el-input v-model="input1" class="input" type="number" size="mini" @change="change1"> </el-input>
                     <div type="text" @click="jia1" class="btn1"></div>
