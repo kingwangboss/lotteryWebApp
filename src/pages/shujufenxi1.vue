@@ -51,8 +51,8 @@ export default {
       screenHeight: document.documentElement.clientHeight - 88 - 68,
       // screenWidth:  document.documentElement.screenWidth
       listData: "",
-      keyNum1: localStorage.keyNum1 === null ? "0" : localStorage.keyNum1,
-      keyNum2: localStorage.keyNum2 === null ? "0" : localStorage.keyNum2,
+      keyNum1: typeof localStorage.keyNum1 == "undefined" ? "0" : localStorage.keyNum1,
+      keyNum2: typeof localStorage.keyNum2 == "undefined" ? "0" : localStorage.keyNum2,
       Norm1: typeof localStorage.Norm1 == "undefined" ? "" : localStorage.Norm1,
       Norm2: typeof localStorage.Norm2 == "undefined" ? "" : localStorage.Norm2,
       // url1:window.location.origin + '/static/JYYC1/bxt.html',

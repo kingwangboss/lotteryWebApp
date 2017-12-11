@@ -123,6 +123,12 @@ export default {
             data.append('Sign', sha256.sha256(signStr).toUpperCase());
             this.$http.post(localStorage.SiteUrl, data).then(res => {
                 this.listData = res.data.Data;
+                
+                if(typeof localStorage.Norm1 == "undefined"){
+                    this.selectKeyNumberName3 = this.listData.Norms[0].NormList[1];
+                    localStorage.selectKeyNumberName3 = this.selectKeyNumberName3;
+                }else{
+                }
                 // this.KeyNumbers = this.listData.KeyNumbers.split(',')
                 // localStorage.allKeyNumName1 = this.listData.KeyNumbers;
                 // console.log(this.listData.KeyNumbers);
