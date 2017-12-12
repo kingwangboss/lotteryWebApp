@@ -163,23 +163,24 @@
         align-items: center;
         text-align:right;
         .top-div {
-            margin-left: 3%;
-            margin-right: 3%;
+            margin-left: 2.5%;
+            margin-right: 2.5%;
             font-size: 15px;
             font-weight: 900;
             
         }
         .btn {
-            position: relative;
-            right:-5%;
+            // position: relative;
+            // right:-5%;
             height: 25px;
             line-height: 6px;
-            width: 15%;
+            // width: 17%;
+            margin-left: 4%;
             border-radius: 25px;
             background-color: #58C5E0;
             border: 0;
             color: white;
-            font-size: 14px;
+            font-size: 13px;
         }
     }
     .line {
@@ -209,23 +210,24 @@
         flex-direction: row;
         align-items: center;
         .top-div {
-            margin-left: 3%;
-            margin-right: 3%;
+            margin-left: 2.5%;
+            margin-right: 2.5%;
             font-size: 15px;
             font-weight: 900;
             
         }
         .btn {
-            position: relative;
-            right:-5%;
+            // position: relative;
+            // right:-5%;
             height: 25px;
             line-height: 6px;
-            width: 15%;
+            // width: 15%;
+            margin-left: 4%;
             border-radius: 25px;
             background-color: #58C5E0;
             border: 0;
             color: white;
-            font-size: 14px;
+            font-size: 13px;
         }
     }
     .line {
@@ -255,23 +257,24 @@
         flex-direction: row;
         align-items: center;
         .top-div {
-            margin-left: 3%;
-            margin-right: 3%;
+            margin-left: 2.5%;
+            margin-right: 2.5%;
             font-size: 15px;
             font-weight: 900;
             
         }
         .btn {
-            position: relative;
-            right:-5%;
+            // position: relative;
+            // right:-5%;
             height: 25px;
             line-height: 6px;
-            width: 15%;
+            // width: 15%;
+            margin-left: 4%;
             border-radius: 25px;
             background-color: #58C5E0;
             border: 0;
             color: white;
-            font-size: 14px;
+            font-size: 13px;
         }
     }
     .line {

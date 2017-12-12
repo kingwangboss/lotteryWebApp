@@ -159,7 +159,7 @@ export default {
             switch (val) {
                 case 'plan':
                     this.title = {
-                        text: localStorage.czname,
+                        text: localStorage.czname + ' ' + localStorage.AuthTypeName,
                         showBack: false,
                         showQH: true
                     };
