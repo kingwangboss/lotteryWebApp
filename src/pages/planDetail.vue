@@ -164,6 +164,7 @@
       display: flex;
       flex-direction: row;
       .cell-item1 {
+        padding-top: 2px; 
         margin-left: 5px;
         display: flex;
         flex-wrap: nowrap;
@@ -185,28 +186,32 @@
         .btn {
           // background: rgb(88, 88, 88);
           // width: 30px;
+          // line-height: 14px;
           line-height: 14px;
-          // padding: 1px 5px;
+          padding-top: 1px;
           min-width: 32px;
           border: 1px solid rgba(84, 128, 215, 0.5);
           border-radius: 9px;
-          font-size: 12px;
+          font-size: 10px;
           color: RGB(84, 128, 215);
         }
         .btn1 {
           //  width: 30px;
           // background: rgb(88, 88, 88);
+          // line-height: 14px;
           line-height: 14px;
           min-width: 32px;
           // padding: 1px 5px;
+          padding-top: 1px;
           border: 1px solid RGBA(199, 64, 78, 0.5);
           border-radius: 9px;
-          font-size: 12px;
+          font-size: 10px;
           color: RGB(199, 64, 78);
         }
       }
 
       .cell-item3 {
+        padding-top: 2px; 
         // max-width: 80%;
         font-size: 12px;
         text-align: center;

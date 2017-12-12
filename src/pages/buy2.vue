@@ -185,20 +185,20 @@
     font-size: 15px;
     font-weight: 900;
     text-align: left;
-    width: 35%;
+    width: 32%;
   }
   .btn {
     // position: relative;
     // right:-5%;
-    width: 42px;
+    // width: 42px;
     height: 18px;
-    line-height: 6px;
+    line-height: 16px;
     margin-left: 5%;
     border-radius: 25px;
     background-color: #58c5e0;
     border: 0;
     color: white;
-    font-size: 8px;
+    // font-size: 12px;
   }
 }
 </style>

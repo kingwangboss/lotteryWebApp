@@ -87,6 +87,7 @@
     // width: 30px;
     line-height: 14px;
     // padding: 1px 5px;
+    padding-top: 1px;
     min-width: 32px;
     border: 1px solid rgba(84, 128, 215, 0.5);
     border-radius: 9px;
@@ -98,6 +99,7 @@
     // background: rgb(88, 88, 88);
     line-height: 14px;
     min-width: 32px;
+    padding-top: 1px;
     // padding: 1px 5px;
     border: 1px solid RGBA(199, 64, 78, 0.5);
     border-radius: 9px;
