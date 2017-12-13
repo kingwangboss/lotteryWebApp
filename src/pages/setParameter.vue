@@ -520,7 +520,7 @@ export default {
         ":" +
         parseInt(this.input52) +
         "&DataDuring=" +
-        this.selectIndexArr.toString() +
+        this.selectNameArr.toString() +
         tokenCode;
       let data = new FormData();
       data.append("Action", "OptimizePlan");
@@ -545,7 +545,7 @@ export default {
         "MaxLianCuo",
         parseInt(this.input51) + ":" + parseInt(this.input52)
       );
-      data.append("DataDuring", this.selectIndexArr.toString());
+      data.append("DataDuring", this.selectNameArr.toString());
       data.append("Sign", sha256.sha256(signStr).toUpperCase());
       this.$http
         .post(localStorage.SiteUrl, data)
