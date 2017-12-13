@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="cell">
-                    <span class="txt">最大连对</span>
+                    <span class="txt">最大连对：</span>
                     <div type="text" @click="jian41" class="btn"></div>
                     <el-input v-model="input41" class="input" type="number" size="mini" @change="change41"></el-input>
                     <div type="text" @click="jia41" class="btn1"></div>
@@ -63,7 +63,13 @@
                 </div>
             </div>
 
-            <label style="font-size:15px; margin:10px;font-weight:900;margin:10px;text-align: left;width=100%">已选计划</label>
+            <div style="font-size:15px;font-weight:900;margin:20px 10px 5px 5px;text-align: left;width=100%">
+              <label style="font-size:15px; font-weight:900;text-align: left;margin-right:20px;">已选计划</label>
+              <button class="sbtn" @click="allselect">全选</button>
+              <button class="sbtn" @click="reversalselect">反选</button>
+              <button class="sbtn" @click="allunselect">清除</button>
+            </div>
+            
             <img style="height:4px;width:100%;" src="../../static/images/Search-07.png" mode="scaleToFill"></img>
 
             <div class="bottom">
@@ -73,9 +79,19 @@
                             <el-button v-show="!isSelect(item)" @click="addBtn(item)" type="text" v-for="item in dataDuringValue" :key="item" class="bottom-btn">
                                 {{item}}
                             </el-button> -->
-                <el-button :class="{'bottom-btn-select':selectNameArr.indexOf(item) >  -1}" :style="{width:ojwidth+'px',height:ojwidth+'px',}" @click="addBtn(index,item)" type="text" v-for="(item,index) in dataDuringValue" :key="item" class="bottom-btn">
+                <!-- <el-button :class="{'bottom-btn-select':selectNameArr.indexOf(item) >  -1}" :style="{width:ojwidth+'px',height:ojwidth+'px',}" @click="addBtn(index,item)" type="text" v-for="(item,index) in dataDuringValue" :key="item" class="bottom-btn">
                     {{item}}
-                </el-button>
+                </el-button> -->
+
+                <!-- <el-button :class="{'bottom-btn-select11':selectNameArr.indexOf(item) >  -1}"  @click="addBtn(index,item)" type="text" v-for="(item,index) in dataDuringValue" :key="item" class="bottom-btn11">
+                    {{item}}
+                </el-button> -->
+
+                <div class="btn-div" :class="{'selectbtn-div':selectNameArr.indexOf(item) >  -1}" v-for="(item,index) in dataDuringValue" @click="addBtn(index,item)" :key="item">
+                  <el-button  type="text" class="bottom-btn111" :class="{'bottom-btn222':selectNameArr.indexOf(item) >  -1}">
+                    {{item}}
+                  </el-button>
+                </div>
             </div>
 
         </div>
@@ -90,6 +106,11 @@
 </template>
 
 <style lang="less" scoped>
+
+.sbtn:active{
+  color: rgb(255, 0, 64);
+}
+
 .maincontainer {
   display: flex;
   flex-direction: column;
@@ -161,7 +182,8 @@
   display: flex;
   flex-direction: row; // margin-left: 10px;
   flex-wrap: wrap;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
+  margin-top: 10px;
   .bottom-btn {
     // width: 20px;
     // height: 20px;
@@ -190,6 +212,71 @@
     color: white;
     background-size: 100% 100%;
     background-image: url("../../static/images/OJSetParameter/Search-08-9.png");
+  }
+  .bottom-btn11 {
+    // width: 20px;
+    // height: 20px;
+    font-size: 13px;
+    // line-height: 10px; // margin: 10px 5px;
+    padding: 5px 6px;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 4px;
+    color: rgb(255, 0, 64);
+    border-radius: 0;
+    min-width: 32px;
+    border: 1px solid rgb(255, 0, 64);
+    background: white;
+  }
+
+  .bottom-btn-select11 {
+    // width: 20px;
+    // height: 20px;
+    font-size: 13px;
+    // line-height: 10px; // margin: 10px 5px;
+    padding: 5px 6px;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 4px;
+    border-radius: 0;
+    min-width: 32px;
+    border: 1px solid rgb(255, 0, 64);
+    color: white;
+    background: rgb(255, 0, 64);
+  }
+
+  .selectbtn-div{
+    border: 1px solid rgb(255, 0, 64);
+    min-width: 29px;
+    margin: 2px 2px;
+    padding: 1px;
+  }
+  .btn-div{
+    min-width: 29px;
+    border: 1px solid rgb(255, 0, 64);
+    margin: 2px 2px;
+    padding: 1px;
+  }
+
+  .bottom-btn111{
+    // margin: 1px;
+    // min-width: 28px;
+    width: 100%;
+    font-size: 13px;
+    padding: 5px 6px;
+    color: rgb(255, 0, 64);
+    border-radius: 0;
+    background: white;
+  }
+  .bottom-btn222{
+    // margin: 1px;
+    // min-width: 28px;
+    width: 100%;
+    font-size: 13px;
+    padding: 5px 6px;
+    border-radius: 0;
+    color: white;
+    background: rgb(255, 0, 64);
   }
 }
 
@@ -227,13 +314,16 @@ export default {
       input42: localStorage.cycleCount,
       input51: "0",
       input52: localStorage.cycleCount,
-      input61: "-"+localStorage.cycleCount,
+      input61: "-" + localStorage.cycleCount,
       input62: localStorage.cycleCount,
       dataDuringValue: [],
       dataDuringIndex: [],
       planName: "",
       selectNameArr: [],
-      selectIndexArr:[],
+      selectIndexArr: [],
+
+      tempname:[],
+      tempindex:[],
       screenWidth: document.body.clientWidth // 这里是给到了一个默认值 （这个很重要）
     };
   },
@@ -271,10 +361,10 @@ export default {
       get: function() {
         var ojwidth;
         var margin;
-        var colnum = 10; //列
+        var colnum = 11; //列
         // colnum = this.dataDuringValue.length > colnum ? colnum : this.dataDuringValue.length;
         var rownum = this.dataDuringValue.length / colnum; //行
-        margin = 4;
+        margin = 2;
         ojwidth = (this.screenWidth - 2 * margin * colnum) / colnum; //格子的宽
         return ojwidth;
       },
@@ -286,6 +376,29 @@ export default {
     mHeader
   },
   methods: {
+    allselect(){
+      console.log(this.selectNameArr);
+      console.log(this.selectIndexArr);
+      this.selectNameArr = this.tempname;
+      this.selectIndexArr = this.tempindex;
+    },
+
+    reversalselect(){
+
+      for (let i = 0; i < this.tempindex.length; i++) {
+        const index = this.tempindex[i];
+        const item = this.tempname[i];
+        this.addBtn(index,item);
+      }
+      
+
+    },
+
+    allunselect(){
+      this.selectNameArr = [];
+      this.selectIndexArr = [];
+    },
+
     getData() {
       console.log(this.planName);
       // 请求数据
@@ -324,6 +437,8 @@ export default {
           console.log(this.dataDuringValue);
           this.selectNameArr = this.dataDuringValue;
           this.selectIndexArr = this.dataDuringIndex;
+          this.tempname = this.dataDuringValue;
+          this.tempindex = this.dataDuringIndex;
           // this.dataDuringValue = dataDuringValue;
           // this.dataDuringIndex = dataDuringIndex;
         })
@@ -347,12 +462,12 @@ export default {
       }
       return result;
     },
-    addBtn(index,item) {
+    addBtn(index, item) {
       // console.log(item);
       console.log(this.selectNameArr.indexOf(item));
       if (this.selectNameArr.indexOf(item) >= 0) {
         this.selectNameArr = this.remove(this.selectNameArr, item);
-        this.selectIndexArr = this.remove(this.selectIndexArr,index);
+        this.selectIndexArr = this.remove(this.selectIndexArr, index);
       } else {
         this.selectNameArr.push(item);
         this.selectIndexArr.push(index);
@@ -361,7 +476,7 @@ export default {
     },
 
     ok() {
-      console.log(this.selectIndexArr)
+      console.log(this.selectIndexArr);
       console.log(this.input1);
       console.log(this.input2);
       console.log(this.input31);
@@ -373,7 +488,7 @@ export default {
       console.log(this.input61);
       console.log(this.input62);
       console.log(this.selectNameArr);
-      console.log(this.planName)
+      console.log(this.planName);
 
       let tokenCode = localStorage.tokenCode;
       let signStr =
@@ -676,8 +791,8 @@ export default {
     },
     jian61() {
       var num = parseInt(this.input61);
-      if (num - 1 < -(parseInt(localStorage.cycleCount))) {
-        this.input61 = -(parseInt(localStorage.cycleCount));
+      if (num - 1 < -parseInt(localStorage.cycleCount)) {
+        this.input61 = -parseInt(localStorage.cycleCount);
       } else {
         this.input61 = num - 1;
       }
@@ -692,8 +807,8 @@ export default {
       }
     },
     change61(value) {
-      if (value <= -(parseInt(localStorage.cycleCount))) {
-        this.input61 = -(parseInt(localStorage.cycleCount));
+      if (value <= -parseInt(localStorage.cycleCount)) {
+        this.input61 = -parseInt(localStorage.cycleCount);
       } else if (value > parseInt(this.input62)) {
         this.input61 = this.input62;
       } else {

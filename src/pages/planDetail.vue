@@ -241,7 +241,7 @@
     flex-direction: row;
     justify-content: flex-end;
     font-size: 12px;
-    color: #cdcdcd;
+    color: #999;
     padding-bottom: 5px;
     padding-left: 5px;
     

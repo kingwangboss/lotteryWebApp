@@ -25,7 +25,7 @@
 .weui_cell {
     position: relative;
     display: flex;
-    padding: 18px;
+    padding: 25px;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;

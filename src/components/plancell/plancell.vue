@@ -110,7 +110,7 @@
 
 .txt-item3 {
   border-right: 1px dotted #d8d8d8;
-  width: 200px;
+  width: 140px;
   font-size: 10px;
   background: #fff;
   text-align: center;
@@ -121,7 +121,7 @@
 }
 
 .zhengquelv {
-  width: 140px;
+  width: 100px;
   background: #fff;
   display: flex;
   flex-direction: column;
