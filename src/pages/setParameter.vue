@@ -316,6 +316,8 @@ export default {
       input52: localStorage.cycleCount,
       input61: "-" + localStorage.cycleCount,
       input62: localStorage.cycleCount,
+      MaxDMSMCount:"",
+      MinDMSMCount:"",
       dataDuringValue: [],
       dataDuringIndex: [],
       planName: "",
@@ -428,6 +430,8 @@ export default {
           this.PlanData = res.data.Data;
           this.input1 = this.PlanData.DefaultDSCount;
           this.input2 = this.PlanData.DefaultCycle;
+          this.MaxDMSMCount = this.PlanData.MaxDMSMCount;
+          this.MinDMSMCount = this.PlanData.MinDMSMCount
           var dataDuringArr = [];
           var NowDataDuringArr = [];
           dataDuringArr = this.PlanData.DataDuring.split(",");
@@ -631,23 +635,21 @@ export default {
     },
 
     jian1() {
-      this.input1 = this.input1 - 1 < 1 ? 1 : this.input1 - 1;
+      this.input1 = this.input1 - 1 < parseInt(this.MinDMSMCount) ? parseInt(this.MinDMSMCount) : this.input1 - 1;
     },
     jia1() {
-      if (this.dataDuringValue.length > 0) {
+      
         this.input1 =
-          this.input1 + 1 > this.dataDuringValue.length - 1
-            ? this.dataDuringValue.length - 1
+          this.input1 + 1 > parseInt(this.MaxDMSMCount)
+            ? parseInt(this.MaxDMSMCount)
             : this.input1 + 1;
-      } else {
-        this.input1 = this.input1 + 1 > 9 ? 9 : this.input1 + 1;
-      }
+      
     },
     change1(value) {
-      if (value < 0 || value === null || value === "") {
-        this.input1 = 1;
-      } else if (value > this.dataDuringValue.length - 1) {
-        this.input1 = this.dataDuringValue.length - 1;
+      if (value < parseInt(this.MinDMSMCount) || value === null || value === "") {
+        this.input1 = parseInt(this.MinDMSMCount);
+      } else if (value > parseInt(this.MaxDMSMCount)) {
+        this.input1 = parseInt(this.MaxDMSMCount);
       } else {
         this.input1 = value;
       }
