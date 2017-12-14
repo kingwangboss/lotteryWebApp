@@ -106,8 +106,7 @@
 </template>
 
 <style lang="less" scoped>
-
-.sbtn:active{
+.sbtn:active {
   color: rgb(255, 0, 64);
 }
 
@@ -245,20 +244,20 @@
     background: rgb(255, 0, 64);
   }
 
-  .selectbtn-div{
+  .selectbtn-div {
     border: 1px solid rgb(255, 0, 64);
     min-width: 29px;
     margin: 2px 2px;
     padding: 1px;
   }
-  .btn-div{
+  .btn-div {
     min-width: 29px;
     border: 1px solid rgb(255, 0, 64);
     margin: 2px 2px;
     padding: 1px;
   }
 
-  .bottom-btn111{
+  .bottom-btn111 {
     // margin: 1px;
     // min-width: 28px;
     width: 100%;
@@ -268,7 +267,7 @@
     border-radius: 0;
     background: white;
   }
-  .bottom-btn222{
+  .bottom-btn222 {
     // margin: 1px;
     // min-width: 28px;
     width: 100%;
@@ -322,8 +321,8 @@ export default {
       selectNameArr: [],
       selectIndexArr: [],
 
-      tempname:[],
-      tempindex:[],
+      tempname: [],
+      tempindex: [],
       screenWidth: document.body.clientWidth // 这里是给到了一个默认值 （这个很重要）
     };
   },
@@ -376,27 +375,30 @@ export default {
     mHeader
   },
   methods: {
-    allselect(){
-      console.log(this.selectNameArr);
-      console.log(this.selectIndexArr);
+    allselect() {
       this.selectNameArr = this.tempname;
       this.selectIndexArr = this.tempindex;
+      console.log(this.selectNameArr);
+      console.log(this.selectIndexArr);
     },
 
-    reversalselect(){
-
+    reversalselect() {
       for (let i = 0; i < this.tempindex.length; i++) {
         const index = this.tempindex[i];
         const item = this.tempname[i];
-        this.addBtn(index,item);
+        this.addBtn(index, item);
       }
-      
-
+      console.log(this.selectNameArr);
+      console.log(this.selectIndexArr);
     },
 
-    allunselect(){
+    allunselect() {
       this.selectNameArr = [];
       this.selectIndexArr = [];
+      // this.tempname = this.selectNameArr;
+      // this.tempindex = this.selectIndexArr;
+      console.log(this.selectNameArr);
+      console.log(this.selectIndexArr);
     },
 
     getData() {
@@ -425,10 +427,13 @@ export default {
           this.input1 = this.PlanData.DefaultDSCount;
           this.input2 = this.PlanData.DefaultCycle;
           var dataDuringArr = [];
+          var NowDataDuringArr = [];
           dataDuringArr = this.PlanData.DataDuring.split(",");
+
           console.log(dataDuringArr);
           this.dataDuringIndex = [];
           this.dataDuringValue = [];
+
           for (var i = 0; i < dataDuringArr.length; i++) {
             this.dataDuringIndex.push(dataDuringArr[i].split(":")[0]);
             this.dataDuringValue.push(dataDuringArr[i].split(":")[1]);
@@ -439,6 +444,30 @@ export default {
           this.selectIndexArr = this.dataDuringIndex;
           this.tempname = this.dataDuringValue;
           this.tempindex = this.dataDuringIndex;
+          console.log(222222222222);
+
+          if (this.PlanData.NowDataDuring == null) {
+          } else {
+            var nameArr = [];
+            NowDataDuringArr = this.PlanData.NowDataDuring.split(",");
+            for (var i = 0; i < NowDataDuringArr.length; i++) {
+              for (
+                let index = 0;
+                index < this.dataDuringIndex.length;
+                index++
+              ) {
+                if (NowDataDuringArr[i] == this.dataDuringIndex[index]) {
+                  nameArr.push(this.dataDuringValue[index]);
+                }
+              }
+            }
+            this.selectNameArr = nameArr;
+            this.selectIndexArr = NowDataDuringArr;
+            console.log(this.selectNameArr);
+          console.log(this.selectIndexArr);
+          }
+          // this.tempname = this.dataDuringValue;
+          // this.tempindex = this.dataDuringIndex;
           // this.dataDuringValue = dataDuringValue;
           // this.dataDuringIndex = dataDuringIndex;
         })
