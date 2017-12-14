@@ -63,16 +63,16 @@
                 </div>
             </div>
 
-            <div style="font-size:15px;font-weight:900;margin:20px 10px 5px 5px;text-align: left;width=100%">
+            <div v-show="CanScreen" style="font-size:15px;font-weight:900;margin:20px 10px 5px 5px;text-align: left;width=100%">
               <label style="font-size:15px; font-weight:900;text-align: left;margin-right:20px;">已选计划</label>
               <button class="sbtn" @click="allselect">全选</button>
               <button class="sbtn" @click="reversalselect">反选</button>
               <button class="sbtn" @click="allunselect">清除</button>
             </div>
             
-            <img style="height:4px;width:100%;" src="../../static/images/Search-07.png" mode="scaleToFill"></img>
+            <img v-show="CanScreen" style="height:4px;width:100%;" src="../../static/images/Search-07.png" mode="scaleToFill"></img>
 
-            <div class="bottom">
+            <div v-show="CanScreen" class="bottom">
                 <!-- <el-button v-show="isSelect(item)" @click="addBtn(item)" type="text" v-for="item in dataDuringValue" :key="item" class="bottom-btn-select">
                                 {{item}}
                             </el-button>
@@ -298,6 +298,7 @@
 <script>
 import mHeader from "../components/hearder/Hearder";
 import sha256 from "../util/sha256";
+import { Toast, MessageBox } from "mint-ui";
 export default {
   data() {
     return {
@@ -320,7 +321,7 @@ export default {
       planName: "",
       selectNameArr: [],
       selectIndexArr: [],
-
+      CanScreen: "",
       tempname: [],
       tempindex: [],
       screenWidth: document.body.clientWidth // 这里是给到了一个默认值 （这个很重要）
@@ -423,6 +424,7 @@ export default {
       this.$http
         .post(localStorage.SiteUrl, data)
         .then(res => {
+          this.CanScreen = res.data.Data.CanScreen;
           this.PlanData = res.data.Data;
           this.input1 = this.PlanData.DefaultDSCount;
           this.input2 = this.PlanData.DefaultCycle;
@@ -449,6 +451,7 @@ export default {
           if (this.PlanData.NowDataDuring == null) {
           } else {
             var nameArr = [];
+            var indexi = [];
             NowDataDuringArr = this.PlanData.NowDataDuring.split(",");
             for (var i = 0; i < NowDataDuringArr.length; i++) {
               for (
@@ -458,13 +461,14 @@ export default {
               ) {
                 if (NowDataDuringArr[i] == this.dataDuringIndex[index]) {
                   nameArr.push(this.dataDuringValue[index]);
+                  indexi.push(this.dataDuringIndex[index]);
                 }
               }
             }
             this.selectNameArr = nameArr;
-            this.selectIndexArr = NowDataDuringArr;
+            this.selectIndexArr = indexi;
             console.log(this.selectNameArr);
-          console.log(this.selectIndexArr);
+            console.log(this.selectIndexArr);
           }
           // this.tempname = this.dataDuringValue;
           // this.tempindex = this.dataDuringIndex;
@@ -494,14 +498,24 @@ export default {
     addBtn(index, item) {
       // console.log(item);
       console.log(this.selectNameArr.indexOf(item));
+      var index1;
+      for (let i = 0; i < this.tempname.length; i++) {
+        const element = this.tempname[i];
+        if (element == item) {
+          index1 = this.tempindex[i];
+        }
+      }
+
       if (this.selectNameArr.indexOf(item) >= 0) {
         this.selectNameArr = this.remove(this.selectNameArr, item);
-        this.selectIndexArr = this.remove(this.selectIndexArr, index);
+        this.selectIndexArr = this.remove(this.selectIndexArr, index1);
       } else {
         this.selectNameArr.push(item);
-        this.selectIndexArr.push(index);
+        this.selectIndexArr.push(index1);
       }
       console.log(this.selectNameArr.indexOf(item));
+      console.log(this.selectNameArr);
+      console.log(this.selectIndexArr);
     },
 
     ok() {
@@ -516,7 +530,7 @@ export default {
       console.log(this.input52);
       console.log(this.input61);
       console.log(this.input62);
-      console.log(this.selectNameArr);
+      console.log(this.selectIndexArr);
       console.log(this.planName);
 
       let tokenCode = localStorage.tokenCode;
@@ -549,7 +563,7 @@ export default {
         ":" +
         parseInt(this.input52) +
         "&DataDuring=" +
-        this.selectNameArr.toString() +
+        this.selectIndexArr.toString() +
         tokenCode;
       let data = new FormData();
       data.append("Action", "OptimizePlan");
@@ -574,19 +588,42 @@ export default {
         "MaxLianCuo",
         parseInt(this.input51) + ":" + parseInt(this.input52)
       );
-      data.append("DataDuring", this.selectNameArr.toString());
+      data.append("DataDuring", this.selectIndexArr.toString());
       data.append("Sign", sha256.sha256(signStr).toUpperCase());
-      this.$http
-        .post(localStorage.SiteUrl, data)
-        .then(res => {
-          // this.planNameData = res.data.Data;
-          if (res.data.Code == "Suc") {
-            this.$router.go(-1);
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
+
+      if (this.CanScreen) {
+        if (this.selectIndexArr.toString() != "") {
+          this.$http
+            .post(localStorage.SiteUrl, data)
+            .then(res => {
+              // this.planNameData = res.data.Data;
+              if (res.data.Code == "Suc") {
+                this.$router.go(-1);
+              }
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        } else {
+          Toast({
+            message: "数据筛选不能为空。",
+            position: "bottom",
+            duration: 2000
+          });
+        }
+      } else {
+        this.$http
+          .post(localStorage.SiteUrl, data)
+          .then(res => {
+            // this.planNameData = res.data.Data;
+            if (res.data.Code == "Suc") {
+              this.$router.go(-1);
+            }
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
     },
 
     cancel() {

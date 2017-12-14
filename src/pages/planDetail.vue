@@ -182,6 +182,7 @@
         display: flex;
         align-items: center;
         margin-left: 5px;
+        height: 35px;
         color: #6e6e6e;
         .btn {
           // background: rgb(88, 88, 88);
