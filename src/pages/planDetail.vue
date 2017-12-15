@@ -256,6 +256,7 @@ import mHeader from "../components/hearder/Hearder";
 import kjview from "../components/kjview/kjview";
 import sha256 from "../util/sha256";
 import "element-ui/lib/theme-default/index.css";
+import listenHuadong from "../util/listenHuadong";
 export default {
   data() {
     return {
@@ -264,7 +265,8 @@ export default {
         showBack: true,
         right: true
       },
-      activeName: localStorage.detailID,
+      activeName: "0",
+      maxactiveName:"",
       listData: "",
       zjnum: []
     };
@@ -297,11 +299,13 @@ export default {
         .post(localStorage.SiteUrl, data)
         .then(res => {
           this.listData = res.data.Data.Data;
+          this.maxactiveName = this.listData.length.toString();
           for (var i = 0; i < this.listData.length; i++) {
             this.listData[i].PlanDetails = this.listData[
               i
             ].PlanDetails.reverse();
           }
+          this.activeName =localStorage.detailID;
         })
         .catch(error => {
           console.log(error);
@@ -319,6 +323,8 @@ export default {
   mounted() {
     // 调用请求数据的方法
     this.getData();
+
+    listenHuadong.listenHuadong(this);
   },
   computed: {},
   components: {
