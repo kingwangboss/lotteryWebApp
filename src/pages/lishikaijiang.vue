@@ -6,7 +6,7 @@
 
 
 <script>
-import cell from '../components/lishicell/lishicell'
+import cell from '../components/lishicell/lishicell1'
 var data = require('../../static/data/historyData')
 import sha256 from '../util/sha256'
 export default {
