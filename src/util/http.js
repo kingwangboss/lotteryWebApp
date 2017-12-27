@@ -10,7 +10,9 @@ var loadinginstace
 axios.interceptors.request.use(
   config => {
     // element ui Loading方法
-    loadinginstace = Loading.service({ fullscreen: true })
+    loadinginstace = Loading.service({ 
+      fullscreen: true
+    })
     return config
 
   }, error => {

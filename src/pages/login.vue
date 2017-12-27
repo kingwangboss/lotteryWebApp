@@ -71,47 +71,45 @@
 
 <style lang="less" scoped>
 .main {
-    display: flex;
-    flex-direction: row;
-    // margin: 2px;
-    line-height: 38px;
-    color: #fffde4;
-    position: relative;
-    margin-bottom: 10%;
-    //   background: red;
-    .line1 {
-      background-repeat: no-repeat;
-      height: 40px;
-      width: 19px;
-      background-size: 19px;
-    }
-    .line21 {
-      background: url("../../static/images/zhong.png");
-      background-repeat: repeat;
-      font-size: 12px;
-      height: 40px;
-      width: 215px;
-      color: white;
+  display: flex;
+  flex-direction: row;
+  // margin: 2px;
+  line-height: 38px;
+  color: #fffde4;
+  position: relative;
+  margin-bottom: 10%;
+  //   background: red;
+  .line1 {
+    background-repeat: no-repeat;
+    height: 40px;
+    width: 19px;
+    background-size: 19px;
+  }
+  .line21 {
+    background: url("../../static/images/zhong.png");
+    background-repeat: repeat;
+    font-size: 12px;
+    height: 40px;
+    width: 215px;
+    color: white;
     //   padding:0px -5px 0px -5px;
-    }
-    .line22 {
-        outline: none;
-      font-size: 12px;
-      height: 40px;
-      width: 215px;
-      color: white;
-      padding-left: 15px;
-      background: rgba(255,255,255,0);
+  }
+  .line22 {
+    outline: none;
+    font-size: 12px;
+    height: 40px;
+    width: 215px;
+    color: white;
+    padding-left: 15px;
+    background: rgba(255, 255, 255, 0);
     //   padding:0px -5px 0px -5px;
-    }
-    
-    .line3 {
-      background-repeat: no-repeat;
-      height:40px;
-      width: 19px;
-    }
+  }
 
-
+  .line3 {
+    background-repeat: no-repeat;
+    height: 40px;
+    width: 19px;
+  }
 }
 #bundle {
   .juzhong {
@@ -136,8 +134,12 @@
   background-size: 100% 100%;
   width: 100%;
   height: 100%;
-  position: absolute;
-  top: 0px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
   .content {
     #bundle > .juzhong;
     flex-direction: column;
