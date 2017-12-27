@@ -4,7 +4,7 @@
         <div v-for="item in kjnumArr" :key="item.KJArr">
             <div class="top"></div>
             <div class="contentCell">
-                <span class="top-left">{{"第"+item.ID+"期"}}</span>
+                <span class="top-left">{{"第 "+item.ID+" 期"}}</span>
                 <span class="top-right">{{item.CreateTime}}</span>
             </div>
 
@@ -114,11 +114,11 @@ export default {
 .top-left {
     font-size: 12px;
     margin-top: 10px;
-    padding: 6px 15px 6px 8px;
+    padding: 4px 15px 3px 8px;
     background: #fc5c42;
     color: #fff;
     border-radius: 0 12px 12px 0px;
-
+    font-style: italic;
 }
 
 .top-right {
@@ -142,12 +142,12 @@ export default {
 
 .num {
     margin: 0px 5px;
-    line-height: 26px;
+    line-height: 27px;
     height: 26px;
     width: 26px;
     color: #ff5065;
     font-size: 15px;
-    border: 1px solid #fc5c42;
+    border: 1px solid #fc5c424b;
     border-radius: 26px;
 }
 
@@ -158,7 +158,7 @@ export default {
     width: 26px;
     color: rgb(31, 96, 251);
     font-size: 15px;
-    border: 1px solid rgb(31, 96, 251);
+    border: 1px solid rgba(31, 96, 251,0.3);
     border-radius: 26px;
 }
 
