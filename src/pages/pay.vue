@@ -166,11 +166,11 @@ export default {
           });
       } else if (this.isSelect == 2) {
         console.log("zhifubao");
-        this.url =
-          "http://wz.cpnet.com/wechat/purchase/#/servicePrice/" +
-          this.pid +
-          "?uid=" +
-          localStorage.uid;
+        // this.url =
+        //   "http://wz.cpnet.com/wechat/purchase/#/servicePrice/" +
+        //   this.pid +
+        //   "?uid=" +
+        //   localStorage.uid;
         let data = new FormData();
         data.append("pid", this.pid);
         data.append("uid", localStorage.uid);
