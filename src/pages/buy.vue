@@ -322,7 +322,7 @@ export default {
             data.append('Token', localStorage.Token);
             data.append('Sign', sha256.sha256(signStr).toUpperCase());
 
-            this.$http.post('https://ycwidx.cpnet.com', data).then(res => {
+            this.$http.post(this.global.url, data).then(res => {
                 this.listData = res.data.Data;
                 for (var i = 0; i < this.listData.DesceList.length; i++) {
                     this.descStr.push(this.listData.DesceList[i].AuthType)

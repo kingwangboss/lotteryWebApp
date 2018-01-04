@@ -256,7 +256,7 @@ export default {
       data.append('Action', 'GetVCode');
       data.append('SID', this.user.sid);
 
-      this.$http.post('https://ycwidx.cpnet.com', data).then(res => {
+      this.$http.post(this.global.url, data).then(res => {
 
         if (res) {
           console.log(res.data.Data);
@@ -269,7 +269,7 @@ export default {
           data.append('AppType', '4');
           data.append('VCode', res.data.Data);
 
-          this.$http.post('https://ycwidx.cpnet.com', data).then(res1 => {
+          this.$http.post(this.global.url, data).then(res1 => {
 
             if (res1) {
               console.log(res1);
@@ -305,7 +305,7 @@ export default {
         data.append('SMSCode', this.user.verify);
         data.append('Pwd', this.user.newpwd1);
         data.append('AppType', '4');
-        this.$http.post('https://ycwidx.cpnet.com', data).then(res => {
+        this.$http.post(this.global.url, data).then(res => {
           console.log(res);
           if (res.data.Code == 'Suc') {
             this.$router.push({

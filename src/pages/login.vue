@@ -361,7 +361,7 @@ export default {
 
       localStorage.pwd = sha256.sha256(this.user.pwd).toUpperCase();
       this.$http
-        .post("https://ycwidx.cpnet.com", data)
+        .post(this.global.url, data)
         .then(res => {
           // console.log(res);
           // this.setCookie('UID', res.data.Data.UID, 1000 * 60 * 60 * 24 * 15)

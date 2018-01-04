@@ -199,7 +199,7 @@ export default {
       data.append("Sign", sha256.sha256(signStr).toUpperCase());
 
       this.$http
-        .post("https://ycwidx.cpnet.com", data)
+        .post(this.global.url, data)
         .then(res => {
           this.listData = res.data.Data;
           for (var i = 0; i < this.listData.DesceList.length; i++) {

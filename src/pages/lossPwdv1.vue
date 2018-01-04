@@ -198,11 +198,11 @@ export default {
       let data = new FormData();
       data.append("Action", "GetImgVCode");
       this.$http
-        .post("https://ycwidx.cpnet.com", data)
+        .post(this.global.url, data)
         .then(res => {
           console.log(res);
           this.user.vcode = res.data.Data.token;
-          this.user.imgurl = "https://ycwidx.cpnet.com" + res.data.Data.imgpath;
+          this.user.imgurl = this.global.url + res.data.Data.imgpath;
         })
         .catch(error => {
           console.log(error);
@@ -227,7 +227,7 @@ export default {
       localStorage.Username = this.user.username;
 
       this.$http
-        .post("https://ycwidx.cpnet.com", data)
+        .post(this.global.url, data)
         .then(res => {
           console.log(res);
           if (res.data.Code == "Suc") {

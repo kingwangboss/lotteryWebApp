@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import global from './Global'
 import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css';
 import ElementUI from 'element-ui'
@@ -18,6 +19,7 @@ Vue.config.productionTip = false
 Vue.use(Mint);
 Vue.use(ElementUI);
 
+Vue.prototype.global=global
 
 Vue.prototype.$post = post;
 Vue.prototype.$fetch = fetch;
