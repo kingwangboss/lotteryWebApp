@@ -147,7 +147,7 @@ export default {
     width: 26px;
     color: #ff5065;
     font-size: 15px;
-    border: 1px solid #fc5c424b;
+    border: 1px solid rgba(255, 92, 66,0.3);
     border-radius: 26px;
 }
 
