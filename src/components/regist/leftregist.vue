@@ -254,7 +254,7 @@ export default {
       let data = new FormData();
       data.append('Action', 'GetVCode');
       data.append('SID', localStorage.sid);
-      this.$http.post("https://ycwidx.cpnet.com", data).then(res => {
+      this.$http.post(this.global.url, data).then(res => {
         console.log(res);
         this.mobile.vcode = res.data.Data;
 
@@ -264,7 +264,7 @@ export default {
         data1.append('Mobile', that.mobile.num);
         data1.append('AppType', '4');
         data1.append('VCode', that.mobile.vcode);
-        that.$http.post('https://ycwidx.cpnet.com', data1).then(res => {
+        that.$http.post(this.global.url, data1).then(res => {
           console.log(res);
         }).catch(error => {
           console.log(error);
@@ -287,7 +287,7 @@ export default {
       data.append('SMSCode', this.mobile.verify)
       data.append('AppCode', 'YCW');
       localStorage.pwd = sha256.sha256(this.mobile.newpwd2).toUpperCase()
-      this.$http.post('https://ycwidx.cpnet.com', data).then(res => {
+      this.$http.post(this.global.url, data).then(res => {
 
         if (res) {
           localStorage.isLogin = true;

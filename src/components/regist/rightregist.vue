@@ -221,10 +221,10 @@ export default {
     getData() {
       let data = new FormData();
       data.append('Action', 'GetImgVCode');
-      this.$http.post("https://ycwidx.cpnet.com", data).then(res => {
+      this.$http.post(this.global.url, data).then(res => {
         console.log(res);
         this.user.vcode = res.data.Data.token;
-        this.user.imgurl = "https://ycwidx.cpnet.com" + res.data.Data.imgpath;
+        this.user.imgurl = this.global.url + res.data.Data.imgpath;
       }).catch(error => {
         console.log(error);
       });
@@ -258,7 +258,7 @@ export default {
         data1.append('AppType', "4");
         data1.append('AppCode', 'YCW')
         localStorage.pwd = sha256.sha256(this.user.newpwd2).toUpperCase()
-        that.$http.post('https://ycwidx.cpnet.com', data1).then(res => {
+        that.$http.post(this.global.url, data1).then(res => {
           console.log(res)
           if (res) {
             localStorage.isLogin = true;
