@@ -276,10 +276,10 @@ export default {
       data.append("SID", localStorage.sid);
       data.append("AppVersion", "1.0");
       data.append("Mobile", this.mobile.num);
-      data.append("AppType", "4");
+      data.append("AppType", this.global.AppType);
       data.append("Pwd", sha256.sha256(this.mobile.newpwd2).toUpperCase());
       data.append("SMSCode", this.mobile.verify);
-      data.append("AppCode", "YCW");
+      data.append("AppCode", this.global.AppCode);
       localStorage.pwd = sha256.sha256(this.mobile.newpwd2).toUpperCase();
       this.$http
         .post(this.global.url, data)

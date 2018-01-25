@@ -347,15 +347,15 @@ export default {
       let signStr =
         this.user.sid +
         this.user.name +
-        "4YCW1.0" +
+        this.global.AppType + this.global.AppCode + "1.0" +
         sha256.sha256(this.user.pwd).toUpperCase();
       console.log(signStr);
       let data = new FormData();
       data.append("Action", "Login");
       data.append("SID", this.user.sid);
       data.append("Account", this.user.name);
-      data.append("AppType", "4");
-      data.append("AppCode", "YCW");
+      data.append("AppType", this.global.AppType);
+      data.append("AppCode", this.global.AppCode);
       data.append("AppVersion", "1.0");
       data.append("Sign", sha256.sha256(signStr).toUpperCase());
 
