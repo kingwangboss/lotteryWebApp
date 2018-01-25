@@ -279,7 +279,7 @@ export default {
             data.append("Action", "ResetPwdSMS");
             data.append("SID", localStorage.sid);
             data.append("Mobile", this.user.num);
-            data.append("AppType", "4");
+            data.append("AppType", this.global.AppType);
             data.append("VCode", res.data.Data);
 
             this.$http
@@ -312,7 +312,7 @@ export default {
         data.append("Mobile", this.user.num);
         data.append("SMSCode", this.user.verify);
         data.append("Pwd", this.user.newpwd1);
-        data.append("AppType", "4");
+        data.append("AppType", this.global.AppType);
         this.$http
           .post(this.global.url, data)
           .then(res => {

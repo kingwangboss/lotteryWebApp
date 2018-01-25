@@ -5,6 +5,8 @@
   const AppCode = "YCW";
 
   export default{
-      url
+      url,
+      AppType,
+      AppCode
   }
 </script>

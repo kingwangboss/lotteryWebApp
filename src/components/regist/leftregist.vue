@@ -262,7 +262,7 @@ export default {
         data1.append('Action', 'SendRegSMS');
         data1.append('SID', localStorage.sid);
         data1.append('Mobile', that.mobile.num);
-        data1.append('AppType', '4');
+        data1.append('AppType', that.global.AppType);
         data1.append('VCode', that.mobile.vcode);
         that.$http.post(this.global.url, data1).then(res => {
           console.log(res);
