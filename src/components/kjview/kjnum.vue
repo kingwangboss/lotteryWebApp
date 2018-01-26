@@ -3,7 +3,7 @@
         <!-- <div v-show="isLan(index)" class="kjnum" :style="{width:ojwidth+'px',height:height+'px',}" :key="item" v-for="(item,index) in numArr">{{item}}</div>
         <div v-show="!isLan(index)" class="kjnum1" :style="{width:ojwidth+'px',height:height+'px'}" :key="item" v-for="(item,index) in numArr">{{item}}</div> -->
 
-        <div class="main" v-show="isLan(index)"  :key="item" v-for="(item,index) in numArr">
+        <div class="main" v-show="isLan(index)" v-for="(item,index) in numArr">
             <img class="line1" src="../../../static/images/red_left.png">
             </img>
             <!-- <div class="line21" :style="{width:ojwidth +10 +'px',height:height+'px',}">
@@ -18,7 +18,7 @@
           
         </div>
 
-        <div class="main" v-show="!isLan(index)"  :key="item" v-for="(item,index) in numArr">
+        <div class="main" v-show="!isLan(index)" v-for="(item,index) in numArr">
             <img class="line1" src="../../../static/images/blue_left.png">
             </img>
             <!-- <div class="line22" :style="{width:ojwidth +10 +'px',height:height+'px',}">
