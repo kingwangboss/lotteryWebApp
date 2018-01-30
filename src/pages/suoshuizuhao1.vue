@@ -5,10 +5,10 @@
             <div v-for="(item,index) in playdata">
                 <div class="cell-top">
                     <span class="name">{{item.Name}}</span>
-                    <button class="sel" v-show="isNum(index)">大</button>
-                    <button class="sel" v-show="isNum(index)">小</button>
-                    <button class="sel" v-show="isNum(index)">奇</button>
-                    <button class="sel" v-show="isNum(index)">偶</button>
+                    <button class="sel" v-show="isNum(index)" @click="daClick(index)">大</button>
+                    <button class="sel" v-show="isNum(index)"  @click="xiaoClick(index)">小</button>
+                    <button class="sel" v-show="isNum(index)"  @click="jiClick(index)">奇</button>
+                    <button class="sel" v-show="isNum(index)"  @click="ouClick(index)">偶</button>
                     <button class="sel" @click="allselect(index)">全</button>
                     <button class="sel" @click="reversalselect(index)">反</button>
                     <button class="sel" @click="allunselect(index)">清</button>
@@ -129,7 +129,8 @@ export default {
   data() {
     return {
       title: {
-        text: "缩水组号"
+        text: "缩水组号",
+        showBack:true,
       },
       playdata: "",
       selectValueArr: [],
@@ -190,11 +191,11 @@ export default {
         });
     },
     isTip(index) {
-        if(this.playdata[index].Tip ==='' || this.playdata[index].Tip == null){
-            return false;
-        }else{
-            return true;
-        }
+      if (this.playdata[index].Tip === "" || this.playdata[index].Tip == null) {
+        return false;
+      } else {
+        return true;
+      }
     },
     showTitle(index) {
       Toast({
@@ -243,7 +244,98 @@ export default {
           this.playdata[index].Index[index1]
         );
       }
-      console.log(this.playdata);
+      Vue.set(this.playdata, index, this.playdata[index]);
+    },
+    daClick(index) {
+      var daValue = [];
+      var xiaoValue = [];
+      var daIndex = [];
+      var xiaoIndex = [];
+      for (
+        let index1 = 0;
+        index1 < this.playdata[index].Index.length;
+        index1++
+      ) {
+        const item1 = this.playdata[index].Value[index1];
+        if (index1 < this.playdata[index].Index.length / 2) {
+          xiaoValue.push(this.playdata[index].Value[index1]);
+          xiaoIndex.push(this.playdata[index].Index[index1]);
+        } else {
+          daValue.push(this.playdata[index].Value[index1]);
+          daIndex.push(this.playdata[index].Index[index1]);
+        }
+      }
+      this.playdata[index].SelectValue = daValue;
+      this.playdata[index].SelectIndex = daIndex;
+      Vue.set(this.playdata, index, this.playdata[index]);
+    },
+    xiaoClick(index) {
+      var daValue = [];
+      var xiaoValue = [];
+      var daIndex = [];
+      var xiaoIndex = [];
+      for (
+        let index1 = 0;
+        index1 < this.playdata[index].Index.length;
+        index1++
+      ) {
+        const item1 = this.playdata[index].Value[index1];
+        if (index1 < this.playdata[index].Index.length / 2) {
+          xiaoValue.push(this.playdata[index].Value[index1]);
+          xiaoIndex.push(this.playdata[index].Index[index1]);
+        } else {
+          daValue.push(this.playdata[index].Value[index1]);
+          daIndex.push(this.playdata[index].Index[index1]);
+        }
+      }
+      this.playdata[index].SelectValue = xiaoValue;
+      this.playdata[index].SelectIndex = xiaoIndex;
+      Vue.set(this.playdata, index, this.playdata[index]);
+    },
+    jiClick(index) {
+      var jiValue = [];
+      var ouValue = [];
+      var jiIndex = [];
+      var ouIndex = [];
+      for (
+        let index1 = 0;
+        index1 < this.playdata[index].Index.length;
+        index1++
+      ) {
+        const item1 = this.playdata[index].Value[index1];
+        if (item1 % 2 != 0) {
+          jiValue.push(this.playdata[index].Value[index1]);
+          jiIndex.push(this.playdata[index].Index[index1]);
+        } else {
+          ouValue.push(this.playdata[index].Value[index1]);
+          ouIndex.push(this.playdata[index].Index[index1]);
+        }
+      }
+      this.playdata[index].SelectValue = jiValue;
+      this.playdata[index].SelectIndex = jiIndex;
+      Vue.set(this.playdata, index, this.playdata[index]);
+    },
+    ouClick(index) {
+      var jiValue = [];
+      var ouValue = [];
+      var jiIndex = [];
+      var ouIndex = [];
+      for (
+        let index1 = 0;
+        index1 < this.playdata[index].Index.length;
+        index1++
+      ) {
+        const item1 = this.playdata[index].Value[index1];
+        if (item1 % 2 != 0) {
+          jiValue.push(this.playdata[index].Value[index1]);
+          jiIndex.push(this.playdata[index].Index[index1]);
+        } else {
+          ouValue.push(this.playdata[index].Value[index1]);
+          ouIndex.push(this.playdata[index].Index[index1]);
+        }
+      }
+      this.playdata[index].SelectValue = ouValue;
+      this.playdata[index].SelectIndex = ouIndex;
       Vue.set(this.playdata, index, this.playdata[index]);
     },
     allselect(index) {
