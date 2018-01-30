@@ -1,0 +1,280 @@
+<template>
+    <div>
+        <m-header :title="title"></m-header>
+        <div class="container">
+            <div v-for="(item,index) in playdata">
+                <div class="cell-top">
+                    <span class="name">{{item.Name}}</span>
+                    <button class="sel" v-show="isNum(index)">大</button>
+                    <button class="sel" v-show="isNum(index)">小</button>
+                    <button class="sel" v-show="isNum(index)">奇</button>
+                    <button class="sel" v-show="isNum(index)">偶</button>
+                    <button class="sel" @click="allselect(index)">全</button>
+                    <button class="sel" @click="reversalselect(index)">反</button>
+                    <button class="sel" @click="allunselect(index)">清</button>
+
+                    <button class="tip" v-show="isTip(index)" @click="showTitle(index)">?</button>
+                </div>
+
+                <div class="cell-bottom">
+                    <div v-for="(item1,index1) in item.Value">
+                        <div class="num" :class="{'selectnum':item.SelectValue.indexOf(item1) > -1}" @click="addBtn(item1,index1,index)">
+                            {{item1}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="line"></div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<style lang="less" scoped>
+#bundle {
+  .juzhong {
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+  }
+}
+.line {
+  height: 2.5vw;
+  background: rgb(240, 240, 240);
+  border-bottom: rgb(232, 232, 232) solid 1px;
+  border-top: rgb(232, 232, 232) solid 1px;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  .cell-top {
+    display: flex;
+    flex-direction: row;
+    margin-top: 3vw;
+    // background: red;
+    .name {
+      width: 23%;
+      text-align: left;
+      border-top-right-radius: 3.5vw;
+      border-bottom-right-radius: 3.5vw;
+      font-size: 3.5vw;
+      margin: 0px 3vw 0vw 0px;
+      padding-left: 2vw;
+      height: 7vw;
+      line-height: 7.5vw;
+      color: white;
+      background: rgb(248, 68, 51);
+      box-shadow: rgb(252, 191, 166) 0px 4px 10px;
+    }
+    .sel {
+      #bundle > .juzhong;
+      background: linear-gradient(to bottom, white, rgb(213, 213, 213));
+      border-radius: 1vw;
+      width: 7vw;
+      height: 7vw;
+      margin: 0 2vw 0 0;
+    }
+    .tip {
+      #bundle > .juzhong;
+      margin: 0.6vw 0 0 0.6vw;
+      width: 5.5vw;
+      height: 5.5vw;
+      border-radius: 5.5vw;
+      background: white;
+      border: rgb(184, 184, 184) solid 1px;
+      color: rgb(184, 184, 184);
+      font-size: 3vw;
+    }
+  }
+  .cell-bottom {
+    margin: 5vw 4vw 3vw 4vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .num {
+      padding: 1vw 2.18vw;
+      #bundle > .juzhong;
+      height: 5vw;
+      margin: 1vw;
+      font-size: 4vw;
+      border: rgb(214, 214, 214) solid 1px;
+      color: rgb(135, 135, 135);
+      border-radius: 1vw;
+    }
+    .selectnum {
+      padding: 1vw 2.18vw;
+      #bundle > .juzhong;
+      height: 5vw;
+      margin: 1vw;
+      font-size: 4vw;
+      border: rgb(248, 68, 51) solid 1px;
+      color: white;
+      background: rgb(248, 68, 51);
+      border-radius: 1vw;
+    }
+  }
+}
+</style>
+
+<script>
+import Vue from "vue";
+import mHeader from "../components/hearder/Hearder";
+import sha256 from "../util/sha256";
+import index from "vue";
+import { Toast, MessageBox } from "mint-ui";
+export default {
+  data() {
+    return {
+      title: {
+        text: "缩水组号"
+      },
+      playdata: "",
+      selectValueArr: [],
+      selectIndexArr: []
+    };
+  },
+  components: {
+    mHeader
+  },
+  methods: {
+    getData() {
+      // 请求数据
+      let tokenCode = localStorage.tokenCode;
+      let signStr =
+        "Action=InitFilter" +
+        "&SID=" +
+        localStorage.sid +
+        "&Token=" +
+        localStorage.Token +
+        "&PlayTypeName=" +
+        localStorage.playtype +
+        tokenCode;
+      console.log(signStr);
+      let data = new FormData();
+      data.append("Action", "InitFilter");
+      data.append("SID", localStorage.sid);
+      data.append("Token", localStorage.Token);
+      data.append("PlayTypeName", localStorage.playtype);
+      data.append("Sign", sha256.sha256(signStr).toUpperCase());
+      this.$http
+        .post(localStorage.SiteUrl, data)
+        .then(res => {
+          this.playdata = res.data.Data;
+          console.log(this.playdata);
+          let arr = [];
+          let valueArr = [];
+          let indexArr = [];
+          for (let index = 0; index < this.playdata.length; index++) {
+            const element = this.playdata[index];
+            let arrV = [];
+            let arrI = [];
+            for (let i = 0; i < element.Data.length; i++) {
+              arrI.push(element.Data[i].split(":")[0]);
+              arrV.push(element.Data[i].split(":")[1]);
+            }
+            valueArr.push(arrV);
+            indexArr.push(arrI);
+            arr.push(element.Data);
+            this.playdata[index].Value = arrV;
+            this.playdata[index].Index = arrI;
+            this.playdata[index].SelectValue = arrV;
+            this.playdata[index].SelectIndex = arrI;
+          }
+          console.log(this.playdata);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    isTip(index) {
+        if(this.playdata[index].Tip ==='' || this.playdata[index].Tip == null){
+            return false;
+        }else{
+            return true;
+        }
+    },
+    showTitle(index) {
+      Toast({
+        message: this.playdata[index].Tip,
+        position: "bottom",
+        duration: 2000
+      });
+    },
+    isNum(index) {
+      var reg = /^[0-9]+.?[0-9]*$/;
+      for (let i = 0; i < this.playdata[index].Value.length; i++) {
+        const element = this.playdata[index].Value[i];
+
+        if (reg.test(element)) {
+          return true;
+        } else {
+          continue;
+        }
+      }
+      return false;
+    },
+    remove(arr, item) {
+      var result = [];
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i] != item) {
+          result.push(arr[i]);
+        }
+      }
+      return result;
+    },
+    addBtn(item1, index1, index) {
+      if (this.playdata[index].SelectValue.indexOf(item1) > -1) {
+        this.playdata[index].SelectValue = this.remove(
+          this.playdata[index].SelectValue,
+          item1
+        );
+        this.playdata[index].SelectIndex = this.remove(
+          this.playdata[index].SelectIndex,
+          this.playdata[index].SelectIndex[index1]
+        );
+      } else {
+        this.playdata[index].SelectValue.push(
+          this.playdata[index].Value[index1]
+        );
+        this.playdata[index].SelectIndex.push(
+          this.playdata[index].Index[index1]
+        );
+      }
+      console.log(this.playdata);
+      Vue.set(this.playdata, index, this.playdata[index]);
+    },
+    allselect(index) {
+      this.playdata[index].SelectValue = this.playdata[index].Value;
+      this.playdata[index].SelectIndex = this.playdata[index].Index;
+      Vue.set(this.playdata, index, this.playdata[index]);
+    },
+
+    reversalselect(index) {
+      for (
+        let index1 = 0;
+        index1 < this.playdata[index].Index.length;
+        index1++
+      ) {
+        const item1 = this.playdata[index].Value[index1];
+        this.addBtn(item1, index1, index);
+      }
+      Vue.set(this.playdata, index, this.playdata[index]);
+    },
+
+    allunselect(index) {
+      this.playdata[index].SelectValue = [];
+      this.playdata[index].SelectIndex = [];
+      Vue.set(this.playdata, index, this.playdata[index]);
+    }
+  },
+
+  computed: {},
+  created() {},
+  mounted() {
+    this.getData();
+  }
+};
+</script>
