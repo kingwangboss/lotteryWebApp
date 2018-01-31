@@ -52,7 +52,7 @@ import shujufenxi from "./shujufenxi1";
 import lishikaijiang from "./lishikaijiang";
 import wo from "./wo";
 import kjview from "../components/kjview/kjview";
-import suoshui from "./suoshuizuhao";
+import suoshui from "./suoshuizuhao1";
 import sha256 from "../util/sha256";
 const titleList = [
   {
@@ -124,7 +124,7 @@ export default {
       },
       tabList: tabList,
       sid: localStorage.sid,
-      playdata: '',
+      playdata: ""
     };
   },
   created() {
@@ -151,15 +151,20 @@ export default {
         showQH: false,
         setting: true
       };
-    }
-    else if (localStorage.tab === "suoshui") {
+    } else if (localStorage.tab === "suoshui") {
       this.title = {
         text: "缩水组号",
-        showBack: false,
-        showQH: false,
-        setting: false
+        suoshuiQH: true,
       };
-      this.getData()
+      if (
+        localStorage.playtype == null ||
+        localStorage.playtype == "" ||
+        localStorage.playtype === "undefined"
+      ) {
+        this.$router.push("/suoshuizuhao");
+      } else {
+        this.getData();
+      }
     } else if (localStorage.tab === "lishi") {
       this.title = this.titleList[2];
     } else if (localStorage.tab === "wo") {
@@ -167,9 +172,7 @@ export default {
     } else {
     }
   },
-  mounted() {
-    console.log(3);
-  },
+  mounted() {},
 
   components: {
     mHeader,
@@ -210,11 +213,17 @@ export default {
         case "suoshui":
           this.title = {
             text: "缩水组号",
-            showBack: false,
-            showQH: false,
-            setting: false,
+            suoshuiQH: true,
           };
-          this.getData()
+          if (
+            localStorage.playtype == null ||
+            localStorage.playtype == "" ||
+            localStorage.playtype === "undefined"
+          ) {
+            this.$router.push("/suoshuizuhao");
+          } else {
+            this.getData();
+          }
           localStorage.tab = "suoshui";
           break;
         case "lishi":
@@ -234,27 +243,52 @@ export default {
       // 请求数据
       let tokenCode = localStorage.tokenCode;
       let signStr =
-        "Action=GetPlayTypes" +
+        "Action=InitFilter" +
         "&SID=" +
         localStorage.sid +
         "&Token=" +
         localStorage.Token +
+        "&PlayTypeName=" +
+        localStorage.playtype +
         tokenCode;
+
       let data = new FormData();
-      data.append("Action", "GetPlayTypes");
+      data.append("Action", "InitFilter");
       data.append("SID", localStorage.sid);
       data.append("Token", localStorage.Token);
+      data.append("PlayTypeName", localStorage.playtype);
       data.append("Sign", sha256.sha256(signStr).toUpperCase());
       this.$http
         .post(localStorage.SiteUrl, data)
         .then(res => {
           this.playdata = res.data.Data;
+          console.log(this.playdata);
+          let arr = [];
+          let valueArr = [];
+          let indexArr = [];
+          for (let index = 0; index < this.playdata.length; index++) {
+            const element = this.playdata[index];
+            let arrV = [];
+            let arrI = [];
+            for (let i = 0; i < element.Data.length; i++) {
+              arrI.push(element.Data[i].split(":")[0]);
+              arrV.push(element.Data[i].split(":")[1]);
+            }
+            valueArr.push(arrV);
+            indexArr.push(arrI);
+            arr.push(element.Data);
+            this.playdata[index].Value = arrV;
+            this.playdata[index].Index = arrI;
+            this.playdata[index].SelectValue = [];
+            this.playdata[index].SelectIndex = [];
+          }
+          console.log(this.playdata);
         })
         .catch(error => {
           console.log(error);
         });
     }
-  },
+  }
 };
 </script>
 

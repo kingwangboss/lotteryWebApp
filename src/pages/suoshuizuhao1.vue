@@ -1,7 +1,7 @@
 <template>
     <div>
-        <m-header :title="title"></m-header>
         <div class="container">
+            
             <div v-for="(item,index) in playdata">
                 <div class="cell-top">
                     <span class="name">{{item.Name}}</span>
@@ -26,11 +26,22 @@
 
                 <div class="line"></div>
             </div>
+
+            <div class="bottom-btnView">
+
+                <button class="bottom-btn" style="background-color: rgb(229, 87, 77);border-color:rgba(0,0,0,0);color:#fff;" @click="commit">提交</button>
+                <button class="bottom-btn" style="background-color: rgb(232, 159, 109);border-color:rgba(0,0,0,0);color:#fff;">重置</button>
+                
+            </div>
         </div>
+
     </div>
 </template>
 
 <style lang="less" scoped>
+:focus {
+  outline: none;
+}
 #bundle {
   .juzhong {
     display: flex;
@@ -39,6 +50,20 @@
     -webkit-justify-content: center;
     justify-content: center;
   }
+}
+.bottom-btnView {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 55px;
+}
+
+.bottom-btn {
+  width: 50%;
+  border-radius: 0px;
 }
 .line {
   height: 2.5vw;
@@ -50,10 +75,12 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin-bottom: 44px;
   .cell-top {
     display: flex;
     flex-direction: row;
     margin-top: 3vw;
+
     // background: red;
     .name {
       width: 23%;
@@ -126,12 +153,9 @@ import sha256 from "../util/sha256";
 import index from "vue";
 import { Toast, MessageBox } from "mint-ui";
 export default {
+  props: ["data"],
   data() {
     return {
-      title: {
-        text: "缩水组号",
-        showBack:true,
-      },
       playdata: "",
       selectValueArr: [],
       selectIndexArr: []
@@ -153,7 +177,7 @@ export default {
         "&PlayTypeName=" +
         localStorage.playtype +
         tokenCode;
-      console.log(signStr);
+
       let data = new FormData();
       data.append("Action", "InitFilter");
       data.append("SID", localStorage.sid);
@@ -245,6 +269,7 @@ export default {
         );
       }
       Vue.set(this.playdata, index, this.playdata[index]);
+      console.log(this.playdata);
     },
     daClick(index) {
       var daValue = [];
@@ -260,7 +285,7 @@ export default {
         if (index1 < this.playdata[index].Index.length / 2) {
           xiaoValue.push(this.playdata[index].Value[index1]);
           xiaoIndex.push(this.playdata[index].Index[index1]);
-        } else {
+        } else if (index1 > this.playdata[index].Index.length / 2) {
           daValue.push(this.playdata[index].Value[index1]);
           daIndex.push(this.playdata[index].Index[index1]);
         }
@@ -283,9 +308,11 @@ export default {
         if (index1 < this.playdata[index].Index.length / 2) {
           xiaoValue.push(this.playdata[index].Value[index1]);
           xiaoIndex.push(this.playdata[index].Index[index1]);
-        } else {
+        } else if (index1 > this.playdata[index].Index.length / 2) {
           daValue.push(this.playdata[index].Value[index1]);
           daIndex.push(this.playdata[index].Index[index1]);
+        }else{
+            
         }
       }
       this.playdata[index].SelectValue = xiaoValue;
@@ -360,13 +387,22 @@ export default {
       this.playdata[index].SelectValue = [];
       this.playdata[index].SelectIndex = [];
       Vue.set(this.playdata, index, this.playdata[index]);
+    },
+
+    commit() {
+      console.log(this.playdata);
     }
   },
-
+  watch: {
+    data: function(now, old) {
+      this.playdata = this.data;
+    }
+  },
   computed: {},
-  created() {},
-  mounted() {
-    this.getData();
-  }
+  created() {
+    this.playdata = this.data;
+    console.log(this.playdata);
+  },
+  mounted() {}
 };
 </script>

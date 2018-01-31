@@ -187,9 +187,9 @@ export default new Router({
       component: resolve => require(['@/pages/routerPush'], resolve),
     },
     {
-      path: '/suoshuizuhao1',
-      name: 'suoshuizuhao1',
-      component: resolve => require(['@/pages/suoshuizuhao1'], resolve),
+      path: '/suoshuizuhao',
+      name: 'suoshuizuhao',
+      component: resolve => require(['@/pages/suoshuizuhao'], resolve),
     },
     {
       path: '/error',
