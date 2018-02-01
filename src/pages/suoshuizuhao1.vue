@@ -269,7 +269,6 @@ export default {
         );
       }
       Vue.set(this.playdata, index, this.playdata[index]);
-      console.log(this.playdata);
     },
     daClick(index) {
       var daValue = [];
@@ -282,12 +281,22 @@ export default {
         index1++
       ) {
         const item1 = this.playdata[index].Value[index1];
-        if (index1 < this.playdata[index].Index.length / 2) {
-          xiaoValue.push(this.playdata[index].Value[index1]);
-          xiaoIndex.push(this.playdata[index].Index[index1]);
-        } else if (index1 > this.playdata[index].Index.length / 2) {
-          daValue.push(this.playdata[index].Value[index1]);
-          daIndex.push(this.playdata[index].Index[index1]);
+        if (this.playdata[index].Index.length % 2 == 0) {
+          if (index1 < this.playdata[index].Index.length / 2) {
+            xiaoValue.push(this.playdata[index].Value[index1]);
+            xiaoIndex.push(this.playdata[index].Index[index1]);
+          } else {
+            daValue.push(this.playdata[index].Value[index1]);
+            daIndex.push(this.playdata[index].Index[index1]);
+          }
+        } else {
+          if (index1 < this.playdata[index].Index.length / 2) {
+            xiaoValue.push(this.playdata[index].Value[index1]);
+            xiaoIndex.push(this.playdata[index].Index[index1]);
+          } else if (index1 > this.playdata[index].Index.length / 2) {
+            daValue.push(this.playdata[index].Value[index1]);
+            daIndex.push(this.playdata[index].Index[index1]);
+          }
         }
       }
       this.playdata[index].SelectValue = daValue;
@@ -305,14 +314,22 @@ export default {
         index1++
       ) {
         const item1 = this.playdata[index].Value[index1];
-        if (index1 < this.playdata[index].Index.length / 2) {
-          xiaoValue.push(this.playdata[index].Value[index1]);
-          xiaoIndex.push(this.playdata[index].Index[index1]);
-        } else if (index1 > this.playdata[index].Index.length / 2) {
-          daValue.push(this.playdata[index].Value[index1]);
-          daIndex.push(this.playdata[index].Index[index1]);
-        }else{
-            
+        if (this.playdata[index].Index.length % 2 == 0) {
+          if (index1 < this.playdata[index].Index.length / 2) {
+            xiaoValue.push(this.playdata[index].Value[index1]);
+            xiaoIndex.push(this.playdata[index].Index[index1]);
+          } else {
+            daValue.push(this.playdata[index].Value[index1]);
+            daIndex.push(this.playdata[index].Index[index1]);
+          }
+        } else {
+          if (index1 < this.playdata[index].Index.length / 2 - 1) {
+            xiaoValue.push(this.playdata[index].Value[index1]);
+            xiaoIndex.push(this.playdata[index].Index[index1]);
+          } else if (index1 > this.playdata[index].Index.length / 2) {
+            daValue.push(this.playdata[index].Value[index1]);
+            daIndex.push(this.playdata[index].Index[index1]);
+          }
         }
       }
       this.playdata[index].SelectValue = xiaoValue;
@@ -391,6 +408,73 @@ export default {
 
     commit() {
       console.log(this.playdata);
+      var arr = [];
+      for (let i = 0; i < this.playdata.length; i++) {
+        const element = this.playdata[i];
+
+        if (element.SelectIndex.length > 0) {
+          // console.log();
+          arr.push(
+            '"在(' + element.Name + "," + element.SelectIndex.toString() + ')"'
+          );
+        } else {
+        }
+      }
+      console.log("[" + arr.toString() + "]");
+      let tokenCode = localStorage.tokenCode;
+      let signStr =
+        "Action=FilterData" +
+        "&SID=" +
+        localStorage.sid +
+        "&Token=" +
+        localStorage.Token +
+        "&FilterExp=" +
+        "[" +
+        arr.toString() +
+        "]" +
+        "&PlayTypeName=" +
+        localStorage.playtype +
+        tokenCode;
+      let data = new FormData();
+      data.append("Action", "FilterData");
+      data.append("SID", localStorage.sid);
+      data.append("Token", localStorage.Token);
+      data.append("FilterExp", "[" + arr.toString() + "]");
+      data.append("PlayTypeName", localStorage.playtype);
+      data.append("Sign", sha256.sha256(signStr).toUpperCase());
+
+      if (arr.length == 0) {
+        Toast({
+          message: "请设置缩水公式",
+          position: "bottom",
+          duration: 2000
+        });
+      } else {
+        this.$http
+          .post(localStorage.SiteUrl, data)
+          .then(res => {
+            // console.log(res);
+            let dataArr =[];
+            for (let index = 0; index < res.data.Data.length; index++) {
+              const element = res.data.Data[index];
+              let str = element.toString();
+              dataArr.push(str)
+            }
+            // console.log(dataArr);
+            if (res.data.Code === "Suc") {
+              this.$router.push({
+                path: "/suoshuiresult",
+                query: {
+                  resultdata: dataArr
+                }
+              });
+            } else {
+            }
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
     }
   },
   watch: {
