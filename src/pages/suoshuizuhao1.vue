@@ -165,55 +165,6 @@ export default {
     mHeader
   },
   methods: {
-    getData() {
-      // 请求数据
-      let tokenCode = localStorage.tokenCode;
-      let signStr =
-        "Action=InitFilter" +
-        "&SID=" +
-        localStorage.sid +
-        "&Token=" +
-        localStorage.Token +
-        "&PlayTypeName=" +
-        localStorage.playtype +
-        tokenCode;
-
-      let data = new FormData();
-      data.append("Action", "InitFilter");
-      data.append("SID", localStorage.sid);
-      data.append("Token", localStorage.Token);
-      data.append("PlayTypeName", localStorage.playtype);
-      data.append("Sign", sha256.sha256(signStr).toUpperCase());
-      this.$http
-        .post(localStorage.SiteUrl, data)
-        .then(res => {
-          this.playdata = res.data.Data;
-          console.log(this.playdata);
-          let arr = [];
-          let valueArr = [];
-          let indexArr = [];
-          for (let index = 0; index < this.playdata.length; index++) {
-            const element = this.playdata[index];
-            let arrV = [];
-            let arrI = [];
-            for (let i = 0; i < element.Data.length; i++) {
-              arrI.push(element.Data[i].split(":")[0]);
-              arrV.push(element.Data[i].split(":")[1]);
-            }
-            valueArr.push(arrV);
-            indexArr.push(arrI);
-            arr.push(element.Data);
-            this.playdata[index].Value = arrV;
-            this.playdata[index].Index = arrI;
-            this.playdata[index].SelectValue = arrV;
-            this.playdata[index].SelectIndex = arrI;
-          }
-          console.log(this.playdata);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
     isTip(index) {
       if (this.playdata[index].Tip === "" || this.playdata[index].Tip == null) {
         return false;

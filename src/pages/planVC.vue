@@ -263,7 +263,6 @@ export default {
         .then(res => {
           this.playdata = res.data.Data;
           console.log(this.playdata);
-          let arr = [];
           let valueArr = [];
           let indexArr = [];
           for (let index = 0; index < this.playdata.length; index++) {
@@ -276,7 +275,6 @@ export default {
             }
             valueArr.push(arrV);
             indexArr.push(arrI);
-            arr.push(element.Data);
             this.playdata[index].Value = arrV;
             this.playdata[index].Index = arrI;
             this.playdata[index].SelectValue = [];
