@@ -29,7 +29,7 @@
             <mt-tab-item id="shujufenxi" v-show="sid != '9'">
                 <img slot="icon" :src="tabList['shujufenxi'].src"> 数据分析
             </mt-tab-item>
-            <mt-tab-item id="suoshui">
+            <mt-tab-item id="suoshui" v-show="sid != '9'">
                 <img slot="icon" :src="tabList['suoshui'].src"> 缩水组号
             </mt-tab-item>
             <mt-tab-item id="lishi">
@@ -154,7 +154,7 @@ export default {
     } else if (localStorage.tab === "suoshui") {
       this.title = {
         text: "缩水组号",
-        suoshuiQH: true,
+        suoshuiQH: true
       };
       if (
         localStorage.playtype == null ||
@@ -172,7 +172,10 @@ export default {
     } else {
     }
   },
-  mounted() {},
+  mounted() {
+    console.log("------dfygyasgdfyads-----");
+    console.log(this.playdata);
+  },
 
   components: {
     mHeader,
@@ -213,7 +216,7 @@ export default {
         case "suoshui":
           this.title = {
             text: "缩水组号",
-            suoshuiQH: true,
+            suoshuiQH: true
           };
           if (
             localStorage.playtype == null ||
@@ -279,6 +282,28 @@ export default {
             this.playdata[index].Index = arrI;
             this.playdata[index].SelectValue = [];
             this.playdata[index].SelectIndex = [];
+          }
+
+          //读取用户偏好
+          for (let index = 0; index < this.playdata.length; index++) {
+            const element = this.playdata[index];
+            console.log(element);
+            var str = localStorage.tempplay;
+            for (let inx = 0; inx < str.split(",").length; inx++) {
+              const element1 = str.split(",")[inx];
+
+              if (element.Name === element1.split(":")[0]) {
+                this.playdata[index].SelectIndex = element1
+                  .split(":")[1]
+                  .split("-")[0]
+                  .split(".");
+                this.playdata[index].SelectValue = element1
+                  .split(":")[1]
+                  .split("-")[1]
+                  .split(".");
+              } else {
+              }
+            }
           }
           console.log(this.playdata);
         })

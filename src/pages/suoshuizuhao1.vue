@@ -156,9 +156,7 @@ export default {
   props: ["data"],
   data() {
     return {
-      playdata: "",
-      selectValueArr: [],
-      selectIndexArr: []
+      playdata: ""
     };
   },
   components: {
@@ -360,6 +358,7 @@ export default {
     commit() {
       console.log(this.playdata);
       var arr = [];
+      var temparr = [];
       for (let i = 0; i < this.playdata.length; i++) {
         const element = this.playdata[i];
 
@@ -368,9 +367,17 @@ export default {
           arr.push(
             '"在(' + element.Name + "," + element.SelectIndex.toString() + ')"'
           );
+          var reg = new RegExp(",", "g");
+          temparr.push(
+            element.Name +
+              ":" +
+              element.SelectIndex.toString().replace(reg, ".")+ "-" + element.SelectValue.toString().replace(reg, ".")
+          );
         } else {
         }
       }
+      localStorage.tempplay = temparr;
+      console.log(temparr)
       console.log("[" + arr.toString() + "]");
       let tokenCode = localStorage.tokenCode;
       let signStr =
@@ -405,11 +412,11 @@ export default {
           .post(localStorage.SiteUrl, data)
           .then(res => {
             // console.log(res);
-            let dataArr =[];
+            let dataArr = [];
             for (let index = 0; index < res.data.Data.length; index++) {
               const element = res.data.Data[index];
               let str = element.toString();
-              dataArr.push(str)
+              dataArr.push(str);
             }
             // console.log(dataArr);
             if (res.data.Code === "Suc") {
@@ -436,8 +443,10 @@ export default {
   computed: {},
   created() {
     this.playdata = this.data;
-    console.log(this.playdata);
+    
   },
-  mounted() {}
+  mounted() {
+    
+  },
 };
 </script>
