@@ -82,6 +82,7 @@ export default {
     btnclick(item) {
       this.playtypeold = item;
       localStorage.playtypenew = item;
+      localStorage.tempplay = "";
     },
     getData() {
       // 请求数据
