@@ -405,8 +405,9 @@ export default {
         const element = this.playdata[index];
         element.SelectValue = [];
         element.SelectIndex = [];
+        Vue.set(this.playdata, index, this.playdata[index]);
       }
-      Vue.set(this.playdata, index, this.playdata[index]);
+      
     },
 
     commit() {
