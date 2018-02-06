@@ -1,10 +1,17 @@
 <template>
     <div>
       <div class="bottom-btnView">
-        <button class="bottom-btn" style="" @click="qhplay">切换玩法</button>
+        <div class="btn" style="background:white;">
+          <img class="images" src="../../static/images/s1_03.png" alt="">
+          <button class="bottom"  @click="qhplay">切换玩法</button>
+        </div>
         <button class="bottom-btn" style="" @click="addcontinue">添加条件</button>        
         <button class="bottom-btn" style="" @click="removecontinue">清除条件</button>
-        <button class="bottom-btn" style="background:rgb(248, 68, 51);color:white;" @click="commit">执行组号</button>        
+
+        <div class="btn">
+          <button class="bottom" style="background:rgb(248, 68, 51);color:white;" @click="commit">执行组号</button>   
+          <img class="images" src="../../static/images/s2_05.png" alt="">
+        </div>       
       </div>
       
       <div class="container">
@@ -68,6 +75,29 @@
   justify-content: space-between;
   background: white;
   border-bottom: rgb(223, 204, 199) solid 1px;
+  .btn {
+    display: flex;
+    flex-direction: row;
+    #bundle > .juzhong;
+    border-radius: 3vw;
+    font-size: 3vw;
+    background:rgb(248, 68, 51);
+    color: rgb(135, 135, 135);
+    border-color: rgba(0, 0, 0, 0);
+    padding: 0 2vw;
+    margin: 2vw 1vw;
+    .images{
+      width: 3vw;
+      height: 3vw;
+    }
+    .bottom {
+      padding: 0 2px;
+      font-size: 3vw;
+      background-color: white;
+      color: rgb(135, 135, 135);
+      border-color: rgba(0, 0, 0, 0);
+    }
+  }
 }
 
 .bottom-btn {
@@ -77,7 +107,7 @@
   color: rgb(135, 135, 135);
   border-color: rgba(0, 0, 0, 0);
   padding: 0 2vw;
-  margin: 2vw 2vw;
+  margin: 2vw 1vw;
 }
 
 .line {
@@ -91,7 +121,7 @@
   flex-direction: column;
   width: 100%;
   padding-top: 10vw;
-  .cell-topcontainer{
+  .cell-topcontainer {
     height: 8vw;
     .tip {
       #bundle > .juzhong;
@@ -113,8 +143,8 @@
     margin-right: 5.5vw;
     background: rgb(250, 250, 250);
     border-top: rgb(232, 232, 232) solid 1px;
-    border-right:  rgb(232, 232, 232) solid 1px;
-    border-bottom:  rgb(232, 232, 232) solid 1px;
+    border-right: rgb(232, 232, 232) solid 1px;
+    border-bottom: rgb(232, 232, 232) solid 1px;
     border-top-right-radius: 4vw;
     border-bottom-right-radius: 4vw;
     .name {
@@ -143,7 +173,7 @@
       margin-right: 1px;
       width: 8vw;
       height: 6vw;
-      border:rgba(0, 0, 0, 0);
+      border: rgba(0, 0, 0, 0);
       background-color: rgb(250, 250, 250);
       border-radius: 0;
       border-right: rgb(232, 232, 232) solid 1px;
@@ -152,7 +182,6 @@
       border-bottom-right-radius: 3.5vw;
       // margin: 0 2vw 0 0;
     }
-    
   }
   .cell-bottom {
     margin: 5vw 4vw 3vw 4vw;
@@ -394,20 +423,17 @@ export default {
       Vue.set(this.playdata, index, this.playdata[index]);
     },
 
-    qhplay(){
-      this.$router.push('/suoshuizuhao')
+    qhplay() {
+      this.$router.push("/suoshuizuhao");
     },
-    addcontinue(){
-
-    },
-    removecontinue(){
+    addcontinue() {},
+    removecontinue() {
       for (let index = 0; index < this.playdata.length; index++) {
         const element = this.playdata[index];
         element.SelectValue = [];
         element.SelectIndex = [];
         Vue.set(this.playdata, index, this.playdata[index]);
       }
-      
     },
 
     commit() {
