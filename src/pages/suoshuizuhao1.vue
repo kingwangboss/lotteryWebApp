@@ -22,12 +22,18 @@
                   <div class="cell-top" style="float:left">
                     <span class="name">{{item.Name}}</span>
                     <button class="sel" v-show="isNum(index)" @click="daClick(index)">大</button>
+                    <div class="line1" v-show="isNum(index)"></div>
                     <button class="sel" v-show="isNum(index)"  @click="xiaoClick(index)">小</button>
+                    <div class="line1" v-show="isNum(index)"></div>
                     <button class="sel" v-show="isNum(index)"  @click="jiClick(index)">奇</button>
+                    <div class="line1" v-show="isNum(index)"></div>
                     <button class="sel" v-show="isNum(index)"  @click="ouClick(index)">偶</button>
+                    <div class="line1" v-show="isNum(index)"></div>
                     <button class="sel" @click="allselect(index)">全</button>
+                    <div class="line1"></div>
                     <button class="sel" @click="reversalselect(index)">反</button>
-                    <button class="sel" style="border:0;" @click="allunselect(index)">清</button>
+                    <div class="line1"></div>
+                    <button class="sel" style="border:0; border-top-right-radius: 4vw; border-bottom-right-radius: 4vw;" @click="allunselect(index)">清</button>
 
                     
                   </div>
@@ -54,6 +60,7 @@
 </template>
 
 <style lang="less" scoped>
+
 :focus {
   outline: none;
 }
@@ -66,6 +73,7 @@
     justify-content: center;
   }
 }
+
 .bottom-btnView {
   width: 100%;
   position: fixed;
@@ -87,6 +95,7 @@
     padding: 0 2vw;
     margin: 2vw 1vw;
     .images{
+      margin-top:1px;
       width: 3vw;
       height: 3vw;
     }
@@ -115,6 +124,12 @@
   background: rgb(240, 240, 240);
   border-bottom: rgb(232, 232, 232) solid 1px;
   border-top: rgb(232, 232, 232) solid 1px;
+}
+.line1{
+  margin-top: 1.5vw;
+  height: 4vw;
+  width: 1px;
+  background: rgb(232, 232, 232);
 }
 .container {
   display: flex;
@@ -158,8 +173,8 @@
       font-size: 3.5vw;
       // margin: 0px 3vw 0vw 0px;
       padding-left: 2vw;
-      height: 6vw;
-      line-height: 6.5vw;
+      height: 7vw;
+      line-height: 7.5vw;
       color: white;
       background: rgb(248, 68, 51);
       // box-shadow: rgb(252, 191, 166) 0px 4px 10px;
@@ -167,19 +182,21 @@
     .sel {
       #bundle > .juzhong;
       // background: linear-gradient(to bottom, white, rgb(213, 213, 213));
+      // margin-top: 1vw;
+      // margin-bottom: 1vw;
       font-weight: 800;
       font-size: 3vw;
       border-radius: 1vw;
       margin-right: 1px;
       width: 8vw;
-      height: 6vw;
+      // height: 6vw;
       border: rgba(0, 0, 0, 0);
       background-color: rgb(250, 250, 250);
-      border-radius: 0;
-      border-right: rgb(232, 232, 232) solid 1px;
+      // border-radius: 0;
+      // border-right: rgb(232, 232, 232) solid 1px;
       color: rgb(155, 155, 155);
-      border-top-right-radius: 3.5vw;
-      border-bottom-right-radius: 3.5vw;
+      // border-top-right-radius: 3.5vw;
+      // border-bottom-right-radius: 3.5vw;
       // margin: 0 2vw 0 0;
     }
   }
