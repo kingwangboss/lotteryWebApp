@@ -95,8 +95,8 @@ const tabList = {
   },
   suoshui: {
     src: require("../../static/images/rizhi.png"),
-    defaultSrc: require("../../static/images/rizhi.png"),
-    activeSrc: require("../../static/images/rizhi1.png")
+    defaultSrc: require("../../static/images/suoshui.png"),
+    activeSrc: require("../../static/images/suoshui1.png")
   },
   lishi: {
     src: require("../../static/images/lishi.png"),
@@ -154,7 +154,7 @@ export default {
     } else if (localStorage.tab === "suoshui") {
       this.title = {
         text: "缩水组号",
-        suoshuiQH: true
+        // suoshuiQH: true
       };
       if (
         localStorage.playtype == null ||
@@ -216,7 +216,7 @@ export default {
         case "suoshui":
           this.title = {
             text: "缩水组号",
-            suoshuiQH: true
+            // suoshuiQH: true
           };
           if (
             localStorage.playtype == null ||

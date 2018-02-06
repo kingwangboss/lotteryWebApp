@@ -19,7 +19,7 @@
   margin-top: 10px;
   display: flex;
   align-items: center;
-  padding: 0px 20px 0px 20px;
+  padding: 0px 18px 0px 18px;
   font-size: 13px;
   color: black;
   // background-size: 100% 100%;

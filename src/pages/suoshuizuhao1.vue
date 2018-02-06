@@ -1,9 +1,18 @@
 <template>
     <div>
-        <div class="container">
-            
+      <div class="bottom-btnView">
+        <button class="bottom-btn" style="" @click="qhplay">切换玩法</button>
+        <button class="bottom-btn" style="" @click="addcontinue">添加条件</button>        
+        <button class="bottom-btn" style="" @click="removecontinue">清除条件</button>
+        <button class="bottom-btn" style="background:rgb(248, 68, 51);color:white;" @click="commit">执行组号</button>        
+      </div>
+      
+      <div class="container">
+            <div class="line"></div>
             <div v-for="(item,index) in playdata">
-                <div class="cell-top">
+              
+                <div class="cell-topcontainer">
+                  <div class="cell-top" style="float:left">
                     <span class="name">{{item.Name}}</span>
                     <button class="sel" v-show="isNum(index)" @click="daClick(index)">大</button>
                     <button class="sel" v-show="isNum(index)"  @click="xiaoClick(index)">小</button>
@@ -11,9 +20,14 @@
                     <button class="sel" v-show="isNum(index)"  @click="ouClick(index)">偶</button>
                     <button class="sel" @click="allselect(index)">全</button>
                     <button class="sel" @click="reversalselect(index)">反</button>
-                    <button class="sel" @click="allunselect(index)">清</button>
+                    <button class="sel" style="border:0;" @click="allunselect(index)">清</button>
 
+                    
+                  </div>
+                  <div style="float:right;">
                     <button class="tip" v-show="isTip(index)" @click="showTitle(index)">?</button>
+                  </div>
+                  
                 </div>
 
                 <div class="cell-bottom">
@@ -26,14 +40,8 @@
 
                 <div class="line"></div>
             </div>
-
-            <div class="bottom-btnView">
-
-                <button class="bottom-btn" style="background-color: rgb(229, 87, 77);border-color:rgba(0,0,0,0);color:#fff;" @click="commit">提交</button>
-                <button class="bottom-btn" style="background-color: rgb(232, 159, 109);border-color:rgba(0,0,0,0);color:#fff;">重置</button>
-                
-            </div>
-        </div>
+            
+      </div>
 
     </div>
 </template>
@@ -54,17 +62,24 @@
 .bottom-btnView {
   width: 100%;
   position: fixed;
-  bottom: 0;
-  height: 40px;
+  top: 1;
+  height: 10vw;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 55px;
+  background: white;
+  border-bottom: rgb(223, 204, 199) solid 1px;
 }
 
 .bottom-btn {
-  width: 50%;
-  border-radius: 0px;
+  border-radius: 3vw;
+  font-size: 3vw;
+  background-color: white;
+  color: rgb(135, 135, 135);
+  border-color: rgba(0, 0, 0, 0);
+  padding: 0 2vw;
+  margin: 2vw 2vw;
 }
+
 .line {
   height: 2.5vw;
   background: rgb(240, 240, 240);
@@ -75,46 +90,69 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 44px;
-  .cell-top {
-    display: flex;
-    flex-direction: row;
-    margin-top: 3vw;
-
-    // background: red;
-    .name {
-      width: 23%;
-      text-align: left;
-      border-top-right-radius: 3.5vw;
-      border-bottom-right-radius: 3.5vw;
-      font-size: 3.5vw;
-      margin: 0px 3vw 0vw 0px;
-      padding-left: 2vw;
-      height: 7vw;
-      line-height: 7.5vw;
-      color: white;
-      background: rgb(248, 68, 51);
-      box-shadow: rgb(252, 191, 166) 0px 4px 10px;
-    }
-    .sel {
-      #bundle > .juzhong;
-      background: linear-gradient(to bottom, white, rgb(213, 213, 213));
-      border-radius: 1vw;
-      width: 7vw;
-      height: 7vw;
-      margin: 0 2vw 0 0;
-    }
+  padding-top: 10vw;
+  .cell-topcontainer{
+    height: 8vw;
     .tip {
       #bundle > .juzhong;
-      margin: 0.6vw 0 0 0.6vw;
-      width: 5.5vw;
-      height: 5.5vw;
-      border-radius: 5.5vw;
-      background: white;
+      margin: 4vw 2vw 0 2vw;
+      width: 5vw;
+      height: 5vw;
+      border-radius: 5vw;
+      line-height: 4.5vw;
+      background: rgb(250, 250, 250);
       border: rgb(184, 184, 184) solid 1px;
       color: rgb(184, 184, 184);
       font-size: 3vw;
     }
+  }
+  .cell-top {
+    display: flex;
+    flex-direction: row;
+    margin-top: 3vw;
+    margin-right: 5.5vw;
+    background: rgb(250, 250, 250);
+    border-top: rgb(232, 232, 232) solid 1px;
+    border-right:  rgb(232, 232, 232) solid 1px;
+    border-bottom:  rgb(232, 232, 232) solid 1px;
+    border-top-right-radius: 4vw;
+    border-bottom-right-radius: 4vw;
+    .name {
+      font-style: oblique;
+      width: 20vw;
+      text-align: left;
+      border-top-right-radius: 3.5vw;
+      border-bottom-right-radius: 3.5vw;
+      // border-top: rgb(248, 68, 51) solid 1px;
+      // border-bottom: rgb(248, 68, 51) solid 1px;
+      font-size: 3.5vw;
+      // margin: 0px 3vw 0vw 0px;
+      padding-left: 2vw;
+      height: 6vw;
+      line-height: 6.5vw;
+      color: white;
+      background: rgb(248, 68, 51);
+      // box-shadow: rgb(252, 191, 166) 0px 4px 10px;
+    }
+    .sel {
+      #bundle > .juzhong;
+      // background: linear-gradient(to bottom, white, rgb(213, 213, 213));
+      font-weight: 800;
+      font-size: 3vw;
+      border-radius: 1vw;
+      margin-right: 1px;
+      width: 8vw;
+      height: 6vw;
+      border:rgba(0, 0, 0, 0);
+      background-color: rgb(250, 250, 250);
+      border-radius: 0;
+      border-right: rgb(232, 232, 232) solid 1px;
+      color: rgb(155, 155, 155);
+      border-top-right-radius: 3.5vw;
+      border-bottom-right-radius: 3.5vw;
+      // margin: 0 2vw 0 0;
+    }
+    
   }
   .cell-bottom {
     margin: 5vw 4vw 3vw 4vw;
@@ -127,9 +165,10 @@
       height: 5vw;
       margin: 1vw;
       font-size: 4vw;
-      border: rgb(214, 214, 214) solid 1px;
+      border: rgb(254, 232, 233) solid 1px;
+      background-color: rgb(255, 244, 245);
       color: rgb(135, 135, 135);
-      border-radius: 1vw;
+      // border-radius: 1vw;
     }
     .selectnum {
       padding: 1vw 2.18vw;
@@ -140,7 +179,7 @@
       border: rgb(248, 68, 51) solid 1px;
       color: white;
       background: rgb(248, 68, 51);
-      border-radius: 1vw;
+      // border-radius: 1vw;
     }
   }
 }
@@ -355,6 +394,21 @@ export default {
       Vue.set(this.playdata, index, this.playdata[index]);
     },
 
+    qhplay(){
+      this.$router.push('/suoshuizuhao')
+    },
+    addcontinue(){
+
+    },
+    removecontinue(){
+      for (let index = 0; index < this.playdata.length; index++) {
+        const element = this.playdata[index];
+        element.SelectValue = [];
+        element.SelectIndex = [];
+      }
+      Vue.set(this.playdata, index, this.playdata[index]);
+    },
+
     commit() {
       console.log(this.playdata);
       var arr = [];
@@ -371,13 +425,15 @@ export default {
           temparr.push(
             element.Name +
               ":" +
-              element.SelectIndex.toString().replace(reg, ".")+ "-" + element.SelectValue.toString().replace(reg, ".")
+              element.SelectIndex.toString().replace(reg, ".") +
+              "-" +
+              element.SelectValue.toString().replace(reg, ".")
           );
         } else {
         }
       }
       localStorage.tempplay = temparr;
-      console.log(temparr)
+      console.log(temparr);
       console.log("[" + arr.toString() + "]");
       let tokenCode = localStorage.tokenCode;
       let signStr =
@@ -443,10 +499,7 @@ export default {
   computed: {},
   created() {
     this.playdata = this.data;
-    
   },
-  mounted() {
-    
-  },
+  mounted() {}
 };
 </script>
