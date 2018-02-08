@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="bottomcontainer" v-for="(cell,index) in data.Data" :key="cell.PlanArr" @click="pushDetail($event,index)">
+        <div class="bottomcontainer" v-for="(cell,index) in PlanData" :key="cell.PlanArr" @click="pushDetail($event,index)">
             <!-- <span wx:if="{{DSType==0}}" class="txt-item1" style="border-top-left-radius: 25rpx;color: RGB(84, 128, 215); background:RGB(222, 231, 247);">{{Name}}</span> -->
             <!-- <span wx:else class="txt-item1" style="border-top-left-radius: 25rpx;color: RGB(199, 64, 78); background:RGB(247, 237, 237);">{{Name}}</span> -->
             <span v-if="cell.DSType === 0" class="txt-item1" style="width:22%;border-top-left-radius: 5px;color: RGB(84, 128, 215); background:RGB(222, 231, 247);">{{cell.Name.replace("定码","")}}</span>
@@ -171,18 +171,23 @@
 export default {
   props: {
     data: {
-      type: Object
+      type: Array
     }
   },
 
   created() {
     this.PlanData = this.data;
-    console.log(this.PlanData);
+    
+  },
+  watch: {
+    data: function(now, old) {
+      this.PlanData = this.data;
+    }
   },
   data() {
     return {
       myheight: 100,
-      PlanData: ""
+      PlanData: "",
     };
   },
   computed: {

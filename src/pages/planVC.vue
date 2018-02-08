@@ -4,8 +4,8 @@
         <div class="page-wrap" :class="title.tabClass">
             <mt-tab-container class="page-tabbar-container" v-model="selected">
                 <mt-tab-container-item id="plan">
-                    <kjview></kjview>
-                    <plan></plan>
+                    <kjview :kjdata="kjData" :Time="nextTime" v-if="flag"></kjview>
+                    <plan :plandata="PlanData" v-if="planflag"></plan>
                 </mt-tab-container-item>
                 <mt-tab-container-item id="shujufenxi">
                     <shujufenxi></shujufenxi>
@@ -14,7 +14,7 @@
                     <suoshui :data="playdata"></suoshui>
                 </mt-tab-container-item>
                 <mt-tab-container-item id="lishi">
-                    <lishikaijiang></lishikaijiang>
+                    <lishikaijiang :lishi="lishiData"></lishikaijiang>
                 </mt-tab-container-item>
                 <mt-tab-container-item id="wo">
                     <wo></wo>
@@ -54,6 +54,7 @@ import wo from "./wo";
 import kjview from "../components/kjview/kjview";
 import suoshui from "./suoshuizuhao1";
 import sha256 from "../util/sha256";
+
 const titleList = [
   {
     text: "计划追号",
@@ -109,7 +110,8 @@ const tabList = {
     activeSrc: require("../../static/images/wo1.png")
   }
 };
-
+var tiemInterval;
+var run;
 export default {
   name: "planVC",
   data() {
@@ -124,7 +126,13 @@ export default {
       },
       tabList: tabList,
       sid: localStorage.sid,
-      playdata: ""
+      playdata: "",
+      kjData: "",
+      nextTime: "",
+      flag: false,
+      planflag: false,
+      PlanData: "",
+      lishiData:"",
     };
   },
   created() {
@@ -153,7 +161,7 @@ export default {
       };
     } else if (localStorage.tab === "suoshui") {
       this.title = {
-        text: "缩水组号",
+        text: "缩水组号"
         // suoshuiQH: true
       };
       if (
@@ -173,8 +181,12 @@ export default {
     }
   },
   mounted() {
-    console.log("------dfygyasgdfyads-----");
-    console.log(this.playdata);
+    this.getkjData();
+    this.getplanData();
+    this.getlishiData();
+  },
+  beforeDestroy() {
+    clearInterval(tiemInterval);
   },
 
   components: {
@@ -215,7 +227,7 @@ export default {
           break;
         case "suoshui":
           this.title = {
-            text: "缩水组号",
+            text: "缩水组号"
             // suoshuiQH: true
           };
           if (
@@ -242,6 +254,126 @@ export default {
     }
   },
   methods: {
+    getData1() {
+      let tokenCode = localStorage.tokenCode;
+      let signStr =
+        "Action=Clock" +
+        "&SID=" +
+        localStorage.sid +
+        "&Token=" +
+        localStorage.Token +
+        "&CurrentLottery=0" +
+        tokenCode;
+      let data = new FormData();
+      data.append("Action", "Clock");
+      data.append("SID", localStorage.sid);
+      data.append("Token", localStorage.Token);
+      data.append("CurrentLottery", "0");
+      data.append("Sign", sha256.sha256(signStr).toUpperCase());
+      this.$http
+        .post(localStorage.SiteUrl, data)
+        .then(res => {
+          if (res.data.Data.NewLottery.NextPeriodTime > 0) {
+            clearInterval(run);
+            this.getkjData();
+            // this.getcelldata();
+            this.getplanData();
+            this.getlishiData();
+            console.log("yes");
+          } else {
+            console.log("no");
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    getkjData() {
+      // this.$show.open();
+      let tokenCode = localStorage.tokenCode;
+      let signStr =
+        "Action=Clock" +
+        "&SID=" +
+        localStorage.sid +
+        "&Token=" +
+        localStorage.Token +
+        "&CurrentLottery=0" +
+        tokenCode;
+      let data = new FormData();
+      data.append("Action", "Clock");
+      data.append("SID", localStorage.sid);
+      data.append("Token", localStorage.Token);
+      data.append("CurrentLottery", "0");
+      data.append("Sign", sha256.sha256(signStr).toUpperCase());
+      //getClock握手
+      this.$http
+        .post(localStorage.SiteUrl, data)
+        .then(res => {
+          // this.$show.close();
+          this.kjData = res.data.Data;
+          this.nextTime = res.data.Data.NewLottery.NextPeriodTime;
+          this.flag = true;
+
+          //设置定时器，每1秒刷新一次
+          var self = this;
+          tiemInterval = setInterval(getTotelNumber, 1000);
+
+          function getTotelNumber() {
+            if (self.nextTime > 0) {
+              self.nextTime--;
+              // console.log(self.nextTime);
+            } else {
+              clearInterval(tiemInterval);
+              var i = 0;
+              run = setInterval(function() {
+                if (localStorage.isLogin == "true") {
+                  self.getData1();
+                } else {
+                  clearInterval(tiemInterval);
+                }
+              }, 5000);
+            }
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    getplanData() {
+      // 请求数据
+      let tokenCode = localStorage.tokenCode;
+      let signStr =
+        "Action=GetPlanDatas2&AutoOpt=0" +
+        "&SID=" +
+        localStorage.sid +
+        "&Token=" +
+        localStorage.Token +
+        tokenCode;
+      let data = new FormData();
+      data.append("Action", "GetPlanDatas2");
+      data.append("AutoOpt", "0");
+      data.append("SID", localStorage.sid);
+      data.append("Token", localStorage.Token);
+      data.append("Sign", sha256.sha256(signStr).toUpperCase());
+      this.$http
+        .post(localStorage.SiteUrl, data)
+        .then(res => {
+          this.PlanData = res.data.Data;
+
+          var nameArr = [];
+          for (var i = 0; i < this.PlanData.Data.length; i++) {
+            nameArr.push(this.PlanData.Data[i].Name);
+          }
+          console.log(nameArr);
+          localStorage.selectNameArr = nameArr.join(",");
+          localStorage.cycleCount = this.PlanData.CycleCount;
+
+          this.planflag = true;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
     getData() {
       // 请求数据
       let tokenCode = localStorage.tokenCode;
@@ -306,6 +438,33 @@ export default {
             }
           }
           console.log(this.playdata);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    getlishiData() {
+      let tokenCode = localStorage.tokenCode;
+      let signStr =
+        "Action=GetCPDatas" +
+        "&SID=" +
+        localStorage.sid +
+        "&Token=" +
+        localStorage.Token +
+        "&Page=1" +
+        tokenCode;
+      let data = new FormData();
+      data.append("Action", "GetCPDatas");
+      data.append("SID", localStorage.sid);
+      data.append("Token", localStorage.Token);
+      data.append("Page", "1");
+      data.append("Sign", sha256.sha256(signStr).toUpperCase());
+
+      this.$http
+        .post(localStorage.SiteUrl, data)
+        .then(res => {
+          console.log(res);
+          this.lishiData = res.data.Data;
         })
         .catch(error => {
           console.log(error);

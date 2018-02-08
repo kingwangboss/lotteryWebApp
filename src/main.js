@@ -12,6 +12,7 @@ import {post,fetch,patch,put} from './util/http'
 import axios from 'axios'
 import store from './store/index'
 import {getCookie,setCookie,delCookie} from './util/util'
+import { Indicator } from 'mint-ui'
 import { InfiniteScroll } from 'mint-ui';
 Vue.use(InfiniteScroll);
 
@@ -20,7 +21,7 @@ Vue.use(Mint);
 Vue.use(ElementUI);
 
 Vue.prototype.global=global
-
+Vue.prototype.$show = Indicator;
 Vue.prototype.$post = post;
 Vue.prototype.$fetch = fetch;
 Vue.prototype.$patch = patch;

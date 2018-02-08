@@ -1,8 +1,6 @@
 <template>
     <div class="maincontainer">
 
-        <!-- <div class="middleLine">
-        </div> -->
 
         <div v-show="AuthType != '1'" class="middlecontainer">
             <!-- <span class="textbtn first" style="border-left-width: 1px;" @click="xzCaizhongClick">选择彩种</span> -->
@@ -21,8 +19,9 @@
             <span class="textbtn last" style="width:30%;" @click="qhClick">切换公式
             </span>
         </div>
+        
 
-        <plancell :data="PlanData"></plancell>
+        <plancell :data="PlanData.Data"></plancell>
 
         <div class="bottom-title">善意提醒：小心参考，理性投资</div>
 
@@ -99,10 +98,12 @@ import plancell from "../components/plancell/plancell";
 let AllData = require("../../static/data/GetPlanData2");
 import sha256 from "../util/sha256";
 import { MessageBox } from "mint-ui";
+import Vue from "vue";
 export default {
+  props: ["plandata"],
   data() {
     return {
-      PlanData: "",
+      PlanData: Object,
       AuthType: localStorage.AuthType
     };
   },
@@ -110,7 +111,13 @@ export default {
     plancell
   },
   created() {
-    this.PlanData = AllData.Data;
+    this.PlanData = this.plandata;
+  },
+  watch: {
+    plandata: function(now, old) {
+      this.PlanData = this.plandata;
+      
+    }
   },
   methods: {
     getData() {
@@ -139,7 +146,7 @@ export default {
           }
           console.log(nameArr);
           localStorage.selectNameArr = nameArr.join(",");
-            localStorage.cycleCount = this.PlanData.CycleCount;
+          localStorage.cycleCount = this.PlanData.CycleCount;
         })
         .catch(error => {
           console.log(error);
@@ -177,7 +184,7 @@ export default {
         this.$http
           .post(localStorage.SiteUrl, data)
           .then(res => {
-            console.log(res+'111111111');
+            console.log(res + "111111111");
             if (res.data.Code == "Suc") {
               localStorage.cycleCount = value;
               that.$router.push({
@@ -190,11 +197,8 @@ export default {
           });
       });
     },
-    // xzCaizhongClick() {
-    //     this.$router.push({
-    //         path: '/XZcaizhong'
-    //     })
-    // },
+    
+    
     planShareClick() {
       this.$router.push({
         path: "/planShare"
@@ -241,7 +245,7 @@ export default {
   },
   mounted() {
     // 调用请求数据的方法
-    this.getData();
+    // this.getData();
   }
 };
 </script>

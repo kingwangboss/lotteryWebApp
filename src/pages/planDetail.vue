@@ -2,10 +2,10 @@
     <div>
 
         <m-header :title="title"></m-header>
-
-        <kjview></kjview>
-        <el-tabs v-model="activeName" @tab-click="handleClick" style="color:black;">
-            <el-tab-pane :label="item.PlanName" :name="index.toString()" :index="index.toString()" v-for="(item,index) in listData" :key="index">
+        <kjview :kjdata="kjData" :Time="nextTime" v-if="flag"></kjview>
+        <!-- <kjview></kjview> -->
+        <el-tabs id="content" v-model="activeName" @tab-click="handleClick" style="color:black;">
+            <el-tab-pane :label="item.PlanName" :name="index.toString()" :index="index.toString()" v-for="(item,index) in listData" :key="index.toString()">
                 <!-- id控制 计划切换 -->
                 <div class="detail-top">
                     <div class="detail-top-content">
@@ -26,7 +26,7 @@
                     </div>
 
                     <!-- id控制 计划切换 -->
-                    <div class="detail-top-content" v-for="(item1,index1) in item.RightTimes ? item.RightTimes.split(',') : 0" :key="item1" v-show="item.RightTimes">
+                    <div class="detail-top-content" v-for="(item1,index1) in item.RightTimes ? item.RightTimes.split(',') : 0" :key="index1" v-show="item.RightTimes">
                         <div class="psview">第{{index1+1}}期中:</div>
                         <div class="psvalue">{{item1}}</div>
                         <div class="psview">次</div>
@@ -152,7 +152,7 @@
   display: flex;
   flex-direction: column;
   /* background: RGB(250, 250, 250); */
-//   word-wrap: break-word;
+  //   word-wrap: break-word;
   .cell-top {
     display: flex;
     flex-direction: row;
@@ -164,7 +164,7 @@
       display: flex;
       flex-direction: row;
       .cell-item1 {
-        padding-top: 2px; 
+        padding-top: 2px;
         margin-left: 5px;
         display: flex;
         flex-wrap: nowrap;
@@ -212,13 +212,13 @@
       }
 
       .cell-item3 {
-        padding-top: 2px; 
+        padding-top: 2px;
         // max-width: 80%;
         font-size: 12px;
         text-align: center;
         line-height: auto;
         // padding: 10px 5px;
-        margin:10px 5px;
+        margin: 10px 5px;
         white-space: pre-line;
         color: #16b482;
       }
@@ -232,7 +232,7 @@
         margin-top: 10px;
         margin-right: 5px;
         // padding-left: 5px;
-        width:45px;
+        width: 45px;
       }
     }
   }
@@ -245,7 +245,6 @@
     color: #999;
     padding-bottom: 5px;
     padding-left: 5px;
-    
   }
 }
 </style>
@@ -257,6 +256,8 @@ import kjview from "../components/kjview/kjview";
 import sha256 from "../util/sha256";
 import "element-ui/lib/theme-default/index.css";
 import listenHuadong from "../util/listenHuadong";
+var tiemInterval;
+var run;
 export default {
   data() {
     return {
@@ -265,8 +266,11 @@ export default {
         showBack: true,
         right: true
       },
+      kjData: "",
+      nextTime: "",
+      flag: false,
       activeName: "0",
-      maxactiveName:"",
+      maxactiveName: "",
       listData: "",
       zjnum: []
     };
@@ -277,6 +281,89 @@ export default {
       console.log(tab, event);
       console.log(tab.index);
       localStorage.detailID = tab.index;
+    },
+
+    getData1() {
+      let tokenCode = localStorage.tokenCode;
+      let signStr =
+        "Action=Clock" +
+        "&SID=" +
+        localStorage.sid +
+        "&Token=" +
+        localStorage.Token +
+        "&CurrentLottery=0" +
+        tokenCode;
+      let data = new FormData();
+      data.append("Action", "Clock");
+      data.append("SID", localStorage.sid);
+      data.append("Token", localStorage.Token);
+      data.append("CurrentLottery", "0");
+      data.append("Sign", sha256.sha256(signStr).toUpperCase());
+      this.$http
+        .post(localStorage.SiteUrl, data)
+        .then(res => {
+          if (res.data.Data.NewLottery.NextPeriodTime > 0) {
+            clearInterval(run);
+            this.getkjData();
+            this.getData();
+            // this.getcelldata();
+            console.log("yes111");
+          } else {
+            console.log("no111");
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    getkjData() {
+      let tokenCode = localStorage.tokenCode;
+      let signStr =
+        "Action=Clock" +
+        "&SID=" +
+        localStorage.sid +
+        "&Token=" +
+        localStorage.Token +
+        "&CurrentLottery=0" +
+        tokenCode;
+      let data = new FormData();
+      data.append("Action", "Clock");
+      data.append("SID", localStorage.sid);
+      data.append("Token", localStorage.Token);
+      data.append("CurrentLottery", "0");
+      data.append("Sign", sha256.sha256(signStr).toUpperCase());
+      //getClock握手
+      this.$http
+        .post(localStorage.SiteUrl, data)
+        .then(res => {
+          this.kjData = res.data.Data;
+          this.nextTime = res.data.Data.NewLottery.NextPeriodTime;
+          this.flag = true;
+
+          //设置定时器，每1秒刷新一次
+          var self = this;
+          tiemInterval = setInterval(getTotelNumber, 1000);
+
+          function getTotelNumber() {
+            if (self.nextTime > 0) {
+              self.nextTime--;
+              // console.log(self.nextTime);
+            } else {
+              clearInterval(tiemInterval);
+              var i = 0;
+              run = setInterval(function() {
+                if (localStorage.isLogin == "true") {
+                  self.getData1();
+                } else {
+                  clearInterval(tiemInterval);
+                }
+              }, 5000);
+            }
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
 
     getData() {
@@ -305,7 +392,7 @@ export default {
               i
             ].PlanDetails.reverse();
           }
-          this.activeName =localStorage.detailID;
+          this.activeName = localStorage.detailID;
         })
         .catch(error => {
           console.log(error);
@@ -321,10 +408,16 @@ export default {
     }
   },
   mounted() {
+    this.getkjData();
     // 调用请求数据的方法
     this.getData();
 
     listenHuadong.listenHuadong(this);
+  },
+  beforeDestroy() {
+    console.log("beforeDestroy")
+    clearInterval(tiemInterval);
+    
   },
   computed: {},
   components: {

@@ -35,7 +35,6 @@
 </template>
 
 <style lang="less" scoped>
-
 .content {
   display: flex;
   flex-direction: row;
@@ -48,10 +47,9 @@
     line-height: 38px;
     color: #fffde4;
     position: relative;
-    div{
+    div {
       position: absolute;
-      width:20px;
-
+      width: 20px;
     }
     //   background: red;
     .line1 {
@@ -65,7 +63,7 @@
       height: 36px;
       // z-index: 100;
       font-size: 12px;
-      padding:0px -5px 0px -5px;
+      padding: 0px -5px 0px -5px;
     }
     .line22 {
       background: url("../../../static/images/blue_center.png");
@@ -73,7 +71,7 @@
       height: 36px;
       // z-index: 100;
       font-size: 12px;
-      padding:0px -5px 0px -5px;
+      padding: 0px -5px 0px -5px;
     }
     .line3 {
       height: 36px;
@@ -150,6 +148,9 @@ export default {
     };
   },
   watch: {
+    data: function(now, old) {
+      this.numArr = this.data;
+    },
     screenWidth(val) {
       if (!this.timer) {
         this.screenWidth = val;
@@ -191,8 +192,8 @@ export default {
         colnum = this.numArr.length > colnum ? colnum : this.numArr.length;
         var rownum = this.numArr.length / colnum; //行
         margin = this.numArr.length >= 10 ? 12.5 : 12.5; //间距
-        ojwidth = (this.screenWidth - 2 * (margin) * colnum) / colnum; //格子的宽
-        return -ojwidth/2 ;
+        ojwidth = (this.screenWidth - 2 * margin * colnum) / colnum; //格子的宽
+        return -ojwidth / 2;
       },
       // setter
       set: function(newValue) {}

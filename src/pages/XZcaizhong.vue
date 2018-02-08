@@ -3,11 +3,11 @@
         <m-header :title="title">
         </m-header>
         <div class="maincontainer">
-            <div class="cell" v-for="item in dataList" :key="item.toString()">
+            <div class="cell" v-for="(item,index) in dataList" :key="index">
                 <div class="cell-btnview">
                     <!-- <el-button v-show="isSelect(item1)" class="btnSelect" :class="{'btnSelect':ind === item1.SID}" type="text" v-for="item1 in item.CPNames" :key="item1.toString()" @click="btnClick($event,item1.SID)">{{item1.CPName}}</el-button>
                     <el-button v-show="!isSelect(item1)" class="btn" :class="{'btnSelect':ind === item1.SID}" type="text" v-for="item1 in item.CPNames" :key="item1.toString()" @click="btnClick($event,item1.SID)">{{item1.CPName}}</el-button> -->
-                    <el-button class="btn" :class="{'btnSelect':ind == item1.SID}" type="text" v-for="item1 in item.CPNames" :key="item1.toString()" @click="btnClick($event,item1.SID)">{{item1.CPName}}
+                    <el-button class="btn" :class="{'btnSelect':ind == item1.SID}" type="text" v-for="(item1,index1) in item.CPNames" :key="index1" @click="btnClick($event,item1.SID)">{{item1.CPName}}
                         <img src="../../static/images/you_image.png" v-if="ind == item1.SID" class="you_image_select" alt="">
                         <!-- <img src="" v-else class="you_image" alt=""> -->
                     </el-button>

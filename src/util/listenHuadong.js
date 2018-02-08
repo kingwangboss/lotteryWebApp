@@ -34,7 +34,7 @@ function listenHuadong(self) {
         return result;
     }
     //手指接触屏幕
-    document.addEventListener(
+    document.getElementById("content").addEventListener(
         "touchstart",
         function (e) {
             startx = e.touches[0].pageX;
@@ -43,7 +43,7 @@ function listenHuadong(self) {
         false
     );
     //手指离开屏幕
-    document.addEventListener(
+    document.getElementById("content").addEventListener(
         "touchend",
         function (e) {
             var endx, endy;

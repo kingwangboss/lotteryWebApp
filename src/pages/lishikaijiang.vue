@@ -11,6 +11,7 @@ var data = require('../../static/data/historyData')
 import sha256 from '../util/sha256'
 export default {
   name: 'lishikaijiang',
+  props: ["lishi"],
   data() {
     return {
       lishiData: Array,
@@ -21,7 +22,13 @@ export default {
     cell,
   },
   created() {
-    this.lishiData = data.KJArr;
+    // this.lishiData = data.KJArr;
+    this.lishiData = this.lishi;
+  },
+  watch: {
+    lishi: function(now, old) {
+      this.lishiData = this.lishi;
+    }
   },
   methods: {
     getData() {
@@ -44,7 +51,7 @@ export default {
   },
   mounted() {
     // 调用请求数据的方法
-    this.getData()
+    // this.getData()
   }
 
 }

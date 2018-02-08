@@ -25,11 +25,7 @@
 
 <script>
 export default {
-    props: {
-        data: {
-            type: Array,
-        }
-    },
+    props: ["data"],
 
     data() {
         return {

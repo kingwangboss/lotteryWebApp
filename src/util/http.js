@@ -5,18 +5,18 @@ import { Toast, MessageBox } from 'mint-ui'
 // axios 配置
 axios.defaults.timeout = 60000;
 axios.defaults.baseURL = '';
-var loadinginstace
+// var loadinginstace
 // http request 拦截器
 axios.interceptors.request.use(
   config => {
     // element ui Loading方法
-    loadinginstace = Loading.service({
-      fullscreen: true
-    })
+    // loadinginstace = Loading.service({
+    //   fullscreen: true
+    // })
     return config
 
   }, error => {
-    loadinginstace.close()
+    // loadinginstace.close()
     Message.error({
       message: '加载超时'
     })
@@ -41,7 +41,7 @@ axios.interceptors.request.use(
 // http response 拦截器
 axios.interceptors.response.use(
   response => {// 响应成功关闭loading
-    loadinginstace.close()
+    // loadinginstace.close()
     // console.log(response);
     console.log('拦截器 MsgType:' + response.data.MsgType)
     console.log('拦截器 Msg:' + response.data.Msg)
@@ -171,7 +171,7 @@ axios.interceptors.response.use(
       return response
     }
   }, error => {
-    loadinginstace.close()
+    // loadinginstace.close()
     Message.error({
       message: '加载失败'
     })
