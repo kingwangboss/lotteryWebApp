@@ -137,63 +137,115 @@ export default {
       console.log(this.isSelect);
       if (this.isSelect == 1) {
         console.log("微信");
-        // this.url =
-        //   "http://wz.cpnet.com/wechat/purchase/#/wxservicePrice/" +
-        //   this.pid +
-        //   "?uid=" +
-        //   localStorage.uid;
+
+        let tokenCode = localStorage.tokenCode;
+        let signStr =
+          "Action=SubmitOrder" +
+          "&SID=" +
+          localStorage.sid +
+          "&PID=" +
+          this.pid +
+          "&PayType=" +
+          1 +
+          "&Token=" +
+          localStorage.Token +
+          tokenCode;
         let data = new FormData();
-        data.append("pid", this.pid);
-        data.append("uid", localStorage.uid);
-        data.append("paytype", 1);
+        data.append("Action", "SubmitOrder");
+        data.append("SID", localStorage.sid);
+        data.append("PID", this.pid);
+        data.append("PayType", 1);
+        data.append("Token", localStorage.Token);
+        data.append("Sign", sha256.sha256(signStr).toUpperCase());
+
         this.$http
-          .post("http://wz.cpnet.com/home/PayPost", data)
+          .post(this.global.url, data)
           .then(res => {
-            // console.log(res);
-            if (res.data.result.success === true) {
-              this.url = res.data.result.data;
-              window.location.href = this.url;
-            } else {
-              Toast({
-                message: res.data.result.message,
-                position: "bottom",
-                duration: 2000
-              });
-            }
+            this.url = res.data.Data.PayParamUrl;
+            window.location.href = this.url;
           })
           .catch(error => {
             console.log(error);
           });
+
+        // let data = new FormData();
+        // data.append("pid", this.pid);
+        // data.append("uid", localStorage.uid);
+        // data.append("paytype", 1);
+        // this.$http
+        //   .post("http://wz.cpnet.com/home/PayPost", data)
+        //   .then(res => {
+        //     // console.log(res);
+        //     if (res.data.result.success === true) {
+        //       this.url = res.data.result.data;
+        //       window.location.href = this.url;
+        //     } else {
+        //       Toast({
+        //         message: res.data.result.message,
+        //         position: "bottom",
+        //         duration: 2000
+        //       });
+        //     }
+        //   })
+        //   .catch(error => {
+        //     console.log(error);
+        //   });
       } else if (this.isSelect == 2) {
         console.log("zhifubao");
-        // this.url =
-        //   "http://wz.cpnet.com/wechat/purchase/#/servicePrice/" +
-        //   this.pid +
-        //   "?uid=" +
-        //   localStorage.uid;
+
+        let tokenCode = localStorage.tokenCode;
+        let signStr =
+          "Action=SubmitOrder" +
+          "&SID=" +
+          localStorage.sid +
+          "&PID=" +
+          this.pid +
+          "&PayType=" +
+          2 +
+          "&Token=" +
+          localStorage.Token +
+          tokenCode;
         let data = new FormData();
-        data.append("pid", this.pid);
-        data.append("uid", localStorage.uid);
-        data.append("paytype", 2);
+        data.append("Action", "SubmitOrder");
+        data.append("SID", localStorage.sid);
+        data.append("PID", this.pid);
+        data.append("PayType", 2);
+        data.append("Token", localStorage.Token);
+        data.append("Sign", sha256.sha256(signStr).toUpperCase());
+
         this.$http
-          .post("http://wz.cpnet.com/home/PayPost", data)
+          .post(this.global.url, data)
           .then(res => {
-            // console.log(res);
-            if (res.data.result.success === true) {
-              this.url = res.data.result.data;
-              window.location.href = this.url;
-              
-            } else {
-              Toast({
-                message: res.data.result.message,
-                position: "bottom",
-                duration: 2000
-              });
-            }
+            this.url = res.data.Data.PayParamUrl;
+            window.location.href = this.url;
           })
           .catch(error => {
             console.log(error);
           });
+        
+        // let data = new FormData();
+        // data.append("pid", this.pid);
+        // data.append("uid", localStorage.uid);
+        // data.append("paytype", 2);
+        // this.$http
+        //   .post("http://wz.cpnet.com/home/PayPost", data)
+        //   .then(res => {
+        //     // console.log(res);
+        //     if (res.data.result.success === true) {
+        //       this.url = res.data.result.data;
+        //       window.location.href = this.url;
+              
+        //     } else {
+        //       Toast({
+        //         message: res.data.result.message,
+        //         position: "bottom",
+        //         duration: 2000
+        //       });
+        //     }
+        //   })
+        //   .catch(error => {
+        //     console.log(error);
+        //   });
       }
     },
     cellClick(index) {
