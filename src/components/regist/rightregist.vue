@@ -249,7 +249,7 @@ export default {
 
         let data1 = new FormData();
         data1.append('Action', 'UserNameReg2');
-        data1.append('AppVersion', '1.0');
+        data1.append('AppVersion', this.global.AppVersion);
         data1.append('SID', localStorage.sid);
         data1.append('UserName', that.user.name);
         data1.append('Pwd', sha256.sha256(this.user.newpwd2).toUpperCase());

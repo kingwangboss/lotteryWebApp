@@ -5,6 +5,7 @@
   export default{
       url,
       AppType,
-      AppCode
+      AppCode,
+      AppVersion
   }
 </script>

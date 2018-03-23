@@ -280,7 +280,7 @@ export default {
       let data = new FormData();
       data.append('Action', 'MobileReg');
       data.append('SID', localStorage.sid);
-      data.append('AppVersion', '1.0');
+      data.append('AppVersion', this.global.AppVersion);
       data.append('Mobile', this.mobile.num);
       data.append('AppType', this.global.AppType)
       data.append('Pwd',  sha256.sha256(this.mobile.newpwd2).toUpperCase());

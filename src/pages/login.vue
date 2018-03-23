@@ -356,7 +356,7 @@ export default {
       data.append("Account", this.user.name);
       data.append("AppType", this.global.AppType);
       data.append("AppCode", this.global.AppCode);
-      data.append("AppVersion", "1.0");
+      data.append("AppVersion", this.global.AppVersion);
       data.append("Sign", sha256.sha256(signStr).toUpperCase());
 
       localStorage.pwd = sha256.sha256(this.user.pwd).toUpperCase();
