@@ -30,6 +30,21 @@
                     <div class="line">
                     </div>
                 </div>
+
+                <div v-else-if="item == 3">
+                    <div class="cell" @click="cellClick(index)">
+                        <img class="img1" src="../../static/images/zizhulog.png" alt="">
+                        <div class="title">
+                            <span class="title-span1">{{listData.PriceList[index].PayTypeTitle}}</span>
+                            <span class="title-span2">{{listData.PriceList[index].PayTypeDesc}}</span>
+                        </div>
+                        <img class="img2" v-show="isSelect != 3" src="../../static/images/quan1.png" alt="">
+                        <img class="img2" v-show="isSelect == 3" src="../../static/images/quan2.png" alt="">
+                    </div>
+                    <div class="line">
+                    </div>
+                </div>
+                
             </div>
         </div>
 
@@ -246,6 +261,38 @@ export default {
         //   .catch(error => {
         //     console.log(error);
         //   });
+      } else if (this.isSelect == 3) {
+        console.log("zizhu");
+
+        let tokenCode = localStorage.tokenCode;
+        let signStr =
+          "Action=SubmitOrder" +
+          "&SID=" +
+          localStorage.sid +
+          "&PID=" +
+          this.pid +
+          "&PayType=" +
+          3 +
+          "&Token=" +
+          localStorage.Token +
+          tokenCode;
+        let data = new FormData();
+        data.append("Action", "SubmitOrder");
+        data.append("SID", localStorage.sid);
+        data.append("PID", this.pid);
+        data.append("PayType", 3);
+        data.append("Token", localStorage.Token);
+        data.append("Sign", sha256.sha256(signStr).toUpperCase());
+
+        this.$http
+          .post(this.global.url, data)
+          .then(res => {
+            this.url = res.data.Data.PayParamUrl;
+            window.location.href = this.url;
+          })
+          .catch(error => {
+            console.log(error);
+          });
       }
     },
     cellClick(index) {

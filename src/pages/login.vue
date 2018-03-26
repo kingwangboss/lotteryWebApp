@@ -347,7 +347,7 @@ export default {
       let signStr =
         this.user.sid +
         this.user.name +
-        this.global.AppType + this.global.AppCode + "1.0" +
+        this.global.AppType + this.global.AppCode + this.global.AppVersion +
         sha256.sha256(this.user.pwd).toUpperCase();
       console.log(signStr);
       let data = new FormData();

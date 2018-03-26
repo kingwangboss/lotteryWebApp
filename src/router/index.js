@@ -192,6 +192,11 @@ export default new Router({
       component: resolve => require(['@/pages/suoshuizuhao'], resolve),
     },
     {
+      path: '/qihuanwanfa',
+      name: 'qihuanwanfa',
+      component: resolve => require(['@/pages/qihuanwanfa'], resolve),
+    },
+    {
       path: '/suoshuiresult',
       name: 'suoshuiresult',
       component: resolve => require(['@/pages/suoshuiresult'], resolve),

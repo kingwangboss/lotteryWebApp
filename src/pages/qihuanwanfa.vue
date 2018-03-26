@@ -3,22 +3,10 @@
       <m-header :title="title"></m-header>
       <div class="content">
           <div class="center">
-              <div class="cell">
-
+              <div class="cell" v-for="(item,index) in plandata" :key="item.toString()">
+                <div style="height:22vw;line-height:22vw;color:#333;font-size:5vw">{{item}}</div>
+                <div style="height:8vw;line-height:8vw;background:#fc5c42;border-bottom-right-radius: 2vw;border-bottom-left-radius: 2vw;color:#fff;font-size:4.5vw" @click="btnclick(item)">选择</div>
               </div>
-
-              <div class="cell" style="background:yellow">
-
-              </div>
-
-              <div class="cell">
-
-              </div>
-
-              <div class="cell">
-
-              </div>
-              
           </div>
       </div>
   </div>
@@ -39,15 +27,19 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 4vw;
     .cell {
-      padding: 10px 10px;
-      width: 150px;
-      height: 100px;
-      margin: 10px;
+      // padding: 10px 10px;
+      width: 40vw;
+      height: 30vw;
+      margin: 2vw;
       font-size: 4vw;
-      border: rgb(254, 232, 233) solid 1px;
-      background-color: rgb(255, 244, 245);
+      border: #e3e3e3 solid 1px;
+      border-radius: 2vw;
+      background-color: rgb(255, 255, 255);
       color: rgb(135, 135, 135);
+      
     }
   }
 </style>
@@ -60,7 +52,7 @@ export default {
     return {
       title: {
         text: "选择玩法",
-        suoshuiright: true,
+        suoshuiright: false,
         showBack: true
       },
       playtypeold: "",
@@ -77,6 +69,21 @@ export default {
       this.playtypeold = item;
       localStorage.playtypenew = item;
       localStorage.tempplay = "";
+
+      localStorage.playtype = localStorage.playtypenew;
+      if (
+        localStorage.playtype == null ||
+        localStorage.playtype == "" ||
+        localStorage.playtype === "undefined"
+      ) {
+        Toast({
+          message: '请选择玩法',
+          position: "bottom",
+          duration: 2000
+        });
+      } else {
+        this.$router.go(-1);
+      }
     },
     getData() {
       // 请求数据

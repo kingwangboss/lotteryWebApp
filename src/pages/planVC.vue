@@ -95,7 +95,7 @@ const tabList = {
     activeSrc: require("../../static/images/rizhi1.png")
   },
   suoshui: {
-    src: require("../../static/images/rizhi.png"),
+    src: require("../../static/images/suoshui.png"),
     defaultSrc: require("../../static/images/suoshui.png"),
     activeSrc: require("../../static/images/suoshui1.png")
   },
@@ -169,7 +169,7 @@ export default {
         localStorage.playtype == "" ||
         localStorage.playtype === "undefined"
       ) {
-        this.$router.push("/suoshuizuhao");
+        this.$router.push("/qihuanwanfa");
       } else {
         this.getData();
       }
@@ -235,7 +235,7 @@ export default {
             localStorage.playtype == "" ||
             localStorage.playtype === "undefined"
           ) {
-            this.$router.push("/suoshuizuhao");
+            this.$router.push("/qihuanwanfa");
           } else {
             this.getData();
           }

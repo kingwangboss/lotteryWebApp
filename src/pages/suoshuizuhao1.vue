@@ -5,13 +5,15 @@
           <img class="images" src="../../static/images/s1_03.png" alt="">
           <button class="bottom"  @click="qhplay">切换玩法</button>
         </div>
-        <button class="bottom-btn" style="" @click="addcontinue">添加条件</button>        
+            
         <button class="bottom-btn" style="" @click="removecontinue">清除条件</button>
 
         <div class="btn">
           <button class="bottom" style="background:rgb(248, 68, 51);color:white;" @click="commit">执行组号</button>   
           <img class="images" src="../../static/images/s2_05.png" alt="">
         </div>       
+        
+        <button class="bottom-btn" style="visibility:hidden;" @click="addcontinue">添加条件</button>    
       </div>
       
       <div class="container">
@@ -441,7 +443,7 @@ export default {
     },
 
     qhplay() {
-      this.$router.push("/suoshuizuhao");
+      this.$router.push("/qihuanwanfa");
     },
     addcontinue() {},
     removecontinue() {

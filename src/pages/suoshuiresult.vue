@@ -2,15 +2,16 @@
   <div>
       <m-header :title="title"></m-header>
       <div class="container">
-          <div class="content" v-for="(item,index) in resultdata">
+        <textarea cols="20" readonly="true" style="font-size:20px;outline:none;margin:0px;position:absolute;left:0px;top:44px;bottom:0;width:100%;">{{ojresultdata}}</textarea>
+          <!-- <div class="content" v-for="(item,index) in resultdata">
               <div class="line"></div>
 
               <div class="KJnum">
                 <div v-for="(item1,index1) in item.split(',')">
                     <div class="num">{{item1}}</div>
                 </div>
-            </div>
-          </div>
+              </div>
+          </div> -->
       </div>
   </div>
 </template>
@@ -57,15 +58,18 @@ export default {
         text: "缩水组号",
         showBack: true
       },
-      resultdata: this.$route.query.resultdata
+      resultdata: this.$route.query.resultdata,
+      ojresultdata: ""
     };
   },
   components: {
     mHeader
   },
-  mounted(){
-      console.log('------------')
-      console.log(this.resultdata)
-  }
+  mounted() {
+    console.log("------------");
+    console.log(this.resultdata);
+    this.ojresultdata = this.resultdata.join("\n");
+  },
+  
 };
 </script>
