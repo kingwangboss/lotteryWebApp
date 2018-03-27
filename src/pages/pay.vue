@@ -153,35 +153,7 @@ export default {
       if (this.isSelect == 1) {
         console.log("微信");
 
-        let tokenCode = localStorage.tokenCode;
-        let signStr =
-          "Action=SubmitOrder" +
-          "&SID=" +
-          localStorage.sid +
-          "&PID=" +
-          this.pid +
-          "&PayType=" +
-          1 +
-          "&Token=" +
-          localStorage.Token +
-          tokenCode;
-        let data = new FormData();
-        data.append("Action", "SubmitOrder");
-        data.append("SID", localStorage.sid);
-        data.append("PID", this.pid);
-        data.append("PayType", 1);
-        data.append("Token", localStorage.Token);
-        data.append("Sign", sha256.sha256(signStr).toUpperCase());
-
-        this.$http
-          .post(this.global.url, data)
-          .then(res => {
-            this.url = res.data.Data.PayParamUrl;
-            window.location.href = this.url;
-          })
-          .catch(error => {
-            console.log(error);
-          });
+        this.pay(this.isSelect);
 
         // let data = new FormData();
         // data.append("pid", this.pid);
@@ -208,35 +180,7 @@ export default {
       } else if (this.isSelect == 2) {
         console.log("zhifubao");
 
-        let tokenCode = localStorage.tokenCode;
-        let signStr =
-          "Action=SubmitOrder" +
-          "&SID=" +
-          localStorage.sid +
-          "&PID=" +
-          this.pid +
-          "&PayType=" +
-          2 +
-          "&Token=" +
-          localStorage.Token +
-          tokenCode;
-        let data = new FormData();
-        data.append("Action", "SubmitOrder");
-        data.append("SID", localStorage.sid);
-        data.append("PID", this.pid);
-        data.append("PayType", 2);
-        data.append("Token", localStorage.Token);
-        data.append("Sign", sha256.sha256(signStr).toUpperCase());
-
-        this.$http
-          .post(this.global.url, data)
-          .then(res => {
-            this.url = res.data.Data.PayParamUrl;
-            window.location.href = this.url;
-          })
-          .catch(error => {
-            console.log(error);
-          });
+        this.pay(this.isSelect);
         
         // let data = new FormData();
         // data.append("pid", this.pid);
@@ -264,7 +208,12 @@ export default {
       } else if (this.isSelect == 3) {
         console.log("zizhu");
 
-        let tokenCode = localStorage.tokenCode;
+        this.pay(this.isSelect);
+      }
+    },
+
+    pay(isSelect){
+      let tokenCode = localStorage.tokenCode;
         let signStr =
           "Action=SubmitOrder" +
           "&SID=" +
@@ -272,7 +221,7 @@ export default {
           "&PID=" +
           this.pid +
           "&PayType=" +
-          3 +
+          isSelect +
           "&Token=" +
           localStorage.Token +
           tokenCode;
@@ -280,7 +229,7 @@ export default {
         data.append("Action", "SubmitOrder");
         data.append("SID", localStorage.sid);
         data.append("PID", this.pid);
-        data.append("PayType", 3);
+        data.append("PayType", isSelect);
         data.append("Token", localStorage.Token);
         data.append("Sign", sha256.sha256(signStr).toUpperCase());
 
@@ -293,7 +242,6 @@ export default {
           .catch(error => {
             console.log(error);
           });
-      }
     },
     cellClick(index) {
       this.isSelect = this.paytype[index];
@@ -302,6 +250,10 @@ export default {
         this.price = this.listData.PriceList[index].PayTypeDisPrice.toFixed(2);
       } else if (this.isSelect == 2) {
         console.log("zhifubao");
+        this.price = this.listData.PriceList[index].PayTypeDisPrice.toFixed(2);
+      }
+      else if (this.isSelect == 3) {
+        console.log("zizhu");
         this.price = this.listData.PriceList[index].PayTypeDisPrice.toFixed(2);
       }
     },
