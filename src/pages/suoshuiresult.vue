@@ -2,7 +2,7 @@
   <div>
       <m-header :title="title"></m-header>
       <div class="container">
-        <textarea cols="20" readonly="true" style="font-size:20px;outline:none;margin:0px;position:absolute;left:0px;top:44px;bottom:0;width:100%;color:#777">{{ojresultdata}}</textarea>
+        <textarea cols="20" readonly="true" style="padding-left:5%;padding-top:5%;border:none;font-size:20px;outline:none;margin:0px;position:absolute;left:0px;top:44px;bottom:0;width:95%;color:#777">{{ojresultdata}}</textarea>
           <!-- <div class="content" v-for="(item,index) in resultdata">
               <div class="line"></div>
 
@@ -26,6 +26,7 @@
 .container {
   display: flex;
   flex-direction: column;
+  
   .KJnum {
     // margin: 0px 0px;
     display: flex;

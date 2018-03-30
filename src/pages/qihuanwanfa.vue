@@ -3,16 +3,16 @@
       <m-header :title="title"></m-header>
       <div class="content">
           <div class="center">
-              <div class="cell" v-for="(item,index) in plandata" :key="item.toString()">
-                <div style="height:22vw;line-height:22vw;color:#333;font-size:5vw">{{item}}</div>
-                <div style="height:8vw;line-height:8vw;background:#fc5c42;border-bottom-right-radius: 2vw;border-bottom-left-radius: 2vw;color:#fff;font-size:4.5vw" @click="btnclick(item)">选择</div>
+              <div class="cell" v-for="(item,index) in plandata" :key="item.toString()"  @click="btnclick(item)">
+                <div style="height:13vw;line-height:13vw;color:#333;font-size:5vw">{{item}}</div>
+                <div style="height:7vw;line-height:7vw;background:#fc5c42;color:#fff;font-size:4.5vw">选择</div>
               </div>
           </div>
       </div>
   </div>
 </template>
 
-<style lang="less">
+<style lang="less" scoped>
 .content {
   background-image: url(../../static/images/bg_02.png);
   background-repeat: no-repeat;
@@ -31,12 +31,12 @@
     margin: 4vw;
     .cell {
       // padding: 10px 10px;
-      width: 40vw;
-      height: 30vw;
+      width: 38vw;
+      height: 20vw;
       margin: 2vw;
       font-size: 4vw;
       border: #e3e3e3 solid 1px;
-      border-radius: 2vw;
+      // border-radius: 2vw;
       background-color: rgb(255, 255, 255);
       color: rgb(135, 135, 135);
       

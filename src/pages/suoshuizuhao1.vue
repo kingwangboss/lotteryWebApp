@@ -12,8 +12,8 @@
           <button class="bottom" style="background:rgb(248, 68, 51);color:white;" @click="commit">执行组号</button>   
           <img class="images" src="../../static/images/s2_05.png" alt="">
         </div>       
-        
-        <button class="bottom-btn" style="visibility:hidden;" @click="addcontinue">添加条件</button>    
+
+        <!-- <button class="bottom-btn" style="visibility:hidden;" @click="addcontinue">添加条件</button>     -->
       </div>
       
       <div class="container">
@@ -142,7 +142,7 @@
     height: 8vw;
     .tip {
       #bundle > .juzhong;
-      margin: 4vw 2vw 0 2vw;
+      margin: 2vw 2vw 0 0vw;
       width: 5vw;
       height: 5vw;
       border-radius: 5vw;
@@ -150,7 +150,7 @@
       background: rgb(250, 250, 250);
       border: rgb(184, 184, 184) solid 1px;
       color: rgb(184, 184, 184);
-      font-size: 3vw;
+      font-size: 2vw;
     }
   }
   .cell-top {
@@ -166,7 +166,7 @@
     border-bottom-right-radius: 4vw;
     .name {
       font-style: oblique;
-      width: 20vw;
+      min-width: 20vw;
       text-align: left;
       border-top-right-radius: 3.5vw;
       border-bottom-right-radius: 3.5vw;
@@ -175,6 +175,8 @@
       font-size: 3.5vw;
       // margin: 0px 3vw 0vw 0px;
       padding-left: 2vw;
+      padding-right: 2vw;
+      margin: -1px 0px -1px 0px;
       height: 7vw;
       line-height: 7.5vw;
       color: white;
