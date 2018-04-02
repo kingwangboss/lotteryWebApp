@@ -142,7 +142,7 @@
     height: 8vw;
     .tip {
       #bundle > .juzhong;
-      margin: 2vw 2vw 0 0vw;
+      margin: 4vw 2vw 0 0vw;
       width: 5vw;
       height: 5vw;
       border-radius: 5vw;
