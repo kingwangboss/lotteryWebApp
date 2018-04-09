@@ -62,7 +62,6 @@
 </template>
 
 <style lang="less" scoped>
-
 :focus {
   outline: none;
 }
@@ -91,13 +90,13 @@
     #bundle > .juzhong;
     border-radius: 3vw;
     font-size: 3vw;
-    background:rgb(248, 68, 51);
+    background: rgb(248, 68, 51);
     color: rgb(135, 135, 135);
     border-color: rgba(0, 0, 0, 0);
     padding: 0 2vw;
     margin: 2vw 1vw;
-    .images{
-      margin-top:1px;
+    .images {
+      margin-top: 1px;
       width: 3vw;
       height: 3vw;
     }
@@ -127,7 +126,7 @@
   border-bottom: rgb(232, 232, 232) solid 1px;
   border-top: rgb(232, 232, 232) solid 1px;
 }
-.line1{
+.line1 {
   margin-top: 1.5vw;
   height: 4vw;
   width: 1px;
@@ -480,6 +479,56 @@ export default {
         } else {
         }
       }
+
+      console.log(temparr);
+      var obj_arr;
+      if (localStorage.a) {
+        obj_arr = JSON.parse(localStorage.a);
+      } else {
+        obj_arr = [];
+        var obj = {
+          user_name: localStorage.user_name,
+          caizhong: localStorage.czname,
+          playtype: localStorage.playtype,
+          tempplay: temparr
+        };
+        obj_arr.push(obj);
+      }
+
+      var temp;
+      for (let index = 0; index < obj_arr.length; index++) {
+        const element = obj_arr[index];
+        if (
+          element.caizhong === localStorage.czname &&
+          element.user_name === localStorage.user_name &&
+          element.playtype === localStorage.playtype
+        ) {
+          temp = true;
+          element.tempplay = temparr;
+        } else {
+          temp = false;
+        }
+      }
+
+      if (temp) {
+      } else {
+        
+
+        // console.log(obj_arr);
+        var obj = {
+          user_name: localStorage.user_name,
+          caizhong: localStorage.czname,
+          playtype: localStorage.playtype,
+          tempplay: temparr
+        };
+        obj_arr.push(obj);
+      }
+
+      obj_arr = JSON.stringify(obj_arr);
+      console.log(obj_arr);
+      localStorage.a = obj_arr;
+      console.log(JSON.parse(localStorage.a));
+
       localStorage.tempplay = temparr;
       console.log(temparr);
       console.log("[" + arr.toString() + "]");

@@ -132,7 +132,7 @@ export default {
       flag: false,
       planflag: false,
       PlanData: "",
-      lishiData:"",
+      lishiData: ""
     };
   },
   created() {
@@ -420,7 +420,23 @@ export default {
           for (let index = 0; index < this.playdata.length; index++) {
             const element = this.playdata[index];
             console.log(element);
-            var str = localStorage.tempplay;
+            var obj_arr = JSON.parse(localStorage.a);
+            var str;
+            for (let index = 0; index < obj_arr.length; index++) {
+              const element = obj_arr[index];
+              // console.log(element);
+
+              if (
+                element.caizhong === localStorage.czname &&
+                element.user_name === localStorage.user_name &&
+                element.playtype === localStorage.playtype
+              ) {
+                str = element.tempplay.toString();
+              } else {
+              }
+            }
+
+            // var str = localStorage.tempplay;
             for (let inx = 0; inx < str.split(",").length; inx++) {
               const element1 = str.split(",")[inx];
 
