@@ -571,6 +571,10 @@ export default {
               let str = element.toString();
               dataArr.push(str);
             }
+            
+            if(dataArr == ""){
+              dataArr = ["没有符合条件的数据"];
+            }
             // console.log(dataArr);
             if (res.data.Code === "Suc") {
               this.$router.push({

@@ -161,7 +161,7 @@ export default {
       };
     } else if (localStorage.tab === "suoshui") {
       this.title = {
-        text: "缩水组号"
+        text: "缩水组号"+ "-" + localStorage.playtype
         // suoshuiQH: true
       };
       if (
@@ -227,7 +227,7 @@ export default {
           break;
         case "suoshui":
           this.title = {
-            text: "缩水组号"
+            text: "缩水组号"+ "-" + localStorage.playtype
             // suoshuiQH: true
           };
           if (
