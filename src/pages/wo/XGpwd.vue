@@ -135,7 +135,7 @@ export default {
           data.append("Sign", sha256.sha256(signStr).toUpperCase());
 
           this.$http
-            .post(localStorage.SiteUrl, data)
+            .post(this.global.url, data)
             .then(res => {
               if (res.data.Code == "Suc") {
                 localStorage.user_pwd = this.pwd.newpwd1;
