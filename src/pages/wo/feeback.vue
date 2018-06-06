@@ -99,7 +99,7 @@ export default {
       data.append("Sign", sha256.sha256(signStr).toUpperCase());
 
       this.$http
-        .post(localStorage.SiteUrl, data)
+        .post(this.global.url, data)
         .then(res => {
           // this.$router.go(-1);
         })
