@@ -187,6 +187,7 @@ export default {
   },
   beforeDestroy() {
     clearInterval(tiemInterval);
+    clearInterval(run);
   },
 
   components: {
