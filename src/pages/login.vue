@@ -347,7 +347,9 @@ export default {
       let signStr =
         this.user.sid +
         this.user.name +
-        this.global.AppType + this.global.AppCode + this.global.AppVersion +
+        this.global.AppType +
+        this.global.AppCode +
+        this.global.AppVersion +
         sha256.sha256(this.user.pwd).toUpperCase();
       console.log(signStr);
       let data = new FormData();
@@ -409,8 +411,11 @@ export default {
   },
 
   created() {
-    this.user.sid = localStorage.sid;
-
+    if (localStorage.sid) {
+      this.user.sid = localStorage.sid;
+    } else {
+      this.$router.push("/XZcaizhong");
+    }
     // let u = navigator.userAgent;
     // alert(u)
     // this.$store.dispatch('fetchOrderList')

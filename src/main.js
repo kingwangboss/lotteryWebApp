@@ -14,6 +14,7 @@ import store from './store/index'
 import {getCookie,setCookie,delCookie} from './util/util'
 import { Indicator } from 'mint-ui'
 import { InfiniteScroll } from 'mint-ui';
+import sha256 from "./util/sha256";
 Vue.use(InfiniteScroll);
 
 Vue.config.productionTip = false
@@ -21,6 +22,7 @@ Vue.use(Mint);
 Vue.use(ElementUI);
 
 Vue.prototype.global=global
+Vue.prototype.$sha256 = sha256;
 Vue.prototype.$show = Indicator;
 Vue.prototype.$post = post;
 Vue.prototype.$fetch = fetch;
